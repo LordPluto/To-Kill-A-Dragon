@@ -1,0 +1,4 @@
+Victor A1
+Hello World! This is a simple test of the dialogue parsing system. If it worked, you should only see this line, and not some person's name followed by a number. In addition, I'm about to attempt to overload the system by trying to use more than 374 characters in the test string. I wonder how it will react? Well, this wasn't enough, so I need to add more. More, more, more! Time to spice things up a bit. As you can see, there is a space here - that is because the space gets caught in the cut. My suggestion is, as always, ensure that the lines never reach 374 characters.
+Victor A2
+This is the second test; two text boxes.

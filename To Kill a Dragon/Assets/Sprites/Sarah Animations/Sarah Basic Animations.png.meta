@@ -1,0 +1,486 @@
+fileFormatVersion: 2
+guid: 51dcdc37125bd174da39742e1c883709
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Idle Down 1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 820
+        width: 128
+        height: 162
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Idle Down 2
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 820
+        width: 126
+        height: 168
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Idle Down 3
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 820
+        width: 128
+        height: 171
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Walk Down 1
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 827
+        width: 105
+        height: 155
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Walk Down 2
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 827
+        width: 103
+        height: 155
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Idle Up 1
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 820
+        width: 132
+        height: 159
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Idle Up 2
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 820
+        width: 132
+        height: 166
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Idle Up 3
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 820
+        width: 132
+        height: 171
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Walk Up 1
+      rect:
+        serializedVersion: 2
+        x: 1632
+        y: 822
+        width: 107
+        height: 157
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Walk Up 2
+      rect:
+        serializedVersion: 2
+        x: 1838
+        y: 822
+        width: 106
+        height: 160
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Idle Left 1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 615
+        width: 88
+        height: 163
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Idle Left 2
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 615
+        width: 88
+        height: 170
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Idle Left 3
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 615
+        width: 88
+        height: 172
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Walk Left 1
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 617
+        width: 105
+        height: 161
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Walk Left 3
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 617
+        width: 90
+        height: 161
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Walk Right 3
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 617
+        width: 92
+        height: 161
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Walk Right 1
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 617
+        width: 105
+        height: 161
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Idle Right 3
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 615
+        width: 88
+        height: 172
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Idle Right 2
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 615
+        width: 86
+        height: 170
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Idle Right 1
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 615
+        width: 86
+        height: 163
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Got Item
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 416
+        width: 171
+        height: 170
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Fall Down 1
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 418
+        width: 152
+        height: 163
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Fall Down 2
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 418
+        width: 141
+        height: 163
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Attack Cast Down 1
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 418
+        width: 128
+        height: 163
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Attack Cast Down 2
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 418
+        width: 126
+        height: 166
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Attack Cast Down 1
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 418
+        width: 128
+        height: 159
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Attack Cast Up 2
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 418
+        width: 132
+        height: 170
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Attack Cast Left 1
+      rect:
+        serializedVersion: 2
+        x: 1441
+        y: 414
+        width: 88
+        height: 169
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Attack Cast Left 2
+      rect:
+        serializedVersion: 2
+        x: 1642
+        y: 414
+        width: 86
+        height: 174
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Attack Cast Right 2
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 414
+        width: 86
+        height: 174
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Attack Cast Right 1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 215
+        width: 86
+        height: 167
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Support Cast Down 1
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 227
+        width: 117
+        height: 149
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Support Cast Down 2
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 227
+        width: 116
+        height: 155
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Support Cast Up 1
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 217
+        width: 145
+        height: 161
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Support Cast Up 2
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 217
+        width: 143
+        height: 163
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Support Cast Left 1
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 215
+        width: 107
+        height: 163
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Support Cast Left 2
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 215
+        width: 105
+        height: 171
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Damaged Down 1
+      rect:
+        serializedVersion: 2
+        x: 1416
+        y: 213
+        width: 122
+        height: 165
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Damaged Down 2
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 211
+        width: 132
+        height: 176
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Damaged Up 1
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 219
+        width: 148
+        height: 174
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Damaged Up 2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9
+        width: 171
+        height: 181
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Damaged Left 1
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 0
+        width: 134
+        height: 179
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Damaged Left 2
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 1
+        width: 132
+        height: 174
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Damaged Right 2
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 1
+        width: 134
+        height: 174
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Damaged Right 1
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 0
+        width: 135
+        height: 179
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Support Cast Right 2
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 14
+        width: 107
+        height: 173
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Support Cast Right 1
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 14
+        width: 105
+        height: 165
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Walk Right 2
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 14
+        width: 88
+        height: 171
+      alignment: 7
+      pivot: {x: .5, y: 0}
+    - name: Walk Left 2
+      rect:
+        serializedVersion: 2
+        x: 1642
+        y: 14
+        width: 86
+        height: 171
+      alignment: 7
+      pivot: {x: .5, y: 0}
+  spritePackingTag: 
+  userData: 

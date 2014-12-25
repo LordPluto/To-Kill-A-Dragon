@@ -1,0 +1,279 @@
+fileFormatVersion: 2
+guid: ff0d7c6ff5c5d2749859f597fe8534e3
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Fire Down 1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2764
+        width: 291
+        height: 535
+      alignment: 9
+      pivot: {x: .5, y: .200000003}
+    - name: Fire Down 2
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 2776
+        width: 271
+        height: 579
+      alignment: 9
+      pivot: {x: .563067555, y: .158428296}
+    - name: Fire Down 3
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 2769
+        width: 271
+        height: 525
+      alignment: 9
+      pivot: {x: .518019319, y: .174452662}
+    - name: Fire Burst 1 Down 1
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 2738
+        width: 316
+        height: 420
+      alignment: 9
+      pivot: {x: .493002594, y: .268358797}
+    - name: Fire Burst 1 Down 2
+      rect:
+        serializedVersion: 2
+        x: 1263
+        y: 2718
+        width: 382
+        height: 513
+      alignment: 9
+      pivot: {x: .37136665, y: .335248858}
+    - name: Fire Burst 1 Down 3
+      rect:
+        serializedVersion: 2
+        x: 1751
+        y: 2566
+        width: 511
+        height: 712
+      alignment: 9
+      pivot: {x: .422754347, y: .40580219}
+    - name: Fire Burst 1 Down 4
+      rect:
+        serializedVersion: 2
+        x: 2277
+        y: 2601
+        width: 432
+        height: 580
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Fire Burst 1 Down 5
+      rect:
+        serializedVersion: 2
+        x: 2790
+        y: 2545
+        width: 566
+        height: 561
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Fire Burst 1 Down 6
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 2348
+        width: 291
+        height: 341
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Fire Burst 1 Down 7
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 2329
+        width: 259
+        height: 189
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Fire Burst 1 Down 8
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 2342
+        width: 235
+        height: 115
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Fire Burst 2 Down 1
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 2011
+        width: 291
+        height: 612
+      alignment: 9
+      pivot: {x: .49082458, y: .168417543}
+    - name: Fire Burst 2 Down 2
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 2022
+        width: 243
+        height: 526
+      alignment: 9
+      pivot: {x: .510987818, y: .16496712}
+    - name: Fire Burst 2 Down 3
+      rect:
+        serializedVersion: 2
+        x: 1589
+        y: 2024
+        width: 208
+        height: 558
+      alignment: 9
+      pivot: {x: .525674105, y: .155469894}
+    - name: Fire Burst 2 Down 4
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 2011
+        width: 224
+        height: 329
+      alignment: 9
+      pivot: {x: .5, y: .280872285}
+    - name: Fire Burst 2 Down 5
+      rect:
+        serializedVersion: 2
+        x: 2069
+        y: 2014
+        width: 118
+        height: 213
+      alignment: 9
+      pivot: {x: .522628546, y: .249284774}
+    - name: Fire Burst 2 Down 6
+      rect:
+        serializedVersion: 2
+        x: 2259
+        y: 2030
+        width: 67
+        height: 123
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Fire Burst 3 Down 1
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 1225
+        width: 724
+        height: 641
+      alignment: 9
+      pivot: {x: .504974306, y: .224699646}
+    - name: Fire Burst 3 Down 2
+      rect:
+        serializedVersion: 2
+        x: 1278
+        y: 1149
+        width: 663
+        height: 745
+      alignment: 9
+      pivot: {x: .5108639, y: .277632952}
+    - name: Fire Burst 3 Down 4
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 557
+        width: 664
+        height: 641
+      alignment: 9
+      pivot: {x: .528789639, y: .268874437}
+    - name: Fire Burst 3 Down 5
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 605
+        width: 884
+        height: 511
+      alignment: 9
+      pivot: {x: .505406141, y: .294246912}
+    - name: Fire Burst 3 Down 3
+      rect:
+        serializedVersion: 2
+        x: 2093
+        y: 672
+        width: 597
+        height: 836
+      alignment: 9
+      pivot: {x: .516010225, y: .294202149}
+    - name: Fire Burst 3 Down 7
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 0
+        width: 670
+        height: 535
+      alignment: 9
+      pivot: {x: .514382422, y: .193802506}
+    - name: Fire Burst 3 Down 8
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 0
+        width: 559
+        height: 496
+      alignment: 9
+      pivot: {x: .491380841, y: .198868185}
+    - name: Fire Burst 3 Down 9
+      rect:
+        serializedVersion: 2
+        x: 1647
+        y: 10
+        width: 188
+        height: 217
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Fire Burst 3 Down 6
+      rect:
+        serializedVersion: 2
+        x: 1955
+        y: 23
+        width: 848
+        height: 579
+      alignment: 9
+      pivot: {x: .530990601, y: .313402891}
+  spritePackingTag: 
+  userData: 
