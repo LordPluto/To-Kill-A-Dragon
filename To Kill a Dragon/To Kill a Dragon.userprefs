@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerAnimationController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\GameController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Various\NPC\NPCController.cs" Line="102" Column="6" />
-      <File FileName="Assets\Scripts\Player\PlayerAnimationController.cs" Line="223" Column="28" />
+      <File FileName="Assets\Scripts\Player\PlayerAnimationController.cs" Line="302" Column="1" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="80" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

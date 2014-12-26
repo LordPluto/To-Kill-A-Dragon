@@ -1,6 +1,56 @@
 fileFormatVersion: 2
 guid: 51dcdc37125bd174da39742e1c883709
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: Idle Down 1
+    21300002: Idle Down 2
+    21300004: Idle Down 3
+    21300006: Walk Down 1
+    21300008: Walk Down 2
+    21300010: Idle Up 1
+    21300012: Idle Up 2
+    21300014: Idle Up 3
+    21300016: Walk Up 1
+    21300018: Walk Up 2
+    21300020: Idle Left 1
+    21300022: Idle Left 2
+    21300024: Idle Left 3
+    21300026: Walk Left 1
+    21300028: Walk Left 3
+    21300030: Walk Right 3
+    21300032: Walk Right 1
+    21300034: Idle Right 3
+    21300036: Idle Right 2
+    21300038: Idle Right 1
+    21300040: Got Item
+    21300042: Fall Down 1
+    21300044: Fall Down 2
+    21300046: Attack Cast Down 1
+    21300048: Attack Cast Down 2
+    21300050: Attack Cast Down 1
+    21300052: Attack Cast Up 2
+    21300054: Attack Cast Left 1
+    21300056: Attack Cast Left 2
+    21300058: Attack Cast Right 2
+    21300060: Attack Cast Right 1
+    21300062: Support Cast Down 1
+    21300064: Support Cast Down 2
+    21300066: Support Cast Up 1
+    21300068: Support Cast Up 2
+    21300070: Support Cast Left 1
+    21300072: Support Cast Left 2
+    21300074: Damaged Down 1
+    21300076: Damaged Down 2
+    21300078: Damaged Up 1
+    21300080: Damaged Up 2
+    21300082: Damaged Left 1
+    21300084: Damaged Left 2
+    21300086: Damaged Right 2
+    21300088: Damaged Right 1
+    21300090: Support Cast Right 2
+    21300092: Support Cast Right 1
+    21300094: Walk Right 2
+    21300096: Walk Left 2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,6 +85,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
@@ -50,6 +101,7 @@ TextureImporter:
         height: 162
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle Down 2
       rect:
         serializedVersion: 2
@@ -59,6 +111,7 @@ TextureImporter:
         height: 168
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle Down 3
       rect:
         serializedVersion: 2
@@ -68,6 +121,7 @@ TextureImporter:
         height: 171
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Walk Down 1
       rect:
         serializedVersion: 2
@@ -77,6 +131,7 @@ TextureImporter:
         height: 155
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Walk Down 2
       rect:
         serializedVersion: 2
@@ -86,6 +141,7 @@ TextureImporter:
         height: 155
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle Up 1
       rect:
         serializedVersion: 2
@@ -95,6 +151,7 @@ TextureImporter:
         height: 159
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle Up 2
       rect:
         serializedVersion: 2
@@ -104,6 +161,7 @@ TextureImporter:
         height: 166
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle Up 3
       rect:
         serializedVersion: 2
@@ -113,6 +171,7 @@ TextureImporter:
         height: 171
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Walk Up 1
       rect:
         serializedVersion: 2
@@ -122,6 +181,7 @@ TextureImporter:
         height: 157
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Walk Up 2
       rect:
         serializedVersion: 2
@@ -131,6 +191,7 @@ TextureImporter:
         height: 160
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle Left 1
       rect:
         serializedVersion: 2
@@ -140,6 +201,7 @@ TextureImporter:
         height: 163
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle Left 2
       rect:
         serializedVersion: 2
@@ -149,6 +211,7 @@ TextureImporter:
         height: 170
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle Left 3
       rect:
         serializedVersion: 2
@@ -158,6 +221,7 @@ TextureImporter:
         height: 172
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Walk Left 1
       rect:
         serializedVersion: 2
@@ -167,6 +231,7 @@ TextureImporter:
         height: 161
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Walk Left 3
       rect:
         serializedVersion: 2
@@ -176,6 +241,7 @@ TextureImporter:
         height: 161
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Walk Right 3
       rect:
         serializedVersion: 2
@@ -185,6 +251,7 @@ TextureImporter:
         height: 161
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Walk Right 1
       rect:
         serializedVersion: 2
@@ -194,6 +261,7 @@ TextureImporter:
         height: 161
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle Right 3
       rect:
         serializedVersion: 2
@@ -203,6 +271,7 @@ TextureImporter:
         height: 172
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle Right 2
       rect:
         serializedVersion: 2
@@ -212,6 +281,7 @@ TextureImporter:
         height: 170
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle Right 1
       rect:
         serializedVersion: 2
@@ -221,6 +291,7 @@ TextureImporter:
         height: 163
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Got Item
       rect:
         serializedVersion: 2
@@ -230,6 +301,7 @@ TextureImporter:
         height: 170
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Fall Down 1
       rect:
         serializedVersion: 2
@@ -239,6 +311,7 @@ TextureImporter:
         height: 163
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Fall Down 2
       rect:
         serializedVersion: 2
@@ -248,6 +321,7 @@ TextureImporter:
         height: 163
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Attack Cast Down 1
       rect:
         serializedVersion: 2
@@ -257,6 +331,7 @@ TextureImporter:
         height: 163
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Attack Cast Down 2
       rect:
         serializedVersion: 2
@@ -266,6 +341,7 @@ TextureImporter:
         height: 166
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Attack Cast Down 1
       rect:
         serializedVersion: 2
@@ -275,6 +351,7 @@ TextureImporter:
         height: 159
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Attack Cast Up 2
       rect:
         serializedVersion: 2
@@ -284,6 +361,7 @@ TextureImporter:
         height: 170
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Attack Cast Left 1
       rect:
         serializedVersion: 2
@@ -293,6 +371,7 @@ TextureImporter:
         height: 169
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Attack Cast Left 2
       rect:
         serializedVersion: 2
@@ -302,6 +381,7 @@ TextureImporter:
         height: 174
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Attack Cast Right 2
       rect:
         serializedVersion: 2
@@ -311,6 +391,7 @@ TextureImporter:
         height: 174
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Attack Cast Right 1
       rect:
         serializedVersion: 2
@@ -320,6 +401,7 @@ TextureImporter:
         height: 167
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Support Cast Down 1
       rect:
         serializedVersion: 2
@@ -329,6 +411,7 @@ TextureImporter:
         height: 149
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Support Cast Down 2
       rect:
         serializedVersion: 2
@@ -338,6 +421,7 @@ TextureImporter:
         height: 155
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Support Cast Up 1
       rect:
         serializedVersion: 2
@@ -347,6 +431,7 @@ TextureImporter:
         height: 161
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Support Cast Up 2
       rect:
         serializedVersion: 2
@@ -356,6 +441,7 @@ TextureImporter:
         height: 163
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Support Cast Left 1
       rect:
         serializedVersion: 2
@@ -365,6 +451,7 @@ TextureImporter:
         height: 163
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Support Cast Left 2
       rect:
         serializedVersion: 2
@@ -374,6 +461,7 @@ TextureImporter:
         height: 171
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Damaged Down 1
       rect:
         serializedVersion: 2
@@ -383,6 +471,7 @@ TextureImporter:
         height: 165
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Damaged Down 2
       rect:
         serializedVersion: 2
@@ -392,6 +481,7 @@ TextureImporter:
         height: 176
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Damaged Up 1
       rect:
         serializedVersion: 2
@@ -401,6 +491,7 @@ TextureImporter:
         height: 174
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Damaged Up 2
       rect:
         serializedVersion: 2
@@ -410,6 +501,7 @@ TextureImporter:
         height: 181
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Damaged Left 1
       rect:
         serializedVersion: 2
@@ -419,6 +511,7 @@ TextureImporter:
         height: 179
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Damaged Left 2
       rect:
         serializedVersion: 2
@@ -428,6 +521,7 @@ TextureImporter:
         height: 174
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Damaged Right 2
       rect:
         serializedVersion: 2
@@ -437,6 +531,7 @@ TextureImporter:
         height: 174
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Damaged Right 1
       rect:
         serializedVersion: 2
@@ -446,6 +541,7 @@ TextureImporter:
         height: 179
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Support Cast Right 2
       rect:
         serializedVersion: 2
@@ -455,6 +551,7 @@ TextureImporter:
         height: 173
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Support Cast Right 1
       rect:
         serializedVersion: 2
@@ -464,6 +561,7 @@ TextureImporter:
         height: 165
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Walk Right 2
       rect:
         serializedVersion: 2
@@ -473,6 +571,7 @@ TextureImporter:
         height: 171
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Walk Left 2
       rect:
         serializedVersion: 2
@@ -482,5 +581,6 @@ TextureImporter:
         height: 171
       alignment: 7
       pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

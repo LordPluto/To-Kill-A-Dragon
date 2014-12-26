@@ -1,6 +1,19 @@
 fileFormatVersion: 2
 guid: ae12bfbbec784cf46866ff53602f12a6
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: Victor_0
+    21300002: Victor_1
+    21300004: Victor_2
+    21300006: Victor_3
+    21300008: Victor_4
+    21300010: Victor_5
+    21300012: Victor_6
+    21300014: Victor_7
+    21300016: Victor_8
+    21300018: Victor_9
+    21300020: Victor_10
+    21300022: Victor_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,6 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
@@ -50,6 +64,7 @@ TextureImporter:
         height: 119
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Victor_1
       rect:
         serializedVersion: 2
@@ -59,6 +74,7 @@ TextureImporter:
         height: 128
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Victor_2
       rect:
         serializedVersion: 2
@@ -68,6 +84,7 @@ TextureImporter:
         height: 141
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Victor_3
       rect:
         serializedVersion: 2
@@ -77,6 +94,7 @@ TextureImporter:
         height: 119
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Victor_4
       rect:
         serializedVersion: 2
@@ -86,6 +104,7 @@ TextureImporter:
         height: 128
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Victor_5
       rect:
         serializedVersion: 2
@@ -95,6 +114,7 @@ TextureImporter:
         height: 141
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Victor_6
       rect:
         serializedVersion: 2
@@ -104,6 +124,7 @@ TextureImporter:
         height: 121
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Victor_7
       rect:
         serializedVersion: 2
@@ -113,6 +134,7 @@ TextureImporter:
         height: 130
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Victor_8
       rect:
         serializedVersion: 2
@@ -122,6 +144,7 @@ TextureImporter:
         height: 143
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Victor_9
       rect:
         serializedVersion: 2
@@ -131,6 +154,7 @@ TextureImporter:
         height: 127
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Victor_10
       rect:
         serializedVersion: 2
@@ -140,6 +164,7 @@ TextureImporter:
         height: 136
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: Victor_11
       rect:
         serializedVersion: 2
@@ -149,5 +174,6 @@ TextureImporter:
         height: 150
       alignment: 7
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
