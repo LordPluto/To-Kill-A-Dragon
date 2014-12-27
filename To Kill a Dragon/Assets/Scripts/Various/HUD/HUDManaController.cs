@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HUDManaController : MonoBehaviour {
 
-	public float percent;
+	private float percent;
 	public float xDist;
 	public float yDist;
 	
@@ -15,6 +15,7 @@ public class HUDManaController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		image = GetComponent<GUITexture> ();
+		percent = 100;
 	}
 	
 	// Update is called once per frame
@@ -28,4 +29,11 @@ public class HUDManaController : MonoBehaviour {
 		
 		image.pixelInset = new Rect (x, y, w, h);
 	}
+
+	/**
+	 * Sets the percentage
+	 * **/
+	public void setPercent(float newPercent){
+				percent = newPercent;
+		}
 }

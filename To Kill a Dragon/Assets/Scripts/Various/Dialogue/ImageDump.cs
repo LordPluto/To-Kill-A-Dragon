@@ -22,6 +22,6 @@ public class ImageDump : MonoBehaviour {
 						}
 				}
 
-		return null;
+				return null;
 		}
 }

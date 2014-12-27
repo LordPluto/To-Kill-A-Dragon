@@ -3,46 +3,54 @@ using System.Collections;
 
 public class HUDController : MonoBehaviour {
 
-	private int spellIndex;
-	private int spellLength;
-
 	private HUDSpellController spells;
 	private HUDHeadController heads;
+	private HUDManaController mana;
+	private HUDHealthController health;
 
 	void Start () {
-				spellIndex = 0;
-				spellLength = GameObject.Find ("Player").GetComponent<PlayerAnimationController> ().NumSpells ();
 		}
 
 	void Awake () {
 				spells = GameObject.Find ("HUD Spells").GetComponent<HUDSpellController> ();
 				heads = GameObject.Find ("HUD Head").GetComponent<HUDHeadController> ();
+				mana = GameObject.Find ("HUD MP Bar").GetComponent<HUDManaController> ();
+				health = GameObject.Find ("HUD HP Bar").GetComponent<HUDHealthController> ();
 		}
 
 	void Update () {
-				spellLength = GameObject.Find ("Player").GetComponent<PlayerAnimationController> ().NumSpells ();
 		}
 
-	public void NextSpell(){
-				spellIndex++;
-				if (spellIndex >= spellLength) {
-						spellIndex = 0;
+	/**
+	 * Sets the health's new percentage
+	 * **/
+	public void setHealthPercentage(float percent){
+				if (percent > 100) {
+						health.setPercent (100);
+				} else if (percent < 0) {
+						health.setPercent (0);
+				} else {
+						health.setPercent (percent);
 				}
-				spells.SetTexture (spellIndex);
 		}
 
-	public void PreviousSpell(){
-				spellIndex--;
-				if (spellIndex < 0) {
-						spellIndex = spellLength - 1;
-				}
-				spells.SetTexture (spellIndex);
+	/**
+	 * Sets the mana's new percentage
+	 * **/
+	public void setMana(float percent){
+		if (percent > 100) {
+			mana.setPercent (100);
+		} else if (percent < 0) {
+			mana.setPercent (0);
+		} else {
+			mana.setPercent (percent);
 		}
+	}
 
-	public void QuickSpell(int quickSlot){
-				if (quickSlot >= 0 && quickSlot < spellLength) {
-						spellIndex = quickSlot;
-				}
-				spells.SetTexture (spellIndex);
+	/**
+	 * Sets the spell's icon
+	 * **/
+	public void setIcon(Spell selectedSpell){
+				spells.SetTexture (selectedSpell.getNumber());
 		}
 }

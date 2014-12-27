@@ -20,6 +20,6 @@ public class DialogueImageController : MonoBehaviour {
 
 	public void SetTexture (Texture t) {
 				image.texture = t;
-				image.pixelInset = new Rect (50, 26, 150, 200);
+				image.pixelInset = new Rect (50, 0, 150, 200);
 		}
 }

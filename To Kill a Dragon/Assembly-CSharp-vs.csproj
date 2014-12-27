@@ -47,13 +47,17 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Spells\Fire.cs" />
-     <Compile Include="Assets\Scripts\Spells\FireDestroy.cs" />
-     <Compile Include="Assets\Scripts\Spells\Ice.cs" />
-     <Compile Include="Assets\Scripts\Spells\IceCrystal.cs" />
-     <Compile Include="Assets\Scripts\Spells\Lightning.cs" />
-     <Compile Include="Assets\Scripts\Spells\LightningChain.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerMasterController.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerMovementController.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSpellController.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Fire.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\FireDestroy.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Ice.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceCrystal.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Lightning.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningChain.cs" />
+     <Compile Include="Assets\Scripts\Spells\Other\Spell.cs" />
+     <Compile Include="Assets\Scripts\Spells\Other\SpellList.cs" />
      <Compile Include="Assets\Scripts\Various\AdviController.cs" />
      <Compile Include="Assets\Scripts\Various\AdviImageController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueController.cs" />

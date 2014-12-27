@@ -16,7 +16,18 @@ public class GameController : MonoBehaviour {
 
 	private Dictionary<int, TextAsset> assetTest;
 
-	private string StoredName;
+	private DialogueDump dialogueDump;
+	private DialogueTreeController treeControl;
+	private TextboxController textBoxControl;
+	private PlayerMasterController playerControl;
+	private HUDController HUDControl;
+
+	private NPCController storedNPC;
+
+	private SpellList spellBook;
+	private List<Spell> KnownSpells;
+	private Spell selectedSpell;
+	private Spell[] QuickSpells = new Spell[5];
 
 	// Use this for initialization
 	void Start () {
@@ -25,16 +36,32 @@ public class GameController : MonoBehaviour {
 		}
 
 	void Awake () {
+				spellBook = GameObject.Find ("_SpellBook").GetComponent<SpellList> ();
+				KnownSpells = new List<Spell> ();
+				KnownSpells.Add (new FireSpell ());
+				KnownSpells.Add (new IceSpell ());
+				KnownSpells.Add (new LightningSpell ());
+				foreach (Spell s in KnownSpells) {
+						s.setSpellForm (spellBook.getPrefab (s));
+				}
+				selectedSpell = KnownSpells [0];
+
+				treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
+				textBoxControl = GameObject.Find ("_Textbox Controller").GetComponent<TextboxController> ();
+				playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
+
+				HUDControl = GameObject.Find ("HUD").GetComponent<HUDController> ();
+
 				characterFlags = new Dictionary<string, int> ();
 				characterLines = new Dictionary<int, TextAsset> ();
 
+				dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
+
 				//Testing for Dialogue logic. MARKED FOR DELETION
 				assetTest = new Dictionary<int, TextAsset> ();
-				GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ().AddLines (1, (TextAsset)Resources.Load ("Test/Chapter One"),
-		                                                                          ref assetTest);
-				GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ().AddLines (2, (TextAsset)Resources.Load ("Test/Chapter Two"),
-		                                                                          ref assetTest);
-				GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ().AddPerson ("Victor", assetTest);
+				dialogueDump.AddLines (1, (TextAsset)Resources.Load ("Test/Chapter One"), ref assetTest);
+				dialogueDump.AddLines (2, (TextAsset)Resources.Load ("Test/Chapter Two"), ref assetTest);
+				dialogueDump.AddPerson ("Victor", assetTest);
 				characterFlags.Add ("Victor", 1);
 				//END TEST
 		}
@@ -50,17 +77,16 @@ public class GameController : MonoBehaviour {
 	 * Result: Displaying the dialogue box and dialogue, if successful. Player can't move or cast spells.
 	 * **/
 	public void ShowDialogue (string objectName) {
-				GameObject.Find ("_Textbox Controller").GetComponent<TextboxController> ().Activate ();
+				textBoxControl.Activate ();
 
 				int flag;
 				characterFlags.TryGetValue (objectName, out flag);
-				GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ().Activate (objectName, flag);
+				treeControl.Activate (objectName, flag);
 
-				GameObject.Find ("Player").GetComponent<PlayerController> ().TalkingFreeze ();
-				GameObject.Find ("Player").GetComponent<PlayerAnimationController> ().TalkingFreeze ();
+				playerControl.TalkingFreeze ();
 
-				GameObject.Find (objectName).GetComponent<NPCController> ().TalkingFreeze ();
-				StoredName = objectName;
+				storedNPC = GameObject.Find (objectName).GetComponent<NPCController> ();
+				storedNPC.TalkingFreeze ();
 		}
 
 	/**
@@ -68,12 +94,122 @@ public class GameController : MonoBehaviour {
 	 * Result: Removed the dialogue box and dialogue, if successful. Player can move and cast spells.
 	 * **/
 	public void HideDialogue () {
-				GameObject.Find ("_Textbox Controller").GetComponent<TextboxController> ().Deactivate ();
-				GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ().Deactivate ();
+				textBoxControl.Deactivate ();
+				treeControl.Deactivate ();
 
-				GameObject.Find ("Player").GetComponent<PlayerController> ().TalkingMove ();
-				GameObject.Find ("Player").GetComponent<PlayerAnimationController> ().TalkingMove ();
+				playerControl.TalkingMove ();
 
-				GameObject.Find (StoredName).GetComponent<NPCController> ().TalkingMove ();
+				storedNPC.TalkingMove ();
+		}
+
+	/**
+	 * Gets the selected spell
+	 * **/
+	public Spell getSpell(){
+				return selectedSpell;
+		}
+
+	/**
+	 * Goes to the next spell
+	 * **/
+	public void NextSpell(){
+				if (selectedSpell.getNumber () >= KnownSpells.Count - 1) {
+						selectedSpell = KnownSpells [0];
+				} else {
+						selectedSpell = KnownSpells [selectedSpell.getNumber () + 1];
+				}
+
+				HUDControl.setIcon (selectedSpell);
+		}
+
+	/**
+	 * Goes to the previous spell
+	 * **/
+	public void PreviousSpell(){
+				if (selectedSpell.getNumber () < 1) {
+						selectedSpell = KnownSpells [KnownSpells.Count - 1];
+				} else {
+						selectedSpell = KnownSpells [selectedSpell.getNumber () - 1];
+				}
+
+				HUDControl.setIcon (selectedSpell);
+		}
+
+	/**
+	 * Goes to the quick spell slot
+	 * **/
+	public void QuickSelect(int quickSlot){
+				if (quickSlot >= 0 && quickSlot < 5 && QuickSpells [quickSlot] != null) {
+						selectedSpell = QuickSpells [quickSlot];
+				}
+
+				HUDControl.setIcon (selectedSpell);
+		}
+
+	/**
+	 * Casts the spell selected
+	 * **/
+	public void CastSpell (float _characterFacing){
+				if (playerControl.getMP () < selectedSpell.getCost ()) {
+						GameObject iceClone = GameObject.Find ("Ice(Clone)");
+						if (iceClone) {
+								Destroy (iceClone);
+						}
+						return;
+				}
+
+				if (selectedSpell is FireSpell) {
+						Instantiate (selectedSpell.getSpellForm (), 
+						             playerControl.getPosition () + new Vector3 ((_characterFacing % 2 == 1 ? 
+			                                             								(_characterFacing == 1 ? 1 : -1) : 0),
+											                                       (_characterFacing == 2 ? 2 : 1),
+											                                       (_characterFacing % 2 == 0 ? 
+			 																			(_characterFacing == 0 ? -1 : 1) : 0)),						 															
+						             Quaternion.Euler (0,
+						                  0,
+						                  _characterFacing * 90));
+				} else if (selectedSpell is IceSpell) {
+						GameObject iceClone = GameObject.Find ("Ice(Clone)");
+						if (iceClone) {
+								if (Quaternion.Angle (iceClone.transform.rotation, Quaternion.Euler (90,
+				                                                                   180 - (int)_characterFacing * 90,
+				                                                                   0)) > 10) {
+										Destroy (iceClone);
+										Instantiate (selectedSpell.getSpellForm (),
+								             playerControl.getPosition () + new Vector3 ((_characterFacing % 2 == 1 ?
+								                                        					(_characterFacing == 1 ? 1 : -1) : 0),
+												                                       2,
+												                                       (_characterFacing % 2 == 0 ?
+												 											(_characterFacing == 0 ? -1 : 1) : 0)) / 3,
+								             Quaternion.Euler (90,
+								                  180 - (int)_characterFacing * 90,
+								                  0));
+								}
+						} else {
+								Instantiate (selectedSpell.getSpellForm (),
+							             	playerControl.getPosition () + new Vector3 ((_characterFacing % 2 == 1 ?
+								                                            (_characterFacing == 1 ? 1 : -1) : 0),
+								                                           2,
+								                                           (_characterFacing % 2 == 0 ?
+											 (_characterFacing == 0 ? -1 : 1) : 0)) / 3,
+											             Quaternion.Euler (90,
+											                  180 - (int)_characterFacing * 90,
+											                  0));
+						}
+				} else if (selectedSpell is LightningSpell) {
+						Instantiate (selectedSpell.getSpellForm (),
+						             playerControl.getPosition () + new Vector3 ((_characterFacing % 2 == 1 ?
+										                                        	(_characterFacing == 1 ? 1 : -1) : 0),
+										                                       2,
+										                                       (_characterFacing % 2 == 0 ?
+															 						(_characterFacing == 0 ? -1 : 1) : 0)) / 3,
+						             Quaternion.Euler (90,
+						                  _characterFacing * -90,
+						                  0));
+				}
+
+				playerControl.changeMP (-(selectedSpell.getCost ()));
+				HUDControl.setMana (playerControl.getPercentMP ());
+
 		}
 }

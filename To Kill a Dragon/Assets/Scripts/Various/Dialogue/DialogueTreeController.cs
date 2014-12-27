@@ -9,10 +9,16 @@ public class DialogueTreeController : MonoBehaviour {
 	private List<Dialogue> lines;
 	private int count;
 
+	private DialogueMasterController dialogueControl;
+
 	// Use this for initialization
 	void Start () {
 				lines = new List<Dialogue> ();
 				count = 0;
+		}
+
+	void Awake () {
+				dialogueControl = GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ();
 		}
 	
 	// Update is called once per frame
@@ -23,26 +29,26 @@ public class DialogueTreeController : MonoBehaviour {
 	void OnGUI () {
 				if (lines.Count > 1) {
 						if (count + 1 == lines.Count) {
-								if (GUI.Button (new Rect (1080, 566, 128, 48), "Previous")) {
+								if (GUI.Button (new Rect (1080, 582, 128, 48), "Previous")) {
 										PreviousTextBox ();
 								}
-								if (GUI.Button (new Rect (1080, 620, 128, 48), "Close")) {
+								if (GUI.Button (new Rect (1080, 636, 128, 48), "Close")) {
 										GameObject.Find ("_GameController").GetComponent<GameController> ().HideDialogue ();
 								}
 						} else if (count == 0) {
-								if (GUI.Button (new Rect (1080, 620, 128, 48), "Next")) {
+								if (GUI.Button (new Rect (1080, 636, 128, 48), "Next")) {
 										NextTextBox ();
 								}
 						} else {
-								if (GUI.Button (new Rect (1080, 566, 128, 48), "Previous")) {
+								if (GUI.Button (new Rect (1080, 582, 128, 48), "Previous")) {
 										PreviousTextBox ();
 								}
-								if (GUI.Button (new Rect (1080, 620, 128, 48), "Next")) {
+								if (GUI.Button (new Rect (1080, 636, 128, 48), "Next")) {
 										NextTextBox ();
 								}
 						}
 				} else if (lines.Count == 1) {
-						if (GUI.Button (new Rect (1080, 620, 128, 48), "Close")) {
+						if (GUI.Button (new Rect (1080, 636, 128, 48), "Close")) {
 								GameObject.Find ("_GameController").GetComponent<GameController> ().HideDialogue ();
 						}
 				}
@@ -73,36 +79,36 @@ public class DialogueTreeController : MonoBehaviour {
 
 				SetUpTree ();
 		
-				GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ().SetText (lines [count].getText ());
-				GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ().SetTexture (lines [count].getImage ());
+				dialogueControl.SetText (lines [count].getText ());
+				dialogueControl.SetTexture (lines [count].getImage ());
 
-				GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ().Activate ();
+				dialogueControl.Activate ();
 		}
 
 	public void Deactivate () {
 				lines.Clear ();
 				dialogue = null;
-		count = 0;
+				count = 0;
 
-		GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ().Deactivate ();
+				dialogueControl.Deactivate ();
 		}
 
 	void NextTextBox () {
 				count++;
 		
-				GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ().SetText (lines [count].getText ());
-				GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ().SetTexture (lines [count].getImage ());
+				dialogueControl.SetText (lines [count].getText ());
+				dialogueControl.SetTexture (lines [count].getImage ());
 		
-				GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ().Activate ();
+				dialogueControl.Activate ();
 		}
 
 	void PreviousTextBox () {
 				count--;
 
-				GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ().SetText (lines [count].getText ());
-				GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ().SetTexture (lines [count].getImage ());
+				dialogueControl.SetText (lines [count].getText ());
+				dialogueControl.SetTexture (lines [count].getImage ());
 
-				GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ().Activate ();
+				dialogueControl.Activate ();
 		}
 }
 

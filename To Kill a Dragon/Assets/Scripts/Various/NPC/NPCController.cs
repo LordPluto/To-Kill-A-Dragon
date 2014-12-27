@@ -18,6 +18,7 @@ public class NPCController : MonoBehaviour {
 
 	public bool talkTo;
 	public float distance;
+	private bool savedTalkState;
 
 	private GameController _controller;
 
@@ -27,6 +28,7 @@ public class NPCController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		savedTalkState = talkTo;
 				_animator = GetComponent<Animator> ();
 				_controller = GameObject.Find ("_GameController").GetComponent<GameController> ();
 
@@ -106,6 +108,7 @@ public class NPCController : MonoBehaviour {
 				GameObject player = GameObject.Find ("Player");
 				if (talkTo && Vector3.Distance (this.transform.position, player.transform.position) < distance) {
 						_controller.ShowDialogue (name);
+			talkTo = false;
 				}
 		}
 
@@ -123,6 +126,7 @@ public class NPCController : MonoBehaviour {
 	 * **/
 	public void TalkingMove () {
 				Talking = false;
+				talkTo = savedTalkState;
 		}
 
 	/**

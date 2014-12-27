@@ -19,7 +19,7 @@ public class DialogueController : MonoBehaviour {
 				GUI.skin.box.fontSize = 20;
 				GUI.skin.box.wordWrap = true;
 				GUI.skin.box.alignment = TextAnchor.UpperLeft;
-				GUI.Box (new Rect (228, 566, 845, 102), text);
+				GUI.Box (new Rect (228, 582, 845, 102), text);
 		}
 
 	public void SetText (string textString) {
