@@ -1,7 +1,7 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{C1686B61-F8CD-16AC-7E92-FDDC0D0716B3}"
+# Visual Studio 2008
+
+Project("{8DB21660-31C0-15BB-6EED-8982D93C6F2E}") = "To Kill a Dragon", "Assembly-CSharp.csproj", "{C1686B61-F8CD-16AC-7E92-FDDC0D0716B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,7 +14,10 @@ Global
 		{C1686B61-F8CD-16AC-7E92-FDDC0D0716B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1686B61-F8CD-16AC-7E92-FDDC0D0716B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+		GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -40,7 +43,5 @@ Global
 		$4.ResourceNamePolicy = FileFormatDefault
 		GlobalSection(MonoDevelopProperties) = preSolution
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
+
 EndGlobal
