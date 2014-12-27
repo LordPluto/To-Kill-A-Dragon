@@ -22,15 +22,19 @@ public class NPCController : MonoBehaviour {
 
 	private GameController _controller;
 
+	private CharacterController _npcControl;
+
 	private Path movementPath;
 	private float stepCount;
 	private bool Talking;
 
 	// Use this for initialization
 	void Start () {
-		savedTalkState = talkTo;
+				savedTalkState = talkTo;
 				_animator = GetComponent<Animator> ();
 				_controller = GameObject.Find ("_GameController").GetComponent<GameController> ();
+
+				_npcControl = GetComponent<CharacterController> ();
 
 				//movementPath = null;
 
@@ -99,16 +103,16 @@ public class NPCController : MonoBehaviour {
 						_animator.SetFloat ("Speed", 0);
 				}
 
-				if (change != Vector3.zero && GetComponent<CharacterController> ().SimpleMove (change)) {
+				if (change != Vector3.zero && _npcControl.SimpleMove (change)) {
 						stepCount--;
 				}
 		}
 
 	void OnMouseDown(){
 				GameObject player = GameObject.Find ("Player");
-				if (talkTo && Vector3.Distance (this.transform.position, player.transform.position) < distance) {
+				if (talkTo && (this.transform.position - player.transform.position).sqrMagnitude < Mathf.Pow(distance,2)) {
 						_controller.ShowDialogue (name);
-			talkTo = false;
+						talkTo = false;
 				}
 		}
 

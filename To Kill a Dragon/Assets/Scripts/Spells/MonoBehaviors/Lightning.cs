@@ -59,7 +59,7 @@ public class Lightning : MonoBehaviour {
 	}
 
 	void OnCollisionEnter (Collision c) {
-		if(!(c.gameObject.CompareTag("Player") || c.gameObject.tag.Equals("LightningChain"))){
+		if(!(c.gameObject.CompareTag("Player") || c.gameObject.tag.Equals("LightningChain") || c.gameObject.CompareTag("SpellIgnore"))){
 			tag = "Untagged";
 			GameObject[] links = GameObject.FindGameObjectsWithTag("LightningChain");
 			for(int i = links.Length - 1;i>=0;i--){

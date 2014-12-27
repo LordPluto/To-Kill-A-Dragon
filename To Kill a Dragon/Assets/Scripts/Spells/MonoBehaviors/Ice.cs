@@ -60,7 +60,7 @@ public class Ice : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider c){
-		if(!c.gameObject.CompareTag("Player")){
+		if(!c.gameObject.CompareTag("Player") || c.gameObject.CompareTag("SpellIgnore")){
 
 		}
 	}

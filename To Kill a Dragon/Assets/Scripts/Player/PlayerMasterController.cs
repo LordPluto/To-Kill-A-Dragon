@@ -205,4 +205,12 @@ public class PlayerMasterController : MonoBehaviour {
 	public float getPercentMP () {
 				return 100 * currentMP / maxMP;
 		}
+
+	/**
+	 * Jumps directly to a given destination. If the destination is blocked by something, does nothing.
+	 * **/
+	public void JumpPosition(Vector3 destination){
+		//NOTE: WE DON'T HAVE COLLISION CHECKING YET
+		transform.position = destination;
+	}
 }

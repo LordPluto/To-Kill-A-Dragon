@@ -7,19 +7,19 @@ public class PlayerMovementController {
 	private CharacterController _controller;
 
 	public PlayerMovementController(CharacterController _controller){
-		this._controller = _controller;
+				this._controller = _controller;
 		}
 
 	public void Movement(bool Talking, bool Frozen, bool Casting){
-		float ZSpeed = Input.GetAxis ("Vertical");
-		float XSpeed = Input.GetAxis ("Horizontal");
+				float ZSpeed = Input.GetAxis ("Vertical");
+				float XSpeed = Input.GetAxis ("Horizontal");
 		
-		Vector3 speed = new Vector3 (XSpeed * movementSpeed, 0, ZSpeed * movementSpeed);
+				Vector3 speed = new Vector3 (XSpeed * movementSpeed, 0, ZSpeed * movementSpeed);
 		
-		if (Talking || Frozen || Casting) {
-			speed = Vector3.zero;
+				if (Talking || Frozen || Casting) {
+						speed = Vector3.zero;
+				}
+
+				_controller.SimpleMove (speed);
 		}
-		
-		_controller.SimpleMove (speed);
-	}
 }

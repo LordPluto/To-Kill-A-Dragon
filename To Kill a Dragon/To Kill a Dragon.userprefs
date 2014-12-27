@@ -1,22 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\NPC\NPCController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player\PlayerAnimationController.cs" Line="95" Column="74" />
-      <File FileName="Assets\Scripts\Various\GameController.cs" Line="53" Column="73" />
-      <File FileName="Assets\Scripts\Player\PlayerSpellController.cs" Line="21" Column="4" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" Line="32" Column="44" />
-      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="140" Column="9" />
-      <File FileName="Assets\Scripts\Various\Dialogue\ImageDump.cs" Line="18" Column="45" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueController.cs" Line="22" Column="32" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueImageController.cs" Line="23" Column="38" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\GameController.cs">
-    <Files>
-      <File FileName="Assets\Scripts\Player\PlayerAnimationController.cs" Line="302" Column="1" />
-      <File FileName="Assets\Scripts\Various\GameController.cs" Line="80" Column="1" />
->>>>>>> origin/master
+      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="39" Column="52" />
+      <File FileName="Assets\Scripts\Various\NPC\NPCController.cs" Line="51" Column="62" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -46,6 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Level Elements\WarpController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\WarpDestinationController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\WarpStartController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMasterController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovementController.cs" />
