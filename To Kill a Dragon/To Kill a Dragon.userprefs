@@ -1,5 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs">
     <Files>
       <File FileName="Assets\Scripts\Player\PlayerAnimationController.cs" Line="95" Column="74" />
@@ -10,6 +11,12 @@
       <File FileName="Assets\Scripts\Various\Dialogue\ImageDump.cs" Line="18" Column="45" />
       <File FileName="Assets\Scripts\Various\Dialogue\DialogueController.cs" Line="22" Column="32" />
       <File FileName="Assets\Scripts\Various\Dialogue\DialogueImageController.cs" Line="23" Column="38" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\GameController.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Player\PlayerAnimationController.cs" Line="302" Column="1" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="80" Column="1" />
+>>>>>>> origin/master
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
