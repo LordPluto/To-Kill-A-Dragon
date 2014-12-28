@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\Spells\Other\SpellList.cs" />
      <Compile Include="Assets\Scripts\Various\AdviController.cs" />
      <Compile Include="Assets\Scripts\Various\AdviImageController.cs" />
+     <Compile Include="Assets\Scripts\Various\CutsceneTriggerController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueDump.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueImageController.cs" />

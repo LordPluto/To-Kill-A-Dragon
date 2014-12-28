@@ -3,19 +3,28 @@ using System.Collections;
 
 public class HUDController : MonoBehaviour {
 
-	private HUDSpellController spells;
+	private HUDBackgroundController backing;
+	private HUDDetailController details;
+	private HUDExpController EXP;
 	private HUDHeadController heads;
-	private HUDManaController mana;
+	private HUDBackController bars;
 	private HUDHealthController health;
+	private HUDManaController mana;
+	private HUDSpellController spells;
 
 	void Start () {
 		}
 
 	void Awake () {
-				spells = GameObject.Find ("HUD Spells").GetComponent<HUDSpellController> ();
+				
+				backing = GameObject.Find ("HUD Backing").GetComponent<HUDBackgroundController> ();
+				details = GameObject.Find ("HUD Details").GetComponent<HUDDetailController> ();
+				EXP = GameObject.Find ("HUD EXP").GetComponent<HUDExpController> ();
 				heads = GameObject.Find ("HUD Head").GetComponent<HUDHeadController> ();
-				mana = GameObject.Find ("HUD MP Bar").GetComponent<HUDManaController> ();
+				bars = GameObject.Find ("HUD Bar Backs").GetComponent<HUDBackController> ();
 				health = GameObject.Find ("HUD HP Bar").GetComponent<HUDHealthController> ();
+				mana = GameObject.Find ("HUD MP Bar").GetComponent<HUDManaController> ();
+				spells = GameObject.Find ("HUD Spells").GetComponent<HUDSpellController> ();
 		}
 
 	void Update () {
@@ -52,5 +61,33 @@ public class HUDController : MonoBehaviour {
 	 * **/
 	public void setIcon(Spell selectedSpell){
 				spells.SetTexture (selectedSpell.getNumber());
+		}
+
+	/**
+	 * Hides the HUD elements
+	 * **/
+	public void Hide() {
+				backing.Hide ();
+				details.Hide ();
+				EXP.Hide ();
+				heads.Hide ();
+				bars.Hide ();
+				health.Hide ();
+				mana.Hide ();
+				spells.Hide ();
+		}
+
+	/**
+	 * Shows the HUD elements
+	 * **/
+	public void Show() {
+				backing.Show ();
+				details.Show ();
+				EXP.Show ();
+				heads.Show ();
+				bars.Show ();
+				health.Show ();
+				mana.Show ();
+				spells.Show ();
 		}
 }

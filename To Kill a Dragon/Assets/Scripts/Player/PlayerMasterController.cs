@@ -17,6 +17,19 @@ public class PlayerMasterController : MonoBehaviour {
 	private bool Frozen;
 	private bool shiftOnce;
 
+	#region Cutscene
+
+	private bool Cutscene;
+
+	private Transform[] pathPoints;
+	private Transform currentPathPoint;
+	private int pointIndex;
+	
+	private float moveSpeed = 4;
+	private float pointReached = 10;
+
+	#endregion
+
 	#region Stats
 
 	private float currentHP;
@@ -45,15 +58,54 @@ public class PlayerMasterController : MonoBehaviour {
 
 				currentHP = maxHP = 100;
 				currentMP = maxMP = 100;
+
+				Cutscene = false;
 		}
 
 	void Awake () {
 				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
-	
-	// Update is called once per frame
+
 	void Update () {
-				playerMovement.Movement (Talking, _animator.GetCurrentAnimatorStateInfo (0).IsTag ("Frozen"), Casting);
+				if (Cutscene) {
+						CutsceneUpdate ();
+				} else {
+						PlayerUpdate ();
+				}
+		}
+
+	/**
+	 * The Update function used when the system has control
+	 * **/
+	private void CutsceneUpdate () {
+		Vector3 oldPosition = transform.position;
+
+		Vector3 direction = currentPathPoint.transform.position - transform.position;
+		Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
+
+		transform.position = playerMovement.CutsceneMovement (transform.position, direction, moveVector);
+
+		playerAnimation.setSpeed (transform.position != oldPosition);
+
+		float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
+
+		playerAnimation.setDirectionFromAngle (directionAngle);
+		
+				if ((currentPathPoint.transform.position - transform.position).sqrMagnitude < Mathf.Pow(pointReached / 10, 2)) {
+						++pointIndex;
+						if (pointIndex > pathPoints.Length - 1) {
+								gameControl.PlayerFinishedCutscene ();
+						} else {
+								currentPathPoint = pathPoints [pointIndex];
+						}
+				}
+		}
+	
+	/**
+	 * The Update function used when the player has control
+	 * **/
+	private void PlayerUpdate () {
+				playerMovement.PlayerMovement (Talking, Frozen, Casting);
 
 				float changeSpell = Input.GetAxis ("SpellChange");
 				float[] quickSelect = new float[] { Input.GetAxis ("Quick1"),Input.GetAxis ("Quick2"),
@@ -78,6 +130,9 @@ public class PlayerMasterController : MonoBehaviour {
 				}
 		}
 
+	/**
+	 * Checks to see if the player is changing what spell they have active
+	 * **/
 	private void ChangeSpell(float spellChange, float[] quickSelect, float castSpell){
 				bool reset = (spellChange == 0 && quickSelect [0] == 0 &&
 						quickSelect [1] == 0 && quickSelect [2] == 0 &&
@@ -104,6 +159,10 @@ public class PlayerMasterController : MonoBehaviour {
 				}
 		}
 
+	/**
+	 * Checks to see if the player isn't already casting a spell. If they aren't, then
+	 * cast the spell.
+	 * **/
 	private void CastSpell () {
 				if (playerSpells.StartCastTime (gameControl.getSpell ())) {
 						Casting = true;
@@ -111,19 +170,31 @@ public class PlayerMasterController : MonoBehaviour {
 				}
 		}
 
+	/**
+	 * Freezes the player in place - used in dialogue
+	 * **/
 	public void TalkingFreeze () {
 		Talking = true;
 	}
-	
+
+	/**
+	 * Frees the player - used in dialogue
+	 * **/
 	public void TalkingMove () {
 		Talking = false;
 	}
 
-	public void CutsceneFreeze() {
+	/**
+	 * Prevents the player from moving - used for not dialogue
+	 * **/
+	public void Freeze() {
 			Frozen = true;
 	}
 
-	public void CutsceneMove() {
+	/**
+	 * Allows the player to move - used for not dialogue
+	 * **/
+	public void Move() {
 			Frozen = false;
 	}
 
@@ -210,7 +281,34 @@ public class PlayerMasterController : MonoBehaviour {
 	 * Jumps directly to a given destination. If the destination is blocked by something, does nothing.
 	 * **/
 	public void JumpPosition(Vector3 destination){
-		//NOTE: WE DON'T HAVE COLLISION CHECKING YET
-		transform.position = destination;
-	}
+				//NOTE: WE DON'T HAVE COLLISION CHECKING YET
+				transform.position = destination;
+				_controller.SimpleMove (Vector3.zero);
+		}
+
+	/**
+	 * Triggers a cutscene.
+	 * **/
+	public void EnterCutscene(Transform[] points){
+				pathPoints = null;		//Clear out whatever's in there.
+
+				pathPoints = (Transform[])points.Clone ();
+				if (pathPoints.Length > 0) {
+						currentPathPoint = pathPoints [0];
+						pointIndex = 0;
+				}
+
+				Cutscene = true;
+		}
+
+	/**
+	 * Ends the cutscene.
+	 * **/
+	public void ExitCutscene() {
+				pathPoints = null;
+
+				Cutscene = false;
+				_animator.SetFloat ("Speed", 0);
+				_animator.SetFloat ("Direction", 0);
+		}
 }

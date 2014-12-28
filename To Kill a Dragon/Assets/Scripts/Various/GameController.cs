@@ -11,10 +11,16 @@ using System.Collections.Generic;
  * **/
 public class GameController : MonoBehaviour {
 
+	#region Dictionaries
+
 	private Dictionary<string, int> characterFlags;
 	private Dictionary<int, TextAsset> characterLines;
 
 	private Dictionary<int, TextAsset> assetTest;
+
+	#endregion
+
+	#region Components
 
 	private DialogueDump dialogueDump;
 	private DialogueTreeController treeControl;
@@ -24,10 +30,23 @@ public class GameController : MonoBehaviour {
 
 	private NPCController storedNPC;
 
+	#endregion
+
+	#region Spells
+
 	private SpellList spellBook;
 	private List<Spell> KnownSpells;
 	private Spell selectedSpell;
 	private Spell[] QuickSpells = new Spell[5];
+
+	#endregion
+
+	#region Cutscene
+
+	private bool PlayerInvolved;
+	private bool NPCInvolved;
+
+	#endregion
 
 	// Use this for initialization
 	void Start () {
@@ -46,17 +65,18 @@ public class GameController : MonoBehaviour {
 				}
 				selectedSpell = KnownSpells [0];
 
+
 				treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
 				textBoxControl = GameObject.Find ("_Textbox Controller").GetComponent<TextboxController> ();
 				playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
-
 				HUDControl = GameObject.Find ("HUD").GetComponent<HUDController> ();
+				dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
+
 
 				characterFlags = new Dictionary<string, int> ();
 				characterLines = new Dictionary<int, TextAsset> ();
 
-				dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
-
+				
 				//Testing for Dialogue logic. MARKED FOR DELETION
 				assetTest = new Dictionary<int, TextAsset> ();
 				dialogueDump.AddLines (1, (TextAsset)Resources.Load ("Test/Chapter One"), ref assetTest);
@@ -211,5 +231,46 @@ public class GameController : MonoBehaviour {
 				playerControl.changeMP (-(selectedSpell.getCost ()));
 				HUDControl.setMana (playerControl.getPercentMP ());
 
+		}
+
+	/**
+	 * Handles entering cutscene - the little black bars, taking control from the player, etc.
+	 * **/
+	public void EnterCutscene(bool PlayerInvolved, bool NPCInvolved, Transform[] pathPoints){
+				this.PlayerInvolved = PlayerInvolved;
+				this.NPCInvolved = NPCInvolved;
+
+				playerControl.EnterCutscene (pathPoints);
+
+		HUDControl.Hide ();
+		}
+
+	/**
+	 * Handles leaving cutscene - the little black bars, giving control to the player, etc.
+	 * **/
+	private void EndCutscene() {
+		playerControl.ExitCutscene ();
+
+		HUDControl.Show ();
+	}
+
+	/**
+	 * Informs the system that the Player is done with their cutscene stuff
+	 * **/
+	public void PlayerFinishedCutscene(){
+				PlayerInvolved = false;
+				if (!NPCInvolved) {
+						EndCutscene ();
+				}
+		}
+
+	/**
+	 * Informs the system that the NPC is done with their cutscene stuff
+	 * **/
+	public void NPCFinishedCutscene(){
+				NPCInvolved = false;
+				if (!PlayerInvolved) {
+						EndCutscene ();
+				}
 		}
 }

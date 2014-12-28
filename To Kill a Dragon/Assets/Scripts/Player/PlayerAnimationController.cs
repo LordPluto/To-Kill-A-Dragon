@@ -131,4 +131,34 @@ public class PlayerAnimationController {
 						return 0;
 				}
 		}
+
+	/**
+	 * Given an angle in degrees, set the direction
+	 * **/
+	public void setDirectionFromAngle(float directionAngle) {		
+				if (directionAngle > 45 && directionAngle <= 135) {
+						_characterFacing = Facing.Up;
+						_animator.SetFloat ("Direction", 2);
+				} else if (directionAngle > 135 && directionAngle <= 225) {
+						_characterFacing = Facing.Left;
+						_animator.SetFloat ("Direction", 3);
+				} else if (directionAngle > 225 && directionAngle <= 315) {
+						_characterFacing = Facing.Down;
+						_animator.SetFloat ("Direction", 0);
+				} else if (directionAngle > 315 || directionAngle <= 45) {
+						_characterFacing = Facing.Right;
+						_animator.SetFloat ("Direction", 1);
+				}
+		}
+
+	/**
+	 * Given a boolean, set the speed
+	 * **/
+	public void setSpeed(bool moving){
+				if (moving) {
+						_animator.SetFloat ("Speed", 1);
+				} else {
+						_animator.SetFloat ("Speed", 0);
+				}
+		}
 }

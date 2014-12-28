@@ -74,7 +74,10 @@ public class NPCController : MonoBehaviour {
 												npcMovement = false;
 										}
 								}
-								currentPathPoint = pathPoints [pointIndex];
+
+								if (npcMovement) {
+										currentPathPoint = pathPoints [pointIndex];
+								}
 						}
 				}
 		}
@@ -111,14 +114,16 @@ public class NPCController : MonoBehaviour {
 				Vector3 direction = currentPathPoint.transform.position - transform.position;
 				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
 
-				if (direction.z < 0) {
-						_animator.SetFloat ("Direction", 0);
-				} else if (direction.x > 0) {
-						_animator.SetFloat ("Direction", 1);
-				} else if (direction.z > 0) {
+				float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
+		
+				if (directionAngle > 45 && directionAngle <= 135) {
 						_animator.SetFloat ("Direction", 2);
-				} else if (direction.x < 0) {
+				} else if (directionAngle > 135 && directionAngle <= 225) {
 						_animator.SetFloat ("Direction", 3);
+				} else if (directionAngle > 225 && directionAngle <= 315) {
+						_animator.SetFloat ("Direction", 0);
+				} else if (directionAngle > 315 || directionAngle <= 45) {
+						_animator.SetFloat ("Direction", 1);
 				}
 
 				Ray ray = new Ray (transform.position, direction);

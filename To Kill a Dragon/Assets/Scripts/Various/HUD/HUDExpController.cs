@@ -28,4 +28,18 @@ public class HUDExpController : MonoBehaviour {
 		
 		image.pixelInset = new Rect (x, y, w, h);
 	}
+
+	/**
+	 * Hides the HUD element
+	 * **/
+	public void Hide () {
+		guiTexture.enabled = false;
+	}
+	
+	/**
+	 * Shows the HUD element
+	 * **/
+	public void Show () {
+		guiTexture.enabled = true;
+	}
 }
