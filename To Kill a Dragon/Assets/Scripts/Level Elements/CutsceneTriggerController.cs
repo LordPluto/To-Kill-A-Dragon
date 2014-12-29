@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CutsceneTriggerController : MonoBehaviour {
 
+	public double Ground;
+
 	private GameController _controller;
 
 	public bool PlayerInvolved;
@@ -15,6 +17,7 @@ public class CutsceneTriggerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 				renderer.enabled = false;
+		transform.position = new Vector3 (transform.position.x, (float)Ground, transform.position.z);
 		}
 
 	void Awake () {

@@ -33,10 +33,7 @@ public class PlayerMovementController {
 				Ray ray = new Ray (position, direction);
 				RaycastHit hit;
 		
-				if (Physics.Raycast (ray, out hit, moveVector.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level"))) {
-						Debug.Log ("Derp.");
-						Debug.DrawLine (ray.origin, hit.point, Color.red);
-				} else {
+				if (!(Physics.Raycast (ray, out hit, moveVector.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level")))) {
 						position += moveVector;
 				}
 

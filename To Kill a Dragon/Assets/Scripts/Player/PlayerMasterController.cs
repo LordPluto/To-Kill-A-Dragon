@@ -26,7 +26,7 @@ public class PlayerMasterController : MonoBehaviour {
 	private int pointIndex;
 	
 	private float moveSpeed = 4;
-	private float pointReached = 10;
+	private float pointReached = 5;
 
 	#endregion
 
