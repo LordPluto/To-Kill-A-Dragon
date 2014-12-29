@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 /**
  * Class GameController extends MonoBehaviour
- * Essentially runs the game logic regarding dialogue boxes
+ * Essentially runs the game logic regarding pretty much everything
  * Dictionary<string, int> characterFlags: a dictionary that holds what flag the character is set on
  * Dictionary<int, TextAsset> characterText: a (temporary) dictionary that holds the lines per character flag.
  * Dictionary<int, TextAsset> assetTest: a testing variable. MARKED FOR DELETION
@@ -48,7 +48,9 @@ public class GameController : MonoBehaviour {
 
 	#endregion
 
-	// Use this for initialization
+	/**
+	 * Use this for initialization
+	 * **/
 	void Start () {
 				Screen.showCursor = false;
 				Screen.SetResolution (1280, 720, false);
@@ -236,13 +238,18 @@ public class GameController : MonoBehaviour {
 	/**
 	 * Handles entering cutscene - the little black bars, taking control from the player, etc.
 	 * **/
-	public void EnterCutscene(bool PlayerInvolved, bool NPCInvolved, Transform[] pathPoints){
+	public void EnterCutscene(bool PlayerInvolved, bool NPCInvolved, Transform[] PlayerPathPoints, Transform[] NPCPathPoints, string NPCName){
 				this.PlayerInvolved = PlayerInvolved;
 				this.NPCInvolved = NPCInvolved;
 
-				playerControl.EnterCutscene (pathPoints);
+				if (this.PlayerInvolved) {
+						playerControl.EnterCutscene (PlayerPathPoints);
+				}
+				if (this.NPCInvolved) {
+						GameObject.Find (NPCName).GetComponent<NPCController> ().EnterCutscene (NPCPathPoints);
+				}
 
-		HUDControl.Hide ();
+				HUDControl.Hide ();
 		}
 
 	/**

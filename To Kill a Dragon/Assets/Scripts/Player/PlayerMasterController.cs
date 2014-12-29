@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerMasterController : MonoBehaviour {
 
+	#region Components
+
 	private Animator _animator;
 	private CharacterController _controller;
 
@@ -12,10 +14,16 @@ public class PlayerMasterController : MonoBehaviour {
 
 	private GameController gameControl;
 
+	#endregion
+
+	#region Control Booleans
+
 	private bool Talking;
 	private bool Casting;
 	private bool Frozen;
 	private bool shiftOnce;
+
+	#endregion
 
 	#region Cutscene
 
@@ -26,7 +34,7 @@ public class PlayerMasterController : MonoBehaviour {
 	private int pointIndex;
 	
 	private float moveSpeed = 4;
-	private float pointReached = 5;
+	private double pointReached = .5;
 
 	#endregion
 
@@ -38,9 +46,14 @@ public class PlayerMasterController : MonoBehaviour {
 	private float currentMP;
 	private float maxMP;
 
+	private float currentEXP;
+	private float nextLevelEXP;
+
 	#endregion
 
-	// Use this for initialization
+	/**
+	 * Used for initialization
+	 * **/
 	void Start () {
 				_animator = GetComponent<Animator> ();
 				_controller = GetComponent<CharacterController> ();
@@ -58,6 +71,9 @@ public class PlayerMasterController : MonoBehaviour {
 
 				currentHP = maxHP = 100;
 				currentMP = maxMP = 100;
+
+		currentEXP = 0;
+		nextLevelEXP = 50;
 
 				Cutscene = false;
 		}
@@ -91,7 +107,7 @@ public class PlayerMasterController : MonoBehaviour {
 
 		playerAnimation.setDirectionFromAngle (directionAngle);
 		
-				if ((currentPathPoint.transform.position - transform.position).sqrMagnitude < Mathf.Pow(pointReached / 10, 2)) {
+				if ((currentPathPoint.transform.position - transform.position).sqrMagnitude < Mathf.Pow((float)pointReached, 2)) {
 						++pointIndex;
 						if (pointIndex > pathPoints.Length - 1) {
 								gameControl.PlayerFinishedCutscene ();
@@ -139,10 +155,10 @@ public class PlayerMasterController : MonoBehaviour {
 						quickSelect [3] == 0 && quickSelect [4] == 0);
 
 				if (!shiftOnce && castSpell < 0.01) {
-						if (spellChange > 0.01) {			// The player hit E
+						if (spellChange > 0.01) {			/* The player hit E */
 								gameControl.NextSpell ();
 								shiftOnce = true;
-						} else if (spellChange < -0.01) {	// The player hit Q
+						} else if (spellChange < -0.01) {	/* The player hit Q */
 								gameControl.PreviousSpell ();
 								shiftOnce = true;
 						} else {
@@ -290,7 +306,7 @@ public class PlayerMasterController : MonoBehaviour {
 	 * Triggers a cutscene.
 	 * **/
 	public void EnterCutscene(Transform[] points){
-				pathPoints = null;		//Clear out whatever's in there.
+				pathPoints = null;		/* Clear out whatever's in there. */
 
 				pathPoints = (Transform[])points.Clone ();
 				if (pathPoints.Length > 0) {
@@ -308,7 +324,30 @@ public class PlayerMasterController : MonoBehaviour {
 				pathPoints = null;
 
 				Cutscene = false;
-				_animator.SetFloat ("Speed", 0);
-				_animator.SetFloat ("Direction", 0);
 		}
+
+	/**
+	 * Gets current EXP
+	 * **/
+	public float getEXP(){
+		return currentEXP;
+	}
+	
+	/**
+	 * Adds EXP
+	 * Parameter - float expGained: the amount of EXP gained
+	 * **/
+	public void increaseEXP(float expGained){
+		currentEXP += expGained;
+		if (currentEXP >= nextLevelEXP) {
+			//NEED TO ADD THIS AT SOME POINT
+				}
+	}
+	
+	/**
+	 * Gets percentage of MP
+	 * **/
+	public float getPercentEXP () {
+		return 100 * currentEXP / nextLevelEXP;
+	}
 }
