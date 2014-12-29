@@ -48,6 +48,9 @@ public class PlayerMasterController : MonoBehaviour {
 
 	private float currentEXP;
 	private float nextLevelEXP;
+	public float[] EXPProgression;
+	private int level;
+	private int maxLevel;
 
 	#endregion
 
@@ -73,7 +76,9 @@ public class PlayerMasterController : MonoBehaviour {
 				currentMP = maxMP = 100;
 
 		currentEXP = 0;
-		nextLevelEXP = 50;
+		nextLevelEXP = EXPProgression[1];
+		level = 1;
+		maxLevel = EXPProgression.Length;
 
 				Cutscene = false;
 		}
@@ -338,11 +343,25 @@ public class PlayerMasterController : MonoBehaviour {
 	 * Parameter - float expGained: the amount of EXP gained
 	 * **/
 	public void increaseEXP(float expGained){
-		currentEXP += expGained;
-		if (currentEXP >= nextLevelEXP) {
-			//NEED TO ADD THIS AT SOME POINT
+				if (level < maxLevel) {
+						currentEXP += expGained;
+						if (currentEXP >= nextLevelEXP) {
+				LevelUp();
+						}
 				}
-	}
+		}
+
+	/**
+	 * Level up!
+	 * **/
+	private void LevelUp(){
+				level++;
+				if (level < maxLevel) {
+						nextLevelEXP = EXPProgression [level]; 
+				} else {
+						currentEXP = nextLevelEXP;
+				}
+		}
 	
 	/**
 	 * Gets percentage of MP
