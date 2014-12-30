@@ -75,10 +75,10 @@ public class PlayerMasterController : MonoBehaviour {
 				currentHP = maxHP = 100;
 				currentMP = maxMP = 100;
 
-		currentEXP = 0;
-		nextLevelEXP = EXPProgression[1];
-		level = 1;
-		maxLevel = EXPProgression.Length;
+				currentEXP = EXPProgression [0];
+				nextLevelEXP = EXPProgression [1];
+				level = 1;
+				maxLevel = EXPProgression.Length;
 
 				Cutscene = false;
 		}
