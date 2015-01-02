@@ -97,11 +97,14 @@ public class DialogueTreeController : MonoBehaviour {
 				}
 		}
 
-	public void Activate (string objectName, int flag) {
-				dialogue = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ().GetAsset (objectName, flag);
+	public void Activate (string NPCName) {
+				foreach (GameObject o in GameObject.FindGameObjectsWithTag ("DialogueLoading")) {
+						lines = o.GetComponent<LoadedDialogueController> ().getDialogue (NPCName);
+						if (lines != null) {
+								break;
+						}
+				}
 
-				SetUpTree ();
-		
 				dialogueControl.SetText (lines [count].getText ());
 				dialogueControl.SetTexture (lines [count].getImage ());
 

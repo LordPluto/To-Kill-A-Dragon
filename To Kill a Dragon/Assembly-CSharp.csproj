@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\ImageDump.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\LoadedDialogueController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\TextController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\TextboxController.cs" />
      <Compile Include="Assets\Scripts\Various\GameController.cs" />

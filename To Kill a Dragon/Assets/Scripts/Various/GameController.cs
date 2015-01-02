@@ -95,19 +95,17 @@ public class GameController : MonoBehaviour {
 
 	/**
 	 * Shows the dialogue box.
-	 * Parameter: string objectName - Name to look for
+	 * Parameter: string NPCName - Name to look for
 	 * Result: Displaying the dialogue box and dialogue, if successful. Player can't move or cast spells.
 	 * **/
-	public void ShowDialogue (string objectName) {
+	public void ShowDialogue (string NPCName) {
 				textBoxControl.Activate ();
 
-				int flag;
-				characterFlags.TryGetValue (objectName, out flag);
-				treeControl.Activate (objectName, flag);
+				treeControl.Activate (NPCName);
 
 				playerControl.TalkingFreeze ();
 
-				storedNPC = GameObject.Find (objectName).GetComponent<NPCController> ();
+				storedNPC = GameObject.Find (NPCName).GetComponent<NPCController> ();
 				storedNPC.TalkingFreeze ();
 		}
 
@@ -280,4 +278,13 @@ public class GameController : MonoBehaviour {
 						EndCutscene ();
 				}
 		}
+
+	/**
+	 * Returns the current flag of the NPC
+	 * **/
+	public int getNPCFlag(string NPCName){
+		int flag;
+		characterFlags.TryGetValue (NPCName, out flag);
+		return flag;
+	}
 }
