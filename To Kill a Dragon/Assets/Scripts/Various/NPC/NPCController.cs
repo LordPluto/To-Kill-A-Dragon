@@ -71,8 +71,6 @@ public class NPCController : MonoBehaviour {
 				_animator = GetComponent<Animator> ();
 				_controller = GameObject.Find ("_GameController").GetComponent<GameController> ();
 
-				_animator.SetTrigger ("Orange");
-
 				if (pathPoints.Length <= 0) {
 						npcMovement = false;
 				}

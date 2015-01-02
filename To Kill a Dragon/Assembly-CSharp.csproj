@@ -86,6 +86,7 @@
      <Compile Include="Assets\Scripts\Various\HUDController.cs" />
      <Compile Include="Assets\Scripts\Various\Movement\Movement.cs" />
      <Compile Include="Assets\Scripts\Various\NPC\NPCController.cs" />
+     <Compile Include="Assets\Scripts\Various\NPC\VictorController.cs" />
      <None Include="Assets\Resources\Test\Chapter One.txt" />
      <None Include="Assets\Resources\Test\Chapter Two.txt" />
  <Reference Include="UnityEngine.UI">
