@@ -90,4 +90,11 @@ public class HUDController : MonoBehaviour {
 				mana.Show ();
 				spells.Show ();
 		}
+
+	/**
+	 * Tells the HUD Head controller to change heads.
+	 * **/
+	public void changeHead(Head head){
+				heads.SetHead (head);
+		}
 }

@@ -2,6 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum Head{
+	Fine = 0,
+	HPLow = 1,
+	Damaged = 2,
+	Dead = 3,
+	MPLow = 4
+}
+
 /**
  * Class GameController extends MonoBehaviour
  * Essentially runs the game logic regarding pretty much everything
@@ -48,6 +56,13 @@ public class GameController : MonoBehaviour {
 
 	#endregion
 
+	#region HUD Head Icon
+	
+	private Head currentHead;
+	private Head storedHead;
+	
+	#endregion
+
 	private int notStartedDialogue = 2;
 
 	/**
@@ -56,6 +71,9 @@ public class GameController : MonoBehaviour {
 	void Start () {
 				Screen.showCursor = false;
 				Screen.SetResolution (1280, 720, false);
+
+				currentHead = Head.Fine;
+				storedHead = Head.Fine;
 		}
 
 	void Awake () {
@@ -101,6 +119,17 @@ public class GameController : MonoBehaviour {
 						treeControl.Deactivate ();
 						notStartedDialogue = 0;
 				}
+
+				if (Mathf.Approximately (playerControl.getPercentHP (), 0)) {
+						currentHead = Head.Dead;
+				} else if (playerControl.getPercentHP () < 25) {
+						currentHead = Head.HPLow;
+				} else if (playerControl.getPercentMP () < 25) {
+						currentHead = Head.MPLow;
+				} else {
+						currentHead = Head.Fine;
+				}
+				HUDControl.changeHead (currentHead);
 		}
 
 	/**

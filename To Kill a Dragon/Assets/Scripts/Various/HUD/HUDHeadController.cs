@@ -37,19 +37,12 @@ public class HUDHeadController : MonoBehaviour {
 				image.pixelInset = new Rect (x, y, w, h);
 		}
 
-	public GUITexture GetImage () {
-		return image;
-	}
-	
-	public Texture[] GetIcons () {
-		return heads;
-	}
-
-	public void SetTexture(int index){
-		if (index >= 0 && index < GetIcons ().Length) {
-			GetImage ().texture = GetIcons () [index];
+	/**
+	 * Sets the head using an Enum
+	 * **/
+	public void SetHead(Head head){
+				image.texture = heads [(int)head];
 		}
-	}
 
 	/**
 	 * Hides the HUD element
