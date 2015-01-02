@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class DialogueTreeController : MonoBehaviour {
 
-	private TextAsset dialogue;
-
 	private List<Dialogue> lines;
 	private int count;
 
@@ -25,7 +23,7 @@ public class DialogueTreeController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-				lines = new List<Dialogue> ();
+				lines = null;
 				count = 0;
 		}
 
@@ -42,58 +40,38 @@ public class DialogueTreeController : MonoBehaviour {
 		}
 
 	void OnGUI () {
-				if (lines.Count > 1) {
-						if (count + 1 == lines.Count) {
-								if (GUI.Button (new Rect (buttonX * (float)widthOffset, topButtonY * (float)heightOffset,
+				if (lines != null) {
+						if (lines.Count > 1) {
+								if (count + 1 == lines.Count) {
+										if (GUI.Button (new Rect (buttonX * (float)widthOffset, topButtonY * (float)heightOffset,
 				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Previous")) {
-										PreviousTextBox ();
-								}
-								if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
+												PreviousTextBox ();
+										}
+										if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
 				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Close")) {
+												gameControl.HideDialogue ();
+										}
+								} else if (count == 0) {
+										if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
+				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Next")) {
+												NextTextBox ();
+										}
+								} else {
+										if (GUI.Button (new Rect (buttonX * (float)widthOffset, topButtonY * (float)heightOffset,
+				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Previous")) {
+												PreviousTextBox ();
+										}
+										if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
+				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Next")) {
+												NextTextBox ();
+										}
+								}
+						} else if (lines.Count == 1) {
+								if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
+			                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Close")) {
 										gameControl.HideDialogue ();
 								}
-						} else if (count == 0) {
-								if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
-				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Next")) {
-										NextTextBox ();
-								}
-						} else {
-								if (GUI.Button (new Rect (buttonX * (float)widthOffset, topButtonY * (float)heightOffset,
-				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Previous")) {
-										PreviousTextBox ();
-								}
-								if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
-				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Next")) {
-										NextTextBox ();
-								}
 						}
-				} else if (lines.Count == 1) {
-						if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
-			                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Close")) {
-								gameControl.HideDialogue ();
-						}
-				}
-		}
-
-	//Character Limit for one box is 374 characters
-	void SetUpTree () {
-				if (dialogue.text.Length <= 0) {
-						return;
-				}
-			
-				string[] splitData = dialogue.text.Split ('\n');		/* Possibly slow */
-
-				int splitPoint = (int)(374 * (float)(widthOffset + heightOffset) / 2);
-
-				for (int i = 0; i<splitData.Length/2; i++) {
-						Texture image = textImages.GetImage (splitData [(2 * i)]);	/* Possibly slow */
-						string text = splitData [(2 * i) + 1];
-
-						while (text.Length > splitPoint) {
-								lines.Add (new Dialogue (text.Substring (0, splitPoint), image));
-								text = text.Substring (splitPoint);
-						}											/* Possibly slow */
-						lines.Add (new Dialogue (text, image));
 				}
 		}
 
@@ -112,8 +90,7 @@ public class DialogueTreeController : MonoBehaviour {
 		}
 
 	public void Deactivate () {
-				lines.Clear ();
-				dialogue = null;
+				lines = null;
 				count = 0;
 
 				dialogueControl.Deactivate ();
