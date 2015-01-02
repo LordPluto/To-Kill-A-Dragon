@@ -20,6 +20,10 @@ public class DialogueImageController : MonoBehaviour {
 
 	public void SetTexture (Texture t) {
 				image.texture = t;
-				image.pixelInset = new Rect (50, 0, 150, 200);
+
+				double widthOffset = Camera.main.pixelWidth / 1280;
+				double heightOffset = Camera.main.pixelHeight / 720;
+
+				image.pixelInset = new Rect (50 * (float)widthOffset, 0, 150 * (float)widthOffset, 200 * (float)heightOffset);
 		}
 }
