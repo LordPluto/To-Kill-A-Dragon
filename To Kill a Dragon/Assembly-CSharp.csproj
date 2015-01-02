@@ -1,92 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C1686B61-F8CD-16AC-7E92-FDDC0D0716B3}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <BaseDirectory>Assets</BaseDirectory>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{C1686B61-F8CD-16AC-7E92-FDDC0D0716B3}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>True</Optimize>
-    <OutputPath>Temp\bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files %28x86%29\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>C:\Program Files %28x86%29\Unity\Editor\Data\Managed\UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml" />
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:\Program Files %28x86%29\Unity\Editor\Data\UnityExtensions\Unity\GUISystem\4.6.1\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Level Elements\WarpController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Level Elements\WarpDestinationController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Level Elements\WarpStartController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Player\PlayerAnimationController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Player\PlayerMasterController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Player\PlayerMovementController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Player\PlayerSpellController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Spells\MonoBehaviors\Fire.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Spells\MonoBehaviors\FireDestroy.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Spells\MonoBehaviors\Ice.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Spells\MonoBehaviors\IceCrystal.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Spells\MonoBehaviors\Lightning.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Spells\MonoBehaviors\LightningChain.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Spells\Other\Spell.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Spells\Other\SpellList.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\AdviController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\AdviImageController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\Dialogue\DialogueController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\Dialogue\DialogueDump.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\Dialogue\DialogueImageController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\Dialogue\ImageDump.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\Dialogue\TextController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\Dialogue\TextboxController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\GameController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\HUD\HUDBackController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\HUD\HUDBackgroundController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\HUD\HUDDetailController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\HUD\HUDExpController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\HUD\HUDHeadController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\HUD\HUDHealthController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\HUD\HUDManaController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\HUD\HUDSpellController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\HUDController.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\Movement\Movement.cs" />
-    <Compile Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Scripts\Various\NPC\NPCController.cs" />
-    <None Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Resources\Test\Chapter One.txt" />
-    <None Include="..\..\..\..\Yeti%27s Stuff\GAME\To-Kill-A-Dragon\To Kill a Dragon\Assets\Resources\Test\Chapter Two.txt" />
+     <Compile Include="Assets\Scripts\Level Elements\CutsceneTriggerController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\DestinationController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\WarpController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\WarpDestinationController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\WarpStartController.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerMasterController.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerMovementController.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSpellController.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Fire.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\FireDestroy.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Ice.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceCrystal.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Lightning.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningChain.cs" />
+     <Compile Include="Assets\Scripts\Spells\Other\Spell.cs" />
+     <Compile Include="Assets\Scripts\Spells\Other\SpellList.cs" />
+     <Compile Include="Assets\Scripts\Various\AdviController.cs" />
+     <Compile Include="Assets\Scripts\Various\AdviImageController.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\DialogueController.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\DialogueDump.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\DialogueImageController.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\ImageDump.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\TextController.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\TextboxController.cs" />
+     <Compile Include="Assets\Scripts\Various\GameController.cs" />
+     <Compile Include="Assets\Scripts\Various\HUD\HUDBackController.cs" />
+     <Compile Include="Assets\Scripts\Various\HUD\HUDBackgroundController.cs" />
+     <Compile Include="Assets\Scripts\Various\HUD\HUDDetailController.cs" />
+     <Compile Include="Assets\Scripts\Various\HUD\HUDExpController.cs" />
+     <Compile Include="Assets\Scripts\Various\HUD\HUDHeadController.cs" />
+     <Compile Include="Assets\Scripts\Various\HUD\HUDHealthController.cs" />
+     <Compile Include="Assets\Scripts\Various\HUD\HUDManaController.cs" />
+     <Compile Include="Assets\Scripts\Various\HUD\HUDSpellController.cs" />
+     <Compile Include="Assets\Scripts\Various\HUDController.cs" />
+     <Compile Include="Assets\Scripts\Various\Movement\Movement.cs" />
+     <Compile Include="Assets\Scripts\Various\NPC\NPCController.cs" />
+     <None Include="Assets\Resources\Test\Chapter One.txt" />
+     <None Include="Assets\Resources\Test\Chapter Two.txt" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -96,4 +99,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>

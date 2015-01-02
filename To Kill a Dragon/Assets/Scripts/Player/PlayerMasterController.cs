@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerMasterController : MonoBehaviour {
 
+	#region Components
+
 	private Animator _animator;
 	private CharacterController _controller;
 
@@ -12,10 +14,29 @@ public class PlayerMasterController : MonoBehaviour {
 
 	private GameController gameControl;
 
+	#endregion
+
+	#region Control Booleans
+
 	private bool Talking;
 	private bool Casting;
 	private bool Frozen;
 	private bool shiftOnce;
+
+	#endregion
+
+	#region Cutscene
+
+	private bool Cutscene;
+
+	private Transform[] pathPoints;
+	private Transform currentPathPoint;
+	private int pointIndex;
+	
+	private float moveSpeed = 4;
+	private double pointReached = .5;
+
+	#endregion
 
 	#region Stats
 
@@ -25,9 +46,17 @@ public class PlayerMasterController : MonoBehaviour {
 	private float currentMP;
 	private float maxMP;
 
+	private float currentEXP;
+	private float nextLevelEXP;
+	public float[] EXPProgression;
+	private int level;
+	private int maxLevel;
+
 	#endregion
 
-	// Use this for initialization
+	/**
+	 * Used for initialization
+	 * **/
 	void Start () {
 				_animator = GetComponent<Animator> ();
 				_controller = GetComponent<CharacterController> ();
@@ -45,15 +74,59 @@ public class PlayerMasterController : MonoBehaviour {
 
 				currentHP = maxHP = 100;
 				currentMP = maxMP = 100;
+
+				currentEXP = EXPProgression [0];
+				nextLevelEXP = EXPProgression [1];
+				level = 1;
+				maxLevel = EXPProgression.Length;
+
+				Cutscene = false;
 		}
 
 	void Awake () {
 				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
-	
-	// Update is called once per frame
+
 	void Update () {
-				playerMovement.Movement (Talking, _animator.GetCurrentAnimatorStateInfo (0).IsTag ("Frozen"), Casting);
+				if (Cutscene) {
+						CutsceneUpdate ();
+				} else {
+						PlayerUpdate ();
+				}
+		}
+
+	/**
+	 * The Update function used when the system has control
+	 * **/
+	private void CutsceneUpdate () {
+		Vector3 oldPosition = transform.position;
+
+		Vector3 direction = currentPathPoint.transform.position - transform.position;
+		Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
+
+		transform.position = playerMovement.CutsceneMovement (transform.position, direction, moveVector);
+
+		playerAnimation.setSpeed (transform.position != oldPosition);
+
+		float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
+
+		playerAnimation.setDirectionFromAngle (directionAngle);
+		
+				if ((currentPathPoint.transform.position - transform.position).sqrMagnitude < Mathf.Pow((float)pointReached, 2)) {
+						++pointIndex;
+						if (pointIndex > pathPoints.Length - 1) {
+								gameControl.PlayerFinishedCutscene ();
+						} else {
+								currentPathPoint = pathPoints [pointIndex];
+						}
+				}
+		}
+	
+	/**
+	 * The Update function used when the player has control
+	 * **/
+	private void PlayerUpdate () {
+				playerMovement.PlayerMovement (Talking, Frozen, Casting);
 
 				float changeSpell = Input.GetAxis ("SpellChange");
 				float[] quickSelect = new float[] { Input.GetAxis ("Quick1"),Input.GetAxis ("Quick2"),
@@ -78,16 +151,19 @@ public class PlayerMasterController : MonoBehaviour {
 				}
 		}
 
+	/**
+	 * Checks to see if the player is changing what spell they have active
+	 * **/
 	private void ChangeSpell(float spellChange, float[] quickSelect, float castSpell){
 				bool reset = (spellChange == 0 && quickSelect [0] == 0 &&
 						quickSelect [1] == 0 && quickSelect [2] == 0 &&
 						quickSelect [3] == 0 && quickSelect [4] == 0);
 
 				if (!shiftOnce && castSpell < 0.01) {
-						if (spellChange > 0.01) {			// The player hit E
+						if (spellChange > 0.01) {			/* The player hit E */
 								gameControl.NextSpell ();
 								shiftOnce = true;
-						} else if (spellChange < -0.01) {	// The player hit Q
+						} else if (spellChange < -0.01) {	/* The player hit Q */
 								gameControl.PreviousSpell ();
 								shiftOnce = true;
 						} else {
@@ -104,6 +180,10 @@ public class PlayerMasterController : MonoBehaviour {
 				}
 		}
 
+	/**
+	 * Checks to see if the player isn't already casting a spell. If they aren't, then
+	 * cast the spell.
+	 * **/
 	private void CastSpell () {
 				if (playerSpells.StartCastTime (gameControl.getSpell ())) {
 						Casting = true;
@@ -111,19 +191,31 @@ public class PlayerMasterController : MonoBehaviour {
 				}
 		}
 
+	/**
+	 * Freezes the player in place - used in dialogue
+	 * **/
 	public void TalkingFreeze () {
 		Talking = true;
 	}
-	
+
+	/**
+	 * Frees the player - used in dialogue
+	 * **/
 	public void TalkingMove () {
 		Talking = false;
 	}
 
-	public void CutsceneFreeze() {
+	/**
+	 * Prevents the player from moving - used for not dialogue
+	 * **/
+	public void Freeze() {
 			Frozen = true;
 	}
 
-	public void CutsceneMove() {
+	/**
+	 * Allows the player to move - used for not dialogue
+	 * **/
+	public void Move() {
 			Frozen = false;
 	}
 
@@ -210,7 +302,71 @@ public class PlayerMasterController : MonoBehaviour {
 	 * Jumps directly to a given destination. If the destination is blocked by something, does nothing.
 	 * **/
 	public void JumpPosition(Vector3 destination){
-		//NOTE: WE DON'T HAVE COLLISION CHECKING YET
-		transform.position = destination;
+				//NOTE: WE DON'T HAVE COLLISION CHECKING YET
+				transform.position = destination;
+				_controller.SimpleMove (Vector3.zero);
+		}
+
+	/**
+	 * Triggers a cutscene.
+	 * **/
+	public void EnterCutscene(Transform[] points){
+				pathPoints = null;		/* Clear out whatever's in there. */
+
+				pathPoints = (Transform[])points.Clone ();
+				if (pathPoints.Length > 0) {
+						currentPathPoint = pathPoints [0];
+						pointIndex = 0;
+				}
+
+				Cutscene = true;
+		}
+
+	/**
+	 * Ends the cutscene.
+	 * **/
+	public void ExitCutscene() {
+				pathPoints = null;
+
+				Cutscene = false;
+		}
+
+	/**
+	 * Gets current EXP
+	 * **/
+	public float getEXP(){
+		return currentEXP;
+	}
+	
+	/**
+	 * Adds EXP
+	 * Parameter - float expGained: the amount of EXP gained
+	 * **/
+	public void increaseEXP(float expGained){
+				if (level < maxLevel) {
+						currentEXP += expGained;
+						if (currentEXP >= nextLevelEXP) {
+				LevelUp();
+						}
+				}
+		}
+
+	/**
+	 * Level up!
+	 * **/
+	private void LevelUp(){
+				level++;
+				if (level < maxLevel) {
+						nextLevelEXP = EXPProgression [level]; 
+				} else {
+						currentEXP = nextLevelEXP;
+				}
+		}
+	
+	/**
+	 * Gets percentage of MP
+	 * **/
+	public float getPercentEXP () {
+		return 100 * currentEXP / nextLevelEXP;
 	}
 }

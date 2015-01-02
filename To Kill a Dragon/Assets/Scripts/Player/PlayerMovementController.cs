@@ -10,7 +10,10 @@ public class PlayerMovementController {
 				this._controller = _controller;
 		}
 
-	public void Movement(bool Talking, bool Frozen, bool Casting){
+	/**
+	 * Handles movement when the player is in control
+	 * **/
+	public void PlayerMovement(bool Talking, bool Frozen, bool Casting){
 				float ZSpeed = Input.GetAxis ("Vertical");
 				float XSpeed = Input.GetAxis ("Horizontal");
 		
@@ -21,5 +24,19 @@ public class PlayerMovementController {
 				}
 
 				_controller.SimpleMove (speed);
+		}
+
+	/**
+	 * Handles movement when the system is in control
+	 * **/
+	public Vector3 CutsceneMovement (Vector3 position, Vector3 direction, Vector3 moveVector) {
+				Ray ray = new Ray (position, direction);
+				RaycastHit hit;
+		
+				if (!(Physics.Raycast (ray, out hit, moveVector.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level")))) {
+						position += moveVector;
+				}
+
+				return position;
 		}
 }

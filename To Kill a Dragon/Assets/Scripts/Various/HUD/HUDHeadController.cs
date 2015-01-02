@@ -37,11 +37,11 @@ public class HUDHeadController : MonoBehaviour {
 				image.pixelInset = new Rect (x, y, w, h);
 		}
 
-	GUITexture GetImage () {
+	public GUITexture GetImage () {
 		return image;
 	}
 	
-	Texture[] GetIcons () {
+	public Texture[] GetIcons () {
 		return heads;
 	}
 
@@ -50,4 +50,18 @@ public class HUDHeadController : MonoBehaviour {
 			GetImage ().texture = GetIcons () [index];
 		}
 	}
+
+	/**
+	 * Hides the HUD element
+	 * **/
+	public void Hide () {
+				guiTexture.enabled = false;
+		}
+
+	/**
+	 * Shows the HUD element
+	 * **/
+	public void Show () {
+				guiTexture.enabled = true;
+		}
 }

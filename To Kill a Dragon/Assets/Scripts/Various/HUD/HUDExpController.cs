@@ -5,7 +5,8 @@ public class HUDExpController : MonoBehaviour {
 
 	private GUITexture image;
 
-	public float percent;
+	private float percent;
+
 	public float xDist;
 	public float yDist;
 
@@ -15,6 +16,7 @@ public class HUDExpController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		image = GetComponent<GUITexture> ();
+		percent = 0;
 	}
 	
 	// Update is called once per frame
@@ -27,5 +29,26 @@ public class HUDExpController : MonoBehaviour {
 		y = (float)(Camera.main.pixelHeight / 2 - h - yDist);
 		
 		image.pixelInset = new Rect (x, y, w, h);
+	}
+
+	/**
+	 * Sets the percentage
+	 * **/
+	public void setPercent(float newPercent){
+		percent = newPercent;
+	}
+
+	/**
+	 * Hides the HUD element
+	 * **/
+	public void Hide () {
+		guiTexture.enabled = false;
+	}
+	
+	/**
+	 * Shows the HUD element
+	 * **/
+	public void Show () {
+		guiTexture.enabled = true;
 	}
 }
