@@ -9,7 +9,6 @@ public class DialogueTreeController : MonoBehaviour {
 
 	private DialogueMasterController dialogueControl;
 	private GameController gameControl;
-	private ImageDump textImages;
 
 	private double widthOffset;
 	private double heightOffset;
@@ -29,7 +28,6 @@ public class DialogueTreeController : MonoBehaviour {
 
 	void Awake () {
 				dialogueControl = GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ();
-				textImages = GameObject.Find ("_DialogueImages").GetComponent<ImageDump> ();
 				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
 	
@@ -73,6 +71,17 @@ public class DialogueTreeController : MonoBehaviour {
 								}
 						}
 				}
+		}
+
+	/**
+	 * Default activation - no name given.
+	 * **/
+	public void Activate () {
+		DialogueMasterController startDialogue = GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ();
+				startDialogue.SetText ("Hello World.");
+				startDialogue.SetTexture (GameObject.Find ("_DialogueImages").GetComponent<ImageDump> ().GetImage ("Sarah A1"));
+		
+				startDialogue.Activate ();
 		}
 
 	public void Activate (string NPCName) {

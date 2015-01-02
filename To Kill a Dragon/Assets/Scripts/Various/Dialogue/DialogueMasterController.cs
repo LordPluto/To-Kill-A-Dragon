@@ -10,7 +10,7 @@ public class DialogueMasterController : MonoBehaviour {
 	private Texture tex;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 				text = GetComponent<DialogueController> ();
 				image = GetComponent<DialogueImageController> ();
 		}
@@ -22,14 +22,12 @@ public class DialogueMasterController : MonoBehaviour {
 	public void Activate () {
 				text.enabled = true;
 				text.SetText (textString);
-				image.enabled = true;
 				image.SetTexture (tex);
 		}
 
 	public void Deactivate () {
 				text.enabled = false;
 				text.SetText ("");
-				image.enabled = false;
 				image.Wipe ();
 		}
 

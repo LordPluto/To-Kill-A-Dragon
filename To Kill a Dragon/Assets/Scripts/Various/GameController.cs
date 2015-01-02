@@ -48,6 +48,8 @@ public class GameController : MonoBehaviour {
 
 	#endregion
 
+	private int notStartedDialogue = 2;
+
 	/**
 	 * Use this for initialization
 	 * **/
@@ -82,15 +84,23 @@ public class GameController : MonoBehaviour {
 				//Testing for Dialogue logic. MARKED FOR DELETION
 				assetTest = new Dictionary<int, TextAsset> ();
 				dialogueDump.AddLines (1, (TextAsset)Resources.Load ("Test/Chapter One"), ref assetTest);
-				dialogueDump.AddLines (2, (TextAsset)Resources.Load ("Test/Chapter Two"), ref assetTest);
 				dialogueDump.AddPerson ("Victor", assetTest);
 				characterFlags.Add ("Victor", 1);
+				dialogueDump.AddLines (2, (TextAsset)Resources.Load ("Test/Chapter Two"), ref assetTest);
+				dialogueDump.AddPerson ("Victor2", assetTest);
+				characterFlags.Add ("Victor2", 2);
 				//END TEST
 		}
 	
 	// Update is called once per frame
 	void Update () {
-
+				if (notStartedDialogue == 2) {
+						treeControl.Activate ();
+						notStartedDialogue = 1;
+				} else if (notStartedDialogue == 1) {
+						treeControl.Deactivate ();
+						notStartedDialogue = 0;
+				}
 		}
 
 	/**
