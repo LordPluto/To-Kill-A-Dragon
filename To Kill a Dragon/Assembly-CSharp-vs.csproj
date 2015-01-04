@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Enemy\BasicEnemyController.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
+     <Compile Include="Assets\Scripts\Enemy\WanderController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\CutsceneTriggerController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DestinationController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpController.cs" />
