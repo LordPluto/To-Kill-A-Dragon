@@ -1,0 +1,31 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class AggroRangeController : MonoBehaviour {
+
+	private EnemyController notifyControl;
+
+	// Use this for initialization
+	void Start () {
+				notifyControl = GetComponentInParent<EnemyController> ();
+		}
+	
+	// Update is called once per frame
+	void Update () {
+	
+		}
+
+	void OnTriggerEnter (Collider c){
+				if (c.CompareTag ("Player")) {
+			Debug.Log ("Found player.");
+						notifyControl.SetTarget (c.gameObject);
+				}
+		}
+
+	void OnTriggerExit (Collider c){
+				if (c.CompareTag ("Player")) {
+			Debug.Log ("Losing player.");
+						notifyControl.LoseTarget ();
+				}
+		}
+}
