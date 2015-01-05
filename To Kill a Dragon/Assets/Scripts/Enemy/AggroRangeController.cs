@@ -17,14 +17,12 @@ public class AggroRangeController : MonoBehaviour {
 
 	void OnTriggerEnter (Collider c){
 				if (c.CompareTag ("Player")) {
-			Debug.Log ("Found player.");
 						notifyControl.SetTarget (c.gameObject);
 				}
 		}
 
 	void OnTriggerExit (Collider c){
 				if (c.CompareTag ("Player")) {
-			Debug.Log ("Losing player.");
 						notifyControl.LoseTarget ();
 				}
 		}

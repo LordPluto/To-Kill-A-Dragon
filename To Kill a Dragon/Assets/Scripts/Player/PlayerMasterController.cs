@@ -52,6 +52,8 @@ public class PlayerMasterController : MonoBehaviour {
 	private int level;
 	private int maxLevel;
 
+	public float Def;
+
 	#endregion
 
 	/**
@@ -369,4 +371,11 @@ public class PlayerMasterController : MonoBehaviour {
 	public float getPercentEXP () {
 		return 100 * currentEXP / nextLevelEXP;
 	}
+
+	/**
+	 * Take damage from an attack
+	 * **/
+	public void TakeMonsterDamage(float monsterAtk) {
+				currentHP -= Mathf.Max (0, monsterAtk - Def);
+		}
 }

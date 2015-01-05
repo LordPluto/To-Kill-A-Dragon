@@ -59,16 +59,22 @@ public class LightningChain : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider c) {
-		if(!(c.gameObject.CompareTag("Player") || c.gameObject.tag.Equals("LightningChain") || c.gameObject.CompareTag("SpellIgnore"))){
-			tag = "Untagged";
-			GameObject[] links = GameObject.FindGameObjectsWithTag("LightningChain");
-			for(int i = links.Length - 1;i>=0;i--){
-				Destroy (links[i]);
-			}
-
-			playerControl.LightningReset();
-
-			Destroy (gameObject);
+		if (!(c.CompareTag ("Player") || (c.tag.Length > 5 && c.tag.Substring(0,5).Equals("Spell")) || c.CompareTag ("SpellIgnore"))) {
+						DestroyLightning ();
+						Destroy (gameObject);
+				}
 		}
-	}
+
+	/**
+	 * Destroys this and all other lightning chains
+	 * **/
+	private void DestroyLightning(){
+				tag = "Untagged";
+				GameObject[] links = GameObject.FindGameObjectsWithTag ("SpellLightning");
+				for (int i = links.Length - 1; i>=0; i--) {
+						Destroy (links [i]);
+				}
+		
+				playerControl.LightningReset ();			
+		}
 }

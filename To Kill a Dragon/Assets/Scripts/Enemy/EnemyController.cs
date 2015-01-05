@@ -91,7 +91,6 @@ public class EnemyController : MonoBehaviour {
 						if (backtraceIndex >= 0) {
 								currentPathPoint = BacktracePoints [backtraceIndex];
 						} else {
-				Debug.Log ("Done backtracing steps.");
 								BacktracePoints.Clear ();
 								Backtrace = false;
 						}
@@ -127,7 +126,7 @@ public class EnemyController : MonoBehaviour {
 				RaycastHit hit;
 		
 				if (Physics.Raycast (ray, out hit, moveVector.magnitude) && hit.collider.CompareTag ("Level")) {
-						parentControl.setSpeed (0);
+			currentPathPoint = BacktracePoints[BacktracePoints.Count - 1];
 						return;
 				} else {
 						parentControl.setSpeed (1);
@@ -160,5 +159,13 @@ public class EnemyController : MonoBehaviour {
 				Tracking = false;
 				Backtrace = true;
 				backtraceIndex = BacktracePoints.Count - 1;
+		}
+
+	public void OnTriggerEnter (Collider c){
+				if (c.CompareTag ("Player")) {
+						parentControl.DealDamage ();
+				} else if (c.tag.Substring (0, 5).Equals ("Spell")) {
+						parentControl.TakeDamage (c.gameObject);
+				}
 		}
 }

@@ -326,4 +326,12 @@ public class GameController : MonoBehaviour {
 		characterFlags.TryGetValue (NPCName, out flag);
 		return flag;
 	}
+
+	/**
+	 * Deal damage to player
+	 * **/
+	public void DealPlayerDamage(float monsterAtk){
+				playerControl.TakeMonsterDamage (monsterAtk);
+				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
+		}
 }
