@@ -16,6 +16,8 @@ public class BasicEnemyController : MonoBehaviour {
 	public float Atk;
 	public float Def;
 
+	public float EXPValue;
+
 	#endregion
 
 	// Use this for initialization
@@ -30,7 +32,9 @@ public class BasicEnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+				if (HP <= 0) {
+						gameControl.DestroyMonster (gameObject);
+				}
 		}
 
 	/**
@@ -64,16 +68,15 @@ public class BasicEnemyController : MonoBehaviour {
 	/**
 	 * Take damage from spell
 	 * **/
-	public void TakeDamage(GameObject spell){
-				switch (spell.tag.Substring (5)) {
-				case "Fire":
-						break;
-				case "Ice":
-						break;
-				case "Lightning":
-						break;
-				default:
-						break;
-				}
+	public void TakeDamage(){
+				Spell spellCast = gameControl.getSpell ();
+				HP -= Mathf.Max (0, spellCast.getSpellDamage () - Def);
+		}
+
+	/**
+	 * How much EXP is this monster worth?
+	 * **/
+	public float valueEXP(){
+				return EXPValue;
 		}
 }

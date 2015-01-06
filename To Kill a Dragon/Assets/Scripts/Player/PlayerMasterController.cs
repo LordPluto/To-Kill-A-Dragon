@@ -348,7 +348,7 @@ public class PlayerMasterController : MonoBehaviour {
 				if (level < maxLevel) {
 						currentEXP += expGained;
 						if (currentEXP >= nextLevelEXP) {
-				LevelUp();
+								LevelUp ();
 						}
 				}
 		}
@@ -366,7 +366,7 @@ public class PlayerMasterController : MonoBehaviour {
 		}
 	
 	/**
-	 * Gets percentage of MP
+	 * Gets percentage of EXP
 	 * **/
 	public float getPercentEXP () {
 		return 100 * currentEXP / nextLevelEXP;

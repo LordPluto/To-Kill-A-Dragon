@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public class EnemyController : MonoBehaviour {
 
 	#region Movement
-	
-	public bool npcMovement = true;
 
 	private Vector3 currentPathPoint;
 	
@@ -126,7 +124,7 @@ public class EnemyController : MonoBehaviour {
 				RaycastHit hit;
 		
 				if (Physics.Raycast (ray, out hit, moveVector.magnitude) && hit.collider.CompareTag ("Level")) {
-			currentPathPoint = BacktracePoints[BacktracePoints.Count - 1];
+						currentPathPoint = BacktracePoints [BacktracePoints.Count - 1];
 						return;
 				} else {
 						parentControl.setSpeed (1);
@@ -165,7 +163,7 @@ public class EnemyController : MonoBehaviour {
 				if (c.CompareTag ("Player")) {
 						parentControl.DealDamage ();
 				} else if (c.tag.Substring (0, 5).Equals ("Spell")) {
-						parentControl.TakeDamage (c.gameObject);
+						parentControl.TakeDamage ();
 				}
 		}
 }

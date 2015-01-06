@@ -1,14 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerMasterController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\GameController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Enemy\EnemyController.cs" Line="166" Column="33" />
-      <File FileName="Assets\Scripts\Enemy\BasicEnemyController.cs" Line="69" Column="17" />
-      <File FileName="Assets\Scripts\Spells\MonoBehaviors\Lightning.cs" Line="57" Column="94" />
-      <File FileName="Assets\Scripts\Spells\MonoBehaviors\LightningChain.cs" Line="62" Column="94" />
-      <File FileName="Assets\Scripts\Spells\MonoBehaviors\Fire.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Various\GameController.cs" Line="336" Column="4" />
-      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="54" Column="1" />
+      <File FileName="Assets\Scripts\Enemy\EnemyController.cs" Line="160" Column="4" />
+      <File FileName="Assets\Scripts\Enemy\BasicEnemyController.cs" Line="81" Column="4" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="274" Column="2" />
+      <File FileName="Assets\Scripts\Various\HUDController.cs" Line="70" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

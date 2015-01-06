@@ -46,15 +46,28 @@ public class HUDController : MonoBehaviour {
 	/**
 	 * Sets the mana's new percentage
 	 * **/
-	public void setMana(float percent){
-		if (percent > 100) {
-			mana.setPercent (100);
-		} else if (percent < 0) {
-			mana.setPercent (0);
-		} else {
-			mana.setPercent (percent);
+	public void setManaPercentage(float percent){
+				if (percent > 100) {
+						mana.setPercent (100);
+				} else if (percent < 0) {
+						mana.setPercent (0);
+				} else {
+						mana.setPercent (percent);
+				}
 		}
-	}
+
+	/**
+	 * Sets the EXP's new percentage
+	 * **/
+	public void setEXPPercentage(float percent){
+				if (percent > 100) {
+						EXP.setPercent (100);
+				} else if (percent < 0) {
+						EXP.setPercent (0);
+				} else {
+						EXP.setPercent (percent);
+				}
+		}
 
 	/**
 	 * Sets the spell's icon

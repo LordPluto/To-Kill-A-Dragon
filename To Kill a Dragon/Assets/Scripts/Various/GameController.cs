@@ -268,7 +268,7 @@ public class GameController : MonoBehaviour {
 				}
 
 				playerControl.changeMP (-(selectedSpell.getCost ()));
-				HUDControl.setMana (playerControl.getPercentMP ());
+				HUDControl.setManaPercentage (playerControl.getPercentMP ());
 
 		}
 
@@ -333,5 +333,15 @@ public class GameController : MonoBehaviour {
 	public void DealPlayerDamage(float monsterAtk){
 				playerControl.TakeMonsterDamage (monsterAtk);
 				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
+		}
+
+	/**
+	 * Destroys the enemy and gives the EXP to the player
+	 * **/
+	public void DestroyMonster(GameObject monster){
+				BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
+				playerControl.increaseEXP (monsterControl.valueEXP ());
+				Destroy (monster);
+				HUDControl.setEXPPercentage (playerControl.getPercentEXP ());
 		}
 }
