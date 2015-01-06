@@ -76,9 +76,10 @@ public class BasicEnemyController : MonoBehaviour {
 	/**
 	 * Take damage from spell
 	 * **/
-	public void TakeDamage(){
+	public void TakeDamage(Vector3 flinch){
 				Spell spellCast = gameControl.getSpell ();
 				HP -= Mathf.Max (0, spellCast.getSpellDamage () - Def);
+				FlinchBack (flinch);
 		}
 
 	/**

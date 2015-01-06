@@ -169,12 +169,12 @@ public class EnemyController : MonoBehaviour {
 
 	void OnTriggerEnter (Collider c){
 				Vector3 myDirection = c.transform.position - transform.position;
-				if (c.CompareTag ("Player")) {
-						Vector3 playerDirection = transform.position - c.transform.position;
-						parentControl.DealDamage (playerDirection, myDirection);
-				} else if (c.tag.Substring (0, 5).Equals ("Spell")) {
+				Vector3 otherDirection = -myDirection;
 
-						parentControl.TakeDamage ();
+				if (c.CompareTag ("Player")) {
+						parentControl.DealDamage (otherDirection, myDirection);
+				} else if (c.tag.Substring (0, 5).Equals ("Spell")) {
+						parentControl.TakeDamage (otherDirection);
 				}
 		}
 }
