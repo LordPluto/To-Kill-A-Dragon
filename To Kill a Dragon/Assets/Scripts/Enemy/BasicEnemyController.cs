@@ -20,10 +20,18 @@ public class BasicEnemyController : MonoBehaviour {
 
 	#endregion
 
+	#region Movement Modifiers
+
+	public float damageKnockback;
+
+	#endregion
+
 	// Use this for initialization
 	void Start () {
 				wanderControl = GetComponentInChildren<WanderController> ();
 				enemyControl = GetComponentInChildren<EnemyController> ();
+
+				damageKnockback = Mathf.Max (0, Mathf.Min (1, damageKnockback));
 		}
 
 	void Awake () {
@@ -61,8 +69,8 @@ public class BasicEnemyController : MonoBehaviour {
 	/**
 	 * Deals damage to player
 	 * **/
-	public void DealDamage(){
-				gameControl.DealPlayerDamage (Atk);
+	public void DealDamage(Vector3 playerDirection, Vector3 myDirection){
+				gameControl.DealPlayerDamage (gameObject, playerDirection, myDirection);
 		}
 
 	/**
@@ -78,5 +86,19 @@ public class BasicEnemyController : MonoBehaviour {
 	 * **/
 	public float valueEXP(){
 				return EXPValue;
+		}
+
+	/**
+	 * Tells the model to flinch back
+	 * **/
+	public void FlinchBack(Vector3 flinch){
+				enemyControl.FlinchBack (flinch);
+		}
+
+	/**
+	 * Gets the knockback of the monster
+	 * **/
+	public float getKnockback(){
+				return damageKnockback;
 		}
 }

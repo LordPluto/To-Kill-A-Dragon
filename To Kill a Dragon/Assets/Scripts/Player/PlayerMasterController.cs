@@ -23,6 +23,9 @@ public class PlayerMasterController : MonoBehaviour {
 	private bool Frozen;
 	private bool shiftOnce;
 
+	private bool Flinch;
+	private Vector3 flinchDestination;
+
 	#endregion
 
 	#region Cutscene
@@ -90,10 +93,35 @@ public class PlayerMasterController : MonoBehaviour {
 		}
 
 	void Update () {
-				if (Cutscene) {
+				if (Flinch) {
+						FlinchUpdate ();
+				} else if (Cutscene) {
 						CutsceneUpdate ();
 				} else {
 						PlayerUpdate ();
+				}
+		}
+
+	/**
+	 * The Update function used when flinching
+	 * **/
+	private void FlinchUpdate () {
+				Vector3 oldPosition = transform.position;
+		
+				Vector3 direction = flinchDestination - transform.position;
+				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
+		
+				transform.position = playerMovement.FlinchMovement (transform.position, moveVector);
+		
+				playerAnimation.setSpeed (transform.position != oldPosition);
+		
+				float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
+		
+				playerAnimation.setDirectionFromAngle (directionAngle);
+		
+				if ((flinchDestination - transform.position).sqrMagnitude < Mathf.Pow ((float).5, 2)) {
+						Flinch = false;
+						flinchDestination = Vector3.zero;
 				}
 		}
 
@@ -375,7 +403,22 @@ public class PlayerMasterController : MonoBehaviour {
 	/**
 	 * Take damage from an attack
 	 * **/
-	public void TakeMonsterDamage(float monsterAtk) {
+	public void TakeMonsterDamage(float monsterAtk, Vector3 flinchAngle) {
+				flinchAngle = new Vector3 (flinchAngle.x, 0, flinchAngle.z);
+
+				Flinch = true;
 				currentHP -= Mathf.Max (0, monsterAtk - Def);
+
+				Vector3 tempDestination = transform.position + (flinchAngle.normalized * 2);
+				Vector3 direction = tempDestination - transform.position;
+
+				Ray ray = new Ray (transform.position, direction);
+				RaycastHit hit;
+
+				if (!(Physics.Raycast (ray, out hit, direction.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level")))) {
+						flinchDestination = tempDestination;
+				} else {
+						flinchDestination = hit.point - direction.normalized / 10;
+				}
 		}
 }

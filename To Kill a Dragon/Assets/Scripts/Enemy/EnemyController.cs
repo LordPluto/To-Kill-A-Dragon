@@ -159,10 +159,21 @@ public class EnemyController : MonoBehaviour {
 				backtraceIndex = BacktracePoints.Count - 1;
 		}
 
-	public void OnTriggerEnter (Collider c){
+	/**
+	 * The monster flinches, moving back.
+	 * **/
+	public void FlinchBack (Vector3 flinchDirection) {
+				flinchDirection = new Vector3 (flinchDirection.x, 0, flinchDirection.z);
+				currentPathPoint = transform.position + (flinchDirection.normalized * parentControl.getKnockback ());
+		}
+
+	void OnTriggerEnter (Collider c){
+				Vector3 myDirection = c.transform.position - transform.position;
 				if (c.CompareTag ("Player")) {
-						parentControl.DealDamage ();
+						Vector3 playerDirection = transform.position - c.transform.position;
+						parentControl.DealDamage (playerDirection, myDirection);
 				} else if (c.tag.Substring (0, 5).Equals ("Spell")) {
+
 						parentControl.TakeDamage ();
 				}
 		}

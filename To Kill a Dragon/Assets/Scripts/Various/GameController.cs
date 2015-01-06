@@ -330,8 +330,15 @@ public class GameController : MonoBehaviour {
 	/**
 	 * Deal damage to player
 	 * **/
-	public void DealPlayerDamage(float monsterAtk){
-				playerControl.TakeMonsterDamage (monsterAtk);
+	public void DealPlayerDamage(GameObject monster, Vector3 playerDirection, Vector3 monsterAngle){
+				BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
+
+				float monsterAtk = monsterControl.Atk;
+
+				playerControl.TakeMonsterDamage (monsterAtk, -playerDirection);
+
+				monsterControl.FlinchBack (-monsterAngle);
+
 				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
 		}
 
