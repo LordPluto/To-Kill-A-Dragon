@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\EnemyPlayerCollision.cs" />
      <Compile Include="Assets\Scripts\Enemy\AggroRangeController.cs" />
      <Compile Include="Assets\Scripts\Enemy\BasicEnemyController.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />

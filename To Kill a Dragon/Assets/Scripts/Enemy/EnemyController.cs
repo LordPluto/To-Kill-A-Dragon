@@ -167,14 +167,22 @@ public class EnemyController : MonoBehaviour {
 				currentPathPoint = transform.position + (flinchDirection.normalized * parentControl.getKnockback ());
 		}
 
-	void OnTriggerEnter (Collider c){
+	/**
+	 * The enemy ran into the player
+	 * **/
+	public void HitPlayer (Collider c){
 				Vector3 myDirection = c.transform.position - transform.position;
 				Vector3 otherDirection = -myDirection;
 
-				if (c.CompareTag ("Player")) {
-						parentControl.DealDamage (otherDirection, myDirection);
-				} else if (c.tag.Substring (0, 5).Equals ("Spell")) {
-						parentControl.TakeDamage (otherDirection);
-				}
+				parentControl.DealDamage (otherDirection, myDirection);
+		}
+
+	/**
+	 * The enemy ran into a spell
+	 * **/
+	public void HitSpell (Collider c){
+				Vector3 otherDirection = transform.position - c.transform.position;
+
+				parentControl.TakeDamage (otherDirection);
 		}
 }
