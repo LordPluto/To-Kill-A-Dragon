@@ -26,12 +26,26 @@ public class BasicEnemyController : MonoBehaviour {
 
 	#endregion
 
+	#region Projectiles
+
+	public Transform projectile;
+
+	private bool canShoot;
+
+	#endregion
+
 	// Use this for initialization
 	void Start () {
 				wanderControl = GetComponentInChildren<WanderController> ();
 				enemyControl = GetComponentInChildren<EnemyController> ();
 
 				damageKnockback = Mathf.Max (0, Mathf.Min (1, damageKnockback));
+
+				if (projectile != null) {
+						enemyControl.CanShoot (true);
+				} else {
+						enemyControl.CanShoot (false);
+				}
 		}
 
 	void Awake () {
@@ -101,5 +115,19 @@ public class BasicEnemyController : MonoBehaviour {
 	 * **/
 	public float getKnockback(){
 				return damageKnockback;
+		}
+
+	/**
+	 * Fires the projectile
+	 * **/
+	public void FireProjectile(Vector3 targetPosition){
+				targetPosition.y = transform.position.y;
+
+				Instantiate (projectile,
+	                         enemyControl.gameObject.transform.position,
+	                         Quaternion.LookRotation (Vector3.RotateTowards (transform.forward,
+	                		 												 targetPosition,
+	                														 2 * Mathf.PI,
+	                														 0)));
 		}
 }

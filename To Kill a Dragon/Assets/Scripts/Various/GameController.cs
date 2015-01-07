@@ -351,4 +351,13 @@ public class GameController : MonoBehaviour {
 				Destroy (monster);
 				HUDControl.setEXPPercentage (playerControl.getPercentEXP ());
 		}
+
+	/**
+	 * Deals the player damage from getting hit by a bullet
+	 * **/
+	public void DealPlayerBulletDamage(float damage, Vector3 bulletDirection){
+				playerControl.TakeMonsterDamage (damage, bulletDirection);
+
+				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
+		}
 }

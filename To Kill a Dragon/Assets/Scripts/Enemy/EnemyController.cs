@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour {
 
 	private List<Vector3> BacktracePoints;
 	private int backtraceIndex;
-	
+
 	#endregion
 
 	private BasicEnemyController parentControl;
@@ -184,5 +184,19 @@ public class EnemyController : MonoBehaviour {
 				Vector3 otherDirection = transform.position - c.transform.position;
 
 				parentControl.TakeDamage (otherDirection);
+		}
+
+	/**
+	 * Tells the shooting radius whether it can pay attention
+	 * **/
+	public void CanShoot(bool canShoot){
+				GetComponentInChildren<EnemyShootingController> ().CanShoot (canShoot);
+		}
+
+	/**
+	 * Tells the parent to fire the projectile
+	 * **/
+	public void FireProjectile(Vector3 targetPosition){
+				parentControl.FireProjectile (targetPosition);
 		}
 }
