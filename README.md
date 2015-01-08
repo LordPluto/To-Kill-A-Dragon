@@ -7,6 +7,4 @@ The gameplay is Zelda-esque, with various spells and abilities you can use to fi
 
 ================
 
-Current stable version: v0.37a
-
-Most recent version: v0.40a
+Current stable version: v0.40a
