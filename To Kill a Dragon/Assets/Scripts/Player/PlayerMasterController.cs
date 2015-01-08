@@ -404,21 +404,30 @@ public class PlayerMasterController : MonoBehaviour {
 	 * Take damage from an attack
 	 * **/
 	public void TakeMonsterDamage(float monsterAtk, Vector3 flinchAngle) {
-				flinchAngle = new Vector3 (flinchAngle.x, 0, flinchAngle.z);
+				if (!Flinch) {
+						flinchAngle = new Vector3 (flinchAngle.x, 0, flinchAngle.z);
 
-				Flinch = true;
-				currentHP -= Mathf.Max (0, monsterAtk - Def);
+						Flinch = true;
+						currentHP -= Mathf.Max (0, monsterAtk - Def);
 
-				Vector3 tempDestination = transform.position + (flinchAngle.normalized * 2);
-				Vector3 direction = tempDestination - transform.position;
+						Vector3 tempDestination = transform.position + (flinchAngle.normalized * 2);
+						Vector3 direction = tempDestination - transform.position;
 
-				Ray ray = new Ray (transform.position, direction);
-				RaycastHit hit;
+						Ray ray = new Ray (transform.position, direction);
+						RaycastHit hit;
 
-				if (!(Physics.Raycast (ray, out hit, direction.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level")))) {
-						flinchDestination = tempDestination;
-				} else {
-						flinchDestination = hit.point - direction.normalized / 10;
+						if (!(Physics.Raycast (ray, out hit, direction.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level")))) {
+								flinchDestination = tempDestination;
+						} else {
+								flinchDestination = hit.point - direction.normalized / 10;
+						}
 				}
+		}
+
+	/**
+	 * Checks to see if the player is flinching or not
+	 * **/
+	public bool isFlinching() {
+				return Flinch;
 		}
 }

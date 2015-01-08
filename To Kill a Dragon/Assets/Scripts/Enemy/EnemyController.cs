@@ -163,8 +163,19 @@ public class EnemyController : MonoBehaviour {
 	 * The monster flinches, moving back.
 	 * **/
 	public void FlinchBack (Vector3 flinchDirection) {
-				flinchDirection = new Vector3 (flinchDirection.x, 0, flinchDirection.z);
-				currentPathPoint = transform.position + (flinchDirection.normalized * parentControl.getKnockback ());
+			flinchDirection = new Vector3 (flinchDirection.x, 0, flinchDirection.z);
+						
+			Vector3 tempDestination = transform.position + (flinchDirection.normalized * parentControl.getKnockback());
+			Vector3 direction = tempDestination - transform.position;
+			
+			Ray ray = new Ray (transform.position, direction);
+			RaycastHit hit;
+			
+			if (!(Physics.Raycast (ray, out hit, direction.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level")))) {
+				currentPathPoint = tempDestination;
+			} else {
+				currentPathPoint = hit.point - direction.normalized/2;
+			}
 		}
 
 	/**
