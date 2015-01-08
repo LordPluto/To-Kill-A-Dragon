@@ -1,0 +1,267 @@
+fileFormatVersion: 2
+guid: 777e923cdbbeea14d81edce30a467855
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Slimedl1
+    21300002: Slimedl2
+    21300004: Slimedl3
+    21300006: Slimeur1
+    21300008: Slimeur2
+    21300010: Slimeur3
+    21300012: Slimedldam1
+    21300014: Slimedldam2
+    21300016: Slimeurdam1
+    21300018: Slimeurdam2
+    21300020: Slimedr1
+    21300022: Slimedr2
+    21300024: Slimedr3
+    21300026: Slimeul1
+    21300028: Slimeul2
+    21300030: Slimeul3
+    21300032: Slimedrdam1
+    21300034: Slimedrdam2
+    21300036: Slimeuldam1
+    21300038: Slimeuldam2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Slimedl1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 523
+        width: 113
+        height: 157
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimedl2
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 528
+        width: 122
+        height: 152
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimedl3
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 528
+        width: 122
+        height: 151
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimeur1
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 515
+        width: 116
+        height: 157
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimeur2
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 510
+        width: 133
+        height: 156
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimeur3
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 514
+        width: 125
+        height: 160
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimedldam1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 355
+        width: 168
+        height: 142
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimedldam2
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 348
+        width: 127
+        height: 145
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimeurdam1
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 347
+        width: 152
+        height: 140
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimeurdam2
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 357
+        width: 106
+        height: 132
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimedr1
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 179
+        width: 122
+        height: 151
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimedr2
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 179
+        width: 123
+        height: 153
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimedr3
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 174
+        width: 114
+        height: 158
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimeul1
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 172
+        width: 124
+        height: 160
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimeul2
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 168
+        width: 132
+        height: 156
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimeul3
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 173
+        width: 115
+        height: 157
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimedrdam1
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 0
+        width: 128
+        height: 144
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimedrdam2
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 6
+        width: 169
+        height: 142
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimeuldam1
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 15
+        width: 105
+        height: 132
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Slimeuldam2
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 5
+        width: 151
+        height: 140
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

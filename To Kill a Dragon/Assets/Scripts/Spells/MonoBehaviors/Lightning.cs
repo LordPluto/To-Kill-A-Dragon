@@ -46,29 +46,30 @@ public class Lightning : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Timer--;
-		if (Timer <= 0) {
-			tag = "Untagged";
-			GameObject[] links = GameObject.FindGameObjectsWithTag("LightningChain");
-			for(int i = links.Length - 1;i>=0;i--){
-				Destroy (links[i]);
-			}
-
-			Destroy (gameObject);
+				Timer--;
+				if (Timer <= 0) {
+						DestroyLightning ();
+						Destroy (gameObject);
+				}
 		}
-	}
 
-	void OnCollisionEnter (Collision c) {
-		if(!(c.gameObject.CompareTag("Player") || c.gameObject.tag.Equals("LightningChain") || c.gameObject.CompareTag("SpellIgnore"))){
-			tag = "Untagged";
-			GameObject[] links = GameObject.FindGameObjectsWithTag("LightningChain");
-			for(int i = links.Length - 1;i>=0;i--){
-				Destroy (links[i]);
-			}
-
-			playerControl.LightningReset();
-
-			Destroy (gameObject);
+	void OnTriggerEnter (Collider c) {
+		if (!(c.CompareTag ("Player") || (c.tag.Length > 5 && c.tag.Substring(0,5).Equals("Spell")) || c.CompareTag ("SpellIgnore"))) {
+						DestroyLightning ();
+						Destroy (gameObject);
+				}
 		}
-	}
+
+	/**
+	 * Destroys this and all other lightning chains
+	 * **/
+	private void DestroyLightning(){
+				tag = "Untagged";
+				GameObject[] links = GameObject.FindGameObjectsWithTag ("SpellLightning");
+				for (int i = links.Length - 1; i>=0; i--) {
+						Destroy (links [i]);
+				}
+		
+				playerControl.LightningReset ();
+		}
 }

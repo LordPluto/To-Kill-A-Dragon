@@ -9,7 +9,10 @@ public class Spell {
 	private int spellCastTime;
 	private int spellDelay;
 	private int spellCost;
+	private int spellDamage;
 	private string spellType;
+
+
 
 	public Spell(){
 				spellNumber = -1;
@@ -18,13 +21,15 @@ public class Spell {
 				spellCost = 0;
 				spellType = "Null";
 				spellForm = null;
+				spellDamage = 0;
 		}
 
-	public Spell(int number, int cast, int delay, int cost, string type){
+	public Spell(int number, int cast, int delay, int cost, int damage, string type){
 				spellNumber = number;
 				spellCastTime = cast;
 				spellDelay = delay;
 				spellCost = cost;
+				spellDamage = damage;
 				spellType = type;
 				spellForm = null;
 		}
@@ -70,27 +75,34 @@ public class Spell {
 	public Transform getSpellForm(){
 				return spellForm;
 		}
+
+	public void setSpellDamage(int damage){
+				spellDamage = damage;
+		}
+	public int getSpellDamage(){
+				return spellDamage;
+		}
 }
 
 public class AttackSpell : Spell {
-	public AttackSpell(int number, int cast, int delay, int cost) : base(number, cast, delay, cost, "Attack"){
+	public AttackSpell(int number, int cast, int delay, int cost, int damage) : base(number, cast, delay, cost, damage, "Attack"){
 		}
 }
 
 public class FireSpell : AttackSpell {
-	public FireSpell() : base(0,60,20,10) {
+	public FireSpell() : base(0,60,20,10,10) {
 
 		}
 }
 
 public class IceSpell : AttackSpell {
-	public IceSpell() : base(1,11,10,5) {
+	public IceSpell() : base(1,11,10,5,5) {
 		
 		}
 }
 
 public class LightningSpell : AttackSpell {
-	public LightningSpell() : base(2,60,20,20) {
+	public LightningSpell() : base(2,60,20,20,20) {
 		
 		}
 }

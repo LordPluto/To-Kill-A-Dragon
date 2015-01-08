@@ -39,4 +39,13 @@ public class PlayerMovementController {
 
 				return position;
 		}
+
+	/**
+	 * Handles movement when the player is flinching - the destination should alreaedy have been cleared.
+	 * **/
+	public Vector3 FlinchMovement (Vector3 position, Vector3 moveVector) {
+				position += moveVector;
+		
+				return position;
+		}
 }

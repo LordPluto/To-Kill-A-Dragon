@@ -2,7 +2,17 @@ fileFormatVersion: 2
 guid: 62e3190f7ff768b4cb791b76af6e7f0a
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Fire: {fileID: 400000, guid: 5300bd321a80cdc4783550a48297df8a, type: 2}
+  - Ice: {fileID: 400000, guid: 9b54fea538c9b2c4ea5ecb4726f597e4, type: 2}
+  - Lightning: {fileID: 400000, guid: 25ce14c90e2ea83428c52da458824611, type: 2}
+  - Heal: {instanceID: 0}
+  - Wind: {instanceID: 0}
+  - Magnet: {instanceID: 0}
+  - Mirror: {instanceID: 0}
+  - Heavy: {instanceID: 0}
+  - Death: {instanceID: 0}
+  - Illuminate: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

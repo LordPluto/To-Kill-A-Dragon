@@ -23,7 +23,7 @@ public class HUDExpController : MonoBehaviour {
 	void Update () {
 		float x, y, w, h;
 		w = wDist;
-		h = (percent/100) * hDist;
+		h = (-percent/100) * hDist;
 		
 		x = (float)-(Camera.main.pixelWidth / 2 - xDist);
 		y = (float)(Camera.main.pixelHeight / 2 - h - yDist);

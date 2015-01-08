@@ -59,7 +59,6 @@ public class GameController : MonoBehaviour {
 	#region HUD Head Icon
 	
 	private Head currentHead;
-	private Head storedHead;
 	
 	#endregion
 
@@ -73,7 +72,6 @@ public class GameController : MonoBehaviour {
 				Screen.SetResolution (1280, 720, false);
 
 				currentHead = Head.Fine;
-				storedHead = Head.Fine;
 		}
 
 	void Awake () {
@@ -120,16 +118,13 @@ public class GameController : MonoBehaviour {
 						notStartedDialogue = 0;
 				}
 
-				if (Mathf.Approximately (playerControl.getPercentHP (), 0)) {
-						currentHead = Head.Dead;
-				} else if (playerControl.getPercentHP () < 25) {
-						currentHead = Head.HPLow;
-				} else if (playerControl.getPercentMP () < 25) {
-						currentHead = Head.MPLow;
-				} else {
-						currentHead = Head.Fine;
+				if (!(currentHead == Head.Damaged)) {
+						currentHead = SelectHead ();
+						HUDControl.changeHead (currentHead);
+				} else if (!playerControl.isFlinching ()) {
+						currentHead = SelectHead ();
+						HUDControl.changeHead (currentHead);
 				}
-				HUDControl.changeHead (currentHead);
 		}
 
 	/**
@@ -268,7 +263,7 @@ public class GameController : MonoBehaviour {
 				}
 
 				playerControl.changeMP (-(selectedSpell.getCost ()));
-				HUDControl.setMana (playerControl.getPercentMP ());
+				HUDControl.setManaPercentage (playerControl.getPercentMP ());
 
 		}
 
@@ -326,4 +321,57 @@ public class GameController : MonoBehaviour {
 		characterFlags.TryGetValue (NPCName, out flag);
 		return flag;
 	}
+
+	/**
+	 * Deal damage to player
+	 * **/
+	public void DealPlayerDamage(GameObject monster, Vector3 playerDirection, Vector3 monsterAngle){
+				BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
+
+				float monsterAtk = monsterControl.Atk;
+
+				playerControl.TakeMonsterDamage (monsterAtk, -playerDirection);
+
+				monsterControl.FlinchBack (-monsterAngle);
+
+				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
+
+				currentHead = Head.Damaged;
+		}
+
+	/**
+	 * Destroys the enemy and gives the EXP to the player
+	 * **/
+	public void DestroyMonster(GameObject monster){
+				BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
+				playerControl.increaseEXP (monsterControl.valueEXP ());
+				Destroy (monster);
+				HUDControl.setEXPPercentage (playerControl.getPercentEXP ());
+		}
+
+	/**
+	 * Deals the player damage from getting hit by a bullet
+	 * **/
+	public void DealPlayerBulletDamage(float damage, Vector3 bulletDirection){
+				playerControl.TakeMonsterDamage (damage, bulletDirection);
+
+				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
+
+				currentHead = Head.Damaged;
+		}
+
+	/**
+	 * Tells the Game to choose the correct head icon
+	 * **/
+	private Head SelectHead () {
+				if (playerControl.getPercentHP () <= 0) {
+						return Head.Dead;
+				} else if (playerControl.getPercentHP () <= 25) {
+						return Head.HPLow;
+				} else if (playerControl.getPercentMP () <= 25) {
+						return Head.MPLow;
+				} else {
+						return Head.Fine;
+				}
+		}
 }
