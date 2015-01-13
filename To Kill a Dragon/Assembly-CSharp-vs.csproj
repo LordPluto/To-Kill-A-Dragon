@@ -64,10 +64,12 @@
      <Compile Include="Assets\Scripts\Player\PlayerSpellController.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Fire.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\FireDestroy.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Heal.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Ice.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceCrystal.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Lightning.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningChain.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Wind.cs" />
      <Compile Include="Assets\Scripts\Spells\Other\Spell.cs" />
      <Compile Include="Assets\Scripts\Spells\Other\SpellList.cs" />
      <Compile Include="Assets\Scripts\Various\AdviController.cs" />

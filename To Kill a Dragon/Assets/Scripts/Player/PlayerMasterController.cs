@@ -430,4 +430,13 @@ public class PlayerMasterController : MonoBehaviour {
 	public bool isFlinching() {
 				return Flinch;
 		}
+
+	/**
+	 * Called by the Heal Spell. Fun things happen, mostly regarding healing.
+	 * **/
+	public void HealSpell(float percentage) {
+				float healAmount = maxHP * percentage / 100;
+
+				gameControl.HealPlayer (healAmount);
+		}
 }

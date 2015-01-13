@@ -106,3 +106,18 @@ public class LightningSpell : AttackSpell {
 		
 		}
 }
+
+public class SupportSpell : Spell {
+	public SupportSpell(int number, int cast, int delay, int cost) : base(number, cast, delay, cost, 0, "Support"){
+		}
+}
+
+public class HealSpell : SupportSpell {
+	public HealSpell() : base(3, 60, 20, 25){
+		}
+}
+
+public class WindSpell : SupportSpell {
+	public WindSpell() : base(4, 60, 20, 15){
+		}
+}

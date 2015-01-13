@@ -80,6 +80,7 @@ public class GameController : MonoBehaviour {
 				KnownSpells.Add (new FireSpell ());
 				KnownSpells.Add (new IceSpell ());
 				KnownSpells.Add (new LightningSpell ());
+				KnownSpells.Add (new HealSpell ());
 				foreach (Spell s in KnownSpells) {
 						s.setSpellForm (spellBook.getPrefab (s));
 				}
@@ -260,6 +261,10 @@ public class GameController : MonoBehaviour {
 						             Quaternion.Euler (90,
 						                  _characterFacing * -90,
 						                  0));
+				} else if (selectedSpell is HealSpell) {
+					Instantiate (selectedSpell.getSpellForm (),
+			             playerControl.getPosition (),
+			             Quaternion.Euler(0,0,0));
 				}
 
 				playerControl.changeMP (-(selectedSpell.getCost ()));
@@ -358,6 +363,15 @@ public class GameController : MonoBehaviour {
 				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
 
 				currentHead = Head.Damaged;
+		}
+
+	/**
+	 * Heal the player the amount
+	 * **/
+	public void HealPlayer(float healAmount){
+				playerControl.changeHP (healAmount);
+
+				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
 		}
 
 	/**
