@@ -26,6 +26,8 @@ public class PlayerMasterController : MonoBehaviour {
 	private bool Flinch;
 	private Vector3 flinchDestination;
 
+	private bool windSpeedBoost;
+
 	#endregion
 
 	#region Cutscene
@@ -109,7 +111,7 @@ public class PlayerMasterController : MonoBehaviour {
 				Vector3 oldPosition = transform.position;
 		
 				Vector3 direction = flinchDestination - transform.position;
-				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
+				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime * (windSpeedBoost ? 2 : 1);
 		
 				transform.position = playerMovement.FlinchMovement (transform.position, moveVector);
 		
@@ -156,7 +158,7 @@ public class PlayerMasterController : MonoBehaviour {
 	 * The Update function used when the player has control
 	 * **/
 	private void PlayerUpdate () {
-				playerMovement.PlayerMovement (Talking, Frozen, Casting);
+				playerMovement.PlayerMovement (Talking, Frozen, Casting, windSpeedBoost);
 
 				float changeSpell = Input.GetAxis ("SpellChange");
 				float[] quickSelect = new float[] { Input.GetAxis ("Quick1"),Input.GetAxis ("Quick2"),
@@ -439,4 +441,13 @@ public class PlayerMasterController : MonoBehaviour {
 
 				gameControl.HealPlayer (healAmount);
 		}
+
+	/**
+	 * Triggers the speed boost granted by the wind spell.
+	 * **/
+	public void WindBoost(bool boost) {
+				windSpeedBoost = boost;
+		}
+
+
 }

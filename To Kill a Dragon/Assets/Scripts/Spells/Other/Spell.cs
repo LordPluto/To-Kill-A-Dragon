@@ -113,11 +113,11 @@ public class SupportSpell : Spell {
 }
 
 public class HealSpell : SupportSpell {
-	public HealSpell() : base(3, 60, 20, 25){
+	public HealSpell() : base(3, 120, 20, 25){
 		}
 }
 
 public class WindSpell : SupportSpell {
-	public WindSpell() : base(4, 60, 20, 15){
+	public WindSpell() : base(4, 60, 20, 30){
 		}
 }

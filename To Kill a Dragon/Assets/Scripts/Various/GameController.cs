@@ -81,6 +81,7 @@ public class GameController : MonoBehaviour {
 				KnownSpells.Add (new IceSpell ());
 				KnownSpells.Add (new LightningSpell ());
 				KnownSpells.Add (new HealSpell ());
+				KnownSpells.Add (new WindSpell ());
 				foreach (Spell s in KnownSpells) {
 						s.setSpellForm (spellBook.getPrefab (s));
 				}
@@ -262,9 +263,14 @@ public class GameController : MonoBehaviour {
 						                  _characterFacing * -90,
 						                  0));
 				} else if (selectedSpell is HealSpell) {
-					Instantiate (selectedSpell.getSpellForm (),
-			             playerControl.getPosition (),
-			             Quaternion.Euler(0,0,0));
+						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (0, 0, 0));
+				} else if (selectedSpell is WindSpell) {
+						GameObject windClone = GameObject.Find ("Wind(Clone)");
+						if (windClone) {
+								Destroy (windClone);
+						}
+						
+						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (90, 0, 0));
 				}
 
 				playerControl.changeMP (-(selectedSpell.getCost ()));
