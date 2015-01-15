@@ -20,7 +20,7 @@ public class PlayerAnimationController {
 	#endregion Animations
 
 	public PlayerAnimationController(Animator _animator) {
-		this._animator = _animator;
+				this._animator = _animator;
 		}
 
 	/**

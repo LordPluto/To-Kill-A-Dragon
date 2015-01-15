@@ -118,6 +118,6 @@ public class HealSpell : SupportSpell {
 }
 
 public class WindSpell : SupportSpell {
-	public WindSpell() : base(4, 60, 20, 30){
+	public WindSpell() : base(4, 30, 20, 30){
 		}
 }

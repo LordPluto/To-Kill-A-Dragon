@@ -19,12 +19,18 @@ public class EnemyController : MonoBehaviour {
 	private List<Vector3> BacktracePoints;
 	private int backtraceIndex;
 
+	private bool InCutscene;
+
 	#endregion
 
 	private BasicEnemyController parentControl;
+	
+	private Animator _animator;
 
 	// Use this for initialization
 	void Start () {
+				_animator = GetComponent<Animator> ();
+
 				parentControl = GetComponentInParent<BasicEnemyController> ();
 				currentPathPoint = Vector3.zero;
 
@@ -32,18 +38,22 @@ public class EnemyController : MonoBehaviour {
 				Tracking = false;
 				Backtrace = false;
 
+				InCutscene = false;
+
 				BacktracePoints = new List<Vector3> ();
 				backtraceIndex = 0;
 		}
 	
 	// Update is called once per frame
 	void Update () {
-				if (Tracking) {
-						TrackingMove ();
-				} else if (Backtrace) {
-						BacktraceMove ();
-				} else {
-						WanderMove ();
+				if (!InCutscene) {
+						if (Tracking) {
+								TrackingMove ();
+						} else if (Backtrace) {
+								BacktraceMove ();
+						} else {
+								WanderMove ();
+						}
 				}
 		}
 
@@ -111,13 +121,13 @@ public class EnemyController : MonoBehaviour {
 				float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
 		
 				if (directionAngle > 45 && directionAngle <= 135) {
-						parentControl.setDirection (2);
+						parentControl.setDirection (_animator, 2);
 				} else if (directionAngle > 135 && directionAngle <= 225) {
-						parentControl.setDirection (3);
+						parentControl.setDirection (_animator, 3);
 				} else if (directionAngle > 225 && directionAngle <= 315) {
-						parentControl.setDirection (0);
+						parentControl.setDirection (_animator, 0);
 				} else if (directionAngle > 315 || directionAngle <= 45) {
-						parentControl.setDirection (1);
+						parentControl.setDirection (_animator, 1);
 				}
 		
 				Ray ray = new Ray (transform.position, direction);
@@ -127,7 +137,7 @@ public class EnemyController : MonoBehaviour {
 						currentPathPoint = BacktracePoints [BacktracePoints.Count - 1];
 						return;
 				} else {
-						parentControl.setSpeed (1);
+						parentControl.setSpeed (_animator, 1);
 						transform.position += moveVector;
 				}
 		}
@@ -209,5 +219,19 @@ public class EnemyController : MonoBehaviour {
 	 * **/
 	public void FireProjectile(Vector3 targetPosition){
 				parentControl.FireProjectile (targetPosition);
+		}
+
+	/**
+	 * Enter cutscene
+	 * **/
+	public void EnterCutscene () {
+				InCutscene = true;
+		}
+
+	/**
+	 * Exits the cutscene
+	 * **/
+	public void ExitCutscene () {
+				InCutscene = false;
 		}
 }

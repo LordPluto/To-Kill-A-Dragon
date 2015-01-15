@@ -69,16 +69,16 @@ public class BasicEnemyController : MonoBehaviour {
 	/**
 	 * Sets the new direction for the animator
 	 * **/
-	public void setDirection(float direction){
-		//_animator.setFloat("Direction", direction);
-	}
+	public void setDirection(Animator _animator, float direction){
+				//_animator.SetFloat ("Direction", direction);
+		}
 
 	/**
 	 * Sets the speed for the animator
 	 * **/
-	public void setSpeed(float speed){
-		//_animator.setFloat("Speed", speed);
-	}
+	public void setSpeed(Animator _animator, float speed){
+				//_animator.SetFloat ("Speed", speed);
+		}
 
 	/**
 	 * Deals damage to player

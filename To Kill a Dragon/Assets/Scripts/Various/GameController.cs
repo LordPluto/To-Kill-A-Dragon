@@ -293,16 +293,31 @@ public class GameController : MonoBehaviour {
 				}
 
 				HUDControl.Hide ();
+
+				foreach (GameObject enemy in GameObject.FindGameObjectsWithTag ("Enemy")) {
+						enemy.GetComponent<EnemyController> ().EnterCutscene ();
+				}
 		}
 
 	/**
 	 * Handles leaving cutscene - the little black bars, giving control to the player, etc.
 	 * **/
 	private void EndCutscene() {
-		playerControl.ExitCutscene ();
+				playerControl.ExitCutscene ();
 
-		HUDControl.Show ();
-	}
+				HUDControl.Show ();
+
+				foreach (GameObject enemy in GameObject.FindGameObjectsWithTag ("Enemy")) {
+						enemy.GetComponent<EnemyController> ().ExitCutscene ();
+				}
+		}
+
+	/**
+	 * Checks to see if the game is in a cutscene.
+	 * **/
+	public bool InCutscene () {
+				return (PlayerInvolved || NPCInvolved);
+		}
 
 	/**
 	 * Informs the system that the Player is done with their cutscene stuff
@@ -337,17 +352,19 @@ public class GameController : MonoBehaviour {
 	 * Deal damage to player
 	 * **/
 	public void DealPlayerDamage(GameObject monster, Vector3 playerDirection, Vector3 monsterAngle){
-				BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
+				if (!InCutscene ()) {
+						BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
 
-				float monsterAtk = monsterControl.Atk;
+						float monsterAtk = monsterControl.Atk;
 
-				playerControl.TakeMonsterDamage (monsterAtk, -playerDirection);
+						playerControl.TakeMonsterDamage (monsterAtk, -playerDirection);
 
-				monsterControl.FlinchBack (-monsterAngle);
+						monsterControl.FlinchBack (-monsterAngle);
 
-				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
+						HUDControl.setHealthPercentage (playerControl.getPercentHP ());
 
-				currentHead = Head.Damaged;
+						currentHead = Head.Damaged;
+				}
 		}
 
 	/**
@@ -364,17 +381,19 @@ public class GameController : MonoBehaviour {
 	 * Deals the player damage from getting hit by a bullet
 	 * **/
 	public void DealPlayerBulletDamage(float damage, Vector3 bulletDirection){
-				playerControl.TakeMonsterDamage (damage, bulletDirection);
+				if (!InCutscene ()) {
+						playerControl.TakeMonsterDamage (damage, bulletDirection);
 
-				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
+						HUDControl.setHealthPercentage (playerControl.getPercentHP ());
 
-				currentHead = Head.Damaged;
+						currentHead = Head.Damaged;
+				}
 		}
 
 	/**
 	 * Heal the player the amount
 	 * **/
-	public void HealPlayer(float healAmount){
+	public void HealPlayer(float healAmount) {
 				playerControl.changeHP (healAmount);
 
 				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
