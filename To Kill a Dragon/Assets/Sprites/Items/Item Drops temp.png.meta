@@ -1,0 +1,267 @@
+fileFormatVersion: 2
+guid: b79fbe90fee8d8040a62e3f60bbdd831
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Health1
+    21300002: Health2
+    21300004: Health3
+    21300006: Mana1
+    21300008: Mana2
+    21300010: Mana3
+    21300012: coin1
+    21300014: coin2
+    21300016: coin3
+    21300018: Coin4
+    21300020: Coin5
+    21300022: Coin6
+    21300024: Coin7
+    21300026: Coin8
+    21300028: Coin9
+    21300030: Fgrade
+    21300032: Dgrade
+    21300034: Cgrade
+    21300036: Bgrade
+    21300038: Agrade
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Health1
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 603
+        width: 57
+        height: 56
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Health2
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 602
+        width: 57
+        height: 50
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Health3
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 602
+        width: 57
+        height: 45
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Mana1
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 523
+        width: 57
+        height: 57
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Mana2
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 522
+        width: 57
+        height: 50
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Mana3
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 522
+        width: 57
+        height: 45
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: coin1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 420
+        width: 18
+        height: 72
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: coin2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 420
+        width: 37
+        height: 71
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: coin3
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 422
+        width: 45
+        height: 71
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Coin4
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 300
+        width: 18
+        height: 72
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Coin5
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 300
+        width: 37
+        height: 71
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Coin6
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 302
+        width: 45
+        height: 71
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Coin7
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 182
+        width: 18
+        height: 71
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Coin8
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 182
+        width: 37
+        height: 70
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Coin9
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 184
+        width: 45
+        height: 70
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Fgrade
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 104
+        height: 104
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dgrade
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 1
+        width: 104
+        height: 104
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cgrade
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 1
+        width: 104
+        height: 104
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Bgrade
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 1
+        width: 105
+        height: 104
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Agrade
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 1
+        width: 105
+        height: 104
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
