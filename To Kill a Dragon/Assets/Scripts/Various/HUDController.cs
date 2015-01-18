@@ -13,18 +13,19 @@ public class HUDController : MonoBehaviour {
 	private HUDSpellController spells;
 
 	void Start () {
+
+				backing = GetComponentInChildren<HUDBackgroundController> ();
+				details = GetComponentInChildren<HUDDetailController> ();
+				EXP = GetComponentInChildren<HUDExpController> ();
+				heads = GetComponentInChildren<HUDHeadController> ();
+				bars = GetComponentInChildren<HUDBackController> ();
+				health = GetComponentInChildren<HUDHealthController> ();
+				mana = GetComponentInChildren<HUDManaController> ();
+				spells = GetComponentInChildren<HUDSpellController> ();
 		}
 
 	void Awake () {
 				
-				backing = GameObject.Find ("HUD Backing").GetComponent<HUDBackgroundController> ();
-				details = GameObject.Find ("HUD Details").GetComponent<HUDDetailController> ();
-				EXP = GameObject.Find ("HUD EXP").GetComponent<HUDExpController> ();
-				heads = GameObject.Find ("HUD Head").GetComponent<HUDHeadController> ();
-				bars = GameObject.Find ("HUD Bar Backs").GetComponent<HUDBackController> ();
-				health = GameObject.Find ("HUD HP Bar").GetComponent<HUDHealthController> ();
-				mana = GameObject.Find ("HUD MP Bar").GetComponent<HUDManaController> ();
-				spells = GameObject.Find ("HUD Spells").GetComponent<HUDSpellController> ();
 		}
 
 	void Update () {
@@ -73,7 +74,11 @@ public class HUDController : MonoBehaviour {
 	 * Sets the spell's icon
 	 * **/
 	public void setIcon(Spell selectedSpell){
-				spells.SetTexture (selectedSpell.getNumber());
+				if (spells == null) {
+						spells = GetComponentInChildren<HUDSpellController> ();
+				}
+
+				spells.SetTexture (selectedSpell.getNumber ());
 		}
 
 	/**

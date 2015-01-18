@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour {
 	private List<Spell> KnownSpells;
 	private Spell selectedSpell;
 	private Spell[] QuickSpells = new Spell[5];
+	private int spellIndex;
 
 	#endregion
 
@@ -75,19 +76,6 @@ public class GameController : MonoBehaviour {
 		}
 
 	void Awake () {
-				spellBook = GameObject.Find ("_SpellBook").GetComponent<SpellList> ();
-				KnownSpells = new List<Spell> ();
-				KnownSpells.Add (new FireSpell ());
-				KnownSpells.Add (new IceSpell ());
-				KnownSpells.Add (new LightningSpell ());
-				KnownSpells.Add (new HealSpell ());
-				KnownSpells.Add (new WindSpell ());
-				foreach (Spell s in KnownSpells) {
-						s.setSpellForm (spellBook.getPrefab (s));
-				}
-				selectedSpell = KnownSpells [0];
-
-
 				treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
 				textBoxControl = GameObject.Find ("_Textbox Controller").GetComponent<TextboxController> ();
 				playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
@@ -107,6 +95,24 @@ public class GameController : MonoBehaviour {
 				dialogueDump.AddLines (2, (TextAsset)Resources.Load ("Test/Chapter Two"), ref assetTest);
 				dialogueDump.AddPerson ("Victor2", assetTest);
 				characterFlags.Add ("Victor2", 2);
+				//END TEST
+
+				spellBook = GameObject.Find ("_SpellBook").GetComponent<SpellList> ();
+				KnownSpells = new List<Spell> ();
+
+				//Testing for Spells. MARKED FOR DELETION
+				KnownSpells.Add (new FireSpell ());
+				KnownSpells.Add (new IceSpell ());
+				KnownSpells.Add (new LightningSpell ());
+				KnownSpells.Add (new HealSpell ());
+				KnownSpells.Add (new WindSpell ());
+				foreach (Spell s in KnownSpells) {
+						s.setSpellForm (spellBook.getPrefab (s));
+				}
+		
+				spellIndex = 0;
+		
+				selectedSpell = KnownSpells [spellIndex];
 				//END TEST
 		}
 	
@@ -169,11 +175,13 @@ public class GameController : MonoBehaviour {
 	 * Goes to the next spell
 	 * **/
 	public void NextSpell(){
-				if (selectedSpell.getNumber () >= KnownSpells.Count - 1) {
-						selectedSpell = KnownSpells [0];
+				if (spellIndex >= KnownSpells.Count - 1) {
+						spellIndex = 0;
 				} else {
-						selectedSpell = KnownSpells [selectedSpell.getNumber () + 1];
+						spellIndex++;
 				}
+
+				selectedSpell = KnownSpells [spellIndex];
 
 				HUDControl.setIcon (selectedSpell);
 		}
@@ -182,11 +190,14 @@ public class GameController : MonoBehaviour {
 	 * Goes to the previous spell
 	 * **/
 	public void PreviousSpell(){
-				if (selectedSpell.getNumber () < 1) {
-						selectedSpell = KnownSpells [KnownSpells.Count - 1];
+				if (spellIndex < 1) {
+						spellIndex = KnownSpells.Count - 1;
+						
 				} else {
-						selectedSpell = KnownSpells [selectedSpell.getNumber () - 1];
+						spellIndex--;
 				}
+
+				selectedSpell = KnownSpells [spellIndex];
 
 				HUDControl.setIcon (selectedSpell);
 		}
@@ -197,6 +208,7 @@ public class GameController : MonoBehaviour {
 	public void QuickSelect(int quickSlot){
 				if (quickSlot >= 0 && quickSlot < 5 && QuickSpells [quickSlot] != null) {
 						selectedSpell = QuickSpells [quickSlot];
+						spellIndex = KnownSpells.IndexOf (selectedSpell);
 				}
 
 				HUDControl.setIcon (selectedSpell);
