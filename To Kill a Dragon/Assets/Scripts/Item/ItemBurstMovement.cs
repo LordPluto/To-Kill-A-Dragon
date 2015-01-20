@@ -23,7 +23,16 @@ public class ItemBurstMovement : MonoBehaviour {
 				float distanceX = Mathf.Cos (direction) * burstDistance;
 				float distanceZ = Mathf.Sin (direction) * burstDistance;
 
-		//Check here to see if it clips through the wall
+				//Check here to see if it clips through the wall
+				Vector3 vectorDirection = new Vector3 (distanceX, 0, distanceZ);
+		
+				Ray ray = new Ray (transform.position, vectorDirection);
+				RaycastHit hit;
+		
+				if (Physics.Raycast (ray, out hit, vectorDirection.magnitude) && hit.collider.CompareTag ("Level")) {
+						distanceX -= hit.point.x - transform.position.x;
+						distanceZ -= hit.point.z - transform.position.z;
+				}
 
 				xInc = (double)distanceX / (double)BurstTime;
 				zInc = (double)distanceZ / (double)BurstTime;
