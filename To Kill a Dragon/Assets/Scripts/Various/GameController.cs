@@ -63,6 +63,12 @@ public class GameController : MonoBehaviour {
 	
 	#endregion
 
+	#region Player Wallet
+
+	private float wallet;
+
+	#endregion
+
 	private int notStartedDialogue = 2;
 
 	/**
@@ -73,6 +79,8 @@ public class GameController : MonoBehaviour {
 				Screen.SetResolution (1280, 720, false);
 
 				currentHead = Head.Fine;
+
+				wallet = 0;
 		}
 
 	void Awake () {
@@ -101,14 +109,12 @@ public class GameController : MonoBehaviour {
 				KnownSpells = new List<Spell> ();
 
 				//Testing for Spells. MARKED FOR DELETION
-				KnownSpells.Add (new FireSpell ());
-				KnownSpells.Add (new IceSpell ());
-				KnownSpells.Add (new LightningSpell ());
-				KnownSpells.Add (new HealSpell ());
-				KnownSpells.Add (new WindSpell ());
-				foreach (Spell s in KnownSpells) {
-						s.setSpellForm (spellBook.getPrefab (s));
-				}
+		AddSpell (new FireSpell ());
+		AddSpell (new IceSpell ());
+				AddSpell (new LightningSpell ());
+				AddSpell (new HealSpell ());
+				AddSpell (new WindSpell ());
+		AddSpell (new FireSpell ());
 		
 				spellIndex = 0;
 		
@@ -384,6 +390,8 @@ public class GameController : MonoBehaviour {
 	 * **/
 	public void DestroyMonster(GameObject monster){
 				BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
+				monsterControl.DropItems ();
+
 				playerControl.increaseEXP (monsterControl.valueEXP ());
 				Destroy (monster);
 				HUDControl.setEXPPercentage (playerControl.getPercentEXP ());
@@ -412,6 +420,15 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
+	 * Restores the player's MP by the amount
+	 * **/
+	public void HealPlayerMana (float healAmount) {
+				playerControl.changeMP (healAmount);
+
+				HUDControl.setManaPercentage (playerControl.getPercentMP ());
+		}
+
+	/**
 	 * Tells the Game to choose the correct head icon
 	 * **/
 	private Head SelectHead () {
@@ -423,6 +440,37 @@ public class GameController : MonoBehaviour {
 						return Head.MPLow;
 				} else {
 						return Head.Fine;
+				}
+		}
+
+	/**
+	 * Adds a given spell to the known list.
+	 * **/
+	public void AddSpell (Spell newSpell){
+				// Not great, but the best I can do. Find is a slow function.
+				if (KnownSpells.Find (x => x.getNumber () == newSpell.getNumber ()) == null) {
+						newSpell.setSpellForm (spellBook.getPrefab (newSpell));
+						KnownSpells.Add (newSpell);
+				}
+		}
+
+	/**
+	 * Handles what happens when you collect an item.
+	 * **/
+	public void itemCollected(string tag, float value){
+				switch (tag.Substring (4)) {
+				case "Coin":
+						wallet += value;
+						break;
+				case "Health":
+						HealPlayer (value);
+						break;
+				case "Mana":
+						HealPlayerMana (value);
+						break;
+				default:
+						Debug.Log ("Item not given the correct tag.");
+						break;
 				}
 		}
 }

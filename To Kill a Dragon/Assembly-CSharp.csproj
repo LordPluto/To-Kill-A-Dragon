@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\Enemy\WanderController.cs" />
      <Compile Include="Assets\Scripts\Item\ItemAttractMovement.cs" />
      <Compile Include="Assets\Scripts\Item\ItemAttractRangeController.cs" />
+     <Compile Include="Assets\Scripts\Item\ItemBurstMovement.cs" />
      <Compile Include="Assets\Scripts\Item\ItemMasterController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\CutsceneTriggerController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DestinationController.cs" />

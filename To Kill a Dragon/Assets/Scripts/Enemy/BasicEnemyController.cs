@@ -34,6 +34,14 @@ public class BasicEnemyController : MonoBehaviour {
 
 	#endregion
 
+	#region Item Drops
+
+	public Transform[] itemDrops;
+
+	public float[] itemNumbers;
+
+	#endregion
+
 	// Use this for initialization
 	void Start () {
 				wanderControl = GetComponentInChildren<WanderController> ();
@@ -45,6 +53,25 @@ public class BasicEnemyController : MonoBehaviour {
 						enemyControl.CanShoot (true);
 				} else {
 						enemyControl.CanShoot (false);
+				}
+
+				/*
+				if (itemDrops.Length != itemPercentages.Length) {
+						Debug.Log (gameObject.name + "'s items are not set properly.");
+				} else if (itemDrops.Length > 0) {
+						float totalPercent = 0;
+
+						foreach (float percent in itemPercentages) {
+								totalPercent += percent;
+						}
+
+						if (!Mathf.Approximately (totalPercent, 100)) {
+								Debug.Log (gameObject.name + "'s items are not set properly.");
+						}
+				}*/
+
+				if (itemDrops.Length != itemNumbers.Length) {
+						Debug.LogError ("Something is wrong with the item drops of " + gameObject.name);
 				}
 		}
 
@@ -129,5 +156,25 @@ public class BasicEnemyController : MonoBehaviour {
 	                		 												 targetPosition,
 	                														 2 * Mathf.PI,
 	                														 0)));
+		}
+
+	/**
+	 * Drops all the items the enemy is holding.
+	 * **/
+	public void DropItems () {
+				for (int i = 0; i<itemDrops.Length; i++) {
+						for (int j = 0; j<itemNumbers[i]; j++) {
+								DropItem (itemDrops [i]);
+						}
+				}
+		}
+
+	/**
+	 * Drops an item.
+	 * **/
+	private void DropItem (Transform item){
+				Instantiate (item,
+		             enemyControl.transform.position,
+		             Quaternion.identity);
 		}
 }
