@@ -66,6 +66,7 @@ public class GameController : MonoBehaviour {
 	#region Player Wallet
 
 	private float wallet;
+	private const float WalletMax = 999999999999;
 
 	#endregion
 
@@ -460,13 +461,18 @@ public class GameController : MonoBehaviour {
 	public void itemCollected(string tag, float value){
 				switch (tag.Substring (4)) {
 				case "Coin":
-						wallet += value;
+						if (wallet <= WalletMax - value) {
+								wallet += value;
+								HUDControl.setWallet (wallet);
+						}
 						break;
 				case "Health":
 						HealPlayer (value);
 						break;
 				case "Mana":
 						HealPlayerMana (value);
+						break;
+				case "GradeA":
 						break;
 				default:
 						Debug.Log ("Item not given the correct tag.");

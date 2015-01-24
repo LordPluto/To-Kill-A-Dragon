@@ -95,6 +95,7 @@
      <Compile Include="Assets\Scripts\Various\HUD\HUDHeadController.cs" />
      <Compile Include="Assets\Scripts\Various\HUD\HUDHealthController.cs" />
      <Compile Include="Assets\Scripts\Various\HUD\HUDManaController.cs" />
+     <Compile Include="Assets\Scripts\Various\HUD\HUDMoneyController.cs" />
      <Compile Include="Assets\Scripts\Various\HUD\HUDSpellController.cs" />
      <Compile Include="Assets\Scripts\Various\HUDController.cs" />
      <Compile Include="Assets\Scripts\Various\Movement\Movement.cs" />

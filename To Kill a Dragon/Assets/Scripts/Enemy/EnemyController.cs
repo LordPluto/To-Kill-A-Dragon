@@ -42,6 +42,8 @@ public class EnemyController : MonoBehaviour {
 
 				BacktracePoints = new List<Vector3> ();
 				backtraceIndex = 0;
+
+				BacktracePoints.Add (transform.position);
 		}
 	
 	// Update is called once per frame
@@ -96,11 +98,12 @@ public class EnemyController : MonoBehaviour {
 	private void BacktraceMove() {
 				if (currentPathPoint == Vector3.zero) {
 						backtraceIndex--;
-						if (backtraceIndex >= 0) {
+						if (backtraceIndex > 0) {
 								currentPathPoint = BacktracePoints [backtraceIndex];
 						} else {
 								BacktracePoints.Clear ();
 								Backtrace = false;
+								BacktracePoints.Add (transform.position);
 						}
 				} else {
 						MoveTowardPoint ();

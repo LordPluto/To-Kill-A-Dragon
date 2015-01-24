@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HUDController : MonoBehaviour {
@@ -10,7 +11,9 @@ public class HUDController : MonoBehaviour {
 	private HUDBackController bars;
 	private HUDHealthController health;
 	private HUDManaController mana;
+	private HUDMoneyController money;
 	private HUDSpellController spells;
+	private Text moneyText;
 
 	void Start () {
 
@@ -21,7 +24,10 @@ public class HUDController : MonoBehaviour {
 				bars = GetComponentInChildren<HUDBackController> ();
 				health = GetComponentInChildren<HUDHealthController> ();
 				mana = GetComponentInChildren<HUDManaController> ();
+				money = GetComponentInChildren<HUDMoneyController> ();
 				spells = GetComponentInChildren<HUDSpellController> ();
+				moneyText = GetComponentInChildren<Text> ();
+
 		}
 
 	void Awake () {
@@ -29,6 +35,7 @@ public class HUDController : MonoBehaviour {
 		}
 
 	void Update () {
+
 		}
 
 	/**
@@ -92,7 +99,9 @@ public class HUDController : MonoBehaviour {
 				bars.Hide ();
 				health.Hide ();
 				mana.Hide ();
+				money.Hide ();
 				spells.Hide ();
+				moneyText.enabled = false;
 		}
 
 	/**
@@ -106,7 +115,9 @@ public class HUDController : MonoBehaviour {
 				bars.Show ();
 				health.Show ();
 				mana.Show ();
+				money.Show ();
 				spells.Show ();
+				moneyText.enabled = true;
 		}
 
 	/**
@@ -114,5 +125,12 @@ public class HUDController : MonoBehaviour {
 	 * **/
 	public void changeHead(Head head){
 				heads.SetHead (head);
+		}
+
+	/**
+	 * Set the amount of money displayed.
+	 * **/
+	public void setWallet(float money){
+				moneyText.text = money.ToString();
 		}
 }

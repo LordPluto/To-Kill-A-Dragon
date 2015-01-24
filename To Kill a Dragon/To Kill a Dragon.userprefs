@@ -1,10 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Item\ItemBurstMovement.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy\EnemyController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Item\ItemBurstMovement.cs" Line="25" Column="1" />
+      <File FileName="Assets\Scripts\Enemy\EnemyController.cs" Line="101" Column="27" />
+      <File FileName="Assets\Scripts\Item\ItemBurstMovement.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Enemy\BasicEnemyController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy\EnemyController.cs" Line="118" Column="5" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\HUD\HUDMoneyController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\HUDController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
