@@ -10,7 +10,6 @@ Controls: Arrow keys to move, Space to cast currently selected spell, Q and E to
 ================
 
 Current stable version: v0.41a
-
 ================
 
 This is the game I've been working on as a side project of sorts when not otherwise occupied with creative writing or schoolwork. I act as lead programmer - and only programmer, since this is a side project and we have no money - of the project; a friend of mine is handling the art style and design and such.
