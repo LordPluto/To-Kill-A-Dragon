@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceShotgun.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Lightning.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningChain.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningStrike.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Wind.cs" />
      <Compile Include="Assets\Scripts\Spells\Other\Spell.cs" />
      <Compile Include="Assets\Scripts\Spells\Other\SpellList.cs" />
