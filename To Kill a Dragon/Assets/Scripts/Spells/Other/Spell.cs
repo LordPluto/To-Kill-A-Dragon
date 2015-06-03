@@ -10,8 +10,9 @@ public class Spell {
 	private int spellDelay;
 	private int spellCost;
 	private int spellDamage;
+	private float spellKnockback;
 	private string spellType;
-
+	
 
 
 	public Spell(){
@@ -22,14 +23,16 @@ public class Spell {
 				spellType = "Null";
 				spellForm = null;
 				spellDamage = 0;
+				spellKnockback = 0;
 		}
 
-	public Spell(int number, int cast, int delay, int cost, int damage, string type){
+	public Spell(int number, int cast, int delay, int cost, int damage, float knockback, string type){
 				spellNumber = number;
 				spellCastTime = cast;
 				spellDelay = delay;
 				spellCost = cost;
 				spellDamage = damage;
+				spellKnockback = knockback;
 				spellType = type;
 				spellForm = null;
 		}
@@ -82,33 +85,40 @@ public class Spell {
 	public int getSpellDamage(){
 				return spellDamage;
 		}
+
+	public void setSpellKnockback(float knockback){
+				spellKnockback = knockback;
+		}
+	public float getSpellKnockback(){
+				return spellKnockback;
+		}
 }
 
 public class AttackSpell : Spell {
-	public AttackSpell(int number, int cast, int delay, int cost, int damage) : base(number, cast, delay, cost, damage, "Attack"){
+	public AttackSpell(int number, int cast, int delay, int cost, int damage, float knockback) : base(number, cast, delay, cost, damage, knockback, "Attack"){
 		}
 }
 
 public class FireSpell : AttackSpell {
-	public FireSpell() : base(0,60,20,10,10) {
+	public FireSpell() : base(0,60,20,10,10,2) {
 
 		}
 }
 
 public class IceSpell : AttackSpell {
-	public IceSpell() : base(1,11,10,5,5) {
+	public IceSpell() : base(1,21,10,5,5,3) {
 		
 		}
 }
 
 public class LightningSpell : AttackSpell {
-	public LightningSpell() : base(2,60,20,20,20) {
+	public LightningSpell() : base(2,60,20,20,20,0) {
 		
 		}
 }
 
 public class SupportSpell : Spell {
-	public SupportSpell(int number, int cast, int delay, int cost) : base(number, cast, delay, cost, 0, "Support"){
+	public SupportSpell(int number, int cast, int delay, int cost) : base(number, cast, delay, cost, 0, 0, "Support"){
 		}
 }
 

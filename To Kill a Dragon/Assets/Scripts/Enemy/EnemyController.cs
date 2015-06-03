@@ -71,6 +71,7 @@ public class EnemyController : MonoBehaviour {
 						if (Vector3.Distance (currentPathPoint, transform.position) < (float)pointReached) {
 								currentPathPoint = Vector3.zero;
 								parentControl.getNewPoint ();
+								moveSpeed = 2;
 						}
 				}
 		}
@@ -88,6 +89,7 @@ public class EnemyController : MonoBehaviour {
 								BacktracePoints.Add (currentPathPoint);
 								currentPathPoint = Vector3.zero;
 								currentPathPoint = new Vector3 (TrackingTarget.transform.position.x, transform.position.y, TrackingTarget.transform.position.z);
+								moveSpeed = 2;
 						}
 				}
 		}
@@ -110,6 +112,7 @@ public class EnemyController : MonoBehaviour {
 			
 						if (Vector3.Distance (currentPathPoint, transform.position) < (float)pointReached) {
 								currentPathPoint = Vector3.zero;
+				moveSpeed = 2;
 						}
 				}
 		}
@@ -189,6 +192,27 @@ public class EnemyController : MonoBehaviour {
 			} else {
 				currentPathPoint = hit.point - direction.normalized/2;
 			}
+		}
+
+	/**
+	 * The enemy is knocked back from a spell.
+	 * **/
+	public void KnockBack (Vector3 flinchDirection, float knockback) {
+				flinchDirection = new Vector3 (flinchDirection.x, 0, flinchDirection.z);
+		
+				Vector3 tempDestination = transform.position + (flinchDirection.normalized * knockback);
+				Vector3 direction = tempDestination - transform.position;
+		
+				Ray ray = new Ray (transform.position, direction);
+				RaycastHit hit;
+		
+				if (!(Physics.Raycast (ray, out hit, direction.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level")))) {
+						currentPathPoint = tempDestination;
+				} else {
+						currentPathPoint = hit.point - direction.normalized / 2;
+				}
+
+				moveSpeed *= 3;
 		}
 
 	/**

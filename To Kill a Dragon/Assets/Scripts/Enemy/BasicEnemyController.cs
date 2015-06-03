@@ -47,7 +47,7 @@ public class BasicEnemyController : MonoBehaviour {
 				wanderControl = GetComponentInChildren<WanderController> ();
 				enemyControl = GetComponentInChildren<EnemyController> ();
 
-				damageKnockback = Mathf.Max (0, Mathf.Min (1, damageKnockback));
+				damageKnockback = Mathf.Max (1, damageKnockback);
 
 				if (projectile != null) {
 						enemyControl.CanShoot (true);
@@ -120,7 +120,7 @@ public class BasicEnemyController : MonoBehaviour {
 	public void TakeDamage(Vector3 flinch){
 				Spell spellCast = gameControl.getSpell ();
 				HP -= Mathf.Max (0, spellCast.getSpellDamage () - Def);
-				FlinchBack (flinch);
+				KnockBack (flinch, spellCast.getSpellKnockback ());
 		}
 
 	/**
@@ -135,6 +135,13 @@ public class BasicEnemyController : MonoBehaviour {
 	 * **/
 	public void FlinchBack(Vector3 flinch){
 				enemyControl.FlinchBack (flinch);
+		}
+
+	/**
+	 * Tells the model to be knocked back
+	 * **/
+	public void KnockBack(Vector3 direction, float knockback){
+				enemyControl.KnockBack (direction, knockback);
 		}
 
 	/**
