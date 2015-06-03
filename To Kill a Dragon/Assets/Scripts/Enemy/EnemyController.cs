@@ -124,27 +124,29 @@ public class EnemyController : MonoBehaviour {
 				Vector3 direction = currentPathPoint - transform.position;
 				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
 		
-				float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
+				if (moveVector != Vector3.zero) {
+						float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
 		
-				if (directionAngle > 45 && directionAngle <= 135) {
-						parentControl.setDirection (_animator, 2);
-				} else if (directionAngle > 135 && directionAngle <= 225) {
-						parentControl.setDirection (_animator, 3);
-				} else if (directionAngle > 225 && directionAngle <= 315) {
-						parentControl.setDirection (_animator, 0);
-				} else if (directionAngle > 315 || directionAngle <= 45) {
-						parentControl.setDirection (_animator, 1);
-				}
+						if (directionAngle > 45 && directionAngle <= 135) {
+								parentControl.setDirection (_animator, 2);
+						} else if (directionAngle > 135 && directionAngle <= 225) {
+								parentControl.setDirection (_animator, 3);
+						} else if (directionAngle > 225 && directionAngle <= 315) {
+								parentControl.setDirection (_animator, 0);
+						} else if (directionAngle > 315 || directionAngle <= 45) {
+								parentControl.setDirection (_animator, 1);
+						}
 		
-				Ray ray = new Ray (transform.position, direction);
-				RaycastHit hit;
+						Ray ray = new Ray (transform.position, direction);
+						RaycastHit hit;
 		
-				if (Physics.Raycast (ray, out hit, moveVector.magnitude) && hit.collider.CompareTag ("Level")) {
-						currentPathPoint = BacktracePoints [BacktracePoints.Count - 1];
-						return;
-				} else {
-						parentControl.setSpeed (_animator, 1);
-						transform.position += moveVector;
+						if (Physics.Raycast (ray, out hit, moveVector.magnitude) && hit.collider.CompareTag ("Level")) {
+								currentPathPoint = BacktracePoints [BacktracePoints.Count - 1];
+								return;
+						} else {
+								parentControl.setSpeed (_animator, 1);
+								transform.position += moveVector;
+						}
 				}
 		}
 

@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LightningSegment.cs" />
      <Compile Include="Assets\Scripts\Enemy\AggroRangeController.cs" />
      <Compile Include="Assets\Scripts\Enemy\BasicEnemyController.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
@@ -69,12 +70,13 @@
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Fire.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\FireDestroy.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Heal.cs" />
-     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Ice.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceCrystal.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceShotgun.cs" />
-     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Lightning.cs" />
-     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningChain.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningBranch.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningStrike.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Unused Scripts\Ice.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Unused Scripts\Lightning.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Unused Scripts\LightningChain.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Wind.cs" />
      <Compile Include="Assets\Scripts\Spells\Other\Spell.cs" />
      <Compile Include="Assets\Scripts\Spells\Other\SpellList.cs" />

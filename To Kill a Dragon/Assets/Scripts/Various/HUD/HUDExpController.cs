@@ -22,8 +22,8 @@ public class HUDExpController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float x, y, w, h;
-		w = wDist;
-		h = (-percent/100) * hDist;
+		w = (percent/100) * wDist;
+		h = hDist;
 		
 		x = (float)-(Camera.main.pixelWidth / 2 - xDist);
 		y = (float)(Camera.main.pixelHeight / 2 - h - yDist);

@@ -112,7 +112,7 @@ public class IceSpell : AttackSpell {
 }
 
 public class LightningSpell : AttackSpell {
-	public LightningSpell() : base(2,60,20,20,20,0) {
+	public LightningSpell() : base(2,30,20,20,20,0) {
 		
 		}
 }

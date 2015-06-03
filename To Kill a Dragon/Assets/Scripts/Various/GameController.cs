@@ -279,7 +279,7 @@ public class GameController : MonoBehaviour {
 										                                       (_characterFacing % 2 == 0 ?
 															 						(_characterFacing == 0 ? -1 : 1) : 0)) / 3,
 						             Quaternion.Euler (90,
-						                  _characterFacing * -90,
+			                  180 - (int)_characterFacing * 90,
 						                  0));
 				} else if (selectedSpell is HealSpell) {
 						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (0, 0, 0));
