@@ -53,6 +53,10 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyProjectileController.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyShootingController.cs" />
      <Compile Include="Assets\Scripts\Enemy\WanderController.cs" />
+     <Compile Include="Assets\Scripts\Item\ItemAttractMovement.cs" />
+     <Compile Include="Assets\Scripts\Item\ItemAttractRangeController.cs" />
+     <Compile Include="Assets\Scripts\Item\ItemBurstMovement.cs" />
+     <Compile Include="Assets\Scripts\Item\ItemMasterController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\CutsceneTriggerController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DestinationController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpController.cs" />
@@ -64,10 +68,12 @@
      <Compile Include="Assets\Scripts\Player\PlayerSpellController.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Fire.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\FireDestroy.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Heal.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Ice.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceCrystal.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Lightning.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningChain.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Wind.cs" />
      <Compile Include="Assets\Scripts\Spells\Other\Spell.cs" />
      <Compile Include="Assets\Scripts\Spells\Other\SpellList.cs" />
      <Compile Include="Assets\Scripts\Various\AdviController.cs" />
@@ -89,6 +95,7 @@
      <Compile Include="Assets\Scripts\Various\HUD\HUDHeadController.cs" />
      <Compile Include="Assets\Scripts\Various\HUD\HUDHealthController.cs" />
      <Compile Include="Assets\Scripts\Various\HUD\HUDManaController.cs" />
+     <Compile Include="Assets\Scripts\Various\HUD\HUDMoneyController.cs" />
      <Compile Include="Assets\Scripts\Various\HUD\HUDSpellController.cs" />
      <Compile Include="Assets\Scripts\Various\HUDController.cs" />
      <Compile Include="Assets\Scripts\Various\Movement\Movement.cs" />

@@ -49,7 +49,7 @@ public class Fire : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider c){
-				if (!(c.gameObject.CompareTag ("Player") || c.gameObject.name.Equals (name) || c.gameObject.CompareTag ("SpellIgnore"))) {
+				if (!(c.CompareTag ("Player") || c.name.Equals (name) || c.CompareTag ("SpellIgnore") || c.tag.Substring (0,4).Equals("Item"))) {
 						_animator.SetTrigger ("Destroy");
 						FD.enabled = true;
 						Destroy (this);

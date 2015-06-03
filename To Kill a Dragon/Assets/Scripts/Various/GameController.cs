@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour {
 	private List<Spell> KnownSpells;
 	private Spell selectedSpell;
 	private Spell[] QuickSpells = new Spell[5];
+	private int spellIndex;
 
 	#endregion
 
@@ -62,6 +63,13 @@ public class GameController : MonoBehaviour {
 	
 	#endregion
 
+	#region Player Wallet
+
+	private float wallet;
+	private const float WalletMax = 999999999999;
+
+	#endregion
+
 	private int notStartedDialogue = 2;
 
 	/**
@@ -72,20 +80,11 @@ public class GameController : MonoBehaviour {
 				Screen.SetResolution (1280, 720, false);
 
 				currentHead = Head.Fine;
+
+				wallet = 0;
 		}
 
 	void Awake () {
-				spellBook = GameObject.Find ("_SpellBook").GetComponent<SpellList> ();
-				KnownSpells = new List<Spell> ();
-				KnownSpells.Add (new FireSpell ());
-				KnownSpells.Add (new IceSpell ());
-				KnownSpells.Add (new LightningSpell ());
-				foreach (Spell s in KnownSpells) {
-						s.setSpellForm (spellBook.getPrefab (s));
-				}
-				selectedSpell = KnownSpells [0];
-
-
 				treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
 				textBoxControl = GameObject.Find ("_Textbox Controller").GetComponent<TextboxController> ();
 				playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
@@ -105,6 +104,22 @@ public class GameController : MonoBehaviour {
 				dialogueDump.AddLines (2, (TextAsset)Resources.Load ("Test/Chapter Two"), ref assetTest);
 				dialogueDump.AddPerson ("Victor2", assetTest);
 				characterFlags.Add ("Victor2", 2);
+				//END TEST
+
+				spellBook = GameObject.Find ("_SpellBook").GetComponent<SpellList> ();
+				KnownSpells = new List<Spell> ();
+
+				//Testing for Spells. MARKED FOR DELETION
+		AddSpell (new FireSpell ());
+		AddSpell (new IceSpell ());
+				AddSpell (new LightningSpell ());
+				AddSpell (new HealSpell ());
+				AddSpell (new WindSpell ());
+		AddSpell (new FireSpell ());
+		
+				spellIndex = 0;
+		
+				selectedSpell = KnownSpells [spellIndex];
 				//END TEST
 		}
 	
@@ -167,11 +182,13 @@ public class GameController : MonoBehaviour {
 	 * Goes to the next spell
 	 * **/
 	public void NextSpell(){
-				if (selectedSpell.getNumber () >= KnownSpells.Count - 1) {
-						selectedSpell = KnownSpells [0];
+				if (spellIndex >= KnownSpells.Count - 1) {
+						spellIndex = 0;
 				} else {
-						selectedSpell = KnownSpells [selectedSpell.getNumber () + 1];
+						spellIndex++;
 				}
+
+				selectedSpell = KnownSpells [spellIndex];
 
 				HUDControl.setIcon (selectedSpell);
 		}
@@ -180,11 +197,14 @@ public class GameController : MonoBehaviour {
 	 * Goes to the previous spell
 	 * **/
 	public void PreviousSpell(){
-				if (selectedSpell.getNumber () < 1) {
-						selectedSpell = KnownSpells [KnownSpells.Count - 1];
+				if (spellIndex < 1) {
+						spellIndex = KnownSpells.Count - 1;
+						
 				} else {
-						selectedSpell = KnownSpells [selectedSpell.getNumber () - 1];
+						spellIndex--;
 				}
+
+				selectedSpell = KnownSpells [spellIndex];
 
 				HUDControl.setIcon (selectedSpell);
 		}
@@ -195,6 +215,7 @@ public class GameController : MonoBehaviour {
 	public void QuickSelect(int quickSlot){
 				if (quickSlot >= 0 && quickSlot < 5 && QuickSpells [quickSlot] != null) {
 						selectedSpell = QuickSpells [quickSlot];
+						spellIndex = KnownSpells.IndexOf (selectedSpell);
 				}
 
 				HUDControl.setIcon (selectedSpell);
@@ -260,6 +281,15 @@ public class GameController : MonoBehaviour {
 						             Quaternion.Euler (90,
 						                  _characterFacing * -90,
 						                  0));
+				} else if (selectedSpell is HealSpell) {
+						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (0, 0, 0));
+				} else if (selectedSpell is WindSpell) {
+						GameObject windClone = GameObject.Find ("Wind(Clone)");
+						if (windClone) {
+								Destroy (windClone);
+						}
+						
+						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (90, 0, 0));
 				}
 
 				playerControl.changeMP (-(selectedSpell.getCost ()));
@@ -282,16 +312,31 @@ public class GameController : MonoBehaviour {
 				}
 
 				HUDControl.Hide ();
+
+				foreach (GameObject enemy in GameObject.FindGameObjectsWithTag ("Enemy")) {
+						enemy.GetComponent<EnemyController> ().EnterCutscene ();
+				}
 		}
 
 	/**
 	 * Handles leaving cutscene - the little black bars, giving control to the player, etc.
 	 * **/
 	private void EndCutscene() {
-		playerControl.ExitCutscene ();
+				playerControl.ExitCutscene ();
 
-		HUDControl.Show ();
-	}
+				HUDControl.Show ();
+
+				foreach (GameObject enemy in GameObject.FindGameObjectsWithTag ("Enemy")) {
+						enemy.GetComponent<EnemyController> ().ExitCutscene ();
+				}
+		}
+
+	/**
+	 * Checks to see if the game is in a cutscene.
+	 * **/
+	public bool InCutscene () {
+				return (PlayerInvolved || NPCInvolved);
+		}
 
 	/**
 	 * Informs the system that the Player is done with their cutscene stuff
@@ -326,17 +371,19 @@ public class GameController : MonoBehaviour {
 	 * Deal damage to player
 	 * **/
 	public void DealPlayerDamage(GameObject monster, Vector3 playerDirection, Vector3 monsterAngle){
-				BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
+				if (!InCutscene ()) {
+						BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
 
-				float monsterAtk = monsterControl.Atk;
+						float monsterAtk = monsterControl.Atk;
 
-				playerControl.TakeMonsterDamage (monsterAtk, -playerDirection);
+						playerControl.TakeMonsterDamage (monsterAtk, -playerDirection);
 
-				monsterControl.FlinchBack (-monsterAngle);
+						monsterControl.FlinchBack (-monsterAngle);
 
-				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
+						HUDControl.setHealthPercentage (playerControl.getPercentHP ());
 
-				currentHead = Head.Damaged;
+						currentHead = Head.Damaged;
+				}
 		}
 
 	/**
@@ -344,6 +391,8 @@ public class GameController : MonoBehaviour {
 	 * **/
 	public void DestroyMonster(GameObject monster){
 				BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
+				monsterControl.DropItems ();
+
 				playerControl.increaseEXP (monsterControl.valueEXP ());
 				Destroy (monster);
 				HUDControl.setEXPPercentage (playerControl.getPercentEXP ());
@@ -353,11 +402,31 @@ public class GameController : MonoBehaviour {
 	 * Deals the player damage from getting hit by a bullet
 	 * **/
 	public void DealPlayerBulletDamage(float damage, Vector3 bulletDirection){
-				playerControl.TakeMonsterDamage (damage, bulletDirection);
+				if (!InCutscene ()) {
+						playerControl.TakeMonsterDamage (damage, bulletDirection);
+
+						HUDControl.setHealthPercentage (playerControl.getPercentHP ());
+
+						currentHead = Head.Damaged;
+				}
+		}
+
+	/**
+	 * Heal the player the amount
+	 * **/
+	public void HealPlayer(float healAmount) {
+				playerControl.changeHP (healAmount);
 
 				HUDControl.setHealthPercentage (playerControl.getPercentHP ());
+		}
 
-				currentHead = Head.Damaged;
+	/**
+	 * Restores the player's MP by the amount
+	 * **/
+	public void HealPlayerMana (float healAmount) {
+				playerControl.changeMP (healAmount);
+
+				HUDControl.setManaPercentage (playerControl.getPercentMP ());
 		}
 
 	/**
@@ -372,6 +441,42 @@ public class GameController : MonoBehaviour {
 						return Head.MPLow;
 				} else {
 						return Head.Fine;
+				}
+		}
+
+	/**
+	 * Adds a given spell to the known list.
+	 * **/
+	public void AddSpell (Spell newSpell){
+				// Not great, but the best I can do. Find is a slow function.
+				if (KnownSpells.Find (x => x.getNumber () == newSpell.getNumber ()) == null) {
+						newSpell.setSpellForm (spellBook.getPrefab (newSpell));
+						KnownSpells.Add (newSpell);
+				}
+		}
+
+	/**
+	 * Handles what happens when you collect an item.
+	 * **/
+	public void itemCollected(string tag, float value){
+				switch (tag.Substring (4)) {
+				case "Coin":
+						if (wallet <= WalletMax - value) {
+								wallet += value;
+								HUDControl.setWallet (wallet);
+						}
+						break;
+				case "Health":
+						HealPlayer (value);
+						break;
+				case "Mana":
+						HealPlayerMana (value);
+						break;
+				case "GradeA":
+						break;
+				default:
+						Debug.Log ("Item not given the correct tag.");
+						break;
 				}
 		}
 }

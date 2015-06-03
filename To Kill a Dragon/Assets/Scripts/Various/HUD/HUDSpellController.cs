@@ -48,8 +48,8 @@ public class HUDSpellController : MonoBehaviour {
 		}
 
 	public void SetTexture(int index){
-				if (index >= 0 && index < GetIcons ().Length) {
-						GetImage ().texture = GetIcons () [index];
+				if (index >= 0 && index < spellIcons.Length) {
+						image.texture = spellIcons[index];
 				}
 
 				if (GetImage ().texture.width == 64) {

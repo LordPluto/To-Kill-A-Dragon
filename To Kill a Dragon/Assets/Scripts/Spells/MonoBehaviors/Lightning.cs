@@ -54,7 +54,8 @@ public class Lightning : MonoBehaviour {
 		}
 
 	void OnTriggerEnter (Collider c) {
-		if (!(c.CompareTag ("Player") || (c.tag.Length > 5 && c.tag.Substring(0,5).Equals("Spell")) || c.CompareTag ("SpellIgnore"))) {
+				if (!(c.CompareTag ("Player") || (c.tag.Length > 5 && c.tag.Substring (0, 5).Equals ("Spell"))
+						|| c.CompareTag ("SpellIgnore") || c.tag.Substring (0, 4).Equals ("Item"))) {
 						DestroyLightning ();
 						Destroy (gameObject);
 				}

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HUDController : MonoBehaviour {
@@ -10,24 +11,31 @@ public class HUDController : MonoBehaviour {
 	private HUDBackController bars;
 	private HUDHealthController health;
 	private HUDManaController mana;
+	private HUDMoneyController money;
 	private HUDSpellController spells;
+	private Text moneyText;
 
 	void Start () {
+
+				backing = GetComponentInChildren<HUDBackgroundController> ();
+				details = GetComponentInChildren<HUDDetailController> ();
+				EXP = GetComponentInChildren<HUDExpController> ();
+				heads = GetComponentInChildren<HUDHeadController> ();
+				bars = GetComponentInChildren<HUDBackController> ();
+				health = GetComponentInChildren<HUDHealthController> ();
+				mana = GetComponentInChildren<HUDManaController> ();
+				money = GetComponentInChildren<HUDMoneyController> ();
+				spells = GetComponentInChildren<HUDSpellController> ();
+				moneyText = GetComponentInChildren<Text> ();
+
 		}
 
 	void Awake () {
 				
-				backing = GameObject.Find ("HUD Backing").GetComponent<HUDBackgroundController> ();
-				details = GameObject.Find ("HUD Details").GetComponent<HUDDetailController> ();
-				EXP = GameObject.Find ("HUD EXP").GetComponent<HUDExpController> ();
-				heads = GameObject.Find ("HUD Head").GetComponent<HUDHeadController> ();
-				bars = GameObject.Find ("HUD Bar Backs").GetComponent<HUDBackController> ();
-				health = GameObject.Find ("HUD HP Bar").GetComponent<HUDHealthController> ();
-				mana = GameObject.Find ("HUD MP Bar").GetComponent<HUDManaController> ();
-				spells = GameObject.Find ("HUD Spells").GetComponent<HUDSpellController> ();
 		}
 
 	void Update () {
+
 		}
 
 	/**
@@ -73,7 +81,11 @@ public class HUDController : MonoBehaviour {
 	 * Sets the spell's icon
 	 * **/
 	public void setIcon(Spell selectedSpell){
-				spells.SetTexture (selectedSpell.getNumber());
+				if (spells == null) {
+						spells = GetComponentInChildren<HUDSpellController> ();
+				}
+
+				spells.SetTexture (selectedSpell.getNumber ());
 		}
 
 	/**
@@ -87,7 +99,9 @@ public class HUDController : MonoBehaviour {
 				bars.Hide ();
 				health.Hide ();
 				mana.Hide ();
+				money.Hide ();
 				spells.Hide ();
+				moneyText.enabled = false;
 		}
 
 	/**
@@ -101,7 +115,9 @@ public class HUDController : MonoBehaviour {
 				bars.Show ();
 				health.Show ();
 				mana.Show ();
+				money.Show ();
 				spells.Show ();
+				moneyText.enabled = true;
 		}
 
 	/**
@@ -109,5 +125,12 @@ public class HUDController : MonoBehaviour {
 	 * **/
 	public void changeHead(Head head){
 				heads.SetHead (head);
+		}
+
+	/**
+	 * Set the amount of money displayed.
+	 * **/
+	public void setWallet(float money){
+				moneyText.text = money.ToString();
 		}
 }

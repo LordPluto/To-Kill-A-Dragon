@@ -13,11 +13,13 @@ public class PlayerMovementController {
 	/**
 	 * Handles movement when the player is in control
 	 * **/
-	public void PlayerMovement(bool Talking, bool Frozen, bool Casting){
+	public void PlayerMovement(bool Talking, bool Frozen, bool Casting, bool WindBoost){
 				float ZSpeed = Input.GetAxis ("Vertical");
 				float XSpeed = Input.GetAxis ("Horizontal");
+
+				float speedMultiplier = movementSpeed * (WindBoost ? 2 : 1);
 		
-				Vector3 speed = new Vector3 (XSpeed * movementSpeed, 0, ZSpeed * movementSpeed);
+				Vector3 speed = new Vector3 (XSpeed * speedMultiplier, 0, ZSpeed * speedMultiplier);
 		
 				if (Talking || Frozen || Casting) {
 						speed = Vector3.zero;
