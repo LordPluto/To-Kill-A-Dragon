@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LightningSegment : MonoBehaviour {
 	
-	private float timer = 50;
+	private float timer = 10;
 
 	// Use this for initialization
 	void Start () {

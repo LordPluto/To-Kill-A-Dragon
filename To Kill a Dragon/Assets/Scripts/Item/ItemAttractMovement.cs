@@ -14,7 +14,7 @@ public class ItemAttractMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 				Vector3 direction = playerMaster.transform.position - transform.position;
-				Vector3 moveVector = direction.normalized * Time.deltaTime;
+				Vector3 moveVector = direction.normalized * Time.deltaTime * 3;
 		
 				Ray ray = new Ray (transform.position, direction);
 				RaycastHit hit;

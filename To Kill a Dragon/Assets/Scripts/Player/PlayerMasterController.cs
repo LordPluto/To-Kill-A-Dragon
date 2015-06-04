@@ -399,8 +399,8 @@ public class PlayerMasterController : MonoBehaviour {
 	 * Gets percentage of EXP
 	 * **/
 	public float getPercentEXP () {
-		return 100 * currentEXP / nextLevelEXP;
-	}
+				return 100 * (currentEXP - EXPProgression [level - 1]) / (nextLevelEXP - EXPProgression [level - 1]);
+		}
 
 	/**
 	 * Take damage from an attack
