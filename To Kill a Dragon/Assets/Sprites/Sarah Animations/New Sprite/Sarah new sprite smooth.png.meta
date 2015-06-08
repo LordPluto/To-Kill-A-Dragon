@@ -1,0 +1,1288 @@
+fileFormatVersion: 2
+guid: ec1df00da29d2ab4a945ceb6c38a0181
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SarahDLI1
+    21300002: SarahDLI3
+    21300004: Sarah new sprite smooth_2
+    21300006: Sarah new sprite smooth_3
+    21300008: Sarah new sprite smooth_4
+    21300010: Sarah new sprite smooth_5
+    21300012: Sarah new sprite smooth_6
+    21300014: Sarah new sprite smooth_7
+    21300016: Sarah new sprite smooth_8
+    21300018: Sarah new sprite smooth_9
+    21300020: SarahDLI2
+    21300022: SarahDLI4
+    21300024: Sarah new sprite smooth_12
+    21300026: Sarah new sprite smooth_13
+    21300028: Sarah new sprite smooth_14
+    21300030: Sarah new sprite smooth_15
+    21300032: Sarah new sprite smooth_16
+    21300034: Sarah new sprite smooth_17
+    21300036: Sarah new sprite smooth_18
+    21300038: Sarah new sprite smooth_19
+    21300040: Sarah new sprite smooth_20
+    21300042: Sarah new sprite smooth_21
+    21300044: Sarah new sprite smooth_22
+    21300046: SarahDLW1
+    21300048: SarahDLW2
+    21300050: SarahDLW3
+    21300052: SarahDLW4
+    21300054: SarahDLW5
+    21300056: SarahDLW6
+    21300058: SarahDLW7
+    21300060: Sarah new sprite smooth_30
+    21300062: Sarah new sprite smooth_31
+    21300064: Sarah new sprite smooth_32
+    21300066: Sarah new sprite smooth_33
+    21300068: Sarah new sprite smooth_34
+    21300070: Sarah new sprite smooth_35
+    21300072: Sarah new sprite smooth_36
+    21300074: Sarah new sprite smooth_37
+    21300076: SarahDLS3
+    21300078: SarahDLS4
+    21300080: SarahDLS7
+    21300082: SarahDLI1
+    21300084: SarahDLI2
+    21300086: Sarah new sprite smooth_43
+    21300088: Sarah new sprite smooth_44
+    21300090: Sarah new sprite smooth_45
+    21300092: Sarah new sprite smooth_46
+    21300094: Sarah new sprite smooth_47
+    21300096: Sarah new sprite smooth_48
+    21300098: Sarah new sprite smooth_49
+    21300100: Sarah new sprite smooth_50
+    21300102: SarahDLS5
+    21300104: SarahDLS6
+    21300106: SarahDLS7
+    21300108: SarahDLS1
+    21300110: SarahDLS2
+    21300112: SarahDLI3
+    21300114: SarahDLI4
+    21300116: Sarah new sprite smooth_58
+    21300118: Sarah new sprite smooth_59
+    21300120: Sarah new sprite smooth_60
+    21300122: Sarah new sprite smooth_61
+    21300124: Sarah new sprite smooth_62
+    21300126: Sarah new sprite smooth_63
+    21300128: Sarah new sprite smooth_64
+    21300130: SarahDLD1
+    21300132: SarahDLD2
+    21300134: SarahDLD3
+    21300136: SarahDLD3
+    21300138: Sarah new sprite smooth_69
+    21300140: Sarah new sprite smooth_70
+    21300142: Sarah new sprite smooth_71
+    21300144: Sarah new sprite smooth_72
+    21300146: Sarah new sprite smooth_73
+    21300148: Sarah new sprite smooth_74
+    21300150: Sarah new sprite smooth_75
+    21300152: Sarah new sprite smooth_76
+    21300154: Sarah new sprite smooth_77
+    21300156: Sarah new sprite smooth_78
+    21300158: Sarah new sprite smooth_79
+    21300160: Sarah new sprite smooth_80
+    21300162: SarahDRI2
+    21300164: SarahDRI1
+    21300166: Sarah new sprite smooth_83
+    21300168: Sarah new sprite smooth_84
+    21300170: Sarah new sprite smooth_85
+    21300172: Sarah new sprite smooth_86
+    21300174: SarahDRI4
+    21300176: SarahDRI3
+    21300178: Sarah new sprite smooth_89
+    21300180: Sarah new sprite smooth_90
+    21300182: Sarah new sprite smooth_91
+    21300184: Sarah new sprite smooth_92
+    21300186: Sarah new sprite smooth_93
+    21300188: Sarah new sprite smooth_94
+    21300190: Sarah new sprite smooth_95
+    21300192: Sarah new sprite smooth_96
+    21300194: Sarah new sprite smooth_97
+    21300196: Sarah new sprite smooth_98
+    21300198: Sarah new sprite smooth_99
+    21300200: Sarah new sprite smooth_100
+    21300202: Sarah new sprite smooth_101
+    21300204: Sarah new sprite smooth_0
+    21300206: Sarah new sprite smooth_1
+    21300208: Sarah new sprite smooth_10
+    21300210: Sarah new sprite smooth_11
+    21300212: Sarah new sprite smooth_23
+    21300214: Sarah new sprite smooth_24
+    21300216: Sarah new sprite smooth_25
+    21300218: Sarah new sprite smooth_26
+    21300220: Sarah new sprite smooth_27
+    21300222: Sarah new sprite smooth_28
+    21300224: Sarah new sprite smooth_29
+    21300226: Sarah new sprite smooth_38
+    21300228: Sarah new sprite smooth_39
+    21300230: Sarah new sprite smooth_40
+    21300232: Sarah new sprite smooth_41
+    21300234: Sarah new sprite smooth_42
+    21300236: Sarah new sprite smooth_51
+    21300238: Sarah new sprite smooth_52
+    21300240: Sarah new sprite smooth_53
+    21300242: Sarah new sprite smooth_54
+    21300244: Sarah new sprite smooth_55
+    21300246: Sarah new sprite smooth_56
+    21300248: Sarah new sprite smooth_57
+    21300250: Sarah new sprite smooth_65
+    21300252: Sarah new sprite smooth_66
+    21300254: Sarah new sprite smooth_67
+    21300256: Sarah new sprite smooth_68
+    21300258: Sarah new sprite smooth_81
+    21300260: Sarah new sprite smooth_82
+    21300262: Sarah new sprite smooth_87
+    21300264: Sarah new sprite smooth_88
+    21300266: Sarah new sprite smooth_102
+    21300268: Sarah new sprite smooth_103
+    21300270: Sarah new sprite smooth_104
+    21300272: Sarah new sprite smooth_105
+    21300274: Sarah new sprite smooth_106
+    21300276: Sarah new sprite smooth_107
+    21300278: Sarah new sprite smooth_108
+    21300280: Sarah new sprite smooth_109
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Sarah new sprite smooth_0
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 3183
+        width: 145
+        height: 296
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_1
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 3178
+        width: 145
+        height: 293
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_2
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 3176
+        width: 143
+        height: 296
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_3
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 3172
+        width: 144
+        height: 290
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_4
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 3176
+        width: 143
+        height: 296
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_5
+      rect:
+        serializedVersion: 2
+        x: 1565
+        y: 3172
+        width: 146
+        height: 292
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_6
+      rect:
+        serializedVersion: 2
+        x: 2169
+        y: 3175
+        width: 114
+        height: 306
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_7
+      rect:
+        serializedVersion: 2
+        x: 2395
+        y: 3175
+        width: 115
+        height: 297
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_8
+      rect:
+        serializedVersion: 2
+        x: 2637
+        y: 3158
+        width: 143
+        height: 309
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_9
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 2763
+        width: 145
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_10
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 2758
+        width: 145
+        height: 310
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_11
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 2756
+        width: 143
+        height: 314
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_12
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 2751
+        width: 144
+        height: 308
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_13
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 2756
+        width: 143
+        height: 314
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_14
+      rect:
+        serializedVersion: 2
+        x: 1565
+        y: 2751
+        width: 146
+        height: 311
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_15
+      rect:
+        serializedVersion: 2
+        x: 2140
+        y: 2790
+        width: 117
+        height: 296
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_16
+      rect:
+        serializedVersion: 2
+        x: 2389
+        y: 2783
+        width: 149
+        height: 302
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_17
+      rect:
+        serializedVersion: 2
+        x: 2662
+        y: 2784
+        width: 160
+        height: 301
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_18
+      rect:
+        serializedVersion: 2
+        x: 2955
+        y: 2777
+        width: 129
+        height: 298
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_19
+      rect:
+        serializedVersion: 2
+        x: 3179
+        y: 2788
+        width: 139
+        height: 285
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_20
+      rect:
+        serializedVersion: 2
+        x: 3455
+        y: 2784
+        width: 123
+        height: 297
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_21
+      rect:
+        serializedVersion: 2
+        x: 3692
+        y: 2786
+        width: 125
+        height: 297
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_22
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 2369
+        width: 166
+        height: 291
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_23
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 2376
+        width: 153
+        height: 293
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_24
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 2358
+        width: 137
+        height: 314
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_25
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 2364
+        width: 136
+        height: 303
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_26
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 2374
+        width: 136
+        height: 286
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_27
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 2364
+        width: 146
+        height: 294
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_28
+      rect:
+        serializedVersion: 2
+        x: 1612
+        y: 2365
+        width: 150
+        height: 294
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_29
+      rect:
+        serializedVersion: 2
+        x: 2123
+        y: 2416
+        width: 115
+        height: 306
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_30
+      rect:
+        serializedVersion: 2
+        x: 2379
+        y: 2409
+        width: 119
+        height: 306
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_31
+      rect:
+        serializedVersion: 2
+        x: 2644
+        y: 2424
+        width: 163
+        height: 263
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_32
+      rect:
+        serializedVersion: 2
+        x: 2867
+        y: 2422
+        width: 166
+        height: 257
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_33
+      rect:
+        serializedVersion: 2
+        x: 3103
+        y: 2391
+        width: 119
+        height: 283
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_34
+      rect:
+        serializedVersion: 2
+        x: 3320
+        y: 2396
+        width: 120
+        height: 291
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_35
+      rect:
+        serializedVersion: 2
+        x: 3532
+        y: 2404
+        width: 114
+        height: 321
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_36
+      rect:
+        serializedVersion: 2
+        x: 3709
+        y: 2404
+        width: 114
+        height: 344
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_37
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1973
+        width: 216
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_38
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 1973
+        width: 212
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_39
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 1971
+        width: 185
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_40
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 1971
+        width: 140
+        height: 298
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_41
+      rect:
+        serializedVersion: 2
+        x: 1146
+        y: 1971
+        width: 140
+        height: 305
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_42
+      rect:
+        serializedVersion: 2
+        x: 2180
+        y: 2058
+        width: 186
+        height: 171
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_43
+      rect:
+        serializedVersion: 2
+        x: 2425
+        y: 2060
+        width: 178
+        height: 169
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_44
+      rect:
+        serializedVersion: 2
+        x: 2668
+        y: 2063
+        width: 172
+        height: 166
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_45
+      rect:
+        serializedVersion: 2
+        x: 2917
+        y: 2065
+        width: 160
+        height: 164
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_46
+      rect:
+        serializedVersion: 2
+        x: 3173
+        y: 1958
+        width: 143
+        height: 309
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_47
+      rect:
+        serializedVersion: 2
+        x: 3443
+        y: 1974
+        width: 114
+        height: 298
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_48
+      rect:
+        serializedVersion: 2
+        x: 3670
+        y: 1974
+        width: 114
+        height: 307
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_49
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 1584
+        width: 193
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_50
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 1584
+        width: 193
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_51
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 1580
+        width: 167
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_52
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 1570
+        width: 165
+        height: 335
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_53
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 1570
+        width: 165
+        height: 351
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_54
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 1574
+        width: 166
+        height: 335
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_55
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 1568
+        width: 165
+        height: 351
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_56
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 1586
+        width: 126
+        height: 297
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_57
+      rect:
+        serializedVersion: 2
+        x: 2374
+        y: 1584
+        width: 124
+        height: 297
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_58
+      rect:
+        serializedVersion: 2
+        x: 2635
+        y: 1588
+        width: 139
+        height: 284
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_59
+      rect:
+        serializedVersion: 2
+        x: 2869
+        y: 1577
+        width: 129
+        height: 298
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_60
+      rect:
+        serializedVersion: 2
+        x: 3131
+        y: 1584
+        width: 160
+        height: 301
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_61
+      rect:
+        serializedVersion: 2
+        x: 3415
+        y: 1583
+        width: 149
+        height: 302
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_62
+      rect:
+        serializedVersion: 2
+        x: 3696
+        y: 1589
+        width: 117
+        height: 296
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_63
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1254
+        width: 140
+        height: 284
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_64
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1265
+        width: 141
+        height: 266
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_65
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 1252
+        width: 141
+        height: 284
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_66
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 1264
+        width: 141
+        height: 266
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_67
+      rect:
+        serializedVersion: 2
+        x: 2130
+        y: 1203
+        width: 114
+        height: 345
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_68
+      rect:
+        serializedVersion: 2
+        x: 2307
+        y: 1204
+        width: 114
+        height: 321
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_69
+      rect:
+        serializedVersion: 2
+        x: 2513
+        y: 1196
+        width: 120
+        height: 290
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_70
+      rect:
+        serializedVersion: 2
+        x: 2731
+        y: 1191
+        width: 119
+        height: 282
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_71
+      rect:
+        serializedVersion: 2
+        x: 2920
+        y: 1221
+        width: 166
+        height: 257
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_72
+      rect:
+        serializedVersion: 2
+        x: 3146
+        y: 1223
+        width: 163
+        height: 264
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_73
+      rect:
+        serializedVersion: 2
+        x: 3455
+        y: 1209
+        width: 119
+        height: 306
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_74
+      rect:
+        serializedVersion: 2
+        x: 3715
+        y: 1215
+        width: 115
+        height: 307
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_75
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 873
+        width: 146
+        height: 292
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_76
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 878
+        width: 144
+        height: 296
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_77
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 873
+        width: 144
+        height: 290
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_78
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 878
+        width: 144
+        height: 296
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_79
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 879
+        width: 145
+        height: 293
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_80
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 884
+        width: 145
+        height: 297
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_81
+      rect:
+        serializedVersion: 2
+        x: 2544
+        y: 718
+        width: 140
+        height: 305
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_82
+      rect:
+        serializedVersion: 2
+        x: 2793
+        y: 718
+        width: 140
+        height: 298
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_83
+      rect:
+        serializedVersion: 2
+        x: 3020
+        y: 718
+        width: 185
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_84
+      rect:
+        serializedVersion: 2
+        x: 3302
+        y: 721
+        width: 212
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_85
+      rect:
+        serializedVersion: 2
+        x: 3605
+        y: 721
+        width: 215
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_86
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 452
+        width: 146
+        height: 311
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_87
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 457
+        width: 144
+        height: 314
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_88
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 452
+        width: 144
+        height: 308
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_89
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 457
+        width: 144
+        height: 314
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_90
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 459
+        width: 145
+        height: 310
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_91
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 464
+        width: 145
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_92
+      rect:
+        serializedVersion: 2
+        x: 2020
+        y: 315
+        width: 166
+        height: 351
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_93
+      rect:
+        serializedVersion: 2
+        x: 2264
+        y: 321
+        width: 165
+        height: 335
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_94
+      rect:
+        serializedVersion: 2
+        x: 2505
+        y: 317
+        width: 165
+        height: 351
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_95
+      rect:
+        serializedVersion: 2
+        x: 2746
+        y: 317
+        width: 166
+        height: 335
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_96
+      rect:
+        serializedVersion: 2
+        x: 3019
+        y: 327
+        width: 167
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_97
+      rect:
+        serializedVersion: 2
+        x: 3301
+        y: 332
+        width: 193
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_98
+      rect:
+        serializedVersion: 2
+        x: 3607
+        y: 332
+        width: 193
+        height: 315
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_99
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 66
+        width: 150
+        height: 294
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_100
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 65
+        width: 146
+        height: 294
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_101
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 75
+        width: 136
+        height: 286
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_102
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 65
+        width: 137
+        height: 303
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_103
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 59
+        width: 136
+        height: 314
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_104
+      rect:
+        serializedVersion: 2
+        x: 1381
+        y: 77
+        width: 153
+        height: 293
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_105
+      rect:
+        serializedVersion: 2
+        x: 1632
+        y: 70
+        width: 166
+        height: 291
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_106
+      rect:
+        serializedVersion: 2
+        x: 2764
+        y: 11
+        width: 140
+        height: 266
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_107
+      rect:
+        serializedVersion: 2
+        x: 3051
+        y: 0
+        width: 140
+        height: 284
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_108
+      rect:
+        serializedVersion: 2
+        x: 3337
+        y: 12
+        width: 141
+        height: 267
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sarah new sprite smooth_109
+      rect:
+        serializedVersion: 2
+        x: 3609
+        y: 1
+        width: 141
+        height: 284
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
