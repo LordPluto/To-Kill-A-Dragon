@@ -23,7 +23,7 @@ public class ItemMasterController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider c){
 				if (c.CompareTag ("Player")) {
-						gameControl.itemCollected (tag, value);
+						gameControl.ItemCollected (tag, value);
 						Destroy (gameObject);
 				}
 		}

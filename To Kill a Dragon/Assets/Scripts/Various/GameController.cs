@@ -115,7 +115,6 @@ public class GameController : MonoBehaviour {
 				AddSpell (new LightningSpell ());
 				AddSpell (new HealSpell ());
 				AddSpell (new WindSpell ());
-		AddSpell (new FireSpell ());
 		
 				spellIndex = 0;
 		
@@ -458,7 +457,7 @@ public class GameController : MonoBehaviour {
 	/**
 	 * Handles what happens when you collect an item.
 	 * **/
-	public void itemCollected(string tag, float value){
+	public void ItemCollected(string tag, float value){
 				switch (tag.Substring (4)) {
 				case "Coin":
 						if (wallet <= WalletMax - value) {
@@ -478,5 +477,12 @@ public class GameController : MonoBehaviour {
 						Debug.Log ("Item not given the correct tag.");
 						break;
 				}
+		}
+
+	/**
+	 * Handles what happens when a spell is upgraded
+	 * **/
+	public void SpellUpgrade(Transform newSpell, int spellNum){
+				spellBook.spellUpgrade (newSpell, spellNum);
 		}
 }
