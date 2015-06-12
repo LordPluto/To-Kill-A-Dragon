@@ -16,8 +16,7 @@ public class SpellList : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+		}
 	
 	// Update is called once per frame
 	void Update () {
@@ -51,63 +50,5 @@ public class SpellList : MonoBehaviour {
 						return this.Illuminate;
 				}
 				return null;
-		}
-
-	public bool spellUpgrade(Transform newSpell, int spellNum){
-				switch (spellNum) {
-				case 0:
-						if (newSpell.name.Substring (0, 4).Equals ("Fire"))
-								Fire = newSpell;
-						return true;
-						break;
-				case 1:
-						if (newSpell.name.Substring (0, 3).Equals ("Ice"))
-								Ice = newSpell;
-						return true;
-						break;
-				case 2:
-						if (newSpell.name.Substring (0, 9).Equals ("Lightning"))
-								Lightning = newSpell;
-						return true;
-						break;
-				case 3:
-						if (newSpell.name.Substring (0, 4).Equals ("Heal"))
-								Heal = newSpell;
-						return true;
-						break;
-				case 4:
-						if (newSpell.name.Substring (0, 4).Equals ("Wind"))
-								Wind = newSpell;
-						return true;
-						break;
-				case 5:
-						if (newSpell.name.Substring (0, 6).Equals ("Magnet"))
-								Magnet = newSpell;
-						return true;
-						break;
-				case 6:
-						if (newSpell.name.Substring (0, 6).Equals ("Mirror"))
-								Mirror = newSpell;
-						return true;
-						break;
-				case 7:
-						if (newSpell.name.Substring (0, 5).Equals ("Heavy"))
-								Heavy = newSpell;
-						return true;
-						break;
-				case 8:
-						if (newSpell.name.Substring (0, 5).Equals ("Death"))
-								Death = newSpell;
-						return true;
-						break;
-				case 9:
-						if (newSpell.name.Substring (0, 9).Equals ("Illuminate"))
-								Illuminate = newSpell;
-						return true;
-						break;
-				default:
-						break;
-				}
-				return false;
 		}
 }

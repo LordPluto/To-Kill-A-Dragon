@@ -105,16 +105,67 @@ public class FireSpell : AttackSpell {
 		}
 }
 
+public class Fire2Spell : AttackSpell {
+	public Fire2Spell() : base(1,60,20,15,20,2) {
+		}
+}
+
+public class Fire3Spell : AttackSpell {
+	public Fire3Spell() : base(2,60,20,20,40,2) {
+	}
+}
+
+public class FireExSpell : AttackSpell {
+	public FireExSpell() : base(3,60,20,25,80,2) {
+	}
+}
+
 public class IceSpell : AttackSpell {
-	public IceSpell() : base(1,21,10,5,5,3) {
+	public IceSpell() : base(4,21,10,5,5,3) {
 		
 		}
 }
 
+public class Ice2Spell : AttackSpell {
+	public Ice2Spell() : base(5,21,10,10,10,3) {
+		
+	}
+}
+
+public class Ice3Spell : AttackSpell {
+	public Ice3Spell() : base(6,21,10,15,15,3) {
+		
+	}
+}
+
+public class IceExSpell : AttackSpell {
+	public IceExSpell() : base(7,21,10,20,20,3) {
+		
+	}
+}
+
 public class LightningSpell : AttackSpell {
-	public LightningSpell() : base(2,30,20,20,20,0) {
+	public LightningSpell() : base(8,30,20,20,20,0) {
 		
 		}
+}
+
+public class Lightning2Spell : AttackSpell {
+	public Lightning2Spell() : base(9,30,20,30,40,0) {
+		
+	}
+}
+
+public class Lightning3Spell : AttackSpell {
+	public Lightning3Spell() : base(10,30,20,40,80,0) {
+		
+	}
+}
+
+public class LightningExSpell : AttackSpell {
+	public LightningExSpell() : base(11,30,20,50,160,0) {
+		
+	}
 }
 
 public class SupportSpell : Spell {
@@ -123,11 +174,26 @@ public class SupportSpell : Spell {
 }
 
 public class HealSpell : SupportSpell {
-	public HealSpell() : base(3, 120, 20, 25){
+	public HealSpell() : base(12, 120, 20, 25){
 		}
 }
 
+public class Heal2Spell : SupportSpell {
+	public Heal2Spell() : base(13, 120, 20, 35){
+	}
+}
+
+public class Heal3Spell : SupportSpell {
+	public Heal3Spell() : base(14, 120, 20, 45){
+	}
+}
+
+public class HealExSpell : SupportSpell {
+	public HealExSpell() : base(15, 120, 20, 55){
+	}
+}
+
 public class WindSpell : SupportSpell {
-	public WindSpell() : base(4, 30, 20, 30){
+	public WindSpell() : base(16, 30, 20, 30){
 		}
 }

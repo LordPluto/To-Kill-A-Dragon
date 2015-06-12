@@ -482,7 +482,14 @@ public class GameController : MonoBehaviour {
 	/**
 	 * Handles what happens when a spell is upgraded
 	 * **/
-	public void SpellUpgrade(Transform newSpell, int spellNum){
-				spellBook.spellUpgrade (newSpell, spellNum);
+	public void SpellUpgrade(Transform spellForm, Spell newSpell){
+				newSpell.setSpellForm (spellForm);
+				int baseSpell = KnownSpells.FindIndex (x => x.getNumber () == newSpell.getNumber () - 1);
+
+				if (baseSpell == -1) {
+						return;
+				} else {
+						KnownSpells [baseSpell] = newSpell;
+				}
 		}
 }
