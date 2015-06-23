@@ -4,6 +4,7 @@ using System.Collections;
 public class ItemAttractMovement : MonoBehaviour {
 
 	private PlayerMasterController playerMaster;
+	private int MagnetBoost = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,7 @@ public class ItemAttractMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 				Vector3 direction = playerMaster.transform.position - transform.position;
-				Vector3 moveVector = direction.normalized * Time.deltaTime * 3;
+				Vector3 moveVector = direction.normalized * Time.deltaTime * 3 * MagnetBoost;
 		
 				Ray ray = new Ray (transform.position, direction);
 				RaycastHit hit;
@@ -25,4 +26,11 @@ public class ItemAttractMovement : MonoBehaviour {
 						transform.position += moveVector;
 				}
 		}
+
+	/**
+	 * Set the magnet boost.
+	 * **/
+	public void IsMagnet (bool active) {
+		MagnetBoost = (active ? 2 : 1);
+	}
 }

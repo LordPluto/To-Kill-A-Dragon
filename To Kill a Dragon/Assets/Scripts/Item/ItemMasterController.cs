@@ -18,7 +18,9 @@ public class ItemMasterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+				if (attractMode.enabled) {
+						attractMode.IsMagnet (gameControl.MagnetActive);
+				}
 		}
 
 	void OnTriggerEnter(Collider c){

@@ -28,6 +28,9 @@ public class PlayerMasterController : MonoBehaviour {
 
 	private bool windSpeedBoost;
 
+	private bool magnetActive;
+	private Vector3 magnetDirection;
+
 	#endregion
 
 	#region Cutscene
@@ -99,6 +102,8 @@ public class PlayerMasterController : MonoBehaviour {
 						FlinchUpdate ();
 				} else if (Cutscene) {
 						CutsceneUpdate ();
+				} else if (magnetActive) {
+						MagnetUpdate ();
 				} else {
 						PlayerUpdate ();
 				}
@@ -131,20 +136,20 @@ public class PlayerMasterController : MonoBehaviour {
 	 * The Update function used when the system has control
 	 * **/
 	private void CutsceneUpdate () {
-		Vector3 oldPosition = transform.position;
+				Vector3 oldPosition = transform.position;
 
-		Vector3 direction = currentPathPoint.transform.position - transform.position;
-		Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
+				Vector3 direction = currentPathPoint.transform.position - transform.position;
+				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
 
-		transform.position = playerMovement.CutsceneMovement (transform.position, direction, moveVector);
+				transform.position = playerMovement.CutsceneMovement (transform.position, direction, moveVector);
 
-		playerAnimation.setSpeed (transform.position != oldPosition);
+				playerAnimation.setSpeed (transform.position != oldPosition);
 
-		float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
+				float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
 
-		playerAnimation.setDirectionFromAngle (directionAngle);
+				playerAnimation.setDirectionFromAngle (directionAngle);
 		
-				if ((currentPathPoint.transform.position - transform.position).sqrMagnitude < Mathf.Pow((float)pointReached, 2)) {
+				if ((currentPathPoint.transform.position - transform.position).sqrMagnitude < Mathf.Pow ((float)pointReached, 2)) {
 						++pointIndex;
 						if (pointIndex > pathPoints.Length - 1) {
 								gameControl.PlayerFinishedCutscene ();
@@ -153,7 +158,16 @@ public class PlayerMasterController : MonoBehaviour {
 						}
 				}
 		}
-	
+
+	/**
+	 * The Update function used when the player is casting Magnet
+	 * **/
+	private void MagnetUpdate () {
+				Vector3 moveVector = magnetDirection * moveSpeed * Time.deltaTime * (windSpeedBoost ? 2 : 1);
+
+						transform.position = playerMovement.MagnetMovement (transform.position, moveVector);
+	}
+
 	/**
 	 * The Update function used when the player has control
 	 * **/
@@ -217,7 +231,7 @@ public class PlayerMasterController : MonoBehaviour {
 	 * cast the spell.
 	 * **/
 	private void CastSpell () {
-				if (playerSpells.StartCastTime (gameControl.getSpell ())) {
+				if (!magnetActive && playerSpells.StartCastTime (gameControl.getSpell ())) {
 						Casting = true;
 						playerAnimation.SpellAnimation (gameControl.getSpell ());
 				}
@@ -449,5 +463,19 @@ public class PlayerMasterController : MonoBehaviour {
 				windSpeedBoost = boost;
 		}
 
+	/**
+	 * Freezes the player because Magnet is active
+	 * **/
+	public void MagnetFreeze(Vector3 magnetDirection){
+		magnetActive = true;
+		this.magnetDirection = magnetDirection;
+	}
 
+	/**
+	 * Allows the player to move because Magnet is no longer active
+	 * **/
+	public void MagnetMove(){
+		magnetActive = false;
+		magnetDirection = Vector3.zero;
+	}
 }

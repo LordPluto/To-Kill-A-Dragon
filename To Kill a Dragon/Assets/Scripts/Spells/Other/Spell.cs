@@ -197,3 +197,8 @@ public class WindSpell : SupportSpell {
 	public WindSpell() : base(16, 30, 20, 30){
 		}
 }
+
+public class MagnetSpell : SupportSpell {
+	public MagnetSpell() : base(17, 15, 10, 0){
+		}
+}

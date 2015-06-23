@@ -10,6 +10,11 @@ public enum Head{
 	MPLow = 4
 }
 
+public enum Pole{
+	North = 0,
+	South = 1
+}
+
 /**
  * Class GameController extends MonoBehaviour
  * Essentially runs the game logic regarding pretty much everything
@@ -47,6 +52,11 @@ public class GameController : MonoBehaviour {
 	private Spell selectedSpell;
 	private Spell[] QuickSpells = new Spell[5];
 	private int spellIndex;
+
+	#region MagnetSpell
+	public bool MagnetActive = false;
+	private Pole MagnetPole = Pole.North;
+	#endregion MagnetSpell
 
 	#endregion
 
@@ -110,11 +120,12 @@ public class GameController : MonoBehaviour {
 				KnownSpells = new List<Spell> ();
 
 				//Testing for Spells. MARKED FOR DELETION
-		AddSpell (new FireSpell ());
-		AddSpell (new IceSpell ());
+				AddSpell (new FireSpell ());
+				AddSpell (new IceSpell ());
 				AddSpell (new LightningSpell ());
 				AddSpell (new HealSpell ());
 				AddSpell (new WindSpell ());
+				AddSpell (new MagnetSpell ());
 		
 				spellIndex = 0;
 		
@@ -224,11 +235,7 @@ public class GameController : MonoBehaviour {
 	 * Casts the spell selected
 	 * **/
 	public void CastSpell (float _characterFacing){
-				if (playerControl.getMP () < selectedSpell.getCost ()) {
-						GameObject iceClone = GameObject.Find ("Ice(Clone)");
-						if (iceClone) {
-								Destroy (iceClone);
-						}
+				if (MagnetActive) {
 						return;
 				}
 
@@ -289,6 +296,11 @@ public class GameController : MonoBehaviour {
 						}
 						
 						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (90, 0, 0));
+				} else if (selectedSpell is MagnetSpell) {
+						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition () + (new Vector3 (0, 101, 0) / 100),
+			             Quaternion.Euler (90,
+			                  180 - (int)_characterFacing * 90,
+			                  0));
 				}
 
 				playerControl.changeMP (-(selectedSpell.getCost ()));
@@ -492,4 +504,22 @@ public class GameController : MonoBehaviour {
 						KnownSpells [baseSpell] = newSpell;
 				}
 		}
+
+	/**
+	 * Activates/Deactivates Magnet as necessary
+	 * **/
+	public void SetMagnet(bool activate){
+				MagnetActive = activate;
+				if (!MagnetActive) {
+						playerControl.MagnetMove ();
+						MagnetPole = (MagnetPole == Pole.North ? Pole.South : Pole.North);
+				}
+		}
+
+	/**
+	 * Handles the magnet movement if a pole is found.
+	 * **/
+	public void SetMagnetDirection(Vector3 magnetDirection){
+		playerControl.MagnetFreeze ((MagnetPole == Pole.North ? magnetDirection : -1 * magnetDirection));
+	}
 }

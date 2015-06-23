@@ -50,4 +50,20 @@ public class PlayerMovementController {
 		
 				return position;
 		}
+
+	/**
+	 * Handles movement when the player is being magnetized - the destination is clear.
+	 * **/
+	public Vector3 MagnetMovement (Vector3 position, Vector3 moveVector) {
+				Ray ray = new Ray (position + (new Vector3 (0, 101, 0) / 100), moveVector);
+				RaycastHit hit;
+		
+				Physics.Raycast (ray, out hit, moveVector.magnitude * 10, (1 << 12 | 1 << 13));
+		
+				if (hit.collider == null) {
+						position += moveVector;
+				}
+
+				return position;
+		}
 }
