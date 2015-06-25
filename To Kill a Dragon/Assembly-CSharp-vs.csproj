@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\Item\ItemMasterController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\CutsceneTriggerController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DestinationController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\MagnetCubeController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpDestinationController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpStartController.cs" />

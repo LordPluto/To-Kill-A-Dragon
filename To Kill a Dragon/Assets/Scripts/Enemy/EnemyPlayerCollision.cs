@@ -22,4 +22,11 @@ public class EnemyPlayerCollision : MonoBehaviour {
 						parentControl.HitSpell (c);
 				}
 		}
+
+	/**
+	 * What happens when the enemy is hit by a magnet block
+	 * **/
+	public void HitMagnetBlock (Vector3 blockPosition){
+				parentControl.HitMagnetBlock (blockPosition);
+		}
 }

@@ -121,6 +121,7 @@ public class EnemyController : MonoBehaviour {
 	 * Moves the enemy toward the new point
 	 * **/
 	private void MoveTowardPoint () {
+				Debug.DrawLine (transform.position, currentPathPoint, Color.red);
 				Vector3 direction = currentPathPoint - transform.position;
 				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
 		
@@ -137,12 +138,15 @@ public class EnemyController : MonoBehaviour {
 								parentControl.setDirection (_animator, 1);
 						}
 		
-						Ray ray = new Ray (transform.position, direction);
+						Ray ray = new Ray (transform.position + new Vector3 (0, 0.5f, 0), direction);
 						RaycastHit hit;
 		
-						if (Physics.Raycast (ray, out hit, moveVector.magnitude) && hit.collider.CompareTag ("Level")) {
-								currentPathPoint = BacktracePoints [BacktracePoints.Count - 1];
-								return;
+						if (Physics.Raycast (ray, out hit, 0.5f, ~(1 << 11 | 1 << 14))) {
+								if (hit.collider.tag.Equals ("Level")) {
+										currentPathPoint = BacktracePoints [BacktracePoints.Count - 1];
+										return;
+								}
+								parentControl.setSpeed (_animator, 0);
 						} else {
 								parentControl.setSpeed (_animator, 1);
 								transform.position += moveVector;
@@ -218,6 +222,28 @@ public class EnemyController : MonoBehaviour {
 		}
 
 	/**
+	 * The enemy is knocked back from a collision with a magnet.
+	 * **/
+	public void MagnetKnockBack (Vector3 flinchDirection, float knockback){
+				flinchDirection = new Vector3 (flinchDirection.x, 0, flinchDirection.z);
+		
+				Vector3 tempDestination = transform.position + (flinchDirection.normalized * knockback);
+				Vector3 direction = tempDestination - transform.position;
+		
+				Ray ray = new Ray (transform.position, direction);
+				RaycastHit hit;
+		
+				if (!(Physics.Raycast (ray, out hit, direction.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level")))) {
+						currentPathPoint = tempDestination;
+				} else {
+						currentPathPoint = transform.position;
+						parentControl.Die ();
+				}
+		
+				moveSpeed *= 3;
+		}
+
+	/**
 	 * The enemy ran into the player
 	 * **/
 	public void HitPlayer (Collider c){
@@ -234,6 +260,15 @@ public class EnemyController : MonoBehaviour {
 				Vector3 otherDirection = transform.position - c.transform.position;
 
 				parentControl.TakeDamage (otherDirection);
+		}
+
+	/**
+	 * The enemy hit a moving magnet block
+	 * **/
+	public void HitMagnetBlock (Vector3 blockPosition){
+				Vector3 otherDirection = transform.position - blockPosition;
+
+				parentControl.MagnetDamage (otherDirection);
 		}
 
 	/**

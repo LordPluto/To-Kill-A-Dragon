@@ -36,4 +36,11 @@ public class ItemMasterController : MonoBehaviour {
 	public void AttractMode () {
 				attractMode.enabled = true;
 		}
+	
+	/**
+	 * Returns the value of the object
+	 * **/
+	public float GetValue(){
+		return value;
+	}
 }

@@ -124,6 +124,14 @@ public class BasicEnemyController : MonoBehaviour {
 		}
 
 	/**
+	 * Take damage from magnet block
+	 * **/
+	public void MagnetDamage(Vector3 flinch){
+				HP -= 1;
+				MagnetKnockBack (flinch, 1);
+		}
+
+	/**
 	 * How much EXP is this monster worth?
 	 * **/
 	public float valueEXP(){
@@ -142,6 +150,13 @@ public class BasicEnemyController : MonoBehaviour {
 	 * **/
 	public void KnockBack(Vector3 direction, float knockback){
 				enemyControl.KnockBack (direction, knockback);
+		}
+
+	/**
+	 * Tells the model to be knocked back by a magnet block
+	 * **/
+	public void MagnetKnockBack (Vector3 direction, float knockback){
+				enemyControl.MagnetKnockBack (direction, knockback);
 		}
 
 	/**
@@ -183,5 +198,12 @@ public class BasicEnemyController : MonoBehaviour {
 				Instantiate (item,
 		             enemyControl.transform.position,
 		             Quaternion.identity);
+		}
+
+	/**
+	 * Instantly kills the enemy.
+	 * **/
+	public void Die(){
+				HP = 0;
 		}
 }

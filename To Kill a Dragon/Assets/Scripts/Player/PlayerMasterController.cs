@@ -165,8 +165,8 @@ public class PlayerMasterController : MonoBehaviour {
 	private void MagnetUpdate () {
 				Vector3 moveVector = magnetDirection * moveSpeed * Time.deltaTime * (windSpeedBoost ? 2 : 1);
 
-						transform.position = playerMovement.MagnetMovement (transform.position, moveVector);
-	}
+				transform.position = playerMovement.MagnetMovement (transform.position, moveVector);
+		}
 
 	/**
 	 * The Update function used when the player has control
@@ -185,10 +185,10 @@ public class PlayerMasterController : MonoBehaviour {
 
 				playerAnimation.Animation (_controller.velocity);
 
-				if (Casting && playerSpells.CheckCastTime () <= -2) {
+				if (Casting && !magnetActive && playerSpells.CheckCastTime () <= -2) {
 						StopCasting ();
 				}
-				if (playerSpells.CheckCastDelay () == 0) {
+				if (!magnetActive && playerSpells.CheckCastDelay () == 0) {
 						gameControl.CastSpell (playerAnimation.getDirection ());
 				}
 
@@ -467,15 +467,15 @@ public class PlayerMasterController : MonoBehaviour {
 	 * Freezes the player because Magnet is active
 	 * **/
 	public void MagnetFreeze(Vector3 magnetDirection){
-		magnetActive = true;
-		this.magnetDirection = magnetDirection;
-	}
+				magnetActive = true;
+				this.magnetDirection = magnetDirection;
+		}
 
 	/**
 	 * Allows the player to move because Magnet is no longer active
 	 * **/
 	public void MagnetMove(){
-		magnetActive = false;
-		magnetDirection = Vector3.zero;
-	}
+				magnetActive = false;
+				magnetDirection = Vector3.zero;
+		}
 }

@@ -26,6 +26,7 @@ public class PlayerSpellController {
 				} else {
 						CastTime = -2;
 				}
+		Debug.Log ("Time to cast: " + CastTime);
 				return CastTime;
 		}
 
@@ -35,6 +36,7 @@ public class PlayerSpellController {
 				} else {
 						CastDelay = -1;
 				}
+		Debug.Log ("Delay: " + CastDelay);
 				return CastDelay;
 		}
 

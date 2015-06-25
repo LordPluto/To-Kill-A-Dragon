@@ -32,9 +32,7 @@ public class LightningStrike : MonoBehaviour {
 
 				Physics.Raycast (ray, out hit, Mathf.Infinity, ~(1 << 11));
 
-		Debug.Log (hit.distance);
-
-				float i = 0;
+		float i = 0;
 				if (hit.distance > segmentLength / 100) {
 
 						

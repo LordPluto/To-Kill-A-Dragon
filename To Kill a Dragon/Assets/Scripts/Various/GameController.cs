@@ -235,7 +235,7 @@ public class GameController : MonoBehaviour {
 	 * Casts the spell selected
 	 * **/
 	public void CastSpell (float _characterFacing){
-				if (MagnetActive) {
+				if (MagnetActive || playerControl.getMP() < selectedSpell.getCost()) {
 						return;
 				}
 
@@ -521,5 +521,14 @@ public class GameController : MonoBehaviour {
 	 * **/
 	public void SetMagnetDirection(Vector3 magnetDirection){
 		playerControl.MagnetFreeze ((MagnetPole == Pole.North ? magnetDirection : -1 * magnetDirection));
+	}
+
+	/**
+	 * Handles the magnet movement if a cube is found
+	 * **/
+	public void SetMagnetDirection(GameObject magnetCube, Vector3 magnetDirection){
+		MagnetCubeController cubeControl = magnetCube.GetComponent<MagnetCubeController> ();
+		cubeControl.MagnetMovement ((MagnetPole == Pole.North ? magnetDirection : -1 * magnetDirection));
+		playerControl.MagnetFreeze (Vector3.zero);
 	}
 }

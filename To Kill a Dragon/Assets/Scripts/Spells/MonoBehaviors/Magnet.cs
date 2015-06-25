@@ -4,6 +4,7 @@ using System.Collections;
 public class Magnet : MonoBehaviour {
 
 	private GameController gameControl;
+	private MagnetCubeController cubeTarget;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,9 @@ public class Magnet : MonoBehaviour {
 				if (Physics.Raycast (ray, out hit, 24, (1 << 12 | 1 << 13))) {
 						if (hit.collider.gameObject.CompareTag ("MagnetPillar")) {
 								gameControl.SetMagnetDirection (direction);
+						} else if (hit.collider.gameObject.CompareTag ("MagnetCube")) {
+								gameControl.SetMagnetDirection (hit.collider.gameObject, -direction);
+								cubeTarget = hit.collider.gameObject.GetComponent<MagnetCubeController> ();
 						}
 				}
 		}
@@ -43,7 +47,12 @@ public class Magnet : MonoBehaviour {
 				bool destroyMe = Input.GetAxis ("CastSpell") < 0.01;
 		
 				if (destroyMe) {
-			gameControl.SetMagnet(false);
+						if (cubeTarget != null) {
+								cubeTarget.MagnetStop ();
+								cubeTarget = null;
+						}
+
+						gameControl.SetMagnet (false);
 						Destroy (gameObject);
 				}
 		}

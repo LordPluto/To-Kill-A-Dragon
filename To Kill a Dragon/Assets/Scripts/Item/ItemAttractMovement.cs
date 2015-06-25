@@ -16,13 +16,15 @@ public class ItemAttractMovement : MonoBehaviour {
 	void Update () {
 				Vector3 direction = playerMaster.transform.position - transform.position;
 				Vector3 moveVector = direction.normalized * Time.deltaTime * 3 * MagnetBoost;
-		
+
+				if (direction.sqrMagnitude < .025) {
+						playerMaster.transform.position += Vector3.zero;
+				}
+
 				Ray ray = new Ray (transform.position, direction);
 				RaycastHit hit;
 		
-				if (Physics.Raycast (ray, out hit, moveVector.magnitude) && hit.collider.CompareTag ("Level")) {
-						return;
-				} else {
+				if (!(Physics.Raycast (ray, out hit, moveVector.magnitude, (1 << 13)))) {
 						transform.position += moveVector;
 				}
 		}
