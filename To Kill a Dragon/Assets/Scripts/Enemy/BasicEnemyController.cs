@@ -83,6 +83,7 @@ public class BasicEnemyController : MonoBehaviour {
 	void Update () {
 				if (HP <= 0) {
 						gameControl.DestroyMonster (gameObject);
+			NotifyDeath();
 				}
 		}
 
@@ -205,5 +206,14 @@ public class BasicEnemyController : MonoBehaviour {
 	 * **/
 	public void Die(){
 				HP = 0;
+		}
+
+	/**
+	 * Notifies the parent (if one exists) that it died.
+	 * **/
+	private void NotifyDeath () {
+				if (transform.parent != null) {
+						GetComponentInParent<DeathTrigger> ().NotifyDeath ();
+				}
 		}
 }
