@@ -76,12 +76,15 @@ public class HUDController : MonoBehaviour {
 	/**
 	 * Sets the spell's icon
 	 * **/
-	public void setIcon(Spell selectedSpell){
+	public void setIcon(Spell selectedSpell, Pole magnetPole){
 				if (spells == null) {
 						spells = GetComponentInChildren<HUDSpellController> ();
 				}
 
-				spells.SetTexture (selectedSpell.getNumber ());
+				if (selectedSpell.getNumber () != 17 || magnetPole == Pole.North)
+						spells.SetTexture (selectedSpell.getNumber ());
+				else
+						spells.SetTexture (21);
 		}
 
 	/**

@@ -10,28 +10,19 @@ public class HUDSpellController : MonoBehaviour {
 	
 	public float wDist;
 	public float hDist;
-	private bool halfWidth;
-	private bool halfHeight;
 
 	public Texture[] spellIcons;
 	
 	// Use this for initialization
 	void Start () {
 				image = GetComponent<GUITexture> ();
-				if (image.texture.width == 64) {
-						halfWidth = true;
-				}
-
-				if (image.texture.height == 64) {
-						halfHeight = true;
-				}
 		}
 	
 	// Update is called once per frame
 	void Update () {
 		float x, y, w, h;
-		w = (halfWidth ? wDist / 2 : wDist);
-		h = (halfHeight ? hDist / 2 : hDist);
+		w = wDist;
+		h = hDist;
 		
 		x = (float)-(Camera.main.pixelWidth / 2 - xDist);
 		y = (float)(Camera.main.pixelHeight / 2 - h - yDist);
@@ -50,14 +41,6 @@ public class HUDSpellController : MonoBehaviour {
 	public void SetTexture(int index){
 				if (index >= 0 && index < spellIcons.Length) {
 						image.texture = spellIcons[index];
-				}
-
-				if (GetImage ().texture.width == 64) {
-						halfWidth = true;
-				}
-		
-				if (GetImage ().texture.height == 64) {
-						halfHeight = true;
 				}
 		}
 

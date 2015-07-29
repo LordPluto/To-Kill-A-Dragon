@@ -55,10 +55,11 @@ public class PlayerMovementController {
 	 * Handles movement when the player is being magnetized.
 	 * **/
 	public Vector3 MagnetMovement (Vector3 position, Vector3 moveVector) {
-				Ray ray = new Ray (position + (new Vector3 (0, 101, 0) / 100), moveVector);
+				Vector3 point1 = position + new Vector3 (0, 1.51f, 0), point2 = position + new Vector3 (0, .51f, 0);
+				float radius = 0.5f;
 				RaycastHit hit;
 		
-				Physics.Raycast (ray, out hit, 0.6f, (1 << 12 | 1 << 13));
+				Physics.CapsuleCast (point1, point2, radius, moveVector, out hit, 0.1f, (1 << 12 | 1 << 13));
 		
 				if (hit.collider == null) {
 						position += moveVector;

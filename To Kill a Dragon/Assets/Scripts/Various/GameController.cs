@@ -200,7 +200,7 @@ public class GameController : MonoBehaviour {
 
 				selectedSpell = KnownSpells [spellIndex];
 
-				HUDControl.setIcon (selectedSpell);
+				HUDControl.setIcon (selectedSpell, MagnetPole);
 		}
 
 	/**
@@ -216,7 +216,7 @@ public class GameController : MonoBehaviour {
 
 				selectedSpell = KnownSpells [spellIndex];
 
-				HUDControl.setIcon (selectedSpell);
+				HUDControl.setIcon (selectedSpell, MagnetPole);
 		}
 
 	/**
@@ -228,7 +228,7 @@ public class GameController : MonoBehaviour {
 						spellIndex = KnownSpells.IndexOf (selectedSpell);
 				}
 
-				HUDControl.setIcon (selectedSpell);
+				HUDControl.setIcon (selectedSpell, MagnetPole);
 		}
 
 	/**
@@ -394,6 +394,7 @@ public class GameController : MonoBehaviour {
 						HUDControl.setHealthPercentage (playerControl.getPercentHP ());
 
 						currentHead = Head.Damaged;
+						HUDControl.changeHead (currentHead);
 				}
 		}
 
@@ -419,6 +420,7 @@ public class GameController : MonoBehaviour {
 						HUDControl.setHealthPercentage (playerControl.getPercentHP ());
 
 						currentHead = Head.Damaged;
+						HUDControl.changeHead (currentHead);
 				}
 		}
 
@@ -446,6 +448,8 @@ public class GameController : MonoBehaviour {
 	private Head SelectHead () {
 				if (playerControl.getPercentHP () <= 0) {
 						return Head.Dead;
+				} else if (playerControl.isFlinching ()) {
+						return Head.Damaged;
 				} else if (playerControl.getPercentHP () <= 25) {
 						return Head.HPLow;
 				} else if (playerControl.getPercentMP () <= 25) {
@@ -513,6 +517,7 @@ public class GameController : MonoBehaviour {
 				if (!MagnetActive) {
 						playerControl.MagnetMove ();
 						MagnetPole = (MagnetPole == Pole.North ? Pole.South : Pole.North);
+						HUDControl.setIcon (selectedSpell, MagnetPole);
 				}
 		}
 
