@@ -145,8 +145,11 @@ public class EnemyController : MonoBehaviour {
 								if (hit.collider.tag.Equals ("Level")) {
 										currentPathPoint = BacktracePoints [BacktracePoints.Count - 1];
 										return;
+								} else {
+										parentControl.setSpeed (_animator, 0);
+										parentControl.getNewPoint ();
 								}
-								parentControl.setSpeed (_animator, 0);
+								
 						} else {
 								parentControl.setSpeed (_animator, 1);
 								transform.position += moveVector;

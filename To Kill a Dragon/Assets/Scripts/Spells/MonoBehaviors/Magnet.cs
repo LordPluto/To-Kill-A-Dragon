@@ -29,10 +29,11 @@ public class Magnet : MonoBehaviour {
 						break;
 				}
 		
-				Ray ray = new Ray (transform.position, direction);
+				Vector3 point1 = transform.position + new Vector3 (0, 0.5f, 0), point2 = transform.position - new Vector3 (0, 0.5f, 0);
+				float radius = 0.5f;
 				RaycastHit hit;
 
-				if (Physics.Raycast (ray, out hit, 24, (1 << 12 | 1 << 13))) {
+				if (Physics.CapsuleCast (point1, point2, radius, direction, out hit, 24, (1 << 12 | 1 << 13))) {
 						if (hit.collider.gameObject.CompareTag ("MagnetPillar")) {
 								gameControl.SetMagnetDirection (direction);
 						} else if (hit.collider.gameObject.CompareTag ("MagnetCube")) {
