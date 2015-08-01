@@ -1,11 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerMasterController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Level Elements\Title Screen\ButtonQuit.cs">
     <Files>
-      <File FileName="Assets\Scripts\Various\GameController.cs" Line="494" Column="13" />
+      <File FileName="Assets\Scripts\Level Elements\Title Screen\ButtonNewGame.cs" Line="10" Column="37" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Spells\MonoBehaviors\Magnet.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PlayerMovementController.cs" Line="63" Column="3" />
+      <File FileName="Assets\Scripts\Player\PlayerMovementController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Title Screen\ButtonQuit.cs" Line="6" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

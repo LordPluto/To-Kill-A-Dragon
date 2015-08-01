@@ -64,6 +64,8 @@
      <Compile Include="Assets\Scripts\Level Elements\DoorTriggerController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\MagnetCubeController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\SummonObjectController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Title Screen\ButtonNewGame.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Title Screen\ButtonQuit.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpDestinationController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpStartController.cs" />
