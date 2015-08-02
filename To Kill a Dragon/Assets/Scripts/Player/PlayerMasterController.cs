@@ -179,7 +179,7 @@ public class PlayerMasterController : MonoBehaviour {
 													Input.GetAxis ("Quick3"), Input.GetAxis ("Quick4"),
 													Input.GetAxis ("Quick5")};
 
-				float castSpell = Input.GetAxis ("CastSpell");
+				float castSpell = Input.GetAxis ("CastSpell") * (playerAnimation.isFalling() ? 0 : 1);
 		
 				ChangeSpell (changeSpell, quickSelect, castSpell);
 
