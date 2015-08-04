@@ -23,6 +23,7 @@ public class BasicEnemyController : MonoBehaviour {
 	#region Movement Modifiers
 
 	public float damageKnockback;
+	public bool doesWander;
 
 	#endregion
 
@@ -83,7 +84,7 @@ public class BasicEnemyController : MonoBehaviour {
 	void Update () {
 				if (HP <= 0) {
 						gameControl.DestroyMonster (gameObject);
-			NotifyDeath();
+						NotifyDeath ();
 				}
 		}
 

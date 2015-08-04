@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour {
 
 	private bool Tracking;
 	private bool Backtrace;
+	private bool Flinching;
 
 	private List<Vector3> BacktracePoints;
 	private int backtraceIndex;
@@ -37,6 +38,7 @@ public class EnemyController : MonoBehaviour {
 				TrackingTarget = null;
 				Tracking = false;
 				Backtrace = false;
+				Flinching = false;
 
 				InCutscene = false;
 
@@ -49,7 +51,9 @@ public class EnemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 				if (!InCutscene) {
-						if (Tracking) {
+						if (Flinching) {
+								FlinchMove ();
+						} else if (Tracking) {
 								TrackingMove ();
 						} else if (Backtrace) {
 								BacktraceMove ();
@@ -63,15 +67,17 @@ public class EnemyController : MonoBehaviour {
 	 * Handles the normal movement
 	 * **/
 	private void WanderMove(){
-				if (currentPathPoint == Vector3.zero) {
-						parentControl.getNewPoint ();
-				} else {
-						MoveTowardPoint ();
-			
-						if (Vector3.Distance (currentPathPoint, transform.position) < (float)pointReached) {
-								currentPathPoint = Vector3.zero;
+				if (parentControl.doesWander) {
+						if (currentPathPoint == Vector3.zero) {
 								parentControl.getNewPoint ();
-								moveSpeed = 2;
+						} else {
+								MoveTowardPoint ();
+			
+								if (Vector3.Distance (currentPathPoint, transform.position) < (float)pointReached) {
+										currentPathPoint = Vector3.zero;
+										parentControl.getNewPoint ();
+										moveSpeed = 2;
+								}
 						}
 				}
 		}
@@ -112,16 +118,32 @@ public class EnemyController : MonoBehaviour {
 			
 						if (Vector3.Distance (currentPathPoint, transform.position) < (float)pointReached) {
 								currentPathPoint = Vector3.zero;
-				moveSpeed = 2;
+								moveSpeed = 2;
 						}
 				}
 		}
 
 	/**
+	 * Handles the movement when flinching
+	 * **/
+	private void FlinchMove() {
+				if (currentPathPoint == Vector3.zero) {
+						Flinching = false;
+						StartBacktrace ();
+				} else {
+						MoveTowardPoint ();
+			
+						if (Vector3.Distance (currentPathPoint, transform.position) < (float)pointReached) {
+								currentPathPoint = Vector3.zero;
+								moveSpeed = 2;
+						}
+				}
+		}
+	
+	/**
 	 * Moves the enemy toward the new point
 	 * **/
 	private void MoveTowardPoint () {
-				Debug.DrawLine (transform.position, currentPathPoint, Color.red);
 				Vector3 direction = currentPathPoint - transform.position;
 				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
 		
@@ -165,6 +187,14 @@ public class EnemyController : MonoBehaviour {
 		}
 
 	/**
+	 * Shifts to flinch mode.
+	 * **/
+	private void FlinchMode (){
+				Flinching = true;
+				BacktracePoints.Add (new Vector3 (transform.position.x, transform.position.y, transform.position.z));
+		}
+
+	/**
 	 * Sets the new target (for tracking)
 	 * **/
 	public void SetTarget (GameObject target){
@@ -180,6 +210,13 @@ public class EnemyController : MonoBehaviour {
 	 * **/
 	public void LoseTarget () {
 				Tracking = false;
+				StartBacktrace ();
+		}
+
+	/**
+	 * Turns on backtrace
+	 * **/
+	private void StartBacktrace(){
 				Backtrace = true;
 				backtraceIndex = BacktracePoints.Count - 1;
 		}
@@ -188,19 +225,9 @@ public class EnemyController : MonoBehaviour {
 	 * The monster flinches, moving back.
 	 * **/
 	public void FlinchBack (Vector3 flinchDirection) {
-			flinchDirection = new Vector3 (flinchDirection.x, 0, flinchDirection.z);
+				flinchDirection = new Vector3 (flinchDirection.x, 0, flinchDirection.z);
 						
-			Vector3 tempDestination = transform.position + (flinchDirection.normalized * parentControl.getKnockback());
-			Vector3 direction = tempDestination - transform.position;
-			
-			Ray ray = new Ray (transform.position, direction);
-			RaycastHit hit;
-			
-			if (!(Physics.Raycast (ray, out hit, direction.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level")))) {
-				currentPathPoint = tempDestination;
-			} else {
-				currentPathPoint = hit.point - direction.normalized/2;
-			}
+				SetFlinchPoint (flinchDirection, parentControl.getKnockback ());
 		}
 
 	/**
@@ -209,6 +236,26 @@ public class EnemyController : MonoBehaviour {
 	public void KnockBack (Vector3 flinchDirection, float knockback) {
 				flinchDirection = new Vector3 (flinchDirection.x, 0, flinchDirection.z);
 		
+				SetFlinchPoint (flinchDirection, knockback);
+
+				moveSpeed *= 3;
+		}
+
+	/**
+	 * The enemy is knocked back from a collision with a magnet.
+	 * **/
+	public void MagnetKnockBack (Vector3 flinchDirection, float knockback){
+				flinchDirection = new Vector3 (flinchDirection.x, 0, flinchDirection.z);
+		
+				SetMagnetFlinch (flinchDirection, knockback);
+		
+				moveSpeed *= 3;
+		}
+
+	/**
+	 * Sets the point for flinching back.
+	 * **/
+	private void SetFlinchPoint(Vector3 flinchDirection, float knockback){
 				Vector3 tempDestination = transform.position + (flinchDirection.normalized * knockback);
 				Vector3 direction = tempDestination - transform.position;
 		
@@ -221,15 +268,15 @@ public class EnemyController : MonoBehaviour {
 						currentPathPoint = hit.point - direction.normalized / 2;
 				}
 
-				moveSpeed *= 3;
+				BacktracePoints.Add (new Vector3 (transform.position.x, transform.position.y, transform.position.z));
+
+				FlinchMode ();
 		}
 
 	/**
-	 * The enemy is knocked back from a collision with a magnet.
+	 * Set magnet flinch
 	 * **/
-	public void MagnetKnockBack (Vector3 flinchDirection, float knockback){
-				flinchDirection = new Vector3 (flinchDirection.x, 0, flinchDirection.z);
-		
+	private void SetMagnetFlinch(Vector3 flinchDirection, float knockback){
 				Vector3 tempDestination = transform.position + (flinchDirection.normalized * knockback);
 				Vector3 direction = tempDestination - transform.position;
 		
@@ -242,10 +289,10 @@ public class EnemyController : MonoBehaviour {
 						currentPathPoint = transform.position;
 						parentControl.Die ();
 				}
-		
-				moveSpeed *= 3;
-		}
 
+				FlinchMode ();
+		}
+	
 	/**
 	 * The enemy ran into the player
 	 * **/

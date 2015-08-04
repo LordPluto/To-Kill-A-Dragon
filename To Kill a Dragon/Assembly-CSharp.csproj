@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LightningSegment.cs" />
      <Compile Include="Assets\Scripts\Enemy\AggroRangeController.cs" />
      <Compile Include="Assets\Scripts\Enemy\BasicEnemyController.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
@@ -79,6 +78,7 @@
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceCrystal.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceShotgun.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningBranch.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningSegment.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningStrike.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Magnet.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Unused Scripts\Ice.cs" />

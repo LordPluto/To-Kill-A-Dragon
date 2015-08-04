@@ -4,13 +4,16 @@ using System.Collections;
 public class ItemMasterController : MonoBehaviour {
 
 	private ItemAttractMovement attractMode;
+	private ItemBurstMovement burstMode;
 	private GameController gameControl;
 
 	public float value;
+	public bool magnetTarget;
 
 	// Use this for initialization
 	void Start () {
 				attractMode = GetComponent<ItemAttractMovement> ();
+		burstMode = GetComponent<ItemBurstMovement> ();
 				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 
 				GetComponent<ItemBurstMovement> ().enabled = true;
@@ -18,6 +21,14 @@ public class ItemMasterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+				if (magnetTarget) {
+						if (!attractMode.enabled && gameControl.MagnetActive) {
+								AttractMode ();
+						} else if (attractMode.enabled && !gameControl.MagnetActive) {
+								StationaryMode ();
+						}
+				}
+
 				if (attractMode.enabled) {
 						attractMode.IsMagnet (gameControl.MagnetActive);
 				}
@@ -33,8 +44,25 @@ public class ItemMasterController : MonoBehaviour {
 	/**
 	 * Shifts the item's mode to slight magnetism toward the player
 	 * **/
-	public void AttractMode () {
+	private void AttractMode () {
 				attractMode.enabled = true;
+		}
+
+	/**
+	 * Shifts the item's mode to not moving.
+	 * **/
+	private void StationaryMode () {
+				attractMode.enabled = false;
+		}
+
+	/**
+	 * Shifts the item's mode into permanent magnetism.
+	 * **/
+	public void AttractModeTouch () {
+				attractMode.enabled = true;
+				if (burstMode.enabled != true) {
+						magnetTarget = false;
+				}
 		}
 	
 	/**

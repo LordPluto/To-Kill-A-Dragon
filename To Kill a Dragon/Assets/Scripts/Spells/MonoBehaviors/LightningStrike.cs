@@ -46,7 +46,7 @@ public class LightningStrike : MonoBehaviour {
 				LightningSegment.localScale = new Vector3 (1,
 		                                           (direction.x * percentage == 0 ? 
 		 													(direction.z * percentage == 0 ? 1 : Mathf.Abs(direction.z * percentage)) : 
-		 													Mathf.Abs(direction.x * percentage)),
+		 													Mathf.Abs(direction.x * percentage)) + 0.1f,
 		                                          	1);
 				
 				Instantiate (LightningSegment, this.transform.position + direction * i / 100, this.transform.rotation);

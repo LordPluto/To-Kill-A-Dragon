@@ -18,10 +18,8 @@ public class IceShotgun : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Dead")) {
-			Destroy (gameObject);
+				if (_animator.GetCurrentAnimatorStateInfo (0).IsName ("Dead")) {
+						Destroy (gameObject);
+				}
 		}
-	}
-
-
 }

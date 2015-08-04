@@ -51,7 +51,7 @@ public class PlayerMasterController : MonoBehaviour {
 	private float currentHP;
 	private float maxHP;
 
-	private float currentMP;
+	public float currentMP;
 	private float maxMP;
 
 	private float currentEXP;

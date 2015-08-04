@@ -56,6 +56,7 @@ public class GameController : MonoBehaviour {
 	#region MagnetSpell
 	public bool MagnetActive = false;
 	private Pole MagnetPole = Pole.North;
+	private int magnetDelay;
 	#endregion MagnetSpell
 
 	#endregion
@@ -87,7 +88,7 @@ public class GameController : MonoBehaviour {
 	 * **/
 	void Start () {
 				Screen.showCursor = false;
-				Screen.SetResolution (1280, 720, false);
+				//Screen.SetResolution (1280, 720, false);
 
 				currentHead = Head.Fine;
 
@@ -150,6 +151,8 @@ public class GameController : MonoBehaviour {
 						currentHead = SelectHead ();
 						HUDControl.changeHead (currentHead);
 				}
+
+		--magnetDelay;
 		}
 
 	/**
@@ -235,7 +238,7 @@ public class GameController : MonoBehaviour {
 	 * Casts the spell selected
 	 * **/
 	public void CastSpell (float _characterFacing){
-				if (MagnetActive || playerControl.getMP() < selectedSpell.getCost()) {
+				if (MagnetActive || magnetDelay > 0 || playerControl.getMP() < selectedSpell.getCost()) {
 						return;
 				}
 
@@ -518,6 +521,7 @@ public class GameController : MonoBehaviour {
 						playerControl.MagnetMove ();
 						MagnetPole = (MagnetPole == Pole.North ? Pole.South : Pole.North);
 						HUDControl.setIcon (selectedSpell, MagnetPole);
+						magnetDelay = 20;
 				}
 		}
 
