@@ -58,7 +58,6 @@ public class LoadedDialogueController : MonoBehaviour {
 				string image = null;
 				
 				for (int i = 0; i<splitData.Length; i++) {
-			Debug.Log (isImage + "\t" + splitData[i]);
 						if (isImage == true) {
 								image = splitData [i];	/* Possibly slow */
 								isImage = false;

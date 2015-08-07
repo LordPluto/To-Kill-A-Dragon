@@ -144,9 +144,12 @@ public class NPCController : MonoBehaviour {
 	 * **/
 	void OnMouseDown(){
 				GameObject player = GameObject.Find ("Player");
-				if (talkTo && (this.transform.position - player.transform.position).sqrMagnitude < Mathf.Pow(distance,2)) {
-						_controller.ShowDialogue (name);
-						talkTo = false;
+				if (talkTo && (this.transform.position - player.transform.position).sqrMagnitude < Mathf.Pow (distance, 2)) {
+						Collider[] hitColliders = Physics.OverlapSphere (player.transform.position, distance + 2, 1 << 14);
+						if (hitColliders.Length == 0) {
+								_controller.ShowDialogue (name);
+								talkTo = false;
+						}
 				}
 		}
 

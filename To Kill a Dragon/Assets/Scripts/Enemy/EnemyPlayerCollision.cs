@@ -17,7 +17,7 @@ public class EnemyPlayerCollision : MonoBehaviour {
 	void OnTriggerEnter (Collider c){
 				if (c.CompareTag ("Player")) {
 						parentControl.HitPlayer (c);
-				} else if (c.tag.Substring (0, 5).Equals ("Spell") && !c.CompareTag("SpellIgnore")) {
+				} else if (c.tag.Length >= 5 && c.tag.Substring (0, 5).Equals ("Spell") && !c.CompareTag("SpellIgnore")) {
 						parentControl.HitSpell (c);
 				}
 		}

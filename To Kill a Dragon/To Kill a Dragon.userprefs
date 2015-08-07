@@ -1,15 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Test\Sarah Time Shenanigans.txt">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\Dialogue\LoadedDialogueController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueImageController.cs" Line="23" Column="4" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" Line="40" Column="4" />
-      <File FileName="Assets\Scripts\Various\Dialogue\NextButtonController.cs" Line="39" Column="4" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueController.cs" Line="38" Column="6" />
+      <File FileName="Assets\Scripts\Various\Dialogue\LoadedDialogueController.cs" Line="73" Column="3" />
+      <File FileName="Assets\Scripts\Various\Dialogue\DialogueImageController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\Dialogue\NextButtonController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" Line="39" Column="1" />
-      <File FileName="Assets\Scripts\Various\GameController.cs" Line="136" Column="4" />
-      <File FileName="Assets\Scripts\Various\Dialogue\LoadedDialogueController.cs" Line="61" Column="46" />
-      <File FileName="Assets\Resources\Test\Sarah Time Shenanigans.txt" Line="5" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

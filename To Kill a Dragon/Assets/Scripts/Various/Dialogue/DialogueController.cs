@@ -14,7 +14,7 @@ public class DialogueController : MonoBehaviour {
 	private string totalText = "";
 	private int textMarker = 0;
 
-	private DialogueSpeed tickSpeed = DialogueSpeed.Normal;
+	private DialogueSpeed tickSpeed = DialogueSpeed.Fast;
 	private int currentTick = 0;
 
 	// Use this for initialization
