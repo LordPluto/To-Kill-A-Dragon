@@ -10,16 +10,6 @@ public class DialogueTreeController : MonoBehaviour {
 	private DialogueMasterController dialogueControl;
 	private GameController gameControl;
 
-	private double widthOffset;
-	private double heightOffset;
-
-	private float buttonX = 1080;
-	private float buttonWidth = 128;
-	private float buttonHeight = 48;
-
-	private float topButtonY = 582;
-	private float bottomButtonY = 636;
-
 	// Use this for initialization
 	void Start () {
 				lines = null;
@@ -27,63 +17,17 @@ public class DialogueTreeController : MonoBehaviour {
 		}
 
 	void Awake () {
-				dialogueControl = GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ();
+				dialogueControl = GameObject.Find ("Dialogue Canvas").GetComponent<DialogueMasterController> ();
 				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
 	
 	// Update is called once per frame
 	void Update () {
-				widthOffset = Camera.main.pixelWidth / 1280;
-				heightOffset = Camera.main.pixelHeight / 720;
-		}
-
-	void OnGUI () {
-				if (lines != null) {
-						if (lines.Count > 1) {
-								if (count + 1 == lines.Count) {
-										if (GUI.Button (new Rect (buttonX * (float)widthOffset, topButtonY * (float)heightOffset,
-				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Previous")) {
-												PreviousTextBox ();
-										}
-										if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
-				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Close")) {
-												gameControl.HideDialogue ();
-										}
-								} else if (count == 0) {
-										if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
-				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Next")) {
-												NextTextBox ();
-										}
-								} else {
-										if (GUI.Button (new Rect (buttonX * (float)widthOffset, topButtonY * (float)heightOffset,
-				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Previous")) {
-												PreviousTextBox ();
-										}
-										if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
-				                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Next")) {
-												NextTextBox ();
-										}
-								}
-						} else if (lines.Count == 1) {
-								if (GUI.Button (new Rect (buttonX * (float)widthOffset, bottomButtonY * (float)heightOffset, 
-			                          buttonWidth * (float)widthOffset, buttonHeight * (float)heightOffset), "Close")) {
-										gameControl.HideDialogue ();
-								}
-						}
-				}
 		}
 
 	/**
-	 * Default activation - no name given.
+	 * Activate and load dialogue for a given NPC Name.
 	 * **/
-	public void Activate () {
-		DialogueMasterController startDialogue = GameObject.Find ("DialogueBox").GetComponent<DialogueMasterController> ();
-				startDialogue.SetText ("Hello World.");
-				startDialogue.SetTexture (GameObject.Find ("_DialogueImages").GetComponent<ImageDump> ().GetImage ("Sarah A1"));
-		
-				startDialogue.Activate ();
-		}
-
 	public void Activate (string NPCName) {
 				foreach (GameObject o in GameObject.FindGameObjectsWithTag ("DialogueLoading")) {
 						lines = o.GetComponent<LoadedDialogueController> ().getDialogue (NPCName);
@@ -93,7 +37,7 @@ public class DialogueTreeController : MonoBehaviour {
 				}
 
 				dialogueControl.SetText (lines [count].getText ());
-				dialogueControl.SetTexture (lines [count].getImage ());
+				dialogueControl.SetHead (lines [count].getImageName ());
 
 				dialogueControl.Activate ();
 		}
@@ -105,40 +49,39 @@ public class DialogueTreeController : MonoBehaviour {
 				dialogueControl.Deactivate ();
 		}
 
-	void NextTextBox () {
+	public void NextTextBox () {
 				count++;
 		
-				dialogueControl.SetText (lines [count].getText ());
-				dialogueControl.SetTexture (lines [count].getImage ());
+				if (count < lines.Count) {
+						dialogueControl.SetText (lines [count].getText ());
+						dialogueControl.SetHead (lines [count].getImageName ());
 		
-				dialogueControl.Activate ();
+						dialogueControl.Activate ();
+				} else {
+						Close ();
+				}
 		}
 
-	void PreviousTextBox () {
-				count--;
-
-				dialogueControl.SetText (lines [count].getText ());
-				dialogueControl.SetTexture (lines [count].getImage ());
-
-				dialogueControl.Activate ();
+	void Close () {
+				gameControl.HideDialogue ();
 		}
 }
 
 public class Dialogue {
 
 	private string text;
-	private Texture image;
+	private string imageName;
 
-	public Dialogue(string te, Texture im){
+	public Dialogue(string te, string imageName){
 				text = te;
-				image = im;
+				this.imageName = imageName;
 		}
 
 	public string getText () {
 				return text;
 		}
 
-	public Texture getImage () {
-				return image;
+	public string getImageName () {
+				return imageName;
 		}
 }

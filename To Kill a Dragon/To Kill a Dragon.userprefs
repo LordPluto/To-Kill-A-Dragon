@@ -1,12 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy\AggroRangeController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Test\Sarah Time Shenanigans.txt">
     <Files>
-      <File FileName="Assets\Scripts\Spells\MonoBehaviors\IceShotgun.cs" Line="20" Column="18" />
-      <File FileName="Assets\Scripts\Enemy\EnemyController.cs" Line="133" Column="13" />
-      <File FileName="Assets\Scripts\Enemy\EnemyPlayerCollision.cs" Line="24" Column="2" />
-      <File FileName="Assets\Scripts\Enemy\BasicEnemyController.cs" Line="205" Column="5" />
-      <File FileName="Assets\Scripts\Enemy\AggroRangeController.cs" Line="18" Column="35" />
+      <File FileName="Assets\Scripts\Various\Dialogue\DialogueImageController.cs" Line="23" Column="4" />
+      <File FileName="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" Line="40" Column="4" />
+      <File FileName="Assets\Scripts\Various\Dialogue\NextButtonController.cs" Line="39" Column="4" />
+      <File FileName="Assets\Scripts\Various\Dialogue\DialogueController.cs" Line="38" Column="6" />
+      <File FileName="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" Line="39" Column="1" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="136" Column="4" />
+      <File FileName="Assets\Scripts\Various\Dialogue\LoadedDialogueController.cs" Line="61" Column="46" />
+      <File FileName="Assets\Resources\Test\Sarah Time Shenanigans.txt" Line="5" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -1,15 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HUDHeadController : MonoBehaviour {
 
-	private GUITexture image;
-
-	public float xDist;
-	public float yDist;
-	
-	public float wDist;
-	public float hDist;
+	private RawImage image;
 
 	/**
 	 * 0 - Okay
@@ -22,19 +17,11 @@ public class HUDHeadController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-				image = GetComponent<GUITexture> ();
+				image = GetComponent<RawImage> ();
 		}
 	
 	// Update is called once per frame
 	void Update () {
-				float x, y, w, h;
-				w = wDist;
-				h = hDist;
-		
-				x = (float)-(Camera.main.pixelWidth / 2 - xDist);
-				y = (float)(Camera.main.pixelHeight / 2 - h - yDist);
-		
-				image.pixelInset = new Rect (x, y, w, h);
 		}
 
 	/**
@@ -48,13 +35,13 @@ public class HUDHeadController : MonoBehaviour {
 	 * Hides the HUD element
 	 * **/
 	public void Hide () {
-				guiTexture.enabled = false;
+				image.enabled = false;
 		}
 
 	/**
 	 * Shows the HUD element
 	 * **/
 	public void Show () {
-				guiTexture.enabled = true;
+				image.enabled = true;
 		}
 }

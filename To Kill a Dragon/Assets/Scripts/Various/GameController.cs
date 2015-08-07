@@ -81,8 +81,6 @@ public class GameController : MonoBehaviour {
 
 	#endregion
 
-	private int notStartedDialogue = 2;
-
 	/**
 	 * Use this for initialization
 	 * **/
@@ -99,7 +97,7 @@ public class GameController : MonoBehaviour {
 				treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
 				textBoxControl = GameObject.Find ("_Textbox Controller").GetComponent<TextboxController> ();
 				playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
-				HUDControl = GameObject.Find ("HUD").GetComponent<HUDController> ();
+				HUDControl = GameObject.Find ("HUD Canvas").GetComponent<HUDController> ();
 				dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
 
 
@@ -115,6 +113,9 @@ public class GameController : MonoBehaviour {
 				dialogueDump.AddLines (2, (TextAsset)Resources.Load ("Test/Chapter Two"), ref assetTest);
 				dialogueDump.AddPerson ("Victor2", assetTest);
 				characterFlags.Add ("Victor2", 2);
+				dialogueDump.AddLines (3, (TextAsset)Resources.Load ("Test/Sarah Time Shenanigans"), ref assetTest);
+				dialogueDump.AddPerson ("new Sarah Sprite", assetTest);
+				characterFlags.Add ("new Sarah Sprite", 3);
 				//END TEST
 
 				spellBook = GameObject.Find ("_SpellBook").GetComponent<SpellList> ();
@@ -136,14 +137,6 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-				if (notStartedDialogue == 2) {
-						treeControl.Activate ();
-						notStartedDialogue = 1;
-				} else if (notStartedDialogue == 1) {
-						treeControl.Deactivate ();
-						notStartedDialogue = 0;
-				}
-
 				if (!(currentHead == Head.Damaged)) {
 						currentHead = SelectHead ();
 						HUDControl.changeHead (currentHead);
@@ -152,7 +145,7 @@ public class GameController : MonoBehaviour {
 						HUDControl.changeHead (currentHead);
 				}
 
-		--magnetDelay;
+				--magnetDelay;
 		}
 
 	/**

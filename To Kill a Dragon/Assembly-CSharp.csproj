@@ -90,6 +90,7 @@
      <Compile Include="Assets\Scripts\Spells\Other\SpellUpgrade.cs" />
      <Compile Include="Assets\Scripts\Various\AdviController.cs" />
      <Compile Include="Assets\Scripts\Various\AdviImageController.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\DialogueBackgroundController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueDump.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueImageController.cs" />
@@ -97,6 +98,7 @@
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\ImageDump.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\LoadedDialogueController.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\NextButtonController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\TextController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\TextboxController.cs" />
      <Compile Include="Assets\Scripts\Various\GameController.cs" />
@@ -114,6 +116,7 @@
      <Compile Include="Assets\Scripts\Various\NPC\NPCController.cs" />
      <Compile Include="Assets\Scripts\Various\NPC\VictorController.cs" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+     <None Include="Assets\Resources\Test\Sarah Time Shenanigans.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
