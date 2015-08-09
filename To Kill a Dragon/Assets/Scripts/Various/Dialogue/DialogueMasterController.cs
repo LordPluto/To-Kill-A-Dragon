@@ -7,6 +7,7 @@ public class DialogueMasterController : MonoBehaviour {
 	private DialogueImageController image;
 	private DialogueBackgroundController background;
 	private NextButtonController button;
+	private TextboxController textbox;
 
 	private string textString;
 	private string imageName;
@@ -17,6 +18,7 @@ public class DialogueMasterController : MonoBehaviour {
 				image = GetComponentInChildren<DialogueImageController> ();
 				background = GetComponentInChildren<DialogueBackgroundController> ();
 				button = GameObject.Find ("NextTextBox").GetComponent<NextButtonController> ();
+				textbox = GetComponentInChildren<TextboxController> ();
 		}
 	
 	// Update is called once per frame
@@ -29,6 +31,7 @@ public class DialogueMasterController : MonoBehaviour {
 				image.SetHead (imageName);
 				background.Activate ();
 				button.Deactivate ();
+		textbox.Activate ();
 		}
 
 	public void Deactivate () {
@@ -37,6 +40,7 @@ public class DialogueMasterController : MonoBehaviour {
 				image.Wipe ();
 				background.Deactivate ();
 				button.Deactivate ();
+		textbox.Deactivate ();
 		}
 
 	public void SetHead (string imageName){
