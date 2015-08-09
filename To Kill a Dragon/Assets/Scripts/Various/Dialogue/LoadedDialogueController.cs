@@ -61,7 +61,7 @@ public class LoadedDialogueController : MonoBehaviour {
 						if (isImage == true) {
 								image = splitData [i];	/* Possibly slow */
 								isImage = false;
-						} else if (splitData [i] == "") {
+						} else if (splitData [i] == "" || splitData[i] == "\r") {
 								isImage = true;
 						} else {
 								string text = splitData [i];
