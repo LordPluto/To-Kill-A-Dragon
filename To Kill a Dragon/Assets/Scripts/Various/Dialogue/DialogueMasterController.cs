@@ -51,4 +51,8 @@ public class DialogueMasterController : MonoBehaviour {
 				text.enabled = false;
 				button.Activate ();
 		}
+
+	public bool IsTextFinished(){
+		return !text.enabled;
+	}
 }

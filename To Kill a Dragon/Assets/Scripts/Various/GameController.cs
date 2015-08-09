@@ -37,7 +37,6 @@ public class GameController : MonoBehaviour {
 
 	private DialogueDump dialogueDump;
 	private DialogueTreeController treeControl;
-	private TextboxController textBoxControl;
 	private PlayerMasterController playerControl;
 	private HUDController HUDControl;
 
@@ -95,7 +94,6 @@ public class GameController : MonoBehaviour {
 
 	void Awake () {
 				treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
-				textBoxControl = GameObject.Find ("_Textbox Controller").GetComponent<TextboxController> ();
 				playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
 				HUDControl = GameObject.Find ("HUD Canvas").GetComponent<HUDController> ();
 				dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
@@ -154,8 +152,6 @@ public class GameController : MonoBehaviour {
 	 * Result: Displaying the dialogue box and dialogue, if successful. Player can't move or cast spells.
 	 * **/
 	public void ShowDialogue (string NPCName) {
-				textBoxControl.Activate ();
-
 				treeControl.Activate (NPCName);
 
 				playerControl.TalkingFreeze ();
@@ -169,7 +165,6 @@ public class GameController : MonoBehaviour {
 	 * Result: Removed the dialogue box and dialogue, if successful. Player can move and cast spells.
 	 * **/
 	public void HideDialogue () {
-				textBoxControl.Deactivate ();
 				treeControl.Deactivate ();
 
 				playerControl.TalkingMove ();
@@ -369,10 +364,17 @@ public class GameController : MonoBehaviour {
 	 * Returns the current flag of the NPC
 	 * **/
 	public int getNPCFlag(string NPCName){
-		int flag;
-		characterFlags.TryGetValue (NPCName, out flag);
-		return flag;
-	}
+				int flag;
+				characterFlags.TryGetValue (NPCName, out flag);
+				return flag;
+		}
+
+	/**
+	 * Lets the player advance textboxes by pressing spacebar.
+	 * **/
+	public void talkingNext() {
+				treeControl.NextTextBox ();
+		}
 
 	/**
 	 * Deal damage to player

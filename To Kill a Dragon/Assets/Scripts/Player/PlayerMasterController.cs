@@ -51,7 +51,7 @@ public class PlayerMasterController : MonoBehaviour {
 	private float currentHP;
 	private float maxHP;
 
-	public float currentMP;
+	private float currentMP;
 	private float maxMP;
 
 	private float currentEXP;
@@ -61,6 +61,12 @@ public class PlayerMasterController : MonoBehaviour {
 	private int maxLevel;
 
 	public float Def;
+
+	#endregion
+
+	#region Dialogue
+
+	private float talkDelay = 0;
 
 	#endregion
 
@@ -98,6 +104,10 @@ public class PlayerMasterController : MonoBehaviour {
 		}
 
 	void Update () {
+				if (talkDelay > 0) {
+						talkDelay--;
+				}
+
 				if (Flinch) {
 						FlinchUpdate ();
 				} else if (Cutscene) {
@@ -179,7 +189,7 @@ public class PlayerMasterController : MonoBehaviour {
 													Input.GetAxis ("Quick3"), Input.GetAxis ("Quick4"),
 													Input.GetAxis ("Quick5")};
 
-				float castSpell = Input.GetAxis ("CastSpell") * (playerAnimation.isFalling() ? 0 : 1);
+				float castSpell = Input.GetAxis ("CastSpell") * (playerAnimation.isFalling () ? 0 : 1);
 		
 				ChangeSpell (changeSpell, quickSelect, castSpell);
 
@@ -192,8 +202,12 @@ public class PlayerMasterController : MonoBehaviour {
 						gameControl.CastSpell (playerAnimation.getDirection ());
 				}
 
-				if (castSpell > 0.01 && !Talking && !Frozen) {
-						CastSpell ();
+				if (castSpell > 0.01) {
+						if (Talking) {
+								gameControl.talkingNext ();
+						} else if (talkDelay == 0 && !NPCNearby () && !Frozen) {
+								CastSpell ();
+						}
 				}
 		}
 
@@ -249,6 +263,7 @@ public class PlayerMasterController : MonoBehaviour {
 	 * **/
 	public void TalkingMove () {
 		Talking = false;
+		talkDelay = 10;
 	}
 
 	/**
@@ -477,5 +492,34 @@ public class PlayerMasterController : MonoBehaviour {
 	public void MagnetMove(){
 				magnetActive = false;
 				magnetDirection = Vector3.zero;
+		}
+
+	/**
+	 * Checks to see if an NPC is nearby. If one is (and you can talk to them) return true.
+	 * **/
+	private bool NPCNearby() {
+				Collider[] npcColliders = Physics.OverlapSphere (transform.position, 5, 1 << 10);
+
+				if (npcColliders.Length != 0) {
+						NPCController closest = null;
+						float distance = Mathf.Infinity;
+						Vector3 position = transform.position;
+						foreach (Collider c in npcColliders) {
+								Vector3 diff = c.transform.position - position;
+								float curDistance = diff.sqrMagnitude;
+
+								if (curDistance < distance) {
+										closest = c.GetComponent<NPCController> ();
+										distance = curDistance;
+								}
+						}
+
+						if (closest.canTalkTo ()) {
+								closest.Talk ();
+								return true;
+						}
+				}
+
+				return false;
 		}
 }

@@ -1,14 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\Dialogue\DialogueImageController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerMasterController.cs">
     <Files>
-      <File FileName="To Kill a Dragon.sln" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueImageController.cs" Line="17" Column="18" />
-      <File FileName="Assets\Scripts\Various\Dialogue\LoadedDialogueController.cs" Line="73" Column="4" />
-      <File FileName="Assets\Scripts\Various\AdviController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="208" Column="36" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="376" Column="5" />
+      <File FileName="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" Line="38" Column="16" />
+      <File FileName="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" Line="56" Column="15" />
+      <File FileName="Assets\Scripts\Spells\MonoBehaviors\Fire.cs" Line="52" Column="33" />
+      <File FileName="Assets\Scripts\Various\NPC\NPCController.cs" Line="176" Column="19" />
       <File FileName="Assets\Scripts\Various\Dialogue\NextButtonController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\Dialogue\DialogueController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

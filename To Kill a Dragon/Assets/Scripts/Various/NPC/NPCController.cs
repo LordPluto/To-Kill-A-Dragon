@@ -27,6 +27,7 @@ public class NPCController : MonoBehaviour {
 
 	private Animator _animator;
 	private GameController _controller;
+	private GameObject player;
 
 	#endregion
 
@@ -37,6 +38,7 @@ public class NPCController : MonoBehaviour {
 	private bool savedTalkState;
 
 	private bool Talking;
+	private float talkDelay = 0;
 
 	#endregion
 
@@ -70,6 +72,7 @@ public class NPCController : MonoBehaviour {
 				savedTalkState = talkTo;
 				_animator = GetComponent<Animator> ();
 				_controller = GameObject.Find ("_GameController").GetComponent<GameController> ();
+				player = GameObject.Find ("Player");
 
 				if (pathPoints.Length <= 0) {
 						npcMovement = false;
@@ -91,6 +94,10 @@ public class NPCController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+				if (talkDelay > 0) {
+						talkDelay--;
+				}
+
 				if (Cutscene) {
 						CutsceneUpdate ();
 				} else {
@@ -143,19 +150,17 @@ public class NPCController : MonoBehaviour {
 	 * When the NPC is clicked, check to see if you can talk to him
 	 * **/
 	void OnMouseDown(){
-				GameObject player = GameObject.Find ("Player");
-				if (talkTo && (this.transform.position - player.transform.position).sqrMagnitude < Mathf.Pow (distance, 2)) {
+				if (canTalkTo ()) {
 						Collider[] hitColliders = Physics.OverlapSphere (player.transform.position, distance + 2, 1 << 14);
 						if (hitColliders.Length == 0) {
-								_controller.ShowDialogue (name);
-								talkTo = false;
+								Talk ();
 						}
 				}
 		}
 
 	/**
 	 * Tells the NPC to stop moving
-	 * Results: Talking = false;
+	 * Results: Talking = true;
 	 * **/
 	public void TalkingFreeze () {
 				Talking = true;
@@ -163,11 +168,12 @@ public class NPCController : MonoBehaviour {
 
 	/**
 	 * Tells the NPC to start moving
-	 * Results: Talking = true;
+	 * Results: Talking = false;
 	 * **/
 	public void TalkingMove () {
 				Talking = false;
 				talkTo = savedTalkState;
+				talkDelay = 30;
 		}
 
 	/**
@@ -240,5 +246,20 @@ public class NPCController : MonoBehaviour {
 				cutscenePathPoints = CutscenePoints;
 				cutscenePathPoint = cutscenePathPoints [0];
 				cutsceneIndex = 0;
+		}
+
+	/**
+	 * Checks to see if the NPC can be talked to.
+	 * **/
+	public bool canTalkTo() {
+				return talkDelay == 0 && talkTo && (this.transform.position - player.transform.position).sqrMagnitude < Mathf.Pow (distance, 2);
+		}
+
+	/**
+	 * Enters dialogue with this NPC.
+	 * **/
+	public void Talk() {
+				_controller.ShowDialogue (name);
+				talkTo = false;
 		}
 }
