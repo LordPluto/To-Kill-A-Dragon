@@ -16,7 +16,7 @@ public class DialogueMasterController : MonoBehaviour {
 				text = GetComponentInChildren<DialogueController> ();
 				image = GetComponentInChildren<DialogueImageController> ();
 				background = GetComponentInChildren<DialogueBackgroundController> ();
-				button = GetComponentInChildren<NextButtonController> ();
+				button = GameObject.Find ("NextTextBox").GetComponent<NextButtonController> ();
 		}
 	
 	// Update is called once per frame
