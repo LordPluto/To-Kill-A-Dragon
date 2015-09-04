@@ -1,3 +1,7 @@
+* text=auto
+
+*.txt text eol=lf
+
 # Custom for Visual Studio
 *.cs     diff=csharp
 
