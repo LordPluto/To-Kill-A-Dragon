@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerMasterController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" Line="43" Column="25" />
+      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="532" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

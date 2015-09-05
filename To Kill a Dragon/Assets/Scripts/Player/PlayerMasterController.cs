@@ -70,6 +70,8 @@ public class PlayerMasterController : MonoBehaviour {
 
 	#endregion
 
+	private Vector3 lastSafePosition = Vector3.zero;
+
 	/**
 	 * Used for initialization
 	 * **/
@@ -522,4 +524,11 @@ public class PlayerMasterController : MonoBehaviour {
 
 				return false;
 		}
+
+	/**
+	 * Respawns the player when they fall into a pit.
+	 * **/
+	public void PitSpawn() {
+		transform.position = lastSafePosition;
+	}
 }
