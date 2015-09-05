@@ -5,10 +5,8 @@ using System.Collections;
 public class HUDController : MonoBehaviour {
 
 	private HUDBackgroundController backing;
-	private HUDDetailController details;
 	private HUDExpController EXP;
 	private HUDHeadController heads;
-	private HUDBackController bars;
 	private HUDHealthController health;
 	private HUDManaController mana;
 	private HUDMoneyController money;
@@ -18,10 +16,8 @@ public class HUDController : MonoBehaviour {
 	void Start () {
 
 				backing = GetComponentInChildren<HUDBackgroundController> ();
-				details = GetComponentInChildren<HUDDetailController> ();
 				EXP = GetComponentInChildren<HUDExpController> ();
 				heads = GetComponentInChildren<HUDHeadController> ();
-				bars = GetComponentInChildren<HUDBackController> ();
 				health = GetComponentInChildren<HUDHealthController> ();
 				mana = GetComponentInChildren<HUDManaController> ();
 				money = GetComponentInChildren<HUDMoneyController> ();
@@ -80,12 +76,15 @@ public class HUDController : MonoBehaviour {
 	/**
 	 * Sets the spell's icon
 	 * **/
-	public void setIcon(Spell selectedSpell){
+	public void setIcon(Spell selectedSpell, Pole magnetPole){
 				if (spells == null) {
 						spells = GetComponentInChildren<HUDSpellController> ();
 				}
 
-				spells.SetTexture (selectedSpell.getNumber ());
+				if (selectedSpell.getNumber () != 17 || magnetPole == Pole.North)
+						spells.SetTexture (selectedSpell.getNumber ());
+				else
+						spells.SetTexture (21);
 		}
 
 	/**
@@ -93,10 +92,8 @@ public class HUDController : MonoBehaviour {
 	 * **/
 	public void Hide() {
 				backing.Hide ();
-				details.Hide ();
 				EXP.Hide ();
 				heads.Hide ();
-				bars.Hide ();
 				health.Hide ();
 				mana.Hide ();
 				money.Hide ();
@@ -109,10 +106,8 @@ public class HUDController : MonoBehaviour {
 	 * **/
 	public void Show() {
 				backing.Show ();
-				details.Show ();
 				EXP.Show ();
 				heads.Show ();
-				bars.Show ();
 				health.Show ();
 				mana.Show ();
 				money.Show ();

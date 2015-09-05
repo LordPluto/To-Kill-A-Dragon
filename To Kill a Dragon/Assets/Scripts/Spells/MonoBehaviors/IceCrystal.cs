@@ -12,10 +12,31 @@ public class IceCrystal : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<SpriteRenderer> ().sprite = crystals [Random.Range (0, crystals.Length)];
-
-		random = new Vector3 (Random.Range (0, 2*Speed + 1) - Speed, 0, Random.Range (0, 2*Speed + 1) - Speed);
-	}
+				int degree = (4 + (180 - (int)transform.rotation.eulerAngles.y) / 90) % 4;
+				
+				switch (degree) {
+				case 0:
+						random = new Vector3 (Random.Range (0, 2 * Speed + 1) - Speed,
+			                     0,
+			                     -(Random.Range (0, Speed + 1)));
+						break;
+				case 1:
+						random = new Vector3 (Random.Range (0, Speed + 1),
+			                     0,
+			                     Random.Range (0, 2 * Speed + 1) - Speed);
+						break;
+				case 2:
+						random = new Vector3 (Random.Range (0, 2 * Speed + 1) - Speed,
+			                     0,
+			                     Random.Range (0, Speed + 1));
+						break;
+				case 3:
+						random = new Vector3 (-(Random.Range (0, Speed + 1)),
+			                     0,
+			                     Random.Range (0, 2 * Speed + 1) - Speed);
+						break;
+				}
+		}
 	
 	// Update is called once per frame
 	void Update () {

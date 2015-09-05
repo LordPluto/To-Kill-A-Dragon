@@ -17,7 +17,7 @@ public class ItemAttractRangeController : MonoBehaviour {
 
 	void OnTriggerEnter (Collider c) {
 				if (c.CompareTag ("Player")) {
-						itemMaster.AttractMode ();
+						itemMaster.AttractModeTouch ();
 				}
 		}
 }

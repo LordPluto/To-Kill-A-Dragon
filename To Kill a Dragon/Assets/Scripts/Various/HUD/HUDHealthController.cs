@@ -1,33 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HUDHealthController : MonoBehaviour {
 	
 	private float percent;
-	public float xDist;
-	public float yDist;
 
-	private GUITexture image;
-	
-	public float wDist;
-	public float hDist;
+	private RawImage image;
+
+	private bool needsUpdate = true;
 	
 	// Use this for initialization
 	void Start () {
-		image = GetComponent<GUITexture> ();
+		image = GetComponent<RawImage> ();
 		percent = 100;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		float x, y, w, h;
-		w = (percent/100) * wDist;
-		h = hDist;
-		
-		x = (float)-(Camera.main.pixelWidth / 2 - xDist);
-		y = (float)(Camera.main.pixelHeight / 2 - h - yDist);
-		
-		image.pixelInset = new Rect (x, y, w, h);
+		if (needsUpdate) {
+			needsUpdate = false;
+						setPercent (percent);
+				}
 	}
 
 	/**
@@ -35,19 +29,20 @@ public class HUDHealthController : MonoBehaviour {
 	 * **/
 	public void setPercent(float newPercent){
 				percent = newPercent;
+		image.GetComponent<RectTransform>().sizeDelta = new Vector2(1.067f * percent, 14.4f);
 		}
 
 	/**
 	 * Hides the HUD element
 	 * **/
 	public void Hide () {
-		guiTexture.enabled = false;
+		image.enabled = false;
 	}
 	
 	/**
 	 * Shows the HUD element
 	 * **/
 	public void Show () {
-		guiTexture.enabled = true;
+		image.enabled = true;
 	}
 }

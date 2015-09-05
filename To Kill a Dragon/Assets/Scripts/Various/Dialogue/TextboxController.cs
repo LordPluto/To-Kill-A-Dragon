@@ -1,31 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class TextboxController : MonoBehaviour {
 
-	private GUITexture image;
-	
-	private float xDist = 0;
-	private float yDist = 0;
-	
-	private float wDist;
-	private float hDist;
+	private RawImage image;
 	
 	// Use this for initialization
-	void Start () {
-				image = GetComponent<GUITexture> ();
+	void Awake () {
+				image = GetComponent<RawImage> ();
 		}
 	
 	// Update is called once per frame
 	void Update () {
-				float x, y, w, h;
-				w = Screen.width;
-				h = Screen.height/4;
-
-				x = xDist;
-				y = yDist;
-		
-				image.pixelInset = new Rect (x, y, w, h);
 		}
 
 	public void Activate () {

@@ -161,4 +161,11 @@ public class PlayerAnimationController {
 						_animator.SetFloat ("Speed", 0);
 				}
 		}
+
+	/**
+	 * Checks to see if the player is falling.
+	 * **/
+	public bool isFalling(){
+		return _animator.GetBool("Falling");
+	}
 }

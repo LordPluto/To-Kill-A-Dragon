@@ -10,6 +10,11 @@ public enum Head{
 	MPLow = 4
 }
 
+public enum Pole{
+	North = 0,
+	South = 1
+}
+
 /**
  * Class GameController extends MonoBehaviour
  * Essentially runs the game logic regarding pretty much everything
@@ -32,7 +37,6 @@ public class GameController : MonoBehaviour {
 
 	private DialogueDump dialogueDump;
 	private DialogueTreeController treeControl;
-	private TextboxController textBoxControl;
 	private PlayerMasterController playerControl;
 	private HUDController HUDControl;
 
@@ -47,6 +51,12 @@ public class GameController : MonoBehaviour {
 	private Spell selectedSpell;
 	private Spell[] QuickSpells = new Spell[5];
 	private int spellIndex;
+
+	#region MagnetSpell
+	public bool MagnetActive = false;
+	private Pole MagnetPole = Pole.North;
+	private int magnetDelay;
+	#endregion MagnetSpell
 
 	#endregion
 
@@ -70,14 +80,12 @@ public class GameController : MonoBehaviour {
 
 	#endregion
 
-	private int notStartedDialogue = 2;
-
 	/**
 	 * Use this for initialization
 	 * **/
 	void Start () {
 				Screen.showCursor = false;
-				Screen.SetResolution (1280, 720, false);
+				//Screen.SetResolution (1280, 720, false);
 
 				currentHead = Head.Fine;
 
@@ -86,9 +94,8 @@ public class GameController : MonoBehaviour {
 
 	void Awake () {
 				treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
-				textBoxControl = GameObject.Find ("_Textbox Controller").GetComponent<TextboxController> ();
 				playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
-				HUDControl = GameObject.Find ("HUD").GetComponent<HUDController> ();
+				HUDControl = GameObject.Find ("HUD Canvas").GetComponent<HUDController> ();
 				dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
 
 
@@ -104,18 +111,21 @@ public class GameController : MonoBehaviour {
 				dialogueDump.AddLines (2, (TextAsset)Resources.Load ("Test/Chapter Two"), ref assetTest);
 				dialogueDump.AddPerson ("Victor2", assetTest);
 				characterFlags.Add ("Victor2", 2);
+				dialogueDump.AddLines (3, (TextAsset)Resources.Load ("Test/Sarah Time Shenanigans"), ref assetTest);
+				dialogueDump.AddPerson ("new Sarah Sprite", assetTest);
+				characterFlags.Add ("new Sarah Sprite", 3);
 				//END TEST
 
 				spellBook = GameObject.Find ("_SpellBook").GetComponent<SpellList> ();
 				KnownSpells = new List<Spell> ();
 
 				//Testing for Spells. MARKED FOR DELETION
-		AddSpell (new FireSpell ());
-		AddSpell (new IceSpell ());
+				AddSpell (new FireSpell ());
+				AddSpell (new IceSpell ());
 				AddSpell (new LightningSpell ());
 				AddSpell (new HealSpell ());
 				AddSpell (new WindSpell ());
-		AddSpell (new FireSpell ());
+				AddSpell (new MagnetSpell ());
 		
 				spellIndex = 0;
 		
@@ -125,14 +135,6 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-				if (notStartedDialogue == 2) {
-						treeControl.Activate ();
-						notStartedDialogue = 1;
-				} else if (notStartedDialogue == 1) {
-						treeControl.Deactivate ();
-						notStartedDialogue = 0;
-				}
-
 				if (!(currentHead == Head.Damaged)) {
 						currentHead = SelectHead ();
 						HUDControl.changeHead (currentHead);
@@ -140,6 +142,8 @@ public class GameController : MonoBehaviour {
 						currentHead = SelectHead ();
 						HUDControl.changeHead (currentHead);
 				}
+
+				--magnetDelay;
 		}
 
 	/**
@@ -148,8 +152,6 @@ public class GameController : MonoBehaviour {
 	 * Result: Displaying the dialogue box and dialogue, if successful. Player can't move or cast spells.
 	 * **/
 	public void ShowDialogue (string NPCName) {
-				textBoxControl.Activate ();
-
 				treeControl.Activate (NPCName);
 
 				playerControl.TalkingFreeze ();
@@ -163,7 +165,6 @@ public class GameController : MonoBehaviour {
 	 * Result: Removed the dialogue box and dialogue, if successful. Player can move and cast spells.
 	 * **/
 	public void HideDialogue () {
-				textBoxControl.Deactivate ();
 				treeControl.Deactivate ();
 
 				playerControl.TalkingMove ();
@@ -190,7 +191,7 @@ public class GameController : MonoBehaviour {
 
 				selectedSpell = KnownSpells [spellIndex];
 
-				HUDControl.setIcon (selectedSpell);
+				HUDControl.setIcon (selectedSpell, MagnetPole);
 		}
 
 	/**
@@ -206,7 +207,7 @@ public class GameController : MonoBehaviour {
 
 				selectedSpell = KnownSpells [spellIndex];
 
-				HUDControl.setIcon (selectedSpell);
+				HUDControl.setIcon (selectedSpell, MagnetPole);
 		}
 
 	/**
@@ -218,18 +219,14 @@ public class GameController : MonoBehaviour {
 						spellIndex = KnownSpells.IndexOf (selectedSpell);
 				}
 
-				HUDControl.setIcon (selectedSpell);
+				HUDControl.setIcon (selectedSpell, MagnetPole);
 		}
 
 	/**
 	 * Casts the spell selected
 	 * **/
 	public void CastSpell (float _characterFacing){
-				if (playerControl.getMP () < selectedSpell.getCost ()) {
-						GameObject iceClone = GameObject.Find ("Ice(Clone)");
-						if (iceClone) {
-								Destroy (iceClone);
-						}
+				if (MagnetActive || magnetDelay > 0 || playerControl.getMP() < selectedSpell.getCost()) {
 						return;
 				}
 
@@ -279,7 +276,7 @@ public class GameController : MonoBehaviour {
 										                                       (_characterFacing % 2 == 0 ?
 															 						(_characterFacing == 0 ? -1 : 1) : 0)) / 3,
 						             Quaternion.Euler (90,
-						                  _characterFacing * -90,
+			                  180 - (int)_characterFacing * 90,
 						                  0));
 				} else if (selectedSpell is HealSpell) {
 						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (0, 0, 0));
@@ -290,6 +287,11 @@ public class GameController : MonoBehaviour {
 						}
 						
 						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (90, 0, 0));
+				} else if (selectedSpell is MagnetSpell) {
+						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition () + (new Vector3 (0, 101, 0) / 100),
+			             Quaternion.Euler (90,
+			                  180 - (int)_characterFacing * 90,
+			                  0));
 				}
 
 				playerControl.changeMP (-(selectedSpell.getCost ()));
@@ -362,10 +364,17 @@ public class GameController : MonoBehaviour {
 	 * Returns the current flag of the NPC
 	 * **/
 	public int getNPCFlag(string NPCName){
-		int flag;
-		characterFlags.TryGetValue (NPCName, out flag);
-		return flag;
-	}
+				int flag;
+				characterFlags.TryGetValue (NPCName, out flag);
+				return flag;
+		}
+
+	/**
+	 * Lets the player advance textboxes by pressing spacebar.
+	 * **/
+	public void talkingNext() {
+				treeControl.NextTextBox ();
+		}
 
 	/**
 	 * Deal damage to player
@@ -383,6 +392,7 @@ public class GameController : MonoBehaviour {
 						HUDControl.setHealthPercentage (playerControl.getPercentHP ());
 
 						currentHead = Head.Damaged;
+						HUDControl.changeHead (currentHead);
 				}
 		}
 
@@ -408,6 +418,7 @@ public class GameController : MonoBehaviour {
 						HUDControl.setHealthPercentage (playerControl.getPercentHP ());
 
 						currentHead = Head.Damaged;
+						HUDControl.changeHead (currentHead);
 				}
 		}
 
@@ -435,6 +446,8 @@ public class GameController : MonoBehaviour {
 	private Head SelectHead () {
 				if (playerControl.getPercentHP () <= 0) {
 						return Head.Dead;
+				} else if (playerControl.isFlinching ()) {
+						return Head.Damaged;
 				} else if (playerControl.getPercentHP () <= 25) {
 						return Head.HPLow;
 				} else if (playerControl.getPercentMP () <= 25) {
@@ -458,7 +471,7 @@ public class GameController : MonoBehaviour {
 	/**
 	 * Handles what happens when you collect an item.
 	 * **/
-	public void itemCollected(string tag, float value){
+	public void ItemCollected(string tag, float value){
 				switch (tag.Substring (4)) {
 				case "Coin":
 						if (wallet <= WalletMax - value) {
@@ -479,4 +492,47 @@ public class GameController : MonoBehaviour {
 						break;
 				}
 		}
+
+	/**
+	 * Handles what happens when a spell is upgraded
+	 * **/
+	public void SpellUpgrade(Transform spellForm, Spell newSpell){
+				newSpell.setSpellForm (spellForm);
+				int baseSpell = KnownSpells.FindIndex (x => x.getNumber () == newSpell.getNumber () - 1);
+
+				if (baseSpell == -1) {
+						return;
+				} else {
+						KnownSpells [baseSpell] = newSpell;
+				}
+		}
+
+	/**
+	 * Activates/Deactivates Magnet as necessary
+	 * **/
+	public void SetMagnet(bool activate){
+				MagnetActive = activate;
+				if (!MagnetActive) {
+						playerControl.MagnetMove ();
+						MagnetPole = (MagnetPole == Pole.North ? Pole.South : Pole.North);
+						HUDControl.setIcon (selectedSpell, MagnetPole);
+						magnetDelay = 20;
+				}
+		}
+
+	/**
+	 * Handles the magnet movement if a pole is found.
+	 * **/
+	public void SetMagnetDirection(Vector3 magnetDirection){
+		playerControl.MagnetFreeze ((MagnetPole == Pole.North ? magnetDirection : -1 * magnetDirection));
+	}
+
+	/**
+	 * Handles the magnet movement if a cube is found
+	 * **/
+	public void SetMagnetDirection(GameObject magnetCube, Vector3 magnetDirection){
+		MagnetCubeController cubeControl = magnetCube.GetComponent<MagnetCubeController> ();
+		cubeControl.MagnetMovement ((MagnetPole == Pole.North ? magnetDirection : -1 * magnetDirection));
+		playerControl.MagnetFreeze (Vector3.zero);
+	}
 }

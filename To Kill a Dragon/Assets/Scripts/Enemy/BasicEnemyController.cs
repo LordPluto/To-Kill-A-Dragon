@@ -23,6 +23,7 @@ public class BasicEnemyController : MonoBehaviour {
 	#region Movement Modifiers
 
 	public float damageKnockback;
+	public bool doesWander;
 
 	#endregion
 
@@ -47,7 +48,7 @@ public class BasicEnemyController : MonoBehaviour {
 				wanderControl = GetComponentInChildren<WanderController> ();
 				enemyControl = GetComponentInChildren<EnemyController> ();
 
-				damageKnockback = Mathf.Max (0, Mathf.Min (1, damageKnockback));
+				damageKnockback = Mathf.Max (1, damageKnockback);
 
 				if (projectile != null) {
 						enemyControl.CanShoot (true);
@@ -83,6 +84,7 @@ public class BasicEnemyController : MonoBehaviour {
 	void Update () {
 				if (HP <= 0) {
 						gameControl.DestroyMonster (gameObject);
+						NotifyDeath ();
 				}
 		}
 
@@ -120,7 +122,15 @@ public class BasicEnemyController : MonoBehaviour {
 	public void TakeDamage(Vector3 flinch){
 				Spell spellCast = gameControl.getSpell ();
 				HP -= Mathf.Max (0, spellCast.getSpellDamage () - Def);
-				FlinchBack (flinch);
+				KnockBack (flinch, spellCast.getSpellKnockback ());
+		}
+
+	/**
+	 * Take damage from magnet block
+	 * **/
+	public void MagnetDamage(Vector3 flinch){
+				HP -= 1;
+				MagnetKnockBack (flinch, 1);
 		}
 
 	/**
@@ -135,6 +145,20 @@ public class BasicEnemyController : MonoBehaviour {
 	 * **/
 	public void FlinchBack(Vector3 flinch){
 				enemyControl.FlinchBack (flinch);
+		}
+
+	/**
+	 * Tells the model to be knocked back
+	 * **/
+	public void KnockBack(Vector3 direction, float knockback){
+				enemyControl.KnockBack (direction, knockback);
+		}
+
+	/**
+	 * Tells the model to be knocked back by a magnet block
+	 * **/
+	public void MagnetKnockBack (Vector3 direction, float knockback){
+				enemyControl.MagnetKnockBack (direction, knockback);
 		}
 
 	/**
@@ -176,5 +200,21 @@ public class BasicEnemyController : MonoBehaviour {
 				Instantiate (item,
 		             enemyControl.transform.position,
 		             Quaternion.identity);
+		}
+
+	/**
+	 * Instantly kills the enemy.
+	 * **/
+	public void Die(){
+				HP = 0;
+		}
+
+	/**
+	 * Notifies the parent (if one exists) that it died.
+	 * **/
+	private void NotifyDeath () {
+				if (transform.parent != null) {
+						GetComponentInParent<DeathTrigger> ().NotifyDeath ();
+				}
 		}
 }

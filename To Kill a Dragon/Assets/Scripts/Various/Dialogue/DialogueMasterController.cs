@@ -5,14 +5,20 @@ public class DialogueMasterController : MonoBehaviour {
 
 	private DialogueController text;
 	private DialogueImageController image;
+	private DialogueBackgroundController background;
+	private NextButtonController button;
+	private TextboxController textbox;
 
 	private string textString;
-	private Texture tex;
+	private string imageName;
 
 	// Use this for initialization
 	void Awake () {
-				text = GetComponent<DialogueController> ();
-				image = GetComponent<DialogueImageController> ();
+				text = GetComponentInChildren<DialogueController> ();
+				image = GetComponentInChildren<DialogueImageController> ();
+				background = GetComponentInChildren<DialogueBackgroundController> ();
+				button = GameObject.Find ("NextTextBox").GetComponent<NextButtonController> ();
+				textbox = GetComponentInChildren<TextboxController> ();
 		}
 	
 	// Update is called once per frame
@@ -20,22 +26,37 @@ public class DialogueMasterController : MonoBehaviour {
 	}
 
 	public void Activate () {
-				text.enabled = true;
 				text.SetText (textString);
-				image.SetTexture (tex);
+				text.enabled = true;
+				image.SetHead (imageName);
+				background.Activate ();
+				button.Deactivate ();
+		textbox.Activate ();
 		}
 
 	public void Deactivate () {
-				text.enabled = false;
 				text.SetText ("");
+				text.enabled = false;
 				image.Wipe ();
+				background.Deactivate ();
+				button.Deactivate ();
+		textbox.Deactivate ();
 		}
 
-	public void SetTexture (Texture t){
-				tex = t;
+	public void SetHead (string imageName){
+				this.imageName = imageName;
 		}
 
 	public void SetText (string tS){
 				textString = tS;
 		}
+
+	public void TextFinished(){
+				text.enabled = false;
+				button.Activate ();
+		}
+
+	public bool IsTextFinished(){
+		return !text.enabled;
+	}
 }

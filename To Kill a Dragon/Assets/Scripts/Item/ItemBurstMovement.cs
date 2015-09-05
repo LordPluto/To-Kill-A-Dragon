@@ -29,9 +29,11 @@ public class ItemBurstMovement : MonoBehaviour {
 				Ray ray = new Ray (transform.position, vectorDirection);
 				RaycastHit hit;
 		
-				if (Physics.Raycast (ray, out hit, vectorDirection.magnitude) && hit.collider.CompareTag ("Level")) {
-						distanceX -= hit.point.x - transform.position.x;
-						distanceZ -= hit.point.z - transform.position.z;
+				if (Physics.Raycast (ray, out hit, vectorDirection.magnitude, (1 << 13))) {
+						distanceX = (hit.point.x - transform.position.x);
+						distanceZ = (hit.point.z - transform.position.z);
+						distanceX += (distanceX < 0 ? collider.bounds.size.x : -collider.bounds.size.x);
+						distanceZ += (distanceZ < 0 ? collider.bounds.size.z : -collider.bounds.size.z);
 				}
 
 				xInc = (double)distanceX / (double)BurstTime;

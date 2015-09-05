@@ -28,11 +28,11 @@ public class LoadedDialogueController : MonoBehaviour {
 	/**
 	 * Load the dialogues of the NPCs listed in the array
 	 * **/
-	public void LoadNPCs(DialogueDump dialogueSource, ImageDump imageSource) {
+	public void LoadNPCs(DialogueDump dialogueSource) {
 				foreach (string s in loadingNPC) {
 						List<Dialogue> dialogueHolder = new List<Dialogue> ();
 
-						dialogueHolder = SetUpTree (dialogueSource.GetAsset (s, gameControl.getNPCFlag (s)), imageSource);
+						dialogueHolder = SetUpTree (dialogueSource.GetAsset (s, gameControl.getNPCFlag (s)));
 
 						if (dialogueHolder == null) {
 								Debug.LogError ("Holy fuck something went VERY wrong");
@@ -46,29 +46,27 @@ public class LoadedDialogueController : MonoBehaviour {
 	/**
 	 * Set up the dialogue tree given the text and image source
 	 * **/
-	private List<Dialogue> SetUpTree (TextAsset NPCDialogue, ImageDump imageSource) {
+	private List<Dialogue> SetUpTree (TextAsset NPCDialogue) {
 				List<Dialogue> lines = new List<Dialogue> ();
 
-				double widthOffset = Camera.main.pixelWidth / 1280;
-				double heightOffset = Camera.main.pixelHeight / 720;
-
-				if (NPCDialogue.text.Length <= 0) {
+				if (NPCDialogue == null || NPCDialogue.text.Length <= 0) {
 						return null;
 				}
 		
 				string[] splitData = NPCDialogue.text.Split ('\n');		/* Possibly slow */
-		
-				int splitPoint = (int)(374 * (float)(widthOffset + heightOffset) / 2);
-		
-				for (int i = 0; i<splitData.Length/2; i++) {
-						Texture image = imageSource.GetImage (splitData [(2 * i)]);	/* Possibly slow */
-						string text = splitData [(2 * i) + 1];
-			
-						while (text.Length > splitPoint) {
-								lines.Add (new Dialogue (text.Substring (0, splitPoint), image));
-								text = text.Substring (splitPoint);
-						}											/* Possibly slow */
-						lines.Add (new Dialogue (text, image));
+				bool isImage = true;
+				string image = null;
+				
+				for (int i = 0; i<splitData.Length; i++) {
+						if (isImage == true) {
+								image = splitData [i];	/* Possibly slow */
+								isImage = false;
+						} else if (splitData [i] == "" || splitData[i] == "\r") {
+								isImage = true;
+						} else {
+								string text = splitData [i];
+								lines.Add (new Dialogue (text, image));
+						}
 				}
 
 				return lines;
@@ -88,7 +86,7 @@ public class LoadedDialogueController : MonoBehaviour {
 
 	void OnTriggerEnter (Collider c){
 				if (c.CompareTag ("Player")) {
-						LoadNPCs (GameObject.Find ("_DialogueText").GetComponent<DialogueDump> (), GameObject.Find ("_DialogueImages").GetComponent<ImageDump> ());
+						LoadNPCs (GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ());
 				}
 		}
 }

@@ -28,6 +28,9 @@ public class PlayerMasterController : MonoBehaviour {
 
 	private bool windSpeedBoost;
 
+	private bool magnetActive;
+	private Vector3 magnetDirection;
+
 	#endregion
 
 	#region Cutscene
@@ -58,6 +61,12 @@ public class PlayerMasterController : MonoBehaviour {
 	private int maxLevel;
 
 	public float Def;
+
+	#endregion
+
+	#region Dialogue
+
+	private float talkDelay = 0;
 
 	#endregion
 
@@ -95,10 +104,16 @@ public class PlayerMasterController : MonoBehaviour {
 		}
 
 	void Update () {
+				if (talkDelay > 0) {
+						talkDelay--;
+				}
+
 				if (Flinch) {
 						FlinchUpdate ();
 				} else if (Cutscene) {
 						CutsceneUpdate ();
+				} else if (magnetActive) {
+						MagnetUpdate ();
 				} else {
 						PlayerUpdate ();
 				}
@@ -131,20 +146,20 @@ public class PlayerMasterController : MonoBehaviour {
 	 * The Update function used when the system has control
 	 * **/
 	private void CutsceneUpdate () {
-		Vector3 oldPosition = transform.position;
+				Vector3 oldPosition = transform.position;
 
-		Vector3 direction = currentPathPoint.transform.position - transform.position;
-		Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
+				Vector3 direction = currentPathPoint.transform.position - transform.position;
+				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
 
-		transform.position = playerMovement.CutsceneMovement (transform.position, direction, moveVector);
+				transform.position = playerMovement.CutsceneMovement (transform.position, direction, moveVector);
 
-		playerAnimation.setSpeed (transform.position != oldPosition);
+				playerAnimation.setSpeed (transform.position != oldPosition);
 
-		float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
+				float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
 
-		playerAnimation.setDirectionFromAngle (directionAngle);
+				playerAnimation.setDirectionFromAngle (directionAngle);
 		
-				if ((currentPathPoint.transform.position - transform.position).sqrMagnitude < Mathf.Pow((float)pointReached, 2)) {
+				if ((currentPathPoint.transform.position - transform.position).sqrMagnitude < Mathf.Pow ((float)pointReached, 2)) {
 						++pointIndex;
 						if (pointIndex > pathPoints.Length - 1) {
 								gameControl.PlayerFinishedCutscene ();
@@ -153,7 +168,16 @@ public class PlayerMasterController : MonoBehaviour {
 						}
 				}
 		}
-	
+
+	/**
+	 * The Update function used when the player is casting Magnet
+	 * **/
+	private void MagnetUpdate () {
+				Vector3 moveVector = magnetDirection * moveSpeed * Time.deltaTime * (windSpeedBoost ? 2 : 1);
+
+				transform.position = playerMovement.MagnetMovement (transform.position, moveVector);
+		}
+
 	/**
 	 * The Update function used when the player has control
 	 * **/
@@ -165,21 +189,25 @@ public class PlayerMasterController : MonoBehaviour {
 													Input.GetAxis ("Quick3"), Input.GetAxis ("Quick4"),
 													Input.GetAxis ("Quick5")};
 
-				float castSpell = Input.GetAxis ("CastSpell");
+				float castSpell = Input.GetAxis ("CastSpell") * (playerAnimation.isFalling () ? 0 : 1);
 		
 				ChangeSpell (changeSpell, quickSelect, castSpell);
 
 				playerAnimation.Animation (_controller.velocity);
 
-				if (Casting && playerSpells.CheckCastTime () <= -2) {
+				if (Casting && !magnetActive && playerSpells.CheckCastTime () <= -2) {
 						StopCasting ();
 				}
-				if (playerSpells.CheckCastDelay () == 0) {
+				if (!magnetActive && playerSpells.CheckCastDelay () == 0) {
 						gameControl.CastSpell (playerAnimation.getDirection ());
 				}
 
-				if (castSpell > 0.01 && !Talking && !Frozen) {
-						CastSpell ();
+				if (castSpell > 0.01) {
+						if (Talking) {
+								gameControl.talkingNext ();
+						} else if (talkDelay == 0 && !NPCNearby () && !Frozen) {
+								CastSpell ();
+						}
 				}
 		}
 
@@ -217,7 +245,7 @@ public class PlayerMasterController : MonoBehaviour {
 	 * cast the spell.
 	 * **/
 	private void CastSpell () {
-				if (playerSpells.StartCastTime (gameControl.getSpell ())) {
+				if (!magnetActive && playerSpells.StartCastTime (gameControl.getSpell ())) {
 						Casting = true;
 						playerAnimation.SpellAnimation (gameControl.getSpell ());
 				}
@@ -235,6 +263,7 @@ public class PlayerMasterController : MonoBehaviour {
 	 * **/
 	public void TalkingMove () {
 		Talking = false;
+		talkDelay = 10;
 	}
 
 	/**
@@ -399,8 +428,8 @@ public class PlayerMasterController : MonoBehaviour {
 	 * Gets percentage of EXP
 	 * **/
 	public float getPercentEXP () {
-		return 100 * currentEXP / nextLevelEXP;
-	}
+				return 100 * (currentEXP - EXPProgression [level - 1]) / (nextLevelEXP - EXPProgression [level - 1]);
+		}
 
 	/**
 	 * Take damage from an attack
@@ -449,5 +478,48 @@ public class PlayerMasterController : MonoBehaviour {
 				windSpeedBoost = boost;
 		}
 
+	/**
+	 * Freezes the player because Magnet is active
+	 * **/
+	public void MagnetFreeze(Vector3 magnetDirection){
+				magnetActive = true;
+				this.magnetDirection = magnetDirection;
+		}
 
+	/**
+	 * Allows the player to move because Magnet is no longer active
+	 * **/
+	public void MagnetMove(){
+				magnetActive = false;
+				magnetDirection = Vector3.zero;
+		}
+
+	/**
+	 * Checks to see if an NPC is nearby. If one is (and you can talk to them) return true.
+	 * **/
+	private bool NPCNearby() {
+				Collider[] npcColliders = Physics.OverlapSphere (transform.position, 5, 1 << 10);
+
+				if (npcColliders.Length != 0) {
+						NPCController closest = null;
+						float distance = Mathf.Infinity;
+						Vector3 position = transform.position;
+						foreach (Collider c in npcColliders) {
+								Vector3 diff = c.transform.position - position;
+								float curDistance = diff.sqrMagnitude;
+
+								if (curDistance < distance) {
+										closest = c.GetComponent<NPCController> ();
+										distance = curDistance;
+								}
+						}
+
+						if (closest.canTalkTo ()) {
+								closest.Talk ();
+								return true;
+						}
+				}
+
+				return false;
+		}
 }

@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_5;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +58,13 @@
      <Compile Include="Assets\Scripts\Item\ItemBurstMovement.cs" />
      <Compile Include="Assets\Scripts\Item\ItemMasterController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\CutsceneTriggerController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\DeathTrigger.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DestinationController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\DoorTriggerController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\MagnetCubeController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\SummonObjectController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Title Screen\ButtonNewGame.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Title Screen\ButtonQuit.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpDestinationController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpStartController.cs" />
@@ -69,15 +75,21 @@
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Fire.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\FireDestroy.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Heal.cs" />
-     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Ice.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceCrystal.cs" />
-     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Lightning.cs" />
-     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningChain.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceShotgun.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningBranch.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningSegment.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningStrike.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Magnet.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Unused Scripts\Ice.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Unused Scripts\Lightning.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Unused Scripts\LightningChain.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Wind.cs" />
      <Compile Include="Assets\Scripts\Spells\Other\Spell.cs" />
      <Compile Include="Assets\Scripts\Spells\Other\SpellList.cs" />
+     <Compile Include="Assets\Scripts\Spells\Other\SpellUpgrade.cs" />
      <Compile Include="Assets\Scripts\Various\AdviController.cs" />
-     <Compile Include="Assets\Scripts\Various\AdviImageController.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\DialogueBackgroundController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueDump.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueImageController.cs" />
@@ -85,6 +97,7 @@
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\ImageDump.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\LoadedDialogueController.cs" />
+     <Compile Include="Assets\Scripts\Various\Dialogue\NextButtonController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\TextController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\TextboxController.cs" />
      <Compile Include="Assets\Scripts\Various\GameController.cs" />
@@ -101,10 +114,16 @@
      <Compile Include="Assets\Scripts\Various\Movement\Movement.cs" />
      <Compile Include="Assets\Scripts\Various\NPC\NPCController.cs" />
      <Compile Include="Assets\Scripts\Various\NPC\VictorController.cs" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
+     <None Include="Assets\Resources\Test\Sarah Time Shenanigans.txt" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Resources\Test\Chapter One.txt" />
      <None Include="Assets\Resources\Test\Chapter Two.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.5/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

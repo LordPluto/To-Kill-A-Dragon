@@ -1,0 +1,113 @@
+fileFormatVersion: 2
+guid: 8b58b13f893d6344b9b409762dcc32be
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Lightning Branch 2
+    21300002: Lightning Center
+    21300004: Lightning Branch 3
+    21300006: Lightning Branch 4
+    21300008: Lightning Branch 5
+    21300010: Lightning Branch 1
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Lightning Branch 2
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 639
+        width: 180
+        height: 390
+      alignment: 9
+      pivot: {x: .344062626, y: -.00479830243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Lightning Center
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 352
+        width: 9
+        height: 504
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Lightning Branch 3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 55
+        width: 198
+        height: 381
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Lightning Branch 4
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 0
+        width: 136
+        height: 376
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Lightning Branch 5
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 179
+        width: 171
+        height: 259
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Lightning Branch 1
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 560
+        width: 148
+        height: 372
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
