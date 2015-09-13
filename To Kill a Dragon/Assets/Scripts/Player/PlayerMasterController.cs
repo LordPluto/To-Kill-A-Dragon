@@ -25,6 +25,7 @@ public class PlayerMasterController : MonoBehaviour {
 
 	private bool Flinch;
 	private Vector3 flinchDestination;
+	private bool FlinchHead;
 
 	private bool windSpeedBoost;
 
@@ -70,7 +71,13 @@ public class PlayerMasterController : MonoBehaviour {
 
 	#endregion
 
+	#region Movement
+
 	private Vector3 lastSafePosition = Vector3.zero;
+	private float ONE_SECOND = 1;
+	private float flinchTimer = 0;
+
+	#endregion
 
 	/**
 	 * Used for initialization
@@ -105,9 +112,15 @@ public class PlayerMasterController : MonoBehaviour {
 				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
 
-	void Update () {
+	void FixedUpdate () {
 				if (talkDelay > 0) {
 						talkDelay--;
+				}
+				if (flinchTimer > 0) {
+						flinchTimer -= Time.deltaTime;
+				} else if (flinchTimer > -1) {
+						flinchTimer = -1;
+						FlinchHead = false;
 				}
 
 				if (Flinch) {
@@ -129,7 +142,7 @@ public class PlayerMasterController : MonoBehaviour {
 		
 				Vector3 direction = flinchDestination - transform.position;
 				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime * (windSpeedBoost ? 2 : 1);
-		
+
 				transform.position = playerMovement.FlinchMovement (transform.position, moveVector);
 		
 				playerAnimation.setSpeed (transform.position != oldPosition);
@@ -367,7 +380,7 @@ public class PlayerMasterController : MonoBehaviour {
 	public void JumpPosition(Vector3 destination){
 				//NOTE: WE DON'T HAVE COLLISION CHECKING YET
 				transform.position = destination;
-				_controller.SimpleMove (Vector3.zero);
+		playerMovement.DeactivateUntilGrounded ();
 		}
 
 	/**
@@ -461,7 +474,7 @@ public class PlayerMasterController : MonoBehaviour {
 	 * Checks to see if the player is flinching or not
 	 * **/
 	public bool isFlinching() {
-				return Flinch;
+				return Flinch || FlinchHead;
 		}
 
 	/**
@@ -526,9 +539,28 @@ public class PlayerMasterController : MonoBehaviour {
 		}
 
 	/**
+	 * Sets the spawn point for when the player falls into a pit
+	 * **/
+	public void SetSpawn(Vector3 spawnPoint) {
+				lastSafePosition = spawnPoint;
+		}
+
+	/**
 	 * Respawns the player when they fall into a pit.
 	 * **/
 	public void PitSpawn() {
-		transform.position = lastSafePosition;
-	}
+				JumpPosition (lastSafePosition);
+				gameControl.DealPlayerBulletDamage (maxHP * .05f, Vector3.zero);
+		FlinchDuration (ONE_SECOND / 4);
+		}
+
+	/**
+	 * Sets a timer for flinch duration. Used for manually flinching for a certain
+	 * amount of seconds.
+	 * **/
+	private void FlinchDuration (float duration) {
+		FlinchHead = true;
+		flinchTimer = duration;
+		}
+
 }

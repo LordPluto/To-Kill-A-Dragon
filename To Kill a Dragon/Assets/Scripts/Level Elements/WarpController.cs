@@ -3,7 +3,7 @@ using System.Collections;
 
 public class WarpController : MonoBehaviour {
 
-	public WarpDestinationController destination;
+	private WarpDestinationController destination;
 
 	// Use this for initialization
 	void Start () {

@@ -6,8 +6,28 @@ public class PlayerMovementController {
 	private float movementSpeed = 5;
 	private CharacterController _controller;
 
+	private Vector3 speed;
+	private const float gravity = .3f;
+	private float vSpeed = 0;
+
+	private bool deactivated = false;
+
 	public PlayerMovementController(CharacterController _controller){
+				speed = new Vector3 ();
 				this._controller = _controller;
+		}
+
+	private void Move(Vector3 displacement){
+				vSpeed -= gravity * Time.deltaTime;
+				displacement.y = vSpeed;
+
+				if (_controller.isGrounded) {
+						vSpeed = 0;
+				}
+
+				_controller.Move (displacement);
+
+				deactivated = !_controller.isGrounded;
 		}
 
 	/**
@@ -18,14 +38,19 @@ public class PlayerMovementController {
 				float XSpeed = Input.GetAxis ("Horizontal");
 
 				float speedMultiplier = movementSpeed * (WindBoost ? 2 : 1);
-		
-				Vector3 speed = new Vector3 (XSpeed * speedMultiplier, 0, ZSpeed * speedMultiplier);
-		
+
+				if (deactivated) {
+						Move (speed * Time.deltaTime);
+						return;
+				}
+
+				speed = new Vector3 (XSpeed * speedMultiplier, 0, ZSpeed * speedMultiplier);
+
 				if (Talking || Frozen || Casting) {
 						speed = Vector3.zero;
 				}
 
-				_controller.SimpleMove (speed);
+				Move (speed * Time.deltaTime);
 		}
 
 	/**
@@ -66,5 +91,14 @@ public class PlayerMovementController {
 				}
 
 				return position;
+		}
+
+	/**
+	 * Prevents the player from controlling the character until they've landed.
+	 * Only used when the player needs to fall straight down.
+	 * **/
+	public void DeactivateUntilGrounded() {
+				deactivated = true;
+		speed = Vector3.zero;
 		}
 }
