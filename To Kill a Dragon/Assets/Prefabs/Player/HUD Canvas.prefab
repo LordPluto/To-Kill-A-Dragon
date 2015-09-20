@@ -193,6 +193,9 @@ MonoBehaviour:
   - {fileID: 2800000, guid: b194b499d70334145acbaacdda5ec554, type: 3}
   - {fileID: 2800000, guid: 92945f90dc0de6841b024c8ec2414e1b, type: 3}
   - {fileID: 2800000, guid: 4f153368eac48044992be1181a5205ad, type: 3}
+  - {fileID: 2800000, guid: 4f153368eac48044992be1181a5205ad, type: 3}
+  - {fileID: 2800000, guid: 4f153368eac48044992be1181a5205ad, type: 3}
+  - {fileID: 2800000, guid: 4f153368eac48044992be1181a5205ad, type: 3}
   - {fileID: 2800000, guid: 869ed6ac2ca75af4fa667acd7a56eb22, type: 3}
   - {fileID: 2800000, guid: 6587bfde80b53a74da77a8969366ae79, type: 3}
   - {fileID: 2800000, guid: 8fca98a2934f4fb44a4782e59aeb8d2e, type: 3}
@@ -408,8 +411,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreReversedGraphics: 1
-  blockingObjects: 0
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295

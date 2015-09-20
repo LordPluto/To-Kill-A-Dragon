@@ -81,10 +81,10 @@ public class HUDController : MonoBehaviour {
 						spells = GetComponentInChildren<HUDSpellController> ();
 				}
 
-				if (selectedSpell.getNumber () != 17 || magnetPole == Pole.North)
+				if (selectedSpell.getNumber () != (int)SPELL.MagnetNorth || magnetPole == Pole.North)
 						spells.SetTexture (selectedSpell.getNumber ());
 				else
-						spells.SetTexture (21);
+						spells.SetTexture ((int)SPELL.MagnetSouth);
 		}
 
 	/**

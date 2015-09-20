@@ -1,6 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum SPELL {
+	Fire = 0,
+	Fire2 = 1,
+	Fire3 = 2,
+	FireEx = 3,
+	Ice = 4,
+	Ice2 = 5,
+	Ice3 = 6,
+	IceEx = 7,
+	Lightning = 8,
+	Lightning2 = 9,
+	Lightning3 = 10,
+	LightningEX = 11,
+	Heal = 12,
+	Heal2 = 13,
+	Heal3 = 14,
+	HealEx = 15,
+	Wind = 16,
+	MagnetNorth = 17,
+	Mirror = 18,
+	Mirror2 = 19,
+	Mirror3 = 20,
+	MirrorEx = 21,
+	Death = 22,
+	Illuminate = 23,
+	MagnetSouth = 24,
+}
+
 public class SpellList : MonoBehaviour {
 
 	public Transform Fire;
@@ -22,7 +50,9 @@ public class SpellList : MonoBehaviour {
 	public Transform Wind;
 	public Transform Magnet;
 	public Transform Mirror;
-	public Transform Heavy;
+	public Transform Mirror2;
+	public Transform Mirror3;
+	public Transform MirrorEx;
 	public Transform Death;
 	public Transform Illuminate;
 
@@ -79,10 +109,14 @@ public class SpellList : MonoBehaviour {
 				case 18:
 						return this.Mirror;
 				case 19:
-						return this.Heavy;
+						return this.Mirror2;
 				case 20:
-						return this.Death;
+						return this.Mirror3;
 				case 21:
+						return this.MirrorEx;
+				case 22:
+						return this.Death;
+				case 23:
 						return this.Illuminate;
 				}
 				return null;

@@ -19,7 +19,10 @@ public class SpellUpgrade : MonoBehaviour {
 		LightningEx = 8,
 		Heal2 = 9,
 		Heal3 = 10,
-		HealEx = 11
+		HealEx = 11,
+		Mirror2 = 12,
+		Mirror3 = 13,
+		MirrorEx = 14
 	}
 
 	// Use this for initialization
@@ -69,6 +72,15 @@ public class SpellUpgrade : MonoBehaviour {
 				break;
 			case 11:
 				gameControl.SpellUpgrade (UpgradeForm, new HealExSpell());
+				break;
+			case 12:
+				gameControl.SpellUpgrade (UpgradeForm, new Mirror2Spell());
+				break;
+			case 13:
+				gameControl.SpellUpgrade (UpgradeForm, new Mirror3Spell());
+				break;
+			case 14:
+				gameControl.SpellUpgrade (UpgradeForm, new MirrorExSpell());
 				break;
 				}
 		}
