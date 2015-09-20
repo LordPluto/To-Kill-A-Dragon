@@ -7,7 +7,7 @@ public class PlayerMovementController {
 	private CharacterController _controller;
 
 	private Vector3 speed;
-	private const float gravity = .3f;
+	private const float gravity = 9.82f;
 	private float vSpeed = 0;
 
 	private bool deactivated = false;
@@ -25,7 +25,7 @@ public class PlayerMovementController {
 						vSpeed = 0;
 				}
 
-				_controller.Move (displacement);
+				_controller.Move (displacement * Time.deltaTime);
 
 				deactivated = !_controller.isGrounded;
 		}
@@ -40,7 +40,7 @@ public class PlayerMovementController {
 				float speedMultiplier = movementSpeed * (WindBoost ? 2 : 1);
 
 				if (deactivated) {
-						Move (speed * Time.deltaTime);
+						Move (speed);
 						return;
 				}
 
@@ -50,7 +50,7 @@ public class PlayerMovementController {
 						speed = Vector3.zero;
 				}
 
-				Move (speed * Time.deltaTime);
+				Move (speed);
 		}
 
 	/**

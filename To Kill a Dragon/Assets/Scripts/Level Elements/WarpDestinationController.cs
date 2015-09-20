@@ -14,7 +14,8 @@ public class WarpDestinationController : MonoBehaviour {
 	}
 
 	/**
-	 * Gets the position of the object
+	 * Gets the position of the object.
+	 * Called by script in parent object.
 	 * **/
 	public Vector3 getPosition(){
 		return transform.position;

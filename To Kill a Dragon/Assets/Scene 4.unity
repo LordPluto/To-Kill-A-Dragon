@@ -525,9 +525,9 @@ GameObject:
   - 64: {fileID: 134614314}
   - 95: {fileID: 134614309}
   - 64: {fileID: 134614313}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Hill Model
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6562,6 +6562,14 @@ Prefab:
     - target: {fileID: 2300000, guid: cf5eac9339b2f6340937b81cdc5c8813, type: 3}
       propertyPath: m_UseLightProbes
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cf5eac9339b2f6340937b81cdc5c8813, type: 3}
+      propertyPath: m_TagString
+      value: Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cf5eac9339b2f6340937b81cdc5c8813, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf5eac9339b2f6340937b81cdc5c8813, type: 3}
