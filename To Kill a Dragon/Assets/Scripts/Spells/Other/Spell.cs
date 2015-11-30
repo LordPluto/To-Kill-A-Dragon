@@ -4,14 +4,14 @@ using System.Collections;
 public class Spell {
 
 	private Transform spellForm;
-
-	private int spellNumber;
-	private int spellCastTime;
-	private int spellDelay;
-	private int spellCost;
-	private int spellDamage;
-	private float spellKnockback;
-	private string spellType;
+	
+	private int spellNumber;		//Spell's unique number. Uses the SPELL enum.
+	private int spellCastTime;		//Time until another spell can be cast
+	private int spellDelay;			//Delay between beginning animation and time spell is cast
+	private int spellCost;			//Cost in MP
+	private int spellDamage;		//Amount of damage each attack spell does.
+	private float spellKnockback;	//Multiplier of knockback distance from spell
+	private string spellType;		//What type of spell it is, "Attack" or "Support"
 	
 
 

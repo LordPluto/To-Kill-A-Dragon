@@ -112,7 +112,7 @@ public class PlayerMasterController : MonoBehaviour {
 				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
 
-	void FixedUpdate () {
+	void Update () {
 				if (talkDelay > 0) {
 						talkDelay--;
 				}
@@ -123,6 +123,14 @@ public class PlayerMasterController : MonoBehaviour {
 						FlinchHead = false;
 				}
 
+				if (Input.GetButtonDown ("Menu") && !Talking) {
+						gameControl.MenuInput ();
+				} else if (Input.GetButtonDown ("Pause")) {
+						gameControl.PauseInput ();
+				}
+		}
+
+	void FixedUpdate () {
 				if (Flinch) {
 						FlinchUpdate ();
 				} else if (Cutscene) {
@@ -135,7 +143,7 @@ public class PlayerMasterController : MonoBehaviour {
 		}
 
 	/**
-	 * The Update function used when flinching
+	 * <para>The Update function used when flinching</para>
 	 * **/
 	private void FlinchUpdate () {
 				Vector3 oldPosition = transform.position;
@@ -158,7 +166,7 @@ public class PlayerMasterController : MonoBehaviour {
 		}
 
 	/**
-	 * The Update function used when the system has control
+	 * <para>The Update function used when the system has control</para>
 	 * **/
 	private void CutsceneUpdate () {
 				Vector3 oldPosition = transform.position;
@@ -185,7 +193,7 @@ public class PlayerMasterController : MonoBehaviour {
 		}
 
 	/**
-	 * The Update function used when the player is casting Magnet
+	 * <para>The Update function used when the player is casting Magnet</para>
 	 * **/
 	private void MagnetUpdate () {
 				Vector3 moveVector = magnetDirection * moveSpeed * Time.deltaTime * (windSpeedBoost ? 2 : 1);
@@ -194,15 +202,15 @@ public class PlayerMasterController : MonoBehaviour {
 		}
 
 	/**
-	 * The Update function used when the player has control
+	 * <para>The Update function used when the player has control</para>
 	 * **/
 	private void PlayerUpdate () {
 				playerMovement.PlayerMovement (Talking, Frozen, Casting, windSpeedBoost);
 
 				float changeSpell = Input.GetAxis ("SpellChange");
-				float[] quickSelect = new float[] { Input.GetAxis ("Quick1"),Input.GetAxis ("Quick2"),
-													Input.GetAxis ("Quick3"), Input.GetAxis ("Quick4"),
-													Input.GetAxis ("Quick5")};
+				bool[] quickSelect = new bool[] { Input.GetButtonDown ("Quick1"),Input.GetButtonDown ("Quick2"),
+													Input.GetButtonDown ("Quick3"), Input.GetButtonDown ("Quick4"),
+													Input.GetButtonDown ("Quick5")};
 
 				float castSpell = Input.GetAxis ("CastSpell") * (playerAnimation.isFalling () ? 0 : 1);
 		
@@ -229,10 +237,10 @@ public class PlayerMasterController : MonoBehaviour {
 	/**
 	 * Checks to see if the player is changing what spell they have active
 	 * **/
-	private void ChangeSpell(float spellChange, float[] quickSelect, float castSpell){
-				bool reset = (spellChange == 0 && quickSelect [0] == 0 &&
-						quickSelect [1] == 0 && quickSelect [2] == 0 &&
-						quickSelect [3] == 0 && quickSelect [4] == 0);
+	private void ChangeSpell(float spellChange, bool[] quickSelect, float castSpell){
+				bool reset = (spellChange == 0 && !(quickSelect [0] ||
+						quickSelect [1] || quickSelect [2] ||
+						quickSelect [3] || quickSelect [4]));
 
 				if (!shiftOnce && castSpell < 0.01) {
 						if (spellChange > 0.01) {			/* The player hit E */
@@ -243,7 +251,7 @@ public class PlayerMasterController : MonoBehaviour {
 								shiftOnce = true;
 						} else {
 								for (int i = 0; i<quickSelect.Length; i++) {
-										if (quickSelect [i] > 0.01) {
+										if (quickSelect [i]) {
 												gameControl.QuickSelect (i + 1);
 												shiftOnce = true;
 												break;
@@ -270,23 +278,23 @@ public class PlayerMasterController : MonoBehaviour {
 	 * Freezes the player in place - used in dialogue
 	 * **/
 	public void TalkingFreeze () {
-		Talking = true;
-	}
+				Talking = true;
+		}
 
 	/**
 	 * Frees the player - used in dialogue
 	 * **/
 	public void TalkingMove () {
-		Talking = false;
-		talkDelay = 10;
-	}
+				Talking = false;
+				talkDelay = 10;
+		}
 
 	/**
 	 * Prevents the player from moving - used for not dialogue
 	 * **/
 	public void Freeze() {
-			Frozen = true;
-	}
+				Frozen = true;
+		}
 
 	/**
 	 * Allows the player to move - used for not dialogue
@@ -531,8 +539,9 @@ public class PlayerMasterController : MonoBehaviour {
 
 						if (closest.canTalkTo ()) {
 								closest.Talk ();
-								return true;
 						}
+
+						return true;
 				}
 
 				return false;
@@ -551,7 +560,7 @@ public class PlayerMasterController : MonoBehaviour {
 	public void PitSpawn() {
 				JumpPosition (lastSafePosition);
 				gameControl.DealPlayerBulletDamage (maxHP * .05f, Vector3.zero);
-		FlinchDuration (ONE_SECOND / 4);
+				FlinchDuration (ONE_SECOND / 4);
 		}
 
 	/**
@@ -559,8 +568,8 @@ public class PlayerMasterController : MonoBehaviour {
 	 * amount of seconds.
 	 * **/
 	private void FlinchDuration (float duration) {
-		FlinchHead = true;
-		flinchTimer = duration;
+				FlinchHead = true;
+				flinchTimer = duration;
 		}
 
 }

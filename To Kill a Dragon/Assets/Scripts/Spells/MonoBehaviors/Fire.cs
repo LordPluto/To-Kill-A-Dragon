@@ -49,9 +49,19 @@ public class Fire : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider c){
-				if (c.CompareTag ("NPC") || !(c.CompareTag ("Player") || c.name.Equals (name) || c.CompareTag ("SpellIgnore") || c.tag.Substring (0,4).Equals("Item"))) {
-						_animator.SetTrigger ("Destroy");
-						FD.enabled = true;
+				if (c.CompareTag ("NPC") || 
+						!(c.CompareTag ("Player") || c.name.Equals (name) || c.tag.Contains ("SpellIgnore") || c.tag.Substring (0, 4).Equals ("Item"))) {
+						if (_animator == null) {
+								GetComponent<Animator> ().SetTrigger ("Destroy");
+						} else {
+								_animator.SetTrigger ("Destroy");
+						}
+
+						if (FD == null) {
+								GetComponent<FireDestroy> ().enabled = true;
+						} else {
+								FD.enabled = true;
+						}
 						Destroy (this);
 				}
 		}

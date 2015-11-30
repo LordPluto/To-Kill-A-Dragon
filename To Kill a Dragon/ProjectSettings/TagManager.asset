@@ -8,8 +8,8 @@ TagManager:
   - Level
   - NPC
   - SpellIgnore
-  - Path Point
-  - DialogueLoading
+  - Path Point SpellIgnore
+  - DialogueLoading SpellIgnore
   - Enemy
   - SpellIce
   - SpellLightning
@@ -24,7 +24,7 @@ TagManager:
   - MagnetPillar
   - SpellMagnet
   - MagnetCube
-  - Trigger
+  - Trigger SpellIgnore
   - 
   - 
   Builtin Layer 0: Default

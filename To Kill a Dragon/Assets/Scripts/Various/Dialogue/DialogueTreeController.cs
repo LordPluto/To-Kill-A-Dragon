@@ -36,7 +36,7 @@ public class DialogueTreeController : MonoBehaviour {
 	 * **/
 	public void Activate (string NPCName) {
 		nextBox = 10;
-				foreach (GameObject o in GameObject.FindGameObjectsWithTag ("DialogueLoading")) {
+				foreach (GameObject o in GameObject.FindGameObjectsWithTag ("DialogueLoading SpellIgnore")) {
 						lines = o.GetComponent<LoadedDialogueController> ().getDialogue (NPCName);
 						if (lines != null) {
 								break;

@@ -42,6 +42,8 @@ public class GameController : MonoBehaviour {
 
 	private NPCController storedNPC;
 
+	private MenuController MenuCanvas;
+
 	#endregion
 
 	#region Spells
@@ -80,6 +82,12 @@ public class GameController : MonoBehaviour {
 
 	#endregion
 
+	#region Menus
+
+	private bool menuOpen;
+
+	#endregion
+
 	/**
 	 * Use this for initialization
 	 * **/
@@ -88,6 +96,7 @@ public class GameController : MonoBehaviour {
 				//Screen.SetResolution (1280, 720, false);
 
 				currentHead = Head.Fine;
+				menuOpen = false;
 
 				wallet = 0;
 		}
@@ -102,17 +111,16 @@ public class GameController : MonoBehaviour {
 				characterFlags = new Dictionary<string, int> ();
 				characterLines = new Dictionary<int, TextAsset> ();
 
+				MenuCanvas = GameObject.Find ("Enter Menu").GetComponent<MenuController>();
+		MenuCanvas.SetEnabled (false);
+
 				
 				//Testing for Dialogue logic. MARKED FOR DELETION
-				assetTest = new Dictionary<int, TextAsset> ();
-				dialogueDump.AddLines (1, (TextAsset)Resources.Load ("Test/Chapter One"), ref assetTest);
-				dialogueDump.AddPerson ("Victor", assetTest);
+				dialogueDump.AddLines ("Victor", 1, (TextAsset)Resources.Load ("Test/Chapter One"));
 				characterFlags.Add ("Victor", 1);
-				dialogueDump.AddLines (2, (TextAsset)Resources.Load ("Test/Chapter Two"), ref assetTest);
-				dialogueDump.AddPerson ("Victor2", assetTest);
-				characterFlags.Add ("Victor2", 2);
-				dialogueDump.AddLines (3, (TextAsset)Resources.Load ("Test/Sarah Time Shenanigans"), ref assetTest);
-				dialogueDump.AddPerson ("new Sarah Sprite", assetTest);
+				dialogueDump.AddLines ("Victor2", 1, (TextAsset)Resources.Load ("Test/Chapter Two"));
+				characterFlags.Add ("Victor2", 1);
+				dialogueDump.AddLines ("new Sarah Sprite", 3, (TextAsset)Resources.Load ("Test/Sarah Time Shenanigans"));
 				characterFlags.Add ("new Sarah Sprite", 3);
 				//END TEST
 
@@ -147,9 +155,9 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
-	 * Shows the dialogue box.
-	 * Parameter: string NPCName - Name to look for
-	 * Result: Displaying the dialogue box and dialogue, if successful. Player can't move or cast spells.
+	 * <para>Shows the dialogue box.</para>
+	 * <para>Player cannot move or cast spells.</para>
+	 * <param name="NPCName">Name to look for</param>
 	 * **/
 	public void ShowDialogue (string NPCName) {
 				treeControl.Activate (NPCName);
@@ -161,8 +169,8 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
-	 * Hides the dialogue box.
-	 * Result: Removed the dialogue box and dialogue, if successful. Player can move and cast spells.
+	 * <para>Hides the dialogue box.</para>
+	 * <para>Removed the dialogue box and dialogue, if successful. Player can move and cast spells.</para>
 	 * **/
 	public void HideDialogue () {
 				treeControl.Deactivate ();
@@ -173,14 +181,14 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
-	 * Gets the selected spell
+	 * <returns>Currently selected spell</returns>
 	 * **/
 	public Spell getSpell(){
 				return selectedSpell;
 		}
 
 	/**
-	 * Goes to the next spell
+	 * <para>Goes to the next spell</para>
 	 * **/
 	public void NextSpell(){
 				if (spellIndex >= KnownSpells.Count - 1) {
@@ -195,7 +203,7 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
-	 * Goes to the previous spell
+	 * <para>Goes to the previous spell</para>
 	 * **/
 	public void PreviousSpell(){
 				if (spellIndex < 1) {
@@ -211,7 +219,8 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
-	 * Goes to the quick spell slot
+	 * <para>Goes to the quick spell slot</para>
+	 * <param name="quickSlot">Quick select slot</param>
 	 * **/
 	public void QuickSelect(int quickSlot){
 				if (quickSlot >= 0 && quickSlot < 5 && QuickSpells [quickSlot] != null) {
@@ -535,4 +544,20 @@ public class GameController : MonoBehaviour {
 		cubeControl.MagnetMovement ((MagnetPole == Pole.North ? magnetDirection : -1 * magnetDirection));
 		playerControl.MagnetFreeze (Vector3.zero);
 	}
+
+	/**
+	 * <para>Opens/closes the menu</para>
+	 * **/
+	public void MenuInput() {
+				menuOpen = !menuOpen;
+				MenuCanvas.SetEnabled (menuOpen);
+				Time.timeScale = (menuOpen ? 0 : 1);
+		}
+
+	/**
+	 * <para>Opens/closes the pause screen</para>
+	 * **/
+	public void PauseInput() {
+
+		}
 }

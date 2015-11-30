@@ -17,6 +17,12 @@ public class DialogueDump : MonoBehaviour {
 
 	}
 
+	/**
+	 * Retrieves the block of text
+	 * <param name="name">What character is associated with this block of text</param>
+	 * <param name="flag">What character flag is associated with this block of text</param>
+	 * <returns>Text asset if found, null otherwise</returns>
+	 * **/
 	public TextAsset GetAsset (string name, int flag) {
 				Dictionary<int, TextAsset> temp;
 				if (scripts.TryGetValue (name, out temp)) {
@@ -29,11 +35,20 @@ public class DialogueDump : MonoBehaviour {
 				return null;
 		}
 
-	public void AddPerson (string name, Dictionary<int, TextAsset> dump) {
-				scripts.Add (name, dump);
-		}
-
-	public void AddLines (int flag, TextAsset lines, ref Dictionary<int, TextAsset> target) {
-				target.Add (flag, lines);
+	/**
+	 * Adds lines to a character's pool.
+	 * <param name="name">What character is associated with this block of text</param>
+	 * <param name="flag">What character flag is associated with this block of text</param>
+	 * <param name="lines">The block of text itself</param>
+	 * **/
+	public void AddLines (string name, int flag, TextAsset lines) {
+				Dictionary<int, TextAsset> temp;
+				if (scripts.TryGetValue (name, out temp)) {
+						temp.Add (flag, lines);
+				} else {
+						temp = new Dictionary<int, TextAsset> ();
+						temp.Add (flag, lines);
+						scripts.Add (name, temp);
+				}
 		}
 }
