@@ -92,29 +92,15 @@ public class GameController : MonoBehaviour {
 	 * Use this for initialization
 	 * **/
 	void Start () {
-				Screen.showCursor = false;
-				//Screen.SetResolution (1280, 720, false);
-
-				currentHead = Head.Fine;
-				menuOpen = false;
-
-				wallet = 0;
-		}
-
-	void Awake () {
 				treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
 				playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
 				HUDControl = GameObject.Find ("HUD Canvas").GetComponent<HUDController> ();
 				dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
-
-
-				characterFlags = new Dictionary<string, int> ();
-				characterLines = new Dictionary<int, TextAsset> ();
-
-				MenuCanvas = GameObject.Find ("Enter Menu").GetComponent<MenuController>();
-		MenuCanvas.SetEnabled (false);
-
 				
+				MenuCanvas = GameObject.Find ("Enter Menu").GetComponent<MenuController> ();
+				MenuCanvas.SetEnabled (false);
+		
+		
 				//Testing for Dialogue logic. MARKED FOR DELETION
 				dialogueDump.AddLines ("Victor", 1, (TextAsset)Resources.Load ("Test/Chapter One"));
 				characterFlags.Add ("Victor", 1);
@@ -123,10 +109,10 @@ public class GameController : MonoBehaviour {
 				dialogueDump.AddLines ("new Sarah Sprite", 3, (TextAsset)Resources.Load ("Test/Sarah Time Shenanigans"));
 				characterFlags.Add ("new Sarah Sprite", 3);
 				//END TEST
-
+		
 				spellBook = GameObject.Find ("_SpellBook").GetComponent<SpellList> ();
 				KnownSpells = new List<Spell> ();
-
+		
 				//Testing for Spells. MARKED FOR DELETION
 				AddSpell (new FireSpell ());
 				AddSpell (new IceSpell ());
@@ -139,6 +125,19 @@ public class GameController : MonoBehaviour {
 		
 				selectedSpell = KnownSpells [spellIndex];
 				//END TEST
+		}
+
+	void Awake () {
+				Screen.showCursor = false;
+				//Screen.SetResolution (1280, 720, false);
+		
+				currentHead = Head.Fine;
+				menuOpen = false;
+		
+				wallet = 0;
+		
+				characterFlags = new Dictionary<string, int> ();
+				characterLines = new Dictionary<int, TextAsset> ();
 		}
 	
 	// Update is called once per frame
@@ -559,5 +558,13 @@ public class GameController : MonoBehaviour {
 	 * **/
 	public void PauseInput() {
 
+		}
+
+	/**
+	 * <para>Accessor for the wallet value</para>
+	 * <returns>The amount of money the player has</returns>
+	 * **/
+	public float GetWallet() {
+				return wallet;
 		}
 }

@@ -21,12 +21,12 @@ public class CutsceneTriggerController : MonoBehaviour {
 	 * Use this for initialization
 	 * **/
 	void Start () {
-				renderer.enabled = false;
-		transform.position = new Vector3 (transform.position.x, (float)Ground, transform.position.z);
+				_controller = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
 
 	void Awake () {
-				_controller = GameObject.Find ("_GameController").GetComponent<GameController> ();
+				renderer.enabled = false;
+				transform.position = new Vector3 (transform.position.x, (float)Ground, transform.position.z);
 		}
 	
 	/**

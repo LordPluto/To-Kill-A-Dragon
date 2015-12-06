@@ -38,7 +38,7 @@ public class Fire : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		transform.position += NewPosition / 3;
 		Timer--;
 		if (Timer <= 0) {

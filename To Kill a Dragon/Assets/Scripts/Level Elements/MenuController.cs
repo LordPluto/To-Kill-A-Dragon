@@ -4,30 +4,21 @@ using System.Collections;
 
 public class MenuController : MonoBehaviour {
 
-	private RawImage background;
-	private Image display;
+	private Canvas menu;
+	private Canvas buttons;
 
-	private Image statusImage;
-	private Button statusButton;
-	private Text statusText;
-	private Image inventoryImage;
-	private Button inventoryButton;
-	private Text inventoryText;
-	private Image equipmentImage;
-	private Button equipmentButton;
-	private Text equipmentText;
-	private Image customizeImage;
-	private Button customizeButton;
-	private Text customizeText;
-	private Image questImage;
-	private Button questButton;
-	private Text questText;
+	private GameController gameControl;
+	private Text walletText;
 
 	private Image debugImage;
 	private Button debugButton;
 	private Text debugText;
 
 	private bool objInit = false;
+	private bool debugToggle = false;
+
+	private string[] keys = {"1","1","1","6"};
+	private int keyIndex=0;
 
 	// Use this for initialization
 	void Start () {
@@ -36,48 +27,31 @@ public class MenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+				if (Input.GetKeyDown (keys [keyIndex]))
+						keyIndex++;
+
+				if (keyIndex >= keys.Length) {
+						keyIndex = 0;
+						ToggleDebug (!debugToggle);
+				}
+		}
 
 	/**
 	 * <para>Initializes all the objects.</para>
 	 * */
 	private void InitObjects() {
-				background = GameObject.Find ("Background Panel").GetComponent<RawImage> ();
-				display = GameObject.Find ("Display Panel").GetComponent<Image> ();
-		
-				GameObject status = GameObject.Find ("StatusButton");
-				GameObject inventory = GameObject.Find ("InventoryButton");
-				GameObject equipment = GameObject.Find ("EquipmentButton");
-				GameObject customize = GameObject.Find ("CustomizeButton");
-				GameObject quest = GameObject.Find ("QuestButton");
+				menu = GameObject.Find ("Enter Menu").GetComponent<Canvas> ();
+				buttons = GameObject.Find ("MenuButton Canvas").GetComponent<Canvas> ();
+		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
+		walletText = GameObject.Find ("Menu Money").GetComponent<Text> ();
+
 				GameObject debug = GameObject.Find ("DebugButton");
-		
-				statusImage = status.GetComponent<Image> ();
-				statusButton = status.GetComponent<Button> ();
-				statusText = status.GetComponentInChildren<Text> ();
-		
-				inventoryImage = inventory.GetComponent<Image> ();
-				inventoryButton = inventory.GetComponent <Button> ();
-				inventoryText = inventory.GetComponentInChildren<Text> ();
-		
-				equipmentImage = equipment.GetComponent<Image> ();
-				equipmentButton = equipment.GetComponent<Button> ();
-				equipmentText = equipment.GetComponentInChildren<Text> ();
-		
-				customizeImage = customize.GetComponent<Image> ();
-				customizeButton = customize.GetComponent<Button> ();
-				customizeText = customize.GetComponentInChildren<Text> ();
-		
-				questImage = quest.GetComponent<Image> ();
-				questButton = quest.GetComponent<Button> ();
-				questText = quest.GetComponentInChildren<Text> ();
 		
 				debugImage = debug.GetComponent<Image> ();
 				debugButton = debug.GetComponent<Button> ();
 				debugText = debug.GetComponentInChildren<Text> ();
 
-		objInit = true;
+				objInit = true;
 		}
 
 	/**
@@ -88,31 +62,31 @@ public class MenuController : MonoBehaviour {
 				if (!objInit) {
 						InitObjects ();
 				}
-				background.enabled = enableContents;
-				display.enabled = enableContents;
+				menu.enabled = enableContents;
+				buttons.enabled = enableContents;
 
-				statusImage.enabled = enableContents;
-				statusButton.enabled = enableContents;
-				statusText.enabled = enableContents;
+				walletText.text = gameControl.GetWallet ().ToString();
+		}
 
-				inventoryImage.enabled = enableContents;
-				inventoryButton.enabled = enableContents;
-				inventoryText.enabled = enableContents;
+	/**
+	 * <para>Enables debug mode. If debug mode is enabled, the debug menu option
+	 * will be shown.</para>
+	 * <param name="EnableDebug">Enable or disable debug mode.</param>
+	 * **/
+	public void ToggleDebug(bool EnableDebug) {
+				debugToggle = EnableDebug;
 
-				equipmentImage.enabled = enableContents;
-				equipmentButton.enabled = enableContents;
-				equipmentText.enabled = enableContents;
+				debugImage.enabled = EnableDebug;
+				debugButton.enabled = EnableDebug;
+				debugText.enabled = EnableDebug;
+		}
 
-				customizeImage.enabled = enableContents;
-				customizeButton.enabled = enableContents;
-				customizeText.enabled = enableContents;
-
-				questImage.enabled = enableContents;
-				questButton.enabled = enableContents;
-				questText.enabled = enableContents;
-
-				debugImage.enabled = enableContents;
-				debugButton.enabled = enableContents;
-				debugText.enabled = enableContents;
+	/**
+	 * <para>Sets the sequence for toggling debug mode</para>
+	 * <param name="KeySequence">Key sequence in array form.</param>
+	 * **/
+	public void SetKeySequence(string[] KeySequence) {
+				keys = KeySequence;
+				keyIndex = 0;
 		}
 }
