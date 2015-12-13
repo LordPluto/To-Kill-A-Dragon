@@ -13,13 +13,19 @@ public class DialogueMasterController : MonoBehaviour {
 	private string imageName;
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 				text = GetComponentInChildren<DialogueController> ();
 				image = GetComponentInChildren<DialogueImageController> ();
 				background = GetComponentInChildren<DialogueBackgroundController> ();
 				button = GameObject.Find ("NextTextBox").GetComponent<NextButtonController> ();
 				textbox = GetComponentInChildren<TextboxController> ();
+
+				DontDestroyOnLoad (GameObject.Find ("DialogueButton Canvas"));
 		}
+
+	void Awake () {
+		DontDestroyOnLoad (transform.gameObject);
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,7 +37,7 @@ public class DialogueMasterController : MonoBehaviour {
 				image.SetHead (imageName);
 				background.Activate ();
 				button.Deactivate ();
-		textbox.Activate ();
+				textbox.Activate ();
 		}
 
 	public void Deactivate () {
@@ -40,7 +46,7 @@ public class DialogueMasterController : MonoBehaviour {
 				image.Wipe ();
 				background.Deactivate ();
 				button.Deactivate ();
-		textbox.Deactivate ();
+				textbox.Deactivate ();
 		}
 
 	public void SetHead (string imageName){

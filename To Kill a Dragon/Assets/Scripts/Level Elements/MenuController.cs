@@ -23,6 +23,11 @@ public class MenuController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		InitObjects ();
+		DontDestroyOnLoad (GameObject.Find ("MenuButton Canvas"));
+	}
+
+	void Awake () {
+		DontDestroyOnLoad (transform.gameObject);
 	}
 	
 	// Update is called once per frame

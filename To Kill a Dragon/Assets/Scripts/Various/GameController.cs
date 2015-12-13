@@ -88,6 +88,13 @@ public class GameController : MonoBehaviour {
 
 	#endregion
 
+	#region Holders
+	
+	private List<StopOnTalk> talkingList;
+	private List<StopOnFreeze> freezingList;
+	
+	#endregion
+
 	/**
 	 * Use this for initialization
 	 * **/
@@ -103,11 +110,11 @@ public class GameController : MonoBehaviour {
 		
 				//Testing for Dialogue logic. MARKED FOR DELETION
 				dialogueDump.AddLines ("Victor", 1, (TextAsset)Resources.Load ("Test/Chapter One"));
-				characterFlags.Add ("Victor", 1);
+				SetNPCFlag ("Victor", 1);
 				dialogueDump.AddLines ("Victor2", 1, (TextAsset)Resources.Load ("Test/Chapter Two"));
-				characterFlags.Add ("Victor2", 1);
+				SetNPCFlag ("Victor2", 1);
 				dialogueDump.AddLines ("new Sarah Sprite", 3, (TextAsset)Resources.Load ("Test/Sarah Time Shenanigans"));
-				characterFlags.Add ("new Sarah Sprite", 3);
+				SetNPCFlag ("new Sarah Sprite", 3);
 				//END TEST
 		
 				spellBook = GameObject.Find ("_SpellBook").GetComponent<SpellList> ();
@@ -125,6 +132,8 @@ public class GameController : MonoBehaviour {
 		
 				selectedSpell = KnownSpells [spellIndex];
 				//END TEST
+
+				DontDestroyOnLoad (GameObject.Find ("EventSystem"));
 		}
 
 	void Awake () {
@@ -138,6 +147,20 @@ public class GameController : MonoBehaviour {
 		
 				characterFlags = new Dictionary<string, int> ();
 				characterLines = new Dictionary<int, TextAsset> ();
+
+				talkingList = new List<StopOnTalk> ();
+				freezingList = new List<StopOnFreeze> ();
+
+				DontDestroyOnLoad (transform.gameObject);
+		}
+
+	void OnLevelWasLoaded (int level) {
+				talkingList.Clear ();
+				freezingList.Clear ();
+
+				playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
+				dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
+				treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
 		}
 	
 	// Update is called once per frame
@@ -157,14 +180,15 @@ public class GameController : MonoBehaviour {
 	 * <para>Shows the dialogue box.</para>
 	 * <para>Player cannot move or cast spells.</para>
 	 * <param name="NPCName">Name to look for</param>
+	 * <param flag="NPCFlag">Flag to look for. Ignored by default.</param>
 	 * **/
-	public void ShowDialogue (string NPCName) {
-				treeControl.Activate (NPCName);
+	public void ShowDialogue (string NPCName, int NPCFlag=-1) {
+				if (NPCFlag > -1) {
+						SetNPCFlag (NPCName, NPCFlag);
+				}
+				treeControl.Activate (NPCName, getNPCFlag (NPCName));
 
-				playerControl.TalkingFreeze ();
-
-				storedNPC = GameObject.Find (NPCName).GetComponent<NPCController> ();
-				storedNPC.TalkingFreeze ();
+				HaltTalkingBehaviours ();
 		}
 
 	/**
@@ -174,9 +198,25 @@ public class GameController : MonoBehaviour {
 	public void HideDialogue () {
 				treeControl.Deactivate ();
 
-				playerControl.TalkingMove ();
+				MoveTalkingBehaviours ();
+		}
 
-				storedNPC.TalkingMove ();
+	/**
+	 * <para>Stops all objects that shouldn't move when dialogue is happening</para>
+	 * **/
+	private void HaltTalkingBehaviours () {
+				foreach (StopOnTalk SoT in talkingList) {
+						SoT.TalkingFreeze ();
+				}
+		}
+
+	/**
+	 * <para>Resumes movement on all objects that shouldn't move when dialogue is happening</para>
+	 * **/
+	private void MoveTalkingBehaviours () {
+				foreach (StopOnTalk SoT in talkingList) {
+						SoT.TalkingMove ();
+				}
 		}
 
 	/**
@@ -378,6 +418,16 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
+	 * <para>Sets the current flag of the NPC</para>
+	 * <param name="NPCName">Name of NPC to modify</param>
+	 * <param name="NPCFlag">New flag</param>
+	 * **/
+	public void SetNPCFlag(string NPCName, int NPCFlag) {
+				characterFlags.Remove (NPCName);
+				characterFlags.Add (NPCName, NPCFlag);
+		}
+
+	/**
 	 * Lets the player advance textboxes by pressing spacebar.
 	 * **/
 	public void talkingNext() {
@@ -567,4 +617,38 @@ public class GameController : MonoBehaviour {
 	public float GetWallet() {
 				return wallet;
 		}
+
+	/**
+	 * <para>Adds the object to the StopOnTalk list</para>
+	 * <param name="TalkObject">The MonoBehaviour to add</param>
+	 * **/
+	public void AddStopOnTalk(MonoBehaviour TalkObject) {
+				talkingList.Add ((StopOnTalk)TalkObject);
+		}
+
+	/**
+	 * <para>Adds the object to the StopOnFreeze list</para>
+	 * <param name="FreezeObject">The MonoBehaviour to add</param>
+	 * **/
+	public void AddStopOnFreeze(MonoBehaviour FreezeObject) {
+				talkingList.Add ((StopOnTalk)FreezeObject);
+		}
+
+	/**
+	 * <para>Stops all objects that shouldn't move when told not to</para>
+	 * **/
+	private void HaltFreezingBehaviours () {
+		foreach (StopOnFreeze SoF in freezingList) {
+			SoF.Freeze ();
+		}
+	}
+	
+	/**
+	 * <para>Resumes movement on all objects that shouldn't move when told not to</para>
+	 * **/
+	private void MoveFreezingBehaviours () {
+		foreach (StopOnFreeze SoF in freezingList) {
+			SoF.Move ();
+		}
+	}
 }

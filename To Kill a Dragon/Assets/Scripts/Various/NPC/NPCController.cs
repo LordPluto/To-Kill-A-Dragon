@@ -21,7 +21,7 @@ using System.Collections;
  * private double pointReached: distance check constant.
  * public bool loopPath: whether the NPC loops their path
  * **/
-public class NPCController : MonoBehaviour {
+public class NPCController : MonoBehaviour, StopOnTalk {
 
 	#region Components
 
@@ -67,12 +67,17 @@ public class NPCController : MonoBehaviour {
 
 	#endregion
 
-	// Use this for initialization
 	void Start () {
-				savedTalkState = talkTo;
-				_animator = GetComponent<Animator> ();
 				_controller = GameObject.Find ("_GameController").GetComponent<GameController> ();
 				player = GameObject.Find ("Player");
+
+				NotifyControllerOnTalk ();
+		}
+
+	// Use this for initialization
+	void Awake () {
+				savedTalkState = talkTo;
+				_animator = GetComponent<Animator> ();
 
 				if (pathPoints.Length <= 0) {
 						npcMovement = false;
@@ -175,6 +180,13 @@ public class NPCController : MonoBehaviour {
 				talkTo = savedTalkState;
 				talkDelay = 30;
 		}
+
+	/**
+	 * <para>Notifies the controller that a new StopOnTalk object exists</para>
+	 * **/
+	public void NotifyControllerOnTalk() {
+		_controller.AddStopOnTalk (this);
+	}
 
 	/**
 	 * Moves the NPC toward the point; if there's something in the way (a player or a wall) it stops.
