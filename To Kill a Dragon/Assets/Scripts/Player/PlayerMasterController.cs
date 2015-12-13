@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMasterController : MonoBehaviour {
+public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk {
 
 	#region Components
 
@@ -83,33 +83,36 @@ public class PlayerMasterController : MonoBehaviour {
 	 * Used for initialization
 	 * **/
 	void Start () {
+				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
+
+				NotifyControllerOnTalk ();
+				NotifyControllerOnFreeze ();
+		}
+
+	void Awake () {
 				_animator = GetComponent<Animator> ();
 				_controller = GetComponent<CharacterController> ();
-		
+
 				shiftOnce = false;
 				Talking = false;
 				Casting = false;
-
+		
 				playerMovement = new PlayerMovementController (_controller);
 				playerAnimation = new PlayerAnimationController (_animator);
 				playerSpells = new PlayerSpellController ();
-
+		
 				if (!_animator)
 						Debug.Log ("Sarah doesn't have animations. Moving her might look weird.");
-
+		
 				currentHP = maxHP = 100;
 				currentMP = maxMP = 100;
-
+		
 				currentEXP = EXPProgression [0];
 				nextLevelEXP = EXPProgression [1];
 				level = 1;
 				maxLevel = EXPProgression.Length;
-
+		
 				Cutscene = false;
-		}
-
-	void Awake () {
-				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
 
 	void Update () {
@@ -290,6 +293,13 @@ public class PlayerMasterController : MonoBehaviour {
 		}
 
 	/**
+	 * <para>Notifies the controller that a new StopOnTalk object exists</para>
+	 * **/
+	public void NotifyControllerOnTalk() {
+				gameControl.AddStopOnTalk (this);
+		}
+
+	/**
 	 * Prevents the player from moving - used for not dialogue
 	 * **/
 	public void Freeze() {
@@ -302,6 +312,13 @@ public class PlayerMasterController : MonoBehaviour {
 	public void Move() {
 			Frozen = false;
 	}
+
+	/**
+	 * <para>Notifies the controller that a new StopOnFreeze object exists</para>
+	 * **/
+	public void NotifyControllerOnFreeze() {
+				gameControl.AddStopOnFreeze (this);
+		}
 
 	/**
 	 * Returns the player's position

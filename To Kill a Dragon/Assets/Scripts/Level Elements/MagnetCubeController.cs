@@ -38,7 +38,7 @@ public class MagnetCubeController : MonoBehaviour {
 				if (!magnetActive) {
 						magnetActive = true;
 						this.magnetDirection = magnetDirection;
-						rigidbody.useGravity = false;
+						GetComponent<Rigidbody>().useGravity = false;
 				}
 		}
 
@@ -48,7 +48,7 @@ public class MagnetCubeController : MonoBehaviour {
 	public void MagnetStop () {
 				magnetActive = false;
 				magnetDirection = Vector3.zero;
-				rigidbody.useGravity = true;
+				GetComponent<Rigidbody>().useGravity = true;
 		}
 
 	/**

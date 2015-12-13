@@ -17,15 +17,15 @@ public class WanderController : MonoBehaviour {
 	 * Returns a random point from the surface of the plane.
 	 * **/
 	public Vector3 getRandomPoint() {
-				float minX = renderer.bounds.center.x - renderer.bounds.extents.x;
-				float maxX = renderer.bounds.center.x + renderer.bounds.extents.x;
+				float minX = GetComponent<Renderer>().bounds.center.x - GetComponent<Renderer>().bounds.extents.x;
+				float maxX = GetComponent<Renderer>().bounds.center.x + GetComponent<Renderer>().bounds.extents.x;
 
-				float minZ = renderer.bounds.center.z - renderer.bounds.extents.z;
-				float maxZ = renderer.bounds.center.z + renderer.bounds.extents.z;
+				float minZ = GetComponent<Renderer>().bounds.center.z - GetComponent<Renderer>().bounds.extents.z;
+				float maxZ = GetComponent<Renderer>().bounds.center.z + GetComponent<Renderer>().bounds.extents.z;
 
 				float ranX = Random.Range (minX, maxX);
 				float ranZ = Random.Range (minZ, maxZ);
 
-				return new Vector3 (ranX, renderer.bounds.center.y, ranZ);
+				return new Vector3 (ranX, GetComponent<Renderer>().bounds.center.y, ranZ);
 		}
 }

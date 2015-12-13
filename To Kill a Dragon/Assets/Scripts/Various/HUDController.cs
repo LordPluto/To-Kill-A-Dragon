@@ -27,7 +27,7 @@ public class HUDController : MonoBehaviour {
 		}
 
 	void Awake () {
-				
+				DontDestroyOnLoad (transform.gameObject);
 		}
 
 	void Update () {

@@ -25,7 +25,7 @@ public class CutsceneTriggerController : MonoBehaviour {
 		}
 
 	void Awake () {
-				renderer.enabled = false;
+				GetComponent<Renderer>().enabled = false;
 				transform.position = new Vector3 (transform.position.x, (float)Ground, transform.position.z);
 		}
 	

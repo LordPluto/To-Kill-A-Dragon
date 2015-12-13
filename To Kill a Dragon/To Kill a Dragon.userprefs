@@ -1,13 +1,13 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Level Elements\MenuController.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerMasterController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Level Elements\MenuController.cs" Line="69" Column="4" />
-      <File FileName="Assets\Scripts\Various\GameController.cs" Line="569" Column="4" />
-      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="15" Column="37" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Spells\MonoBehaviors\Fire.cs" Line="41" Column="12" />
+      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="118" Column="18" />
+      <File FileName="Assets\Scripts\Player\PlayerMovementController.cs" Line="27" Column="1" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\MenuController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\NPC\NPCController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Cutscenes\CutsceneDialogueController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

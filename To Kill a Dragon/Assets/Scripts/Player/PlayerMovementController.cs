@@ -21,11 +21,11 @@ public class PlayerMovementController {
 				vSpeed -= gravity * Time.deltaTime;
 				displacement.y = vSpeed;
 
+		_controller.Move (displacement * Time.deltaTime);
+
 				if (_controller.isGrounded) {
 						vSpeed = 0;
 				}
-
-				_controller.Move (displacement * Time.deltaTime);
 
 				deactivated = !_controller.isGrounded;
 		}

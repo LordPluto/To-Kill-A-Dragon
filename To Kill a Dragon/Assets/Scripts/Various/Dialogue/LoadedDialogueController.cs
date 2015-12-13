@@ -5,19 +5,20 @@ using System.Collections.Generic;
 public class LoadedDialogueController : MonoBehaviour {
 
 	public string[] loadingNPC;
+	public int[] loadingFlags;
 
-	private Dictionary<string, List<Dialogue>> npcLines;
-
-	private GameController gameControl;
+	private Dictionary<string, Dictionary<int, List<Dialogue>>> npcLines;
 
 	// Use this for initialization
 	void Start () {
-				npcLines = new Dictionary<string, List<Dialogue>> ();
-				renderer.enabled = false;
+				if (loadingNPC.Length != loadingFlags.Length) {
+						Debug.LogError ("Big problem in dialogue loading - NPC names and flags not set correctly.");
+				}
 		}
 
 	void Awake () {
-				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
+				npcLines = new Dictionary<string, Dictionary<int, List<Dialogue>>> ();
+				GetComponent<Renderer>().enabled = false;
 		}
 	
 	// Update is called once per frame
@@ -29,16 +30,19 @@ public class LoadedDialogueController : MonoBehaviour {
 	 * Load the dialogues of the NPCs listed in the array
 	 * **/
 	public void LoadNPCs(DialogueDump dialogueSource) {
-				foreach (string s in loadingNPC) {
+				npcLines.Clear ();
+
+				for (int i = 0; i<loadingNPC.Length; ++i) {
 						List<Dialogue> dialogueHolder = new List<Dialogue> ();
 
-						dialogueHolder = SetUpTree (dialogueSource.GetAsset (s, gameControl.getNPCFlag (s)));
+						dialogueHolder = SetUpTree (dialogueSource.GetAsset (loadingNPC [i], loadingFlags [i]));
 
 						if (dialogueHolder == null) {
 								Debug.LogError ("Holy fuck something went VERY wrong");
 						} else {
-								npcLines.Remove (s);
-								npcLines.Add (s, dialogueHolder);
+								Dictionary<int, List<Dialogue>> flaggedDialogue = new Dictionary<int, List<Dialogue>> ();
+								flaggedDialogue.Add (loadingFlags [i], dialogueHolder);
+								npcLines.Add (loadingNPC [i], flaggedDialogue);
 						}
 				}
 		}
@@ -75,13 +79,17 @@ public class LoadedDialogueController : MonoBehaviour {
 	/**
 	 * Gets the loaded dialogue for the NPC
 	 * **/
-	public List<Dialogue> getDialogue(string NPCName){
+	public List<Dialogue> getDialogue(string NPCName, int NPCFlag){
+				Dictionary<int, List<Dialogue>> returnedFlaggedDialogues = new Dictionary<int, List<Dialogue>> ();
 				List<Dialogue> returnedDialogue = new List<Dialogue> ();
-				if (npcLines.TryGetValue (NPCName, out returnedDialogue)) {
-						return returnedDialogue;
-				} else {
-						return null;
+				if (npcLines.TryGetValue (NPCName, out returnedFlaggedDialogues)) {
+						if (returnedFlaggedDialogues.TryGetValue (NPCFlag, out returnedDialogue)) {
+								return returnedDialogue;
+						} else {
+								return null;
+						}
 				}
+				return null;
 		}
 
 	void OnTriggerEnter (Collider c){

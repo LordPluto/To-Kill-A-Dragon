@@ -13,20 +13,20 @@ public class DialogueTreeController : MonoBehaviour {
 	private int nextBox;
 
 	// Use this for initialization
-	void Start () {
-				lines = null;
-				count = 0;
-		nextBox = 0;
+	void Start () {				
+				dialogueControl = GameObject.Find ("Dialogue Canvas").GetComponent<DialogueMasterController> ();
+				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
 
 	void Awake () {
-				dialogueControl = GameObject.Find ("Dialogue Canvas").GetComponent<DialogueMasterController> ();
-				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
+				lines = null;
+				count = 0;
+				nextBox = 0;
 		}
 	
 	// Update is called once per frame
 	void Update () {
-		if (nextBox > 0) {
+				if (nextBox > 0) {
 						nextBox--;
 				}
 		}
@@ -34,10 +34,10 @@ public class DialogueTreeController : MonoBehaviour {
 	/**
 	 * Activate and load dialogue for a given NPC Name.
 	 * **/
-	public void Activate (string NPCName) {
-		nextBox = 10;
+	public void Activate (string NPCName, int NPCFlag) {
+				nextBox = 10;
 				foreach (GameObject o in GameObject.FindGameObjectsWithTag ("DialogueLoading SpellIgnore")) {
-						lines = o.GetComponent<LoadedDialogueController> ().getDialogue (NPCName);
+						lines = o.GetComponent<LoadedDialogueController> ().getDialogue (NPCName, NPCFlag);
 						if (lines != null) {
 								break;
 						}
@@ -58,7 +58,7 @@ public class DialogueTreeController : MonoBehaviour {
 
 	public void NextTextBox () {
 				if (dialogueControl.IsTextFinished () && nextBox == 0) {
-			nextBox = 10;
+						nextBox = 10;
 						count++;
 		
 						if (count < lines.Count) {

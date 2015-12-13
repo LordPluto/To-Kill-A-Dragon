@@ -1,27 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum Direction {
+	Down = 0,
+	Right = 1,
+	Up = 2,
+	Left = 3
+}
+
 /**
- * Line class
- * Basic Node for NPC/cutscene movement; has two parts and a link to the next node
- * int direction: Range 0 - 3, determines what direction the line is pointing (0 -> down, 1 -> right, 2 -> up, 3 -> left)
- * float length: determines length of the line
- * Line nextLine: link to the next node
+ * <para>Basic node for NPC/cutscene movement; has two parts and a link to the next node</para>
+ * <param name="direction">Range 0 - 3, determines what direction the line is pointing (0 -> down, 1 -> right, 2 -> up, 3 -> left)</param>
+ * <param name="length">determines length of the line</param>
+ * <param name="nextLine">Link to the next node</param>
  * **/
 public class Line {
-	int direction;
+	Direction lineDirection;
 	float length;
 
 	Line nextLine;
 	
-	public Line (float deg, float len) {
-				direction = (int)(deg / 90) % 4;
+	public Line (Direction dir, float len) {
+				lineDirection = dir;
 				length = len;
-		nextLine = null;
+				nextLine = null;
 		}
 
-	public int getDirection () {
-				return direction;
+	public Direction getDirection () {
+				return lineDirection;
 		}
 
 	public float getLength () {
@@ -43,7 +49,7 @@ public class Line {
 	#region Overrides Region
 
 	public override string ToString () {
-				return "Line in direction " + direction + " with length " + length;
+				return "Line in direction " + lineDirection + " with length " + length;
 		}
 
 	public override bool Equals (object obj)
@@ -305,17 +311,15 @@ public class Path {
 }
 
 /**
- * LoopedPath class
- * Linked List for use with the Line class
- * Inherits from Path class.
+ * <para>Linked List for use with the Line class</para>
  * **/
 public class LoopedPath : Path {
 	public LoopedPath () {
 	}
 
 	/**
-	 * Overrides Path's NextLine(). When the current line is the last line, current gets set to first line.
-	 * Returns: true if curLine is now the next line. false if curLine was null.
+	 * <para>Overrides Path's NextLine(). When the current line is the last line, current gets set to first line.</para>
+	 * <returns>true if curLine is now the next line. false if curLine was null.</returns>
 	 * **/
 	public override bool NextLine ()
 	{
@@ -332,8 +336,8 @@ public class LoopedPath : Path {
 		}
 
 	/**
-	 * Checks to see if the path is a loop
-	 * Result: 0 if the path is empty, 1 if the path loops. -1 if it doesn't.
+	 * <para>Checks to see if the path is a loop</para>
+	 * <returns>0 if the path is empty, 1 if the path loops. -1 if it doesn't.</returns>
 	 * **/
 	public float CheckPath () {
 		if (IsEmpty ()) {
@@ -345,16 +349,16 @@ public class LoopedPath : Path {
 
 		while (temp != null) {
 						switch (temp.getDirection ()) {
-						case 0:
+						case Direction.Down:
 								yDist -= temp.getLength ();
 								break;
-						case 1:
+						case Direction.Right:
 								xDist += temp.getLength ();
 								break;
-						case 2:
+						case Direction.Up:
 								yDist += temp.getLength ();
 								break;
-						case 3:
+						case Direction.Left:
 								xDist -= temp.getLength ();
 								break;
 						default:
@@ -383,20 +387,20 @@ public class TestClass {
 	void test(){
 				LoopedPath testPath = new LoopedPath ();
 
-				testPath.InsertLineEnd (new Line (90, 5));
+				testPath.InsertLineEnd (new Line (Direction.Right, 5));
 
 				Debug.Log ("Test one.");
 				testPath.RemoveLast ();
 				testPath.ShowPath ();
 
-				testPath.InsertLineEnd (new Line (270, 5));
-				testPath.InsertLineFront (new Line (0, 3));
-				testPath.InsertLineEnd (new Line (180, 3));
+				testPath.InsertLineEnd (new Line (Direction.Left, 5));
+				testPath.InsertLineFront (new Line (Direction.Down, 3));
+				testPath.InsertLineEnd (new Line (Direction.Up, 3));
 
 				Debug.Log ("Test two.");
 				testPath.RemoveFirst ();
 				testPath.RemoveLast ();
-				testPath.InsertLineEnd (new Line (90, 6));
+				testPath.InsertLineEnd (new Line (Direction.Right, 6));
 				testPath.ShowPath ();
 
 				Debug.Log ("Test three.");
@@ -408,7 +412,7 @@ public class TestClass {
 				testPath.ShowPath ();
 
 				Debug.Log ("Test five.");
-				testPath.RemoveLine (new Line (270, 5));
+				testPath.RemoveLine (new Line (Direction.Left, 5));
 				testPath.ShowPath ();
 
 				Debug.Log ("Test six.");
@@ -416,12 +420,12 @@ public class TestClass {
 				testPath.ShowPath ();
 
 				Debug.Log ("Test seven.");
-				testPath.InsertLineEnd (new Line (90, 5));
-				testPath.InsertLineEnd (new Line (0, 2));
-				testPath.InsertLineEnd (new Line (270, 3));
-				testPath.InsertLineEnd (new Line (180, 1));
-				testPath.InsertLineEnd (new Line (270, 2));
-				testPath.InsertLineEnd (new Line (180, 1));
+				testPath.InsertLineEnd (new Line (Direction.Right, 5));
+				testPath.InsertLineEnd (new Line (Direction.Down, 2));
+				testPath.InsertLineEnd (new Line (Direction.Left, 3));
+				testPath.InsertLineEnd (new Line (Direction.Up, 1));
+				testPath.InsertLineEnd (new Line (Direction.Left, 2));
+				testPath.InsertLineEnd (new Line (Direction.Up, 1));
 				testPath.ShowPath ();
 				Debug.Log ("The path " + (testPath.CheckPath () > 0 ? "loops." : "doesn't loop."));
 		}
