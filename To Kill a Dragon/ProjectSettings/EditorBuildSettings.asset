@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Title Screen.unity
   - enabled: 1
     path: Assets/Scene 4.unity
+  - enabled: 1
+    path: Assets/Abandoned Mines Dungeon.unity

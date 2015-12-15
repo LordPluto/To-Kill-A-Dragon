@@ -116,54 +116,54 @@ public class Fire3Spell : AttackSpell {
 }
 
 public class FireExSpell : AttackSpell {
-	public FireExSpell() : base(SPELL.FireEx,60,20,25,80,2) {
+	public FireExSpell() : base(SPELL.FireEx,60,20,25,160,2) {
 	}
 }
 
 public class IceSpell : AttackSpell {
-	public IceSpell() : base(SPELL.Ice,21,10,5,5,3) {
+	public IceSpell() : base(SPELL.Ice,21,10,10,20,3) {
 		
 		}
 }
 
 public class Ice2Spell : AttackSpell {
-	public Ice2Spell() : base(SPELL.Ice2,21,10,10,10,3) {
+	public Ice2Spell() : base(SPELL.Ice2,21,10,20,40,3) {
 		
 	}
 }
 
 public class Ice3Spell : AttackSpell {
-	public Ice3Spell() : base(SPELL.Ice3,21,10,15,15,3) {
+	public Ice3Spell() : base(SPELL.Ice3,21,10,30,80,3) {
 		
 	}
 }
 
 public class IceExSpell : AttackSpell {
-	public IceExSpell() : base(SPELL.IceEx,21,10,20,20,3) {
+	public IceExSpell() : base(SPELL.IceEx,21,10,40,320,3) {
 		
 	}
 }
 
 public class LightningSpell : AttackSpell {
-	public LightningSpell() : base(SPELL.Lightning,30,20,20,20,0) {
+	public LightningSpell() : base(SPELL.Lightning,30,20,10,15,0) {
 		
 		}
 }
 
 public class Lightning2Spell : AttackSpell {
-	public Lightning2Spell() : base(SPELL.Lightning2,30,20,30,40,0) {
+	public Lightning2Spell() : base(SPELL.Lightning2,30,20,20,30,0) {
 		
 	}
 }
 
 public class Lightning3Spell : AttackSpell {
-	public Lightning3Spell() : base(SPELL.Lightning3,30,20,40,80,0) {
+	public Lightning3Spell() : base(SPELL.Lightning3,30,20,30,60,0) {
 		
 	}
 }
 
 public class LightningExSpell : AttackSpell {
-	public LightningExSpell() : base(SPELL.LightningEX,30,20,50,160,0) {
+	public LightningExSpell() : base(SPELL.LightningEX,30,20,40,240,0) {
 		
 	}
 }
@@ -179,17 +179,17 @@ public class HealSpell : SupportSpell {
 }
 
 public class Heal2Spell : SupportSpell {
-	public Heal2Spell() : base(SPELL.Heal2, 120, 20, 35){
+	public Heal2Spell() : base(SPELL.Heal2, 120, 20, 30){
 	}
 }
 
 public class Heal3Spell : SupportSpell {
-	public Heal3Spell() : base(SPELL.Heal3, 120, 20, 45){
+	public Heal3Spell() : base(SPELL.Heal3, 120, 20, 35){
 	}
 }
 
 public class HealExSpell : SupportSpell {
-	public HealExSpell() : base(SPELL.HealEx, 120, 20, 55){
+	public HealExSpell() : base(SPELL.HealEx, 120, 20, 40){
 	}
 }
 
