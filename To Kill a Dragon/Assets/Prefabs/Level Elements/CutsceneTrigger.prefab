@@ -9,9 +9,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 496204}
   - 33: {fileID: 3396204}
-  - 64: {fileID: 6496204}
   - 23: {fileID: 2396204}
   - 114: {fileID: 11496204}
+  - 65: {fileID: 6597810}
   m_Layer: 0
   m_Name: CutsceneTrigger
   m_TagString: SpellIgnore
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.649999976, z: 20.5}
-  m_LocalScale: {x: .5, y: 1, z: .0700000003}
+  m_LocalPosition: {x: 0, y: -0.64, z: -5.16}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.07}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!23 &2396204
-Renderer:
+MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -40,15 +40,21 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
   - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!33 &3396204
@@ -58,8 +64,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196204}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &6496204
-MeshCollider:
+--- !u!65 &6597810
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -68,9 +74,8 @@ MeshCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11496204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,11 +87,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314777395c399b14eb6d5be6c6f0f609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ground: 0
+  Ground: -0.6499999761581421
   PlayerInvolved: 1
   NPCInvolved: 0
   NPCName: 
-  PlayerPathPoints: []
+  PlayerPathPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   NPCPathPoints: []
   Repeatable: 1
 --- !u!1001 &100100000
@@ -100,4 +107,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 196204}
   m_IsPrefabParent: 1
-  m_IsExploded: 1
