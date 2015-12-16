@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class HUDController : MonoBehaviour {
@@ -25,6 +26,14 @@ public class HUDController : MonoBehaviour {
 				moneyText = GetComponentInChildren<Text> ();
 
 		}
+
+	void OnLevelWasLoaded(int level) {
+		if (SceneManager.GetActiveScene ().name.Equals ("Loading Screen")) {
+			GetComponent<Canvas>().enabled = false;
+		} else {
+			GetComponent<Canvas>().enabled = true;
+		}
+	}
 
 	void Awake () {
 				DontDestroyOnLoad (transform.gameObject);

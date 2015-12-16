@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -155,13 +156,19 @@ public class GameController : MonoBehaviour {
 		}
 
 	void OnLevelWasLoaded (int level) {
-				talkingList.Clear ();
-				freezingList.Clear ();
+		talkingList.Clear ();
+		freezingList.Clear ();
 
-				playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
-				dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
-				treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
+		playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
+		dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
+		treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
+
+		if (SceneManager.GetActiveScene ().name.Equals ("Loading Screen")) {
+			this.enabled = false;
+		} else {
+			this.enabled = true;
 		}
+	}
 	
 	// Update is called once per frame
 	void Update () {

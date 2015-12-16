@@ -61,10 +61,12 @@
      <Compile Include="Assets\Scripts\Level Elements\DeathTrigger.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DestinationController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DoorTriggerController.cs" />
-     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\ButtonDebug.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\MenuButtonClick.cs" />
      <Compile Include="Assets\Scripts\Level Elements\FallingNet.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\LoadingManager.cs" />
      <Compile Include="Assets\Scripts\Level Elements\MagnetCubeController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\MenuController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\SpawnPersistent.cs" />
      <Compile Include="Assets\Scripts\Level Elements\SpawnPoint.cs" />
      <Compile Include="Assets\Scripts\Level Elements\SummonObjectController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Title Screen\ButtonNewGame.cs" />
