@@ -19,6 +19,8 @@ public class PlayerAnimationController {
 
 	#endregion Animations
 
+	private int fallingTimer = -1;
+
 	public PlayerAnimationController(Animator _animator) {
 				this._animator = _animator;
 		}
@@ -26,74 +28,84 @@ public class PlayerAnimationController {
 	/**
 	 * Handles animations. Once per frame.
 	 * **/
-	public void Animation(Vector3 velocity){
+	public void Animation(Vector3 position, Vector3 velocity){
 
-				float horizontalMovement = Input.GetAxis ("Horizontal");
-				float verticalMovement = Input.GetAxis ("Vertical");
+		float horizontalMovement = Input.GetAxis ("Horizontal");
+		float verticalMovement = Input.GetAxis ("Vertical");
 
-				float degree = Mathf.Atan2 (verticalMovement, horizontalMovement);
+		float degree = Mathf.Atan2 (verticalMovement, horizontalMovement);
 
-				if (horizontalMovement == 0 && verticalMovement != 0) {
-						if (verticalMovement > 0) {
-								_characterFacing = Facing.Up;
-						} else {
-								_characterFacing = Facing.Down;
-						}
-				} else if (verticalMovement == 0 && horizontalMovement != 0) {
-						if (horizontalMovement > 0) {
-								_characterFacing = Facing.Right;
-						} else {
-								_characterFacing = Facing.Left;
-						}
-				} else if (horizontalMovement > 0 && verticalMovement > 0) {
-						if (degree > Mathf.PI / 4) {
-								_characterFacing = Facing.Up;
-						} else {
-								_characterFacing = Facing.Right;
-						}
-				} else if (horizontalMovement > 0 && verticalMovement < 0) {
-						if (degree < Mathf.PI / -4) {
-								_characterFacing = Facing.Down;
-						} else {
-								_characterFacing = Facing.Right;
-						}
-				} else if (horizontalMovement < 0 && verticalMovement > 0) {
-						if (degree >= 3 * Mathf.PI / 4) {
-								_characterFacing = Facing.Left;
-						} else {
-								_characterFacing = Facing.Up;
-						}
-				} else if (horizontalMovement < 0 && verticalMovement < 0) {
-						if (degree <= 3 * Mathf.PI / -4) {
-								_characterFacing = Facing.Left;
-						} else {
-								_characterFacing = Facing.Down;
-						}
-				}		
+		if (horizontalMovement == 0 && verticalMovement != 0) {
+			if (verticalMovement > 0) {
+				_characterFacing = Facing.Up;
+			} else {
+				_characterFacing = Facing.Down;
+			}
+		} else if (verticalMovement == 0 && horizontalMovement != 0) {
+			if (horizontalMovement > 0) {
+				_characterFacing = Facing.Right;
+			} else {
+				_characterFacing = Facing.Left;
+			}
+		} else if (horizontalMovement > 0 && verticalMovement > 0) {
+			if (degree > Mathf.PI / 4) {
+				_characterFacing = Facing.Up;
+			} else {
+				_characterFacing = Facing.Right;
+			}
+		} else if (horizontalMovement > 0 && verticalMovement < 0) {
+			if (degree < Mathf.PI / -4) {
+				_characterFacing = Facing.Down;
+			} else {
+				_characterFacing = Facing.Right;
+			}
+		} else if (horizontalMovement < 0 && verticalMovement > 0) {
+			if (degree >= 3 * Mathf.PI / 4) {
+				_characterFacing = Facing.Left;
+			} else {
+				_characterFacing = Facing.Up;
+			}
+		} else if (horizontalMovement < 0 && verticalMovement < 0) {
+			if (degree <= 3 * Mathf.PI / -4) {
+				_characterFacing = Facing.Left;
+			} else {
+				_characterFacing = Facing.Down;
+			}
+		}		
+
 		
-				if (velocity.y < -1) {
-						_animator.SetBool ("Falling", true);
-				} else {
-						_animator.SetBool ("Falling", false);
-				}
-		
-				switch (_characterFacing) {
-				case Facing.Down:
-						_animator.SetFloat ("Direction", 0);
-						break;
-				case Facing.Right:
-						_animator.SetFloat ("Direction", 1);
-						break;
-				case Facing.Up:
-						_animator.SetFloat ("Direction", 2);
-						break;
-				case Facing.Left:
-						_animator.SetFloat ("Direction", 3);
-						break;
-				}
+		if (velocity.y < -1) {
+			if (fallingTimer < 0) {
+				fallingTimer = 12;
+			} else if (fallingTimer == 0) {
+				_animator.SetBool ("Falling", true);
+			}
 
-				_animator.SetFloat ("Speed", Mathf.Abs (velocity.sqrMagnitude / 25));
+			--fallingTimer;
+		} else {
+			_animator.SetBool ("Falling", false);
+			fallingTimer = -1;
 		}
+		
+		switch (_characterFacing) {
+		case Facing.Down:
+			_animator.SetFloat ("Direction", 0);
+			break;
+		case Facing.Right:
+			_animator.SetFloat ("Direction", 1);
+			break;
+		case Facing.Up:
+			_animator.SetFloat ("Direction", 2);
+			break;
+		case Facing.Left:
+			_animator.SetFloat ("Direction", 3);
+			break;
+		}
+
+		Vector3 modifiedVel = new Vector3 (velocity.x, 0, velocity.z);
+
+		_animator.SetFloat ("Speed", Mathf.Abs (modifiedVel.sqrMagnitude / 25));
+	}
 
 	/**
 	 * Starts the casting animation depending on the type of spell

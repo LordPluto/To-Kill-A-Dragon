@@ -219,7 +219,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk {
 		
 				ChangeSpell (changeSpell, quickSelect, castSpell);
 
-				playerAnimation.Animation (_controller.velocity);
+		playerAnimation.Animation (transform.position, _controller.velocity);
 
 				if (Casting && !magnetActive && playerSpells.CheckCastTime () <= -2) {
 						StopCasting ();
