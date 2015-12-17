@@ -18,17 +18,17 @@ public class PlayerMovementController {
 		}
 
 	private void Move(Vector3 displacement){
-				vSpeed -= gravity * Time.deltaTime;
-				displacement.y = vSpeed;
+		vSpeed -= gravity * Time.deltaTime;
+		displacement.y = vSpeed;
 
 		_controller.Move (displacement * Time.deltaTime);
 
-				if (_controller.isGrounded) {
-						vSpeed = 0;
-				}
-
-				deactivated = !_controller.isGrounded;
+		if (_controller.isGrounded) {
+			vSpeed = 0;
 		}
+
+		deactivated = !_controller.isGrounded;
+	}
 
 	/**
 	 * Handles movement when the player is in control
@@ -101,4 +101,12 @@ public class PlayerMovementController {
 				deactivated = true;
 		speed = Vector3.zero;
 		}
+
+	/**
+	 * <para>Checks to see if the character is falling.</para>
+	 * <returns>True if falling, false if not</returns>
+	 * **/
+	public bool isFalling() {
+		return !_controller.isGrounded;
+	}
 }

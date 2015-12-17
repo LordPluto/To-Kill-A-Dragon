@@ -20,4 +20,13 @@ public class WarpDestinationController : MonoBehaviour {
 	public Vector3 getPosition(){
 		return transform.position;
 	}
+
+	/**
+	 * <para>Returns this object's rotation
+	 * <returns>The current rotation of the object</returns>
+	 * **/
+	public Quaternion GetRotation() {
+		return transform.rotation;
+	}
+
 }

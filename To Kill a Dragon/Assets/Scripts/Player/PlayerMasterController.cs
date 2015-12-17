@@ -215,7 +215,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk {
 													Input.GetButtonDown ("Quick3"), Input.GetButtonDown ("Quick4"),
 													Input.GetButtonDown ("Quick5")};
 
-				float castSpell = Input.GetAxis ("CastSpell") * (playerAnimation.isFalling () ? 0 : 1);
+		float castSpell = Input.GetAxis ("CastSpell") * (playerMovement.isFalling () ? 0 : 1);
 		
 				ChangeSpell (changeSpell, quickSelect, castSpell);
 
@@ -403,10 +403,10 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk {
 	 * Jumps directly to a given destination. If the destination is blocked by something, does nothing.
 	 * **/
 	public void JumpPosition(Vector3 destination){
-				//NOTE: WE DON'T HAVE COLLISION CHECKING YET
-				transform.position = destination;
+		//NOTE: WE DON'T HAVE COLLISION CHECKING YET
+		transform.position = destination;
 		playerMovement.DeactivateUntilGrounded ();
-		}
+	}
 
 	/**
 	 * Triggers a cutscene.
@@ -575,10 +575,10 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk {
 	 * Respawns the player when they fall into a pit.
 	 * **/
 	public void PitSpawn() {
-				JumpPosition (lastSafePosition);
-				gameControl.DealPlayerBulletDamage (maxHP * .05f, Vector3.zero);
-				FlinchDuration (ONE_SECOND / 4);
-		}
+		JumpPosition (lastSafePosition);
+		gameControl.DealPlayerBulletDamage (maxHP * .05f, Vector3.zero);
+		FlinchDuration (ONE_SECOND / 4);
+	}
 
 	/**
 	 * Sets a timer for flinch duration. Used for manually flinching for a certain

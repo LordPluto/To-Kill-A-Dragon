@@ -17,7 +17,7 @@ public class WarpController : MonoBehaviour {
 
 	public void triggerWarp(Collider c){
 				if (c.CompareTag ("Player")) {
-						c.GetComponent<PlayerMasterController> ().JumpPosition (destination.getPosition());
+			c.GetComponent<PlayerMasterController> ().JumpPosition (destination.getPosition());
 				}
 		}
 }

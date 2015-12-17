@@ -19,8 +19,6 @@ public class PlayerAnimationController {
 
 	#endregion Animations
 
-	private int fallingTimer = -1;
-
 	public PlayerAnimationController(Animator _animator) {
 				this._animator = _animator;
 		}
@@ -73,18 +71,18 @@ public class PlayerAnimationController {
 			}
 		}		
 
-		
+
 		if (velocity.y < -1) {
-			if (fallingTimer < 0) {
-				fallingTimer = 12;
-			} else if (fallingTimer == 0) {
+			Vector3 point1 = position + new Vector3 (0, 1.51f, 0), point2 = position + new Vector3 (0, 0.51f, 0);
+			float radius = 0.5f;
+			RaycastHit hit;
+
+			if (!Physics.CapsuleCast (point1, point2, radius, Vector3.down, out hit, 1.5f, (1 << 13))) {
+				Debug.DrawLine (point1, point2);
 				_animator.SetBool ("Falling", true);
 			}
-
-			--fallingTimer;
 		} else {
 			_animator.SetBool ("Falling", false);
-			fallingTimer = -1;
 		}
 		
 		switch (_characterFacing) {
@@ -173,11 +171,4 @@ public class PlayerAnimationController {
 						_animator.SetFloat ("Speed", 0);
 				}
 		}
-
-	/**
-	 * Checks to see if the player is falling.
-	 * **/
-	public bool isFalling(){
-		return _animator.GetBool("Falling");
-	}
 }
