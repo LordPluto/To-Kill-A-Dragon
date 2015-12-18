@@ -24,7 +24,8 @@ public class MenuController : MonoBehaviour {
 	private Button debugButton;
 	private Text debugText;
 
-
+	private GameObject[] Windows;
+	private GameObject currentWindow;
 
 	private bool objInit = false;
 	private bool debugToggle = false;
@@ -48,6 +49,17 @@ public class MenuController : MonoBehaviour {
 
 	void Awake () {
 		DontDestroyOnLoad (transform.gameObject);
+		Windows = new GameObject[6];
+		Windows [0] = GameObject.Find ("Status Panel");
+		Windows [1] = GameObject.Find ("Inventory Panel");
+		Windows [2] = GameObject.Find ("Equipment Panel");
+		Windows [3] = GameObject.Find ("Customize Panel");
+		Windows [4] = GameObject.Find ("Quest Panel");
+		Windows [5] = GameObject.Find ("Debug Panel");
+
+		DeactivateWindows ();
+
+		SwitchWindow (MenuWindow.StatusWindow);
 	}
 	
 	// Update is called once per frame
@@ -123,25 +135,24 @@ public class MenuController : MonoBehaviour {
 	}
 
 	/**
+	 * <para>Turns off all window objects.</para>
+	 * **/
+	private void DeactivateWindows() {
+		foreach (GameObject gO in Windows) {
+			gO.SetActive (false);
+		}
+	}
+
+	/**
 	 * <para>Switches to the given menu window.</para>
 	 * <param name="Window">Menu window to show</param>
 	 * **/
 	public void SwitchWindow(MenuWindow Window) {
-		switch (Window) {
-		case MenuWindow.StatusWindow:
-			break;
-		case MenuWindow.InventoryWindow:
-			break;
-		case MenuWindow.EquipmentWindow:
-			break;
-		case MenuWindow.CustomizeWindow:
-			break;
-		case MenuWindow.QuestWindow:
-			break;
-		case MenuWindow.DebugWindow:
-			break;
-		default:
-			break;
+		if (currentWindow != null) {
+			currentWindow.SetActive (false);
 		}
+
+		currentWindow = Windows [(int) Window];
+		currentWindow.SetActive (true);
 	}
 }
