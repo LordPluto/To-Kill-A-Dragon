@@ -58,7 +58,9 @@ MonoBehaviour:
   Wind: {fileID: 499650, guid: 97c7974b649021e4992ce2e83cde5b37, type: 2}
   Magnet: {fileID: 418680, guid: 330b4563a841c9b4499e4d3571b068a4, type: 2}
   Mirror: {fileID: 0}
-  Heavy: {fileID: 0}
+  Mirror2: {fileID: 0}
+  Mirror3: {fileID: 0}
+  MirrorEx: {fileID: 0}
   Death: {fileID: 0}
   Illuminate: {fileID: 0}
 --- !u!1001 &100100000
@@ -72,4 +74,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 140300}
   m_IsPrefabParent: 1
-  m_IsExploded: 1
