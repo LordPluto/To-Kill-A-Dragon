@@ -33,7 +33,7 @@ public class Magnet : MonoBehaviour {
 				float radius = 0.5f;
 				RaycastHit hit;
 
-				if (Physics.CapsuleCast (point1, point2, radius, direction, out hit, 24, (1 << 12 | 1 << 13))) {
+				if (Physics.CapsuleCast (point1, point2, radius, direction, out hit, 24, (1 << 12 | 1 << 13 | 1 << 15))) {
 						if (hit.collider.gameObject.CompareTag ("MagnetPillar")) {
 								gameControl.SetMagnetDirection (direction);
 						} else if (hit.collider.gameObject.CompareTag ("MagnetCube")) {

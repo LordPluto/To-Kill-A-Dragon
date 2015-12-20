@@ -29,7 +29,7 @@ public class ItemBurstMovement : MonoBehaviour {
 				Ray ray = new Ray (transform.position, vectorDirection);
 				RaycastHit hit;
 		
-				if (Physics.Raycast (ray, out hit, vectorDirection.magnitude, (1 << 13))) {
+				if (Physics.Raycast (ray, out hit, vectorDirection.magnitude, (1 << 13 | 1 << 15))) {
 						distanceX = (hit.point.x - transform.position.x);
 						distanceZ = (hit.point.z - transform.position.z);
 						distanceX += (distanceX < 0 ? GetComponent<Collider>().bounds.size.x : -GetComponent<Collider>().bounds.size.x);

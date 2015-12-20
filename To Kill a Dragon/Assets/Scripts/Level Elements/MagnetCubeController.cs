@@ -24,7 +24,7 @@ public class MagnetCubeController : MonoBehaviour {
 								hit.collider.gameObject.GetComponent<EnemyPlayerCollision> ().HitMagnetBlock (this.transform.position);
 						}
 			
-						if (Physics.Raycast (ray, out hit, 0.5f, (1 << 9 | 1 << 12 | 1 << 13))) {
+						if (Physics.Raycast (ray, out hit, 0.5f, (1 << 9 | 1 << 12 | 1 << 13 | 1 << 15))) {
 								return;
 						}
 						transform.position += moveVector;

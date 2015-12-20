@@ -84,7 +84,7 @@ public class PlayerMovementController {
 				float radius = 0.5f;
 				RaycastHit hit;
 		
-				Physics.CapsuleCast (point1, point2, radius, moveVector, out hit, 0.5f, (1 << 12 | 1 << 13));
+				Physics.CapsuleCast (point1, point2, radius, moveVector, out hit, 0.5f, (1 << 12 | 1 << 13 | 1 << 15));
 		
 				if (hit.collider == null) {
 						position += moveVector;

@@ -25,7 +25,7 @@ public class WarpDestinationController : MonoBehaviour {
 			Ray ray = new Ray (returnedPosition, Vector3.down);
 			RaycastHit hit;
 
-			if (Physics.Raycast (ray, out hit, Mathf.Infinity, (1 << 13))) {
+			if (Physics.Raycast (ray, out hit, Mathf.Infinity, (1 << 13 | 1 << 15))) {
 				returnedPosition.y = hit.point.y + 0.1f;		//The 0.1f is for smoothing purposes. Makes it look nicer.
 			}
 		}

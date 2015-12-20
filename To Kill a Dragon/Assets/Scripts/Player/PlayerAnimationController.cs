@@ -77,7 +77,7 @@ public class PlayerAnimationController {
 			float radius = 0.5f;
 			RaycastHit hit;
 
-			if (!Physics.CapsuleCast (point1, point2, radius, Vector3.down, out hit, 1.5f, (1 << 13))) {
+			if (!Physics.CapsuleCast (point1, point2, radius, Vector3.down, out hit, 1.5f, (1 << 13 | 1 << 15))) {
 				Debug.DrawLine (point1, point2);
 				_animator.SetBool ("Falling", true);
 			}

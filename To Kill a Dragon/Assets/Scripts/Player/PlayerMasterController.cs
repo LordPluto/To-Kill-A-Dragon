@@ -11,6 +11,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk {
 	private PlayerMovementController playerMovement;
 	private PlayerAnimationController playerAnimation;
 	private PlayerSpellController playerSpells;
+	private CameraManager playerCamera;
 
 	private GameController gameControl;
 
@@ -83,11 +84,12 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk {
 	 * Used for initialization
 	 * **/
 	void Start () {
-				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
+		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
+		playerCamera = GetComponentInChildren<CameraManager> ();
 
-				NotifyControllerOnTalk ();
-				NotifyControllerOnFreeze ();
-		}
+		NotifyControllerOnTalk ();
+		NotifyControllerOnFreeze ();
+	}
 
 	void Awake () {
 				_animator = GetComponent<Animator> ();
@@ -116,22 +118,28 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk {
 		}
 
 	void Update () {
-				if (talkDelay > 0) {
-						talkDelay--;
-				}
-				if (flinchTimer > 0) {
-						flinchTimer -= Time.deltaTime;
-				} else if (flinchTimer > -1) {
-						flinchTimer = -1;
-						FlinchHead = false;
-				}
-
-				if (Input.GetButtonDown ("Menu") && !Talking) {
-						gameControl.MenuInput ();
-				} else if (Input.GetButtonDown ("Pause")) {
-						gameControl.PauseInput ();
-				}
+		if (talkDelay > 0) {
+			talkDelay--;
 		}
+		if (flinchTimer > 0) {
+			flinchTimer -= Time.deltaTime;
+		} else if (flinchTimer > -1) {
+			flinchTimer = -1;
+			FlinchHead = false;
+		}
+
+		if (Input.GetButtonDown ("Menu") && !Talking) {
+			gameControl.MenuInput ();
+		} else if (Input.GetButtonDown ("Pause")) {
+			gameControl.PauseInput ();
+		}
+
+		if (Input.GetKeyDown (KeyCode.RightArrow)) {
+			playerCamera.Rotate (CameraRotation.Right);
+		} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+			playerCamera.Rotate (CameraRotation.Left);
+		}
+	}
 
 	void FixedUpdate () {
 				if (Flinch) {

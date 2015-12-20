@@ -24,7 +24,7 @@ public class ItemAttractMovement : MonoBehaviour {
 				Ray ray = new Ray (transform.position, direction);
 				RaycastHit hit;
 		
-				if (!(Physics.Raycast (ray, out hit, moveVector.magnitude, (1 << 13)))) {
+				if (!(Physics.Raycast (ray, out hit, moveVector.magnitude, (1 << 13 | 1 << 15)))) {
 						transform.position += moveVector;
 				}
 		}
