@@ -93,6 +93,7 @@ public class GameController : MonoBehaviour {
 	
 	private List<StopOnTalk> talkingList;
 	private List<StopOnFreeze> freezingList;
+	private List<StopOnCutscene> cutsceneList;
 	
 	#endregion
 
@@ -138,26 +139,28 @@ public class GameController : MonoBehaviour {
 		}
 
 	void Awake () {
-				Cursor.visible = false;
-				//Screen.SetResolution (1280, 720, false);
+		Cursor.visible = false;
+		//Screen.SetResolution (1280, 720, false);
 		
-				currentHead = Head.Fine;
-				menuOpen = false;
+		currentHead = Head.Fine;
+		menuOpen = false;
 		
-				wallet = 0;
+		wallet = 0;
 		
-				characterFlags = new Dictionary<string, int> ();
-				characterLines = new Dictionary<int, TextAsset> ();
+		characterFlags = new Dictionary<string, int> ();
+		characterLines = new Dictionary<int, TextAsset> ();
 
-				talkingList = new List<StopOnTalk> ();
-				freezingList = new List<StopOnFreeze> ();
+		talkingList = new List<StopOnTalk> ();
+		freezingList = new List<StopOnFreeze> ();
+		cutsceneList = new List<StopOnCutscene> ();
 
-				DontDestroyOnLoad (transform.gameObject);
-		}
+		DontDestroyOnLoad (transform.gameObject);
+	}
 
 	void OnLevelWasLoaded (int level) {
 		talkingList.Clear ();
 		freezingList.Clear ();
+		cutsceneList.Clear ();
 
 		playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
 		dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
@@ -355,38 +358,41 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
+	 * <para>Entering cutscene. Takes control from the player.</para>
+	 * **/
+	public void EnterCutscene() {
+		HUDControl.Hide ();
+		HaltCutsceneBehaviours ();
+	}
+
+	/**
 	 * Handles entering cutscene - the little black bars, taking control from the player, etc.
 	 * **/
 	public void EnterCutscene(bool PlayerInvolved, bool NPCInvolved, Transform[] PlayerPathPoints, Transform[] NPCPathPoints, string NPCName){
-				this.PlayerInvolved = PlayerInvolved;
-				this.NPCInvolved = NPCInvolved;
+		this.PlayerInvolved = PlayerInvolved;
+		this.NPCInvolved = NPCInvolved;
 
-				if (this.PlayerInvolved) {
-						playerControl.EnterCutscene (PlayerPathPoints);
-				}
-				if (this.NPCInvolved) {
-						GameObject.Find (NPCName).GetComponent<NPCController> ().EnterCutscene (NPCPathPoints);
-				}
-
-				HUDControl.Hide ();
-
-				foreach (GameObject enemy in GameObject.FindGameObjectsWithTag ("Enemy")) {
-						enemy.GetComponent<EnemyController> ().EnterCutscene ();
-				}
+		if (this.PlayerInvolved) {
+			playerControl.EnterCutscene (PlayerPathPoints);
 		}
+		if (this.NPCInvolved) {
+			GameObject.Find (NPCName).GetComponent<NPCController> ().EnterCutscene (NPCPathPoints);
+		}
+
+		HUDControl.Hide ();
+
+		foreach (GameObject enemy in GameObject.FindGameObjectsWithTag ("Enemy")) {
+			enemy.GetComponent<EnemyController> ().CutsceneFreeze ();
+		}
+	}
 
 	/**
-	 * Handles leaving cutscene - the little black bars, giving control to the player, etc.
+	 * <para>Ending cutscene. Gives control back to the player</para>
 	 * **/
-	private void EndCutscene() {
-				playerControl.ExitCutscene ();
-
-				HUDControl.Show ();
-
-				foreach (GameObject enemy in GameObject.FindGameObjectsWithTag ("Enemy")) {
-						enemy.GetComponent<EnemyController> ().ExitCutscene ();
-				}
-		}
+	public void EndCutscene() {
+		HUDControl.Show ();
+		MoveCutsceneBehaviours ();
+	}
 
 	/**
 	 * Checks to see if the game is in a cutscene.
@@ -638,11 +644,19 @@ public class GameController : MonoBehaviour {
 	 * <param name="FreezeObject">The MonoBehaviour to add</param>
 	 * **/
 	public void AddStopOnFreeze(MonoBehaviour FreezeObject) {
-				talkingList.Add ((StopOnTalk)FreezeObject);
+		freezingList.Add ((StopOnFreeze)FreezeObject);
 		}
 
 	/**
-	 * <para>Stops all objects that shouldn't move when told not to</para>
+	 * <para>Adds the object to the StopOnCutscene list</para>
+	 * <param name="CutsceneObject">The MonoBehaviour to add</param>
+	 * **/
+	public void AddStopOnCutscene(MonoBehaviour CutsceneObject) {
+		cutsceneList.Add ((StopOnCutscene)CutsceneObject);
+	}
+
+	/**
+	 * <para>Stops all objects that won't move when told not to</para>
 	 * **/
 	private void HaltFreezingBehaviours () {
 		foreach (StopOnFreeze SoF in freezingList) {
@@ -656,6 +670,24 @@ public class GameController : MonoBehaviour {
 	private void MoveFreezingBehaviours () {
 		foreach (StopOnFreeze SoF in freezingList) {
 			SoF.Move ();
+		}
+	}
+
+	/**
+	 * <para>Stops all objects that won't move during a cutscene</para>
+	 * **/
+	private void HaltCutsceneBehaviours () {
+		foreach (StopOnCutscene SoC in cutsceneList) {
+			SoC.CutsceneFreeze ();
+		}
+	}
+
+	/**
+	 * <para>Resumes movement on all objects that shouldn't move during a cutscene</para>
+	 * **/
+	private void MoveCutsceneBehaviours () {
+		foreach (StopOnCutscene SoC in freezingList) {
+			SoC.CutsceneMove ();
 		}
 	}
 }

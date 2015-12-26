@@ -21,7 +21,7 @@ using System.Collections;
  * private double pointReached: distance check constant.
  * public bool loopPath: whether the NPC loops their path
  * **/
-public class NPCController : MonoBehaviour, StopOnTalk {
+public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene {
 
 	#region Components
 
@@ -68,11 +68,12 @@ public class NPCController : MonoBehaviour, StopOnTalk {
 	#endregion
 
 	void Start () {
-				_controller = GameObject.Find ("_GameController").GetComponent<GameController> ();
-				player = GameObject.Find ("Player");
+		_controller = GameObject.Find ("_GameController").GetComponent<GameController> ();
+		player = GameObject.Find ("Player");
 
-				NotifyControllerOnTalk ();
-		}
+		NotifyControllerOnTalk ();
+		NotifyControllerOnCutscene ();
+	}
 
 	// Use this for initialization
 	void Awake () {
@@ -186,6 +187,27 @@ public class NPCController : MonoBehaviour, StopOnTalk {
 	 * **/
 	public void NotifyControllerOnTalk() {
 		_controller.AddStopOnTalk (this);
+	}
+
+	/**
+	 * <para>Tells the object not to move during a cutscene</para>
+	 * **/
+	public void CutsceneFreeze () {
+		Cutscene = true;
+	}
+
+	/**
+	 * <para>Tells the object it can move, cutscene is over</para>
+	 * **/
+	public void CutsceneMove () {
+		Cutscene = false;
+	}
+
+	/**
+	 * <para>Notifies the controller that a new StopOnCutscene object exists</para>
+	 * **/
+	public void NotifyControllerOnCutscene() {
+		_controller.AddStopOnCutscene (this);
 	}
 
 	/**

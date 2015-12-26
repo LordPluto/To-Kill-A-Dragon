@@ -12,3 +12,9 @@ public interface StopOnFreeze {
 	void Move();
 	void NotifyControllerOnFreeze();
 }
+
+public interface StopOnCutscene {
+	void CutsceneFreeze();
+	void CutsceneMove();
+	void NotifyControllerOnCutscene();
+}

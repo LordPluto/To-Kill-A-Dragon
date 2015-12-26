@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour, StopOnCutscene {
 
 	#region Movement
 
@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour {
 	private List<Vector3> BacktracePoints;
 	private int backtraceIndex;
 
-	private bool InCutscene;
+	private bool Cutscene;
 
 	#endregion
 
@@ -30,27 +30,29 @@ public class EnemyController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-				_animator = GetComponent<Animator> ();
+		_animator = GetComponent<Animator> ();
 
-				parentControl = GetComponentInParent<BasicEnemyController> ();
-				currentPathPoint = Vector3.zero;
+		parentControl = GetComponentInParent<BasicEnemyController> ();
+		currentPathPoint = Vector3.zero;
 
-				TrackingTarget = null;
-				Tracking = false;
-				Backtrace = false;
-				Flinching = false;
+		TrackingTarget = null;
+		Tracking = false;
+		Backtrace = false;
+		Flinching = false;
 
-				InCutscene = false;
+		Cutscene = false;
 
-				BacktracePoints = new List<Vector3> ();
-				backtraceIndex = 0;
+		BacktracePoints = new List<Vector3> ();
+		backtraceIndex = 0;
 
-				BacktracePoints.Add (transform.position);
-		}
+		BacktracePoints.Add (transform.position);
+
+		NotifyControllerOnCutscene ();
+	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-				if (!InCutscene) {
+				if (!Cutscene) {
 						if (Flinching) {
 								FlinchMove ();
 						} else if (Tracking) {
@@ -336,16 +338,23 @@ public class EnemyController : MonoBehaviour {
 		}
 
 	/**
-	 * Enter cutscene
+	 * <para>Tells the object not to move during a cutscene</para>
 	 * **/
-	public void EnterCutscene () {
-				InCutscene = true;
-		}
+	public void CutsceneFreeze () {
+		Cutscene = true;
+	}
 
 	/**
-	 * Exits the cutscene
+	 * <para>Tells the object it can move, cutscene is over</para>
 	 * **/
-	public void ExitCutscene () {
-				InCutscene = false;
-		}
+	public void CutsceneMove () {
+		Cutscene = false;
+	}
+
+	/**
+	 * <para>Notifies the controller that a new StopOnCutscene object exists</para>
+	 * **/
+	public void NotifyControllerOnCutscene() {
+		parentControl.GetGameController().AddStopOnCutscene (this);
+	}
 }

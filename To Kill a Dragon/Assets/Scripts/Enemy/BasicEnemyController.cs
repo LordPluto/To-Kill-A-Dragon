@@ -217,4 +217,12 @@ public class BasicEnemyController : MonoBehaviour {
 						GetComponentInParent<DeathTrigger> ().NotifyDeath ();
 				}
 		}
+
+	/**
+	 * <para>Gets the Game controller for this object</para>
+	 * <returns>Game controller</returns>
+	 * **/
+	public GameController GetGameController () {
+		return gameControl;
+	}
 }

@@ -37,12 +37,12 @@ public class CutsceneTriggerController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider c){
-				if (c.CompareTag ("Player")) {
+		if (c.CompareTag ("Player")) {
 			_controller.EnterCutscene (PlayerInvolved, NPCInvolved, PlayerPathPoints, NPCPathPoints, NPCName);
 
-						if (!Repeatable) {
-								Destroy (gameObject);
-						}
-				}
+			if (!Repeatable) {
+				Destroy (gameObject);
+			}
 		}
+	}
 }

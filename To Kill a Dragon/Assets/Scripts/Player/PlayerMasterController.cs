@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk {
+public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, StopOnCutscene {
 
 	#region Components
 
@@ -89,10 +89,11 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk {
 
 		NotifyControllerOnTalk ();
 		NotifyControllerOnFreeze ();
+		NotifyControllerOnCutscene ();
 	}
 
 	void Awake () {
-				_animator = GetComponent<Animator> ();
+				_animator = GetComponentInChildren<Animator> ();
 				_controller = GetComponent<CharacterController> ();
 
 				shiftOnce = false;
@@ -597,4 +598,24 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk {
 				flinchTimer = duration;
 		}
 
+	/**
+	 * <para>Tells the object not to move during a cutscene</para>
+	 * **/
+	public void CutsceneFreeze () {
+		Cutscene = true;
+	}
+
+	/**
+	 * <para>Tells the object it can move, cutscene is over</para>
+	 * **/
+	public void CutsceneMove () {
+		Cutscene = false;
+	}
+
+	/**
+	 * <para>Notifies the controller that a new StopOnCutscene object exists</para>
+	 * **/
+	public void NotifyControllerOnCutscene() {
+		gameControl.AddStopOnCutscene (this);
+	}
 }

@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Item\ItemBurstMovement.cs" />
      <Compile Include="Assets\Scripts\Item\ItemMasterController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneDialogueController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneManager.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneTriggerController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DeathTrigger.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DestinationController.cs" />
@@ -125,7 +126,9 @@
      <Compile Include="Assets\Scripts\Various\NPC\VictorController.cs" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Resources\Test\Sarah Time Shenanigans.txt" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-TransparentOutline.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Transparent.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
