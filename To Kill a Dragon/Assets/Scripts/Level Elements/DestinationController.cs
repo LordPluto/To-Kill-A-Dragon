@@ -3,11 +3,13 @@ using System.Collections;
 
 public class DestinationController : MonoBehaviour {
 
-	public double Ground;
-
 	// Use this for initialization
 	void Start () {
-		transform.position = new Vector3 (transform.position.x, (float)Ground, transform.position.z);
+		Ray ray = new Ray (transform.position, Vector3.down);
+		RaycastHit hit;
+
+		Physics.Raycast (ray, out hit, Mathf.Infinity, (1 << 13));
+		transform.position = hit.point;
 	}
 	
 	// Update is called once per frame

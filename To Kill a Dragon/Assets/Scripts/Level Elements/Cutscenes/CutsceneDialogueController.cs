@@ -19,6 +19,7 @@ public class CutsceneDialogueController : CutsceneEvent {
 		}
 
 	override public void Execute() {
+		Debug.Log ("Help");
 				gameControl.ShowDialogue (NpcName, NpcFlag);
 		}
 }

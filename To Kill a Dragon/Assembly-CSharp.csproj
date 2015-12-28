@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CameraManager.cs" />
      <Compile Include="Assets\Scripts\Enemy\AggroRangeController.cs" />
      <Compile Include="Assets\Scripts\Enemy\BasicEnemyController.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
@@ -59,6 +58,7 @@
      <Compile Include="Assets\Scripts\Item\ItemMasterController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneDialogueController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneManager.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneSpawnController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneTriggerController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DeathTrigger.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DestinationController.cs" />
@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Level Elements\WarpController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpDestinationController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\WarpStartController.cs" />
+     <Compile Include="Assets\Scripts\Player\CameraManager.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMasterController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovementController.cs" />
@@ -85,12 +86,12 @@
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Heal.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceCrystal.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\IceShotgun.cs" />
-     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningBranch.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningSegment.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\LightningStrike.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Magnet.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Unused Scripts\Ice.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Unused Scripts\Lightning.cs" />
+     <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Unused Scripts\LightningBranch.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Unused Scripts\LightningChain.cs" />
      <Compile Include="Assets\Scripts\Spells\MonoBehaviors\Wind.cs" />
      <Compile Include="Assets\Scripts\Spells\Other\Spell.cs" />

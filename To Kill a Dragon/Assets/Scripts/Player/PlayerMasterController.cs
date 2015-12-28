@@ -53,8 +53,8 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	private float currentHP;
 	private float maxHP;
 
-	private float currentMP;
-	private float maxMP;
+	public float currentMP=1000;
+	private float maxMP=1000;
 
 	private float currentEXP;
 	private float nextLevelEXP;
@@ -93,30 +93,31 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	}
 
 	void Awake () {
-				_animator = GetComponentInChildren<Animator> ();
-				_controller = GetComponent<CharacterController> ();
+		_animator = GetComponentInChildren<Animator> ();
+		_controller = GetComponent<CharacterController> ();
 
-				shiftOnce = false;
-				Talking = false;
-				Casting = false;
+		shiftOnce = false;
+		Talking = false;
+		Casting = false;
 		
-				playerMovement = new PlayerMovementController (_controller);
-				playerAnimation = new PlayerAnimationController (_animator);
-				playerSpells = new PlayerSpellController ();
+		playerMovement = new PlayerMovementController (_controller);
+		playerAnimation = new PlayerAnimationController (_animator);
+		playerSpells = new PlayerSpellController ();
 		
-				if (!_animator)
-						Debug.Log ("Sarah doesn't have animations. Moving her might look weird.");
+		if (!_animator)
+			Debug.Log ("Sarah doesn't have animations. Moving her might look weird.");
 		
-				currentHP = maxHP = 100;
-				currentMP = maxMP = 100;
+		currentHP = maxHP = 1000;
+		currentMP = maxMP = 1000;
 		
-				currentEXP = EXPProgression [0];
-				nextLevelEXP = EXPProgression [1];
-				level = 1;
-				maxLevel = EXPProgression.Length;
+		currentEXP = EXPProgression [0];
+		nextLevelEXP = EXPProgression [1];
+		level = 1;
+		maxLevel = EXPProgression.Length;
 		
-				Cutscene = false;
-		}
+		Cutscene = false;
+		currentPathPoint = null;
+	}
 
 	void Update () {
 		if (talkDelay > 0) {
@@ -136,73 +137,77 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		}
 
 		if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			playerCamera.Rotate (CameraRotation.Right);
+			RotateCamera (CameraRotation.Right);
+			//playerCamera.Rotate (CameraRotation.Right);
 		} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			playerCamera.Rotate (CameraRotation.Left);
+			//playerCamera.Rotate (CameraRotation.Left);
+			RotateCamera (CameraRotation.Left);
 		}
 	}
 
 	void FixedUpdate () {
-				if (Flinch) {
-						FlinchUpdate ();
-				} else if (Cutscene) {
-						CutsceneUpdate ();
-				} else if (magnetActive) {
-						MagnetUpdate ();
-				} else {
-						PlayerUpdate ();
-				}
+		if (Flinch) {
+			FlinchUpdate ();
+		} else if (Cutscene) {
+			if (currentPathPoint != null)
+				CutsceneUpdate ();
+		} else if (magnetActive) {
+			MagnetUpdate ();
+		} else {
+			PlayerUpdate ();
 		}
+	}
 
 	/**
 	 * <para>The Update function used when flinching</para>
 	 * **/
 	private void FlinchUpdate () {
-				Vector3 oldPosition = transform.position;
+		Vector3 oldPosition = transform.position;
 		
-				Vector3 direction = flinchDestination - transform.position;
-				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime * (windSpeedBoost ? 2 : 1);
+		Vector3 direction = flinchDestination - transform.position;
+		Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime * (windSpeedBoost ? 2 : 1);
 
-				transform.position = playerMovement.FlinchMovement (transform.position, moveVector);
+		transform.position = playerMovement.FlinchMovement (transform.position, moveVector);
 		
-				playerAnimation.setSpeed (transform.position != oldPosition);
+		playerAnimation.setSpeed (transform.position != oldPosition);
 		
-				float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
+		float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
 		
-				playerAnimation.setDirectionFromAngle (directionAngle);
+		playerAnimation.setDirectionFromAngle ((directionAngle + GetCameraRotation()) % 360);
 		
-				if ((flinchDestination - transform.position).sqrMagnitude < Mathf.Pow ((float).5, 2)) {
-						Flinch = false;
-						flinchDestination = Vector3.zero;
-				}
+		if ((flinchDestination - transform.position).sqrMagnitude < Mathf.Pow ((float).5, 2)) {
+			Flinch = false;
+			flinchDestination = Vector3.zero;
 		}
+	}
 
 	/**
 	 * <para>The Update function used when the system has control</para>
 	 * **/
 	private void CutsceneUpdate () {
-				Vector3 oldPosition = transform.position;
+		Vector3 oldPosition = transform.position;
 
-				Vector3 direction = currentPathPoint.transform.position - transform.position;
-				Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
+		Vector3 direction = currentPathPoint.transform.position - transform.position;
+		Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
 
-				transform.position = playerMovement.CutsceneMovement (transform.position, direction, moveVector);
+		transform.position = playerMovement.CutsceneMovement (transform.position, direction, moveVector);
 
-				playerAnimation.setSpeed (transform.position != oldPosition);
+		playerAnimation.setSpeed (transform.position != oldPosition);
 
-				float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
+		float directionAngle = (Mathf.Atan2 (direction.z, direction.x) * Mathf.Rad2Deg + 360) % 360;
 
-				playerAnimation.setDirectionFromAngle (directionAngle);
+		playerAnimation.setDirectionFromAngle ((directionAngle + GetCameraRotation()) % 360);
 		
-				if ((currentPathPoint.transform.position - transform.position).sqrMagnitude < Mathf.Pow ((float)pointReached, 2)) {
-						++pointIndex;
-						if (pointIndex > pathPoints.Length - 1) {
-								gameControl.PlayerFinishedCutscene ();
-						} else {
-								currentPathPoint = pathPoints [pointIndex];
-						}
-				}
+		if ((currentPathPoint.transform.position - transform.position).sqrMagnitude < Mathf.Pow ((float)pointReached, 2)) {
+			++pointIndex;
+			if (pointIndex > pathPoints.Length - 1) {
+				gameControl.PlayerFinishedCutscene ();
+				currentPathPoint = null;
+			} else {
+				currentPathPoint = pathPoints [pointIndex];
+			}
 		}
+	}
 
 	/**
 	 * <para>The Update function used when the player is casting Magnet</para>
@@ -217,7 +222,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * <para>The Update function used when the player has control</para>
 	 * **/
 	private void PlayerUpdate () {
-				playerMovement.PlayerMovement (Talking, Frozen, Casting, windSpeedBoost);
+		playerMovement.PlayerMovement (Talking, Frozen, Casting, windSpeedBoost, transform.rotation);
 
 				float changeSpell = Input.GetAxis ("SpellChange");
 				bool[] quickSelect = new bool[] { Input.GetButtonDown ("Quick1"),Input.GetButtonDown ("Quick2"),
@@ -225,7 +230,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 													Input.GetButtonDown ("Quick5")};
 
 		float castSpell = Input.GetAxis ("CastSpell") * (playerMovement.isFalling () ? 0 : 1);
-		
+	
 				ChangeSpell (changeSpell, quickSelect, castSpell);
 
 		playerAnimation.Animation (transform.position, _controller.velocity);
@@ -547,31 +552,30 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * Checks to see if an NPC is nearby. If one is (and you can talk to them) return true.
 	 * **/
 	private bool NPCNearby() {
-				Collider[] npcColliders = Physics.OverlapSphere (transform.position, 5, 1 << 10);
+		Collider[] npcColliders = Physics.OverlapSphere (transform.position, 5, 1 << 10);
 
-				if (npcColliders.Length != 0) {
-						NPCController closest = null;
-						float distance = Mathf.Infinity;
-						Vector3 position = transform.position;
-						foreach (Collider c in npcColliders) {
-								Vector3 diff = c.transform.position - position;
-								float curDistance = diff.sqrMagnitude;
+		if (npcColliders.Length != 0) {
+			NPCController closest = null;
+			float distance = Mathf.Infinity;
+			Vector3 position = transform.position;
+			foreach (Collider c in npcColliders) {
+				Vector3 diff = c.transform.position - position;
+				float curDistance = diff.sqrMagnitude;
 
-								if (curDistance < distance) {
-										closest = c.GetComponent<NPCController> ();
-										distance = curDistance;
-								}
-						}
-
-						if (closest.canTalkTo ()) {
-								closest.Talk ();
-						}
-
-						return true;
+				if (curDistance < distance) {
+					closest = c.GetComponent<NPCController> ();
+					distance = curDistance;
 				}
+			}
 
-				return false;
+			if (closest.canTalkTo ()) {
+				closest.Talk ();
+				return true;
+			}
 		}
+
+		return false;
+	}
 
 	/**
 	 * Sets the spawn point for when the player falls into a pit
@@ -597,6 +601,23 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 				FlinchHead = true;
 				flinchTimer = duration;
 		}
+
+	/**
+	 * <para>Rotates the camera in the direction specified.</para>
+	 * <param name="RotationDirection">The direction to rotate</param>
+	 * **/
+	private void RotateCamera (CameraRotation RotationDirection) {
+		transform.Rotate (0, (float)RotationDirection, 0);
+	}
+
+	/**
+	 * <para>Gets the camera rotation. Range is [0, 360)</para>
+	 * <para>Zero degrees is at the bottom of the circle, increasing clockwise.</para>
+	 * <returns>The camera rotation in degrees</returns>
+	 * **/
+	public float GetCameraRotation () {
+		return transform.rotation.eulerAngles.y;
+	}
 
 	/**
 	 * <para>Tells the object not to move during a cutscene</para>

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Fire : MonoBehaviour {
 
-	private int degree;
+	private float degree;
 	private Vector3 NewPosition;
 
 	public int Timer;
@@ -14,22 +14,8 @@ public class Fire : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		degree = (int)transform.rotation.eulerAngles.z/90;
-		NewPosition = Vector3.zero;
-		switch (degree) {
-		case 0:
-				NewPosition = new Vector3 (0, 0, -1);
-				break;
-		case 1:
-				NewPosition = new Vector3 (1, 0, 0);
-				break;
-		case 2:
-				NewPosition = new Vector3 (0, 0, 1);
-				break;
-		case 3:
-				NewPosition = new Vector3 (-1, 0, 0);
-				break;
-		}
+		degree = (transform.rotation.eulerAngles.z-transform.rotation.eulerAngles.y) * Mathf.Deg2Rad;
+		NewPosition = new Vector3 (Mathf.Sin (degree), 0, -Mathf.Cos (degree));
 
 		_animator = GetComponent<Animator> ();
 

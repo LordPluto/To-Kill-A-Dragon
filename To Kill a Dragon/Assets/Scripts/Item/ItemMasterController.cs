@@ -12,12 +12,14 @@ public class ItemMasterController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-				attractMode = GetComponent<ItemAttractMovement> ();
-		burstMode = GetComponent<ItemBurstMovement> ();
-				gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
+		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();				
+	}
 
-				GetComponent<ItemBurstMovement> ().enabled = true;
-		}
+	void Awake () {
+		attractMode = GetComponent<ItemAttractMovement> ();
+		burstMode = GetComponent<ItemBurstMovement> ();
+		GetComponent<ItemBurstMovement> ().enabled = true;
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -59,11 +61,11 @@ public class ItemMasterController : MonoBehaviour {
 	 * Shifts the item's mode into permanent magnetism.
 	 * **/
 	public void AttractModeTouch () {
-				attractMode.enabled = true;
-				if (burstMode.enabled != true) {
-						magnetTarget = false;
-				}
+		if (burstMode.enabled != true) {
+			attractMode.enabled = true;
+			magnetTarget = false;
 		}
+	}
 	
 	/**
 	 * Returns the value of the object

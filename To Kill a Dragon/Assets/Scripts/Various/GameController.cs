@@ -284,78 +284,73 @@ public class GameController : MonoBehaviour {
 	 * Casts the spell selected
 	 * **/
 	public void CastSpell (float _characterFacing){
-				if (MagnetActive || magnetDelay > 0 || playerControl.getMP() < selectedSpell.getCost()) {
-						return;
-				}
-
-				if (selectedSpell is FireSpell) {
-						Instantiate (selectedSpell.getSpellForm (), 
-						             playerControl.getPosition () + new Vector3 ((_characterFacing % 2 == 1 ? 
-			                                             								(_characterFacing == 1 ? 1 : -1) : 0),
-											                                       (_characterFacing == 2 ? 2 : 1),
-											                                       (_characterFacing % 2 == 0 ? 
-			 																			(_characterFacing == 0 ? -1 : 1) : 0)),						 															
-						             Quaternion.Euler (0,
-						                  0,
-						                  _characterFacing * 90));
-				} else if (selectedSpell is IceSpell) {
-						GameObject iceClone = GameObject.Find ("Ice(Clone)");
-						if (iceClone) {
-								if (Quaternion.Angle (iceClone.transform.rotation, Quaternion.Euler (90,
-				                                                                   180 - (int)_characterFacing * 90,
-				                                                                   0)) > 10) {
-										Destroy (iceClone);
-										Instantiate (selectedSpell.getSpellForm (),
-								             playerControl.getPosition () + new Vector3 ((_characterFacing % 2 == 1 ?
-								                                        					(_characterFacing == 1 ? 1 : -1) : 0),
-												                                       2,
-												                                       (_characterFacing % 2 == 0 ?
-												 											(_characterFacing == 0 ? -1 : 1) : 0)) / 3,
-								             Quaternion.Euler (90,
-								                  180 - (int)_characterFacing * 90,
-								                  0));
-								}
-						} else {
-								Instantiate (selectedSpell.getSpellForm (),
-							             	playerControl.getPosition () + new Vector3 ((_characterFacing % 2 == 1 ?
-								                                            (_characterFacing == 1 ? 1 : -1) : 0),
-								                                           2,
-								                                           (_characterFacing % 2 == 0 ?
-											 (_characterFacing == 0 ? -1 : 1) : 0)) / 3,
-											             Quaternion.Euler (90,
-											                  180 - (int)_characterFacing * 90,
-											                  0));
-						}
-				} else if (selectedSpell is LightningSpell) {
-						Instantiate (selectedSpell.getSpellForm (),
-						             playerControl.getPosition () + new Vector3 ((_characterFacing % 2 == 1 ?
-										                                        	(_characterFacing == 1 ? 1 : -1) : 0),
-										                                       2,
-										                                       (_characterFacing % 2 == 0 ?
-															 						(_characterFacing == 0 ? -1 : 1) : 0)) / 3,
-						             Quaternion.Euler (90,
-			                  180 - (int)_characterFacing * 90,
-						                  0));
-				} else if (selectedSpell is HealSpell) {
-						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (0, 0, 0));
-				} else if (selectedSpell is WindSpell) {
-						GameObject windClone = GameObject.Find ("Wind(Clone)");
-						if (windClone) {
-								Destroy (windClone);
-						}
-						
-						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (90, 0, 0));
-				} else if (selectedSpell is MagnetSpell) {
-						Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition () + (new Vector3 (0, 101, 0) / 100),
-			             Quaternion.Euler (90,
-			                  180 - (int)_characterFacing * 90,
-			                  0));
-				}
-
-				playerControl.changeMP (-(selectedSpell.getCost ()));
-				HUDControl.setManaPercentage (playerControl.getPercentMP ());
-
+		if (MagnetActive || magnetDelay > 0 || playerControl.getMP () < selectedSpell.getCost ()) {
+			return;
 		}
+
+		float PlayerRotation = playerControl.GetCameraRotation ();
+		float FacingDegrees = _characterFacing * 90;
+
+		if (selectedSpell is FireSpell) {
+			Instantiate (selectedSpell.getSpellForm (), 
+				playerControl.getPosition () + new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+					(_characterFacing == 2 ? 2 : 1),
+					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)),						 															
+				Quaternion.Euler (0,
+					PlayerRotation,
+					FacingDegrees));
+		} else if (selectedSpell is IceSpell) {
+			GameObject iceClone = GameObject.Find ("Ice(Clone)");
+			if (iceClone) {
+				if (Quaternion.Angle (iceClone.transform.rotation, Quaternion.Euler (90,
+					    180 - (int)FacingDegrees + PlayerRotation,
+					    0)) > 10) {
+					Destroy (iceClone);
+					Instantiate (selectedSpell.getSpellForm (),
+						playerControl.getPosition () + new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+							2,
+							-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
+						Quaternion.Euler (90,
+							180 - (int)FacingDegrees + PlayerRotation,
+							0));
+				}
+			} else {
+				Instantiate (selectedSpell.getSpellForm (),
+					playerControl.getPosition () + new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+						2,
+						-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
+					Quaternion.Euler (90,
+						180 - (int)FacingDegrees + PlayerRotation,
+						0));
+			}
+		} else if (selectedSpell is LightningSpell) {
+			Instantiate (selectedSpell.getSpellForm (),
+				playerControl.getPosition () + new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+					2,
+					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
+				Quaternion.Euler (90,
+					180 - (int)FacingDegrees + PlayerRotation,
+					0));
+		} else if (selectedSpell is HealSpell) {
+			Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (0, 0, 0));
+		} else if (selectedSpell is WindSpell) {
+			GameObject windClone = GameObject.Find ("Wind(Clone)");
+			if (windClone) {
+				Destroy (windClone);
+			}
+						
+			Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (90, 0, 0));
+		} else if (selectedSpell is MagnetSpell) {
+			Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition () + new Vector3 (0, 1.01f, 0),
+				Quaternion.Euler (90,
+					180 - (int)FacingDegrees,
+					0));
+		}
+
+		playerControl.changeMP (-(selectedSpell.getCost ()));
+		HUDControl.setManaPercentage (playerControl.getPercentMP ());
+
+	}
 
 	/**
 	 * <para>Entering cutscene. Takes control from the player.</para>

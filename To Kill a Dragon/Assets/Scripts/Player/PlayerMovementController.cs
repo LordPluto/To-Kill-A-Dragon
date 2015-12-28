@@ -33,7 +33,7 @@ public class PlayerMovementController {
 	/**
 	 * Handles movement when the player is in control
 	 * **/
-	public void PlayerMovement(bool Talking, bool Frozen, bool Casting, bool WindBoost){
+	public void PlayerMovement(bool Talking, bool Frozen, bool Casting, bool WindBoost, Quaternion PlayerRotation){
 				float ZSpeed = Input.GetAxis ("Vertical");
 				float XSpeed = Input.GetAxis ("Horizontal");
 
@@ -44,7 +44,7 @@ public class PlayerMovementController {
 						return;
 				}
 
-				speed = new Vector3 (XSpeed * speedMultiplier, 0, ZSpeed * speedMultiplier);
+				speed = PlayerRotation * new Vector3 (XSpeed * speedMultiplier, 0, ZSpeed * speedMultiplier);
 
 				if (Talking || Frozen || Casting) {
 						speed = Vector3.zero;

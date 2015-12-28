@@ -2,8 +2,8 @@
 using System.Collections;
 
 public enum CameraRotation {
-	Left = -45,
-	Right = 45
+	Left = 45,
+	Right = -45
 }
 
 public class CameraManager : MonoBehaviour {
@@ -59,7 +59,7 @@ public class CameraManager : MonoBehaviour {
 		transform.position = 
 			RotatePointAroundPivot (transform.position,
 			transform.parent.position,
-				Quaternion.Euler(0,-1*((float)RotationDirection),0));
+				Quaternion.Euler(0,(float)RotationDirection,0));
 		transform.LookAt (transform.parent);
 	}
 

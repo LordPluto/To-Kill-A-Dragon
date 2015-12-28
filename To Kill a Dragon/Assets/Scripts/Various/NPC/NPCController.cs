@@ -73,6 +73,12 @@ public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene {
 
 		NotifyControllerOnTalk ();
 		NotifyControllerOnCutscene ();
+
+		Ray ray = new Ray (transform.position, Vector3.down);
+		RaycastHit hit;
+
+		Physics.Raycast (ray, out hit, Mathf.Infinity, (1 << 13));
+		transform.position = hit.point;
 	}
 
 	// Use this for initialization
@@ -100,16 +106,17 @@ public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-				if (talkDelay > 0) {
-						talkDelay--;
-				}
-
-				if (Cutscene) {
-						CutsceneUpdate ();
-				} else {
-						PathUpdate ();
-				}
+		if (talkDelay > 0) {
+			talkDelay--;
 		}
+
+		if (Cutscene) {
+			if (cutscenePathPoint != null)
+				CutsceneUpdate ();
+		} else {
+			PathUpdate ();
+		}
+	}
 
 	/**
 	 * Handles the regular movement.
@@ -146,6 +153,7 @@ public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene {
 						if (cutsceneIndex > cutscenePathPoints.Length - 1) {
 								_controller.NPCFinishedCutscene ();
 								Cutscene = false;
+				cutscenePathPoint = null;
 						} else {
 								currentPathPoint = pathPoints [pointIndex];
 						}

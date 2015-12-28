@@ -9,24 +9,10 @@ public class LightningStrike : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-				Vector3 direction = Vector3.zero;
-				int degree = (4 + (180 - (int)transform.rotation.eulerAngles.y) / 90) % 4;
-		
-				switch (degree) {
-				case 0:
-						direction = new Vector3 (0, 0, -1);
-						break;
-				case 1:
-						direction = new Vector3 (1, 0, 0);
-						break;
-				case 2:
-						direction = new Vector3 (0, 0, 1);
-						break;
-				case 3:
-						direction = new Vector3 (-1, 0, 0);
-						break;
-				}
-		
+		float degree = transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
+
+		Vector3 direction = new Vector3 (Mathf.Sin(degree), 0, Mathf.Cos(degree));
+
 				Ray ray = new Ray (transform.position, direction);
 				RaycastHit hit;
 
