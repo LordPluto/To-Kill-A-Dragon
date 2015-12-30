@@ -15,7 +15,9 @@ public class CutsceneSpawnController : CutsceneEvent {
 	
 	}
 
-	override public void Execute() {
+	override public void Execute(CutsceneManager Manager) {
+		MyManager = Manager;
 		SpawningObject.SetActive (true);
+		MyManager.EndEvent ();
 	}
 }

@@ -26,10 +26,10 @@ public class DialogueTreeController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-				if (nextBox > 0) {
-						nextBox--;
-				}
+		if (nextBox > 0) {
+			nextBox--;
 		}
+	}
 
 	/**
 	 * Activate and load dialogue for a given NPC Name.
@@ -57,24 +57,32 @@ public class DialogueTreeController : MonoBehaviour {
 		}
 
 	public void NextTextBox () {
-				if (dialogueControl.IsTextFinished () && nextBox == 0) {
-						nextBox = 10;
-						count++;
+		if (dialogueControl.IsTextFinished () && nextBox == 0) {
+			nextBox = 10;
+			count++;
 		
-						if (count < lines.Count) {
-								dialogueControl.SetText (lines [count].getText ());
-								dialogueControl.SetHead (lines [count].getImageName ());
+			if (count < lines.Count) {
+				dialogueControl.SetText (lines [count].getText ());
+				dialogueControl.SetHead (lines [count].getImageName ());
 		
-								dialogueControl.Activate ();
-						} else {
-								Close ();
-						}
-				}
+				dialogueControl.Activate ();
+			} else {
+				Close ();
+			}
 		}
+	}
 
 	void Close () {
 				gameControl.HideDialogue ();
 		}
+
+	/**
+	 * <para>Is the dialogue box active or not</para>
+	 * <returns>True if active, false if not</returns>
+	 * **/
+	public bool IsActive () {
+		return dialogueControl.DialogueActive ();
+	}
 }
 
 public class Dialogue {

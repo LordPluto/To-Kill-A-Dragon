@@ -58,6 +58,8 @@
      <Compile Include="Assets\Scripts\Item\ItemMasterController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneDialogueController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneManager.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneMovementController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutscenePathManager.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneSpawnController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Cutscenes\CutsceneTriggerController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DeathTrigger.cs" />

@@ -18,3 +18,7 @@ public interface StopOnCutscene {
 	void CutsceneMove();
 	void NotifyControllerOnCutscene();
 }
+
+public interface CutsceneParticipant {
+	void SetPath(Transform[] PathPoints, CutscenePathManager PathManager);
+}

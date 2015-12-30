@@ -65,8 +65,7 @@ public class GameController : MonoBehaviour {
 
 	#region Cutscene
 
-	private bool PlayerInvolved;
-	private bool NPCInvolved;
+	private bool InCutscene;
 
 	#endregion
 
@@ -190,7 +189,7 @@ public class GameController : MonoBehaviour {
 	 * <para>Shows the dialogue box.</para>
 	 * <para>Player cannot move or cast spells.</para>
 	 * <param name="NPCName">Name to look for</param>
-	 * <param flag="NPCFlag">Flag to look for. Ignored by default.</param>
+	 * <param name="NPCFlag">Flag to look for. Ignored by default.</param>
 	 * **/
 	public void ShowDialogue (string NPCName, int NPCFlag=-1) {
 				if (NPCFlag > -1) {
@@ -210,6 +209,14 @@ public class GameController : MonoBehaviour {
 
 				MoveTalkingBehaviours ();
 		}
+
+	/**
+	 * <para>Is the dialogue box active or not</para>
+	 * <returns>True if active, false if not</returns>
+	 * **/
+	public bool IsDialogueActive () {
+		return treeControl.IsActive ();
+	}
 
 	/**
 	 * <para>Stops all objects that shouldn't move when dialogue is happening</para>
@@ -303,7 +310,7 @@ public class GameController : MonoBehaviour {
 			GameObject iceClone = GameObject.Find ("Ice(Clone)");
 			if (iceClone) {
 				if (Quaternion.Angle (iceClone.transform.rotation, Quaternion.Euler (90,
-					    180 - (int)FacingDegrees + PlayerRotation,
+					180 - ((int)FacingDegrees - PlayerRotation),
 					    0)) > 10) {
 					Destroy (iceClone);
 					Instantiate (selectedSpell.getSpellForm (),
@@ -311,7 +318,7 @@ public class GameController : MonoBehaviour {
 							2,
 							-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
 						Quaternion.Euler (90,
-							180 - (int)FacingDegrees + PlayerRotation,
+							180 - ((int)FacingDegrees - PlayerRotation),
 							0));
 				}
 			} else {
@@ -320,7 +327,7 @@ public class GameController : MonoBehaviour {
 						2,
 						-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
 					Quaternion.Euler (90,
-						180 - (int)FacingDegrees + PlayerRotation,
+						180 - ((int)FacingDegrees - PlayerRotation),
 						0));
 			}
 		} else if (selectedSpell is LightningSpell) {
@@ -329,7 +336,7 @@ public class GameController : MonoBehaviour {
 					2,
 					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
 				Quaternion.Euler (90,
-					180 - (int)FacingDegrees + PlayerRotation,
+					180 - ((int)FacingDegrees - PlayerRotation),
 					0));
 		} else if (selectedSpell is HealSpell) {
 			Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition (), Quaternion.Euler (0, 0, 0));
@@ -343,7 +350,7 @@ public class GameController : MonoBehaviour {
 		} else if (selectedSpell is MagnetSpell) {
 			Instantiate (selectedSpell.getSpellForm (), playerControl.getPosition () + new Vector3 (0, 1.01f, 0),
 				Quaternion.Euler (90,
-					180 - (int)FacingDegrees,
+					FacingDegrees - PlayerRotation, 
 					0));
 		}
 
@@ -358,27 +365,7 @@ public class GameController : MonoBehaviour {
 	public void EnterCutscene() {
 		HUDControl.Hide ();
 		HaltCutsceneBehaviours ();
-	}
-
-	/**
-	 * Handles entering cutscene - the little black bars, taking control from the player, etc.
-	 * **/
-	public void EnterCutscene(bool PlayerInvolved, bool NPCInvolved, Transform[] PlayerPathPoints, Transform[] NPCPathPoints, string NPCName){
-		this.PlayerInvolved = PlayerInvolved;
-		this.NPCInvolved = NPCInvolved;
-
-		if (this.PlayerInvolved) {
-			playerControl.EnterCutscene (PlayerPathPoints);
-		}
-		if (this.NPCInvolved) {
-			GameObject.Find (NPCName).GetComponent<NPCController> ().EnterCutscene (NPCPathPoints);
-		}
-
-		HUDControl.Hide ();
-
-		foreach (GameObject enemy in GameObject.FindGameObjectsWithTag ("Enemy")) {
-			enemy.GetComponent<EnemyController> ().CutsceneFreeze ();
-		}
+		InCutscene = true;
 	}
 
 	/**
@@ -387,34 +374,8 @@ public class GameController : MonoBehaviour {
 	public void EndCutscene() {
 		HUDControl.Show ();
 		MoveCutsceneBehaviours ();
+		InCutscene = false;
 	}
-
-	/**
-	 * Checks to see if the game is in a cutscene.
-	 * **/
-	public bool InCutscene () {
-				return (PlayerInvolved || NPCInvolved);
-		}
-
-	/**
-	 * Informs the system that the Player is done with their cutscene stuff
-	 * **/
-	public void PlayerFinishedCutscene(){
-				PlayerInvolved = false;
-				if (!NPCInvolved) {
-						EndCutscene ();
-				}
-		}
-
-	/**
-	 * Informs the system that the NPC is done with their cutscene stuff
-	 * **/
-	public void NPCFinishedCutscene(){
-				NPCInvolved = false;
-				if (!PlayerInvolved) {
-						EndCutscene ();
-				}
-		}
 
 	/**
 	 * Returns the current flag of the NPC
@@ -446,7 +407,7 @@ public class GameController : MonoBehaviour {
 	 * Deal damage to player
 	 * **/
 	public void DealPlayerDamage(GameObject monster, Vector3 playerDirection, Vector3 monsterAngle){
-				if (!InCutscene ()) {
+				if (!InCutscene) {
 						BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
 
 						float monsterAtk = monsterControl.Atk;
@@ -478,7 +439,7 @@ public class GameController : MonoBehaviour {
 	 * Deals the player damage from getting hit by a bullet
 	 * **/
 	public void DealPlayerBulletDamage(float damage, Vector3 bulletDirection){
-				if (!InCutscene ()) {
+				if (!InCutscene) {
 						playerControl.TakeMonsterDamage (damage, bulletDirection);
 
 						HUDControl.setHealthPercentage (playerControl.getPercentHP ());

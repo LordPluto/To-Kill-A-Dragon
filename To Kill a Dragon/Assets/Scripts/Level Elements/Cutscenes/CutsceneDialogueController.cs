@@ -15,11 +15,16 @@ public class CutsceneDialogueController : CutsceneEvent {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (!gameControl.IsDialogueActive ()) {
+			MyManager.EndEvent ();
+			this.enabled = false;
 		}
+	}
 
-	override public void Execute() {
-		Debug.Log ("Help");
-				gameControl.ShowDialogue (NpcName, NpcFlag);
-		}
+	override public void Execute(CutsceneManager Manager) {
+		MyManager = Manager;
+		gameControl.ShowDialogue (NpcName, NpcFlag);
+
+		this.enabled = true;
+	}
 }

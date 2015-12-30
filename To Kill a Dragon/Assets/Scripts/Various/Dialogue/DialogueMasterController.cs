@@ -12,6 +12,8 @@ public class DialogueMasterController : MonoBehaviour {
 	private string textString;
 	private string imageName;
 
+	private bool IsActive;
+
 	// Use this for initialization
 	void Start () {
 				text = GetComponentInChildren<DialogueController> ();
@@ -38,6 +40,8 @@ public class DialogueMasterController : MonoBehaviour {
 				background.Activate ();
 				button.Deactivate ();
 				textbox.Activate ();
+
+		IsActive = true;
 		}
 
 	public void Deactivate () {
@@ -47,6 +51,8 @@ public class DialogueMasterController : MonoBehaviour {
 				background.Deactivate ();
 				button.Deactivate ();
 				textbox.Deactivate ();
+
+		IsActive = false;
 		}
 
 	public void SetHead (string imageName){
@@ -64,5 +70,13 @@ public class DialogueMasterController : MonoBehaviour {
 
 	public bool IsTextFinished(){
 		return !text.enabled;
+	}
+
+	/**
+	 * <para>Is the dialogue box active or not</para>
+	 * <returns>True if active, false if not</returns>
+	 * **/
+	public bool DialogueActive () {
+		return IsActive;
 	}
 }

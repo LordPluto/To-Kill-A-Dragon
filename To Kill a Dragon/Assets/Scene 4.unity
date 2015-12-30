@@ -722,7 +722,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 491828, guid: 7de6d77ffb7a43f4c953ba8a833421ce, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 191828, guid: 7de6d77ffb7a43f4c953ba8a833421ce, type: 2}
       propertyPath: m_TagString
@@ -1519,7 +1519,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 6d50611bfb3404940856690c7f83910c, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 11480164, guid: 6d50611bfb3404940856690c7f83910c, type: 2}
       propertyPath: currentMP
@@ -2036,7 +2036,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 496204, guid: 3adb278122413954bb77d225b6f9e203, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.64
+      value: -0.31
       objectReference: {fileID: 0}
     - target: {fileID: 496204, guid: 3adb278122413954bb77d225b6f9e203, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2060,7 +2060,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 496204, guid: 3adb278122413954bb77d225b6f9e203, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 11496204, guid: 3adb278122413954bb77d225b6f9e203, type: 2}
       propertyPath: PlayerPathPoints.Array.data[0]

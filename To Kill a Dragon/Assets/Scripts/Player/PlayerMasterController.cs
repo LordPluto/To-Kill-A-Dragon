@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, StopOnCutscene {
+public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, StopOnCutscene, CutsceneParticipant {
 
 	#region Components
 
@@ -45,6 +45,8 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	
 	private float moveSpeed = 4;
 	private double pointReached = .5;
+
+	private CutscenePathManager PathManager;
 
 	#endregion
 
@@ -201,7 +203,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		if ((currentPathPoint.transform.position - transform.position).sqrMagnitude < Mathf.Pow ((float)pointReached, 2)) {
 			++pointIndex;
 			if (pointIndex > pathPoints.Length - 1) {
-				gameControl.PlayerFinishedCutscene ();
+				PathManager.NotifyComplete ();
 				currentPathPoint = null;
 			} else {
 				currentPathPoint = pathPoints [pointIndex];
@@ -638,5 +640,22 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * **/
 	public void NotifyControllerOnCutscene() {
 		gameControl.AddStopOnCutscene (this);
+	}
+
+	/**
+	 * <para>Sets the cutscene path</para>
+	 * <param name="PathPoints">A list of the points</param>
+	 * <param name="PathManager">The Path Manager to report to when finished</param>
+	 * **/
+	public void SetPath(Transform[] PathPoints, CutscenePathManager PathManager) {
+		pathPoints = null;		/* Clear out whatever's in there. */
+
+		pathPoints = (Transform[])PathPoints.Clone ();
+		if (pathPoints.Length > 0) {
+			currentPathPoint = pathPoints [0];
+			pointIndex = 0;
+		}
+
+		this.PathManager = PathManager;
 	}
 }

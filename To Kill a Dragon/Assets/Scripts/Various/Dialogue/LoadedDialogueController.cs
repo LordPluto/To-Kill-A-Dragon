@@ -80,17 +80,18 @@ public class LoadedDialogueController : MonoBehaviour {
 	 * Gets the loaded dialogue for the NPC
 	 * **/
 	public List<Dialogue> getDialogue(string NPCName, int NPCFlag){
-				Dictionary<int, List<Dialogue>> returnedFlaggedDialogues = new Dictionary<int, List<Dialogue>> ();
-				List<Dialogue> returnedDialogue = new List<Dialogue> ();
-				if (npcLines.TryGetValue (NPCName, out returnedFlaggedDialogues)) {
-						if (returnedFlaggedDialogues.TryGetValue (NPCFlag, out returnedDialogue)) {
-								return returnedDialogue;
-						} else {
-								return null;
-						}
-				}
+		Dictionary<int, List<Dialogue>> returnedFlaggedDialogues = new Dictionary<int, List<Dialogue>> ();
+		List<Dialogue> returnedDialogue = new List<Dialogue> ();
+		if (npcLines.TryGetValue (NPCName, out returnedFlaggedDialogues)) {
+			if (returnedFlaggedDialogues.TryGetValue (NPCFlag, out returnedDialogue)) {
+				return returnedDialogue;
+			} else {
+				Debug.LogError ("NPC lines exist. Wrong flag.");
 				return null;
+			}
 		}
+		return null;
+	}
 
 	void OnTriggerEnter (Collider c){
 				if (c.CompareTag ("Player")) {

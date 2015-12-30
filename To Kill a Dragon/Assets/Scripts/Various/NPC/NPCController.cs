@@ -21,7 +21,7 @@ using System.Collections;
  * private double pointReached: distance check constant.
  * public bool loopPath: whether the NPC loops their path
  * **/
-public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene {
+public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene, CutsceneParticipant {
 
 	#region Components
 
@@ -65,6 +65,8 @@ public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene {
 	private Transform cutscenePathPoint;
 	private int cutsceneIndex;
 
+	private CutscenePathManager PathManager;
+
 	#endregion
 
 	void Start () {
@@ -83,26 +85,26 @@ public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene {
 
 	// Use this for initialization
 	void Awake () {
-				savedTalkState = talkTo;
-				_animator = GetComponent<Animator> ();
+		savedTalkState = talkTo;
+		_animator = GetComponent<Animator> ();
 
-				if (pathPoints.Length <= 0) {
-						npcMovement = false;
-				}
-
-				if (npcMovement) {
-
-						currentPathPoint = pathPoints [0];
-						pointIndex = 0;
-				}
-
-				Talking = false;
-				Cutscene = false;
-
-				if (!_animator) {
-						Debug.Log ("Serious problem detected.");
-				}
+		if (pathPoints.Length <= 0) {
+			npcMovement = false;
 		}
+
+		if (npcMovement) {
+
+			currentPathPoint = pathPoints [0];
+			pointIndex = 0;
+		}
+
+		Talking = false;
+		Cutscene = false;
+
+		if (!_animator) {
+			Debug.Log ("Serious problem detected.");
+		}
+	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -146,19 +148,18 @@ public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene {
 	 * Handles the cutscene movement.
 	 * **/
 	private void CutsceneUpdate() {
-				MoveTowardCutscenePoint ();
+		MoveTowardCutscenePoint ();
 			
-				if (Vector3.Distance (cutscenePathPoint.transform.position, transform.position) < (float) pointReached) {
-						++cutsceneIndex;
-						if (cutsceneIndex > cutscenePathPoints.Length - 1) {
-								_controller.NPCFinishedCutscene ();
-								Cutscene = false;
+		if (Vector3.Distance (cutscenePathPoint.transform.position, transform.position) < (float)pointReached) {
+			++cutsceneIndex;
+			if (cutsceneIndex > cutscenePathPoints.Length - 1) {
+				PathManager.NotifyComplete ();
 				cutscenePathPoint = null;
-						} else {
-								currentPathPoint = pathPoints [pointIndex];
-						}
-				}
+			} else {
+				currentPathPoint = pathPoints [pointIndex];
+			}
 		}
+	}
 
 	/**
 	 * When the NPC is clicked, check to see if you can talk to him
@@ -281,16 +282,6 @@ public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene {
 		}
 
 	/**
-	 * Enters the cutscene. Basically tells the system to use a different set of points.
-	 * **/
-	public void EnterCutscene(Transform[] CutscenePoints){
-				Cutscene = true;
-				cutscenePathPoints = CutscenePoints;
-				cutscenePathPoint = cutscenePathPoints [0];
-				cutsceneIndex = 0;
-		}
-
-	/**
 	 * Checks to see if the NPC can be talked to.
 	 * **/
 	public bool canTalkTo() {
@@ -304,4 +295,20 @@ public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene {
 				_controller.ShowDialogue (name);
 				talkTo = false;
 		}
+
+	/**
+	 * <para>Sets the cutscene path</para>
+	 * <param name="PathPoints">A list of the points</param>
+	 * **/
+	public void SetPath(Transform[] PathPoints, CutscenePathManager PathManager) {
+		cutscenePathPoints = null;		/* Clear out whatever's in there. */
+
+		cutscenePathPoints = (Transform[])PathPoints.Clone ();
+		if (cutscenePathPoints.Length > 0) {
+			currentPathPoint = cutscenePathPoints [0];
+			cutsceneIndex = 0;
+		}
+
+		this.PathManager = PathManager;
+	}
 }

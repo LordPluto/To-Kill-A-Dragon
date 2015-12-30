@@ -3,5 +3,15 @@ using System.Collections;
 
 public abstract class CutsceneEvent : MonoBehaviour {
 
-	abstract public void Execute ();
+	private CutsceneManager myManager;
+	public CutsceneManager MyManager {
+		get {
+			return myManager;
+		}
+		set {
+			myManager = value;
+		}
+	}
+
+	abstract public void Execute (CutsceneManager Manager);
 }
