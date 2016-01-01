@@ -14,6 +14,9 @@ public class CameraManager : MonoBehaviour {
 	private Renderer currentRenderer;
 	private float currentAlpha;
 
+	public Shader RegularShader;
+	public Shader TransparentShader;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -21,8 +24,6 @@ public class CameraManager : MonoBehaviour {
 	void Awake () {
 		currentRenderer = null;
 		currentAlpha = 1.0f;
-
-
 	}
 	
 	// Update is called once per frame
@@ -39,13 +40,19 @@ public class CameraManager : MonoBehaviour {
 				} else if (currentAlpha < TransparentAlpha) {
 					SetAlpha (currentRenderer, TransparentAlpha);
 				}
+				SetShader (currentRenderer, TransparentShader);
+			} else if (currentRenderer != null) {
+				SetAlpha (currentRenderer, 1.0f);
+				SetShader (currentRenderer, RegularShader);
 			}
 
 			currentRenderer = hitRenderer;
+
 		} else if (currentRenderer != null) {
 			SetAlpha (currentRenderer, currentAlpha + 3.5f * Time.deltaTime);
 			if (currentAlpha > 1.0f) {
 				SetAlpha (currentRenderer, 1.0f);
+				SetShader (currentRenderer, RegularShader);
 				currentRenderer = null;
 			}
 		}
@@ -83,5 +90,18 @@ public class CameraManager : MonoBehaviour {
 			m.SetFloat ("_Alpha", AlphaValue);
 		}
 		currentAlpha = AlphaValue;
+	}
+
+	/**
+	 * <para>Sets the shaders attached to a given renderer to a given shader.</para>
+	 * <param name="renderer">Renderer to modify</param>
+	 * <param name="NewShader">new shader</param>
+	 * **/
+	private void SetShader(Renderer renderer, Shader NewShader) {
+		foreach (Material m in renderer.materials) {
+			if (m.shader != NewShader) {
+				m.shader = NewShader;
+			}
+		}
 	}
 }

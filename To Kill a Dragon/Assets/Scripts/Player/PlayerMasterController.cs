@@ -409,6 +409,21 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		}
 
 	/**
+	 * <para>Increases or decreases MP based on percentage of Max MP</para>
+	 * <param name="PercentChange">Percent to change. Can be from range (0, 1].</param>
+	 * **/
+	public void PercentChangeMP(float percent) {
+		float change = maxMP * percent;
+		if (currentMP + change > maxMP) {
+			currentMP = maxMP;
+		} else if (currentMP + change < 0) {
+			currentMP = 0;
+		} else {
+			currentMP += change;
+		}
+	}
+
+	/**
 	 * Gets percentage of MP
 	 * **/
 	public float getPercentMP () {

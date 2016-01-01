@@ -1,15 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Level Elements\Cutscenes\CutsceneDialogueController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\CameraManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\Level Elements\Cutscenes\CutsceneMovementController.cs" Line="22" Column="5" />
-      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="206" Column="31" />
-      <File FileName="Assets\Scripts\Various\NPC\NPCController.cs" Line="156" Column="35" />
-      <File FileName="Assets\Scripts\Level Elements\Cutscenes\CutsceneManager.cs" Line="31" Column="43" />
-      <File FileName="Assets\Scripts\Level Elements\Cutscenes\CutsceneDialogueController.cs" Line="23" Column="2" />
-      <File FileName="Assets\Scripts\Various\GameController.cs" Line="217" Column="30" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" Line="84" Column="44" />
-      <File FileName="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" Line="82" Column="2" />
+      <File FileName="Assets\Scripts\Player\CameraManager.cs" Line="43" Column="50" />
+      <File FileName="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Transparent.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Cutscenes\CutsceneMovementController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\NPC\NPCController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Cutscenes\CutsceneManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Cutscenes\CutsceneDialogueController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\Dialogue\DialogueTreeController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\Dialogue\DialogueMasterController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -459,13 +459,13 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
-	 * Restores the player's MP by the amount
+	 * Restores the player's MP by the percentage
 	 * **/
-	public void HealPlayerMana (float healAmount) {
-				playerControl.changeMP (healAmount);
+	public void HealPlayerManaPercent (float healPercent) {
+		playerControl.PercentChangeMP (healPercent);
 
-				HUDControl.setManaPercentage (playerControl.getPercentMP ());
-		}
+		HUDControl.setManaPercentage (playerControl.getPercentMP ());
+	}
 
 	/**
 	 * Tells the Game to choose the correct head icon
@@ -510,7 +510,7 @@ public class GameController : MonoBehaviour {
 						HealPlayer (value);
 						break;
 				case "Mana":
-						HealPlayerMana (value);
+						HealPlayerManaPercent (value);
 						break;
 				case "GradeA":
 						break;
