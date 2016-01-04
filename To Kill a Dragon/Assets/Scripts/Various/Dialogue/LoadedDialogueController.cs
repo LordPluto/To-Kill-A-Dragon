@@ -30,22 +30,22 @@ public class LoadedDialogueController : MonoBehaviour {
 	 * Load the dialogues of the NPCs listed in the array
 	 * **/
 	public void LoadNPCs(DialogueDump dialogueSource) {
-				npcLines.Clear ();
+		npcLines.Clear ();
 
-				for (int i = 0; i<loadingNPC.Length; ++i) {
-						List<Dialogue> dialogueHolder = new List<Dialogue> ();
+		for (int i = 0; i < loadingNPC.Length; ++i) {
+			List<Dialogue> dialogueHolder = new List<Dialogue> ();
 
-						dialogueHolder = SetUpTree (dialogueSource.GetAsset (loadingNPC [i], loadingFlags [i]));
+			dialogueHolder = SetUpTree (dialogueSource.GetAsset (loadingNPC [i], loadingFlags [i]));
 
-						if (dialogueHolder == null) {
-								Debug.LogError ("Holy fuck something went VERY wrong");
-						} else {
-								Dictionary<int, List<Dialogue>> flaggedDialogue = new Dictionary<int, List<Dialogue>> ();
-								flaggedDialogue.Add (loadingFlags [i], dialogueHolder);
-								npcLines.Add (loadingNPC [i], flaggedDialogue);
-						}
-				}
+			if (dialogueHolder == null) {
+				Debug.LogError ("Holy fuck something went VERY wrong when loading " + loadingNPC [i] + " dialogue.");
+			} else {
+				Dictionary<int, List<Dialogue>> flaggedDialogue = new Dictionary<int, List<Dialogue>> ();
+				flaggedDialogue.Add (loadingFlags [i], dialogueHolder);
+				npcLines.Add (loadingNPC [i], flaggedDialogue);
+			}
 		}
+	}
 
 	/**
 	 * Set up the dialogue tree given the text and image source

@@ -156,7 +156,7 @@ public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene, Cutscene
 				PathManager.NotifyComplete ();
 				cutscenePathPoint = null;
 			} else {
-				currentPathPoint = pathPoints [pointIndex];
+				cutscenePathPoint = cutscenePathPoints [cutsceneIndex];
 			}
 		}
 	}
@@ -301,11 +301,11 @@ public class NPCController : MonoBehaviour, StopOnTalk, StopOnCutscene, Cutscene
 	 * <param name="PathPoints">A list of the points</param>
 	 * **/
 	public void SetPath(Transform[] PathPoints, CutscenePathManager PathManager) {
-		cutscenePathPoints = null;		/* Clear out whatever's in there. */
+		cutscenePathPoints = null;
 
 		cutscenePathPoints = (Transform[])PathPoints.Clone ();
 		if (cutscenePathPoints.Length > 0) {
-			currentPathPoint = cutscenePathPoints [0];
+			cutscenePathPoint = cutscenePathPoints [0];
 			cutsceneIndex = 0;
 		}
 

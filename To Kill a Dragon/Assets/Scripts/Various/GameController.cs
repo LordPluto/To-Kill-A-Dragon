@@ -114,8 +114,8 @@ public class GameController : MonoBehaviour {
 				SetNPCFlag ("Victor", 1);
 				dialogueDump.AddLines ("Victor2", 1, (TextAsset)Resources.Load ("Test/Chapter Two"));
 				SetNPCFlag ("Victor2", 1);
-				dialogueDump.AddLines ("new Sarah Sprite", 3, (TextAsset)Resources.Load ("Test/Sarah Time Shenanigans"));
-				SetNPCFlag ("new Sarah Sprite", 3);
+				dialogueDump.AddLines ("new Sarah Sprite", 1, (TextAsset)Resources.Load ("Test/Sarah Time Shenanigans"));
+				SetNPCFlag ("new Sarah Sprite", 1);
 				//END TEST
 		
 				spellBook = GameObject.Find ("_SpellBook").GetComponent<SpellList> ();
@@ -645,5 +645,13 @@ public class GameController : MonoBehaviour {
 		foreach (StopOnCutscene SoC in freezingList) {
 			SoC.CutsceneMove ();
 		}
+	}
+
+	/**
+	 * <para>Returns whether the game is in a cutscene or not</para>
+	 * <returns>True if in cutscene, false otherwise</returns>
+	 * **/
+	public bool CutsceneActive () {
+		return InCutscene;
 	}
 }

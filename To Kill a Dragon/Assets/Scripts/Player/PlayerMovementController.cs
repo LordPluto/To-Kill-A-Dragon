@@ -98,9 +98,9 @@ public class PlayerMovementController {
 	 * Only used when the player needs to fall straight down.
 	 * **/
 	public void DeactivateUntilGrounded() {
-				deactivated = true;
+		deactivated = true;
 		speed = Vector3.zero;
-		}
+	}
 
 	/**
 	 * <para>Checks to see if the character is falling.</para>

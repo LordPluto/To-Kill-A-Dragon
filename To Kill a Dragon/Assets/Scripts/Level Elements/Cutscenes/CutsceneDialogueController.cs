@@ -22,6 +22,9 @@ public class CutsceneDialogueController : CutsceneEvent {
 	}
 
 	override public void Execute(CutsceneManager Manager) {
+		if (gameControl == null) {
+			gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
+		}
 		MyManager = Manager;
 		gameControl.ShowDialogue (NpcName, NpcFlag);
 

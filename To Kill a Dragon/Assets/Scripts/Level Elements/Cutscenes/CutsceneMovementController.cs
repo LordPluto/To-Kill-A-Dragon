@@ -15,6 +15,10 @@ public class CutsceneMovementController : CutsceneEvent {
 			+ "Number of participants does not match number of paths given.");
 		}
 	}
+
+	void Awake () {
+		this.enabled = false;
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -26,6 +30,10 @@ public class CutsceneMovementController : CutsceneEvent {
 
 	override public void Execute(CutsceneManager Manager) {
 		participantCount = participantNames.Length;
+
+		for (int i = 0; i < participantCount; i++) {
+			paths [i].BeginPath (this, participantNames [i]);
+		}
 
 		MyManager = Manager;
 		this.enabled = true;

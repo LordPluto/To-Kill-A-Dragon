@@ -16,6 +16,7 @@ public class CutsceneManager : MonoBehaviour {
 	}
 
 	void Awake () {
+		GetComponent<Renderer> ().enabled = false;
 		eventNum = 0;
 
 		Ray ray = new Ray (transform.position, Vector3.down);
@@ -25,7 +26,7 @@ public class CutsceneManager : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider c){
-		if (c.CompareTag ("Player")) {
+		if (c.CompareTag ("Player") && !_controller.CutsceneActive()) {
 			_controller.EnterCutscene ();
 
 			CutsceneEvents [eventNum].Execute (this);

@@ -23,10 +23,18 @@ public class CutscenePathManager : MonoBehaviour {
 	 * **/
 	public void BeginPath (CutsceneMovementController MovementController, string ParticipantName) {
 		this.MovementController = MovementController;
+
+		CutsceneParticipant participant = GameObject.Find (ParticipantName).GetComponent<CutsceneParticipant> ();
+		if (participant == null) {
+			NotifyComplete();
+			return;
+		}
+
+		participant.SetPath (pathPoints, this);
 	}
 
 	/**
-	 * <para>Notifies the Movement controller that the path is complete
+	 * <para>Notifies the Movement controller that the path is complete</para>
 	 * **/
 	public void NotifyComplete() {
 		MovementController.NotifyPathComplete ();

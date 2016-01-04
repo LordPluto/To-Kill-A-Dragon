@@ -205,6 +205,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 			if (pointIndex > pathPoints.Length - 1) {
 				PathManager.NotifyComplete ();
 				currentPathPoint = null;
+				playerAnimation.Animation (transform.position, Vector3.zero);
 			} else {
 				currentPathPoint = pathPoints [pointIndex];
 			}
