@@ -16,6 +16,7 @@ public class MenuController : MonoBehaviour {
 
 	private Canvas menu;
 	private Canvas buttons;
+	private Canvas panels;
 
 	private GameController gameControl;
 	private Text walletText;
@@ -37,6 +38,19 @@ public class MenuController : MonoBehaviour {
 	void Start () {
 		InitObjects ();
 		DontDestroyOnLoad (GameObject.Find ("MenuButton Canvas"));
+		DontDestroyOnLoad (GameObject.Find ("MenuPanel Canvas"));
+
+		Windows = new GameObject[6];
+		Windows [0] = GameObject.Find ("Status Panel");
+		Windows [1] = GameObject.Find ("Inventory Panel");
+		Windows [2] = GameObject.Find ("Equipment Panel");
+		Windows [3] = GameObject.Find ("Customize Panel");
+		Windows [4] = GameObject.Find ("Quest Panel");
+		Windows [5] = GameObject.Find ("Debug Panel");
+
+		DeactivateWindows ();
+
+		SwitchWindow (MenuWindow.StatusWindow);
 	}
 
 	void OnLevelWasLoaded(int level) {
@@ -49,17 +63,6 @@ public class MenuController : MonoBehaviour {
 
 	void Awake () {
 		DontDestroyOnLoad (transform.gameObject);
-		Windows = new GameObject[6];
-		Windows [0] = GameObject.Find ("Status Panel");
-		Windows [1] = GameObject.Find ("Inventory Panel");
-		Windows [2] = GameObject.Find ("Equipment Panel");
-		Windows [3] = GameObject.Find ("Customize Panel");
-		Windows [4] = GameObject.Find ("Quest Panel");
-		Windows [5] = GameObject.Find ("Debug Panel");
-
-		DeactivateWindows ();
-
-		SwitchWindow (MenuWindow.StatusWindow);
 	}
 	
 	// Update is called once per frame
@@ -84,6 +87,7 @@ public class MenuController : MonoBehaviour {
 	private void InitObjects() {
 		menu = GameObject.Find ("Enter Menu").GetComponent<Canvas> ();
 		buttons = GameObject.Find ("MenuButton Canvas").GetComponent<Canvas> ();
+		panels = GameObject.Find ("MenuPanel Canvas").GetComponent<Canvas> ();
 		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		walletText = GameObject.Find ("Menu Money").GetComponent<Text> ();
 
@@ -101,14 +105,15 @@ public class MenuController : MonoBehaviour {
 	 * <param name="enableContents">True to enable contents, false to disable them</param>
 	 * **/
 	public void SetEnabled(bool enableContents) {
-				if (!objInit) {
-						InitObjects ();
-				}
-				menu.enabled = enableContents;
-				buttons.enabled = enableContents;
-
-				walletText.text = gameControl.GetWallet ().ToString();
+		if (!objInit) {
+			InitObjects ();
 		}
+		menu.enabled = enableContents;
+		buttons.enabled = enableContents;
+		panels.enabled = enableContents;
+
+		walletText.text = gameControl.GetWallet ().ToString ();
+	}
 
 	/**
 	 * <para>Enables debug button. If debug mode is enabled, the debug menu option

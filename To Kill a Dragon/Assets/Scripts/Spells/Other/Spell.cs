@@ -163,7 +163,7 @@ public class Lightning3Spell : AttackSpell {
 }
 
 public class LightningExSpell : AttackSpell {
-	public LightningExSpell() : base(SPELL.LightningEX,30,20,40,240,0) {
+	public LightningExSpell() : base(SPELL.LightningEx,30,20,40,240,0) {
 		
 	}
 }

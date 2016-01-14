@@ -1,16 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spells\MonoBehaviors\Magnet.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\GameController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Various\GameController.cs" Line="118" Column="38" />
-      <File FileName="Assets\Scripts\Level Elements\Cutscenes\CutsceneMovementController.cs" Line="20" Column="24" />
-      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="440" Column="21" />
-      <File FileName="Assets\Scripts\Various\NPC\NPCController.cs" Line="265" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\DebugPanelControl.cs" Line="73" Column="35" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="663" Column="2" />
+      <File FileName="Assets\Scripts\Level Elements\Cutscenes\CutsceneMovementController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\NPC\NPCController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Enemy\EnemyController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Spells\MonoBehaviors\Magnet.cs" Line="61" Column="5" />
-      <File FileName="Assets\Scripts\Level Elements\WarpStartController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Level Elements\WarpController.cs" Line="20" Column="50" />
-      <File FileName="Assets\Scripts\Player\PlayerMovementController.cs" Line="101" Column="3" />
+      <File FileName="Assets\Scripts\Player\PlayerMovementController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

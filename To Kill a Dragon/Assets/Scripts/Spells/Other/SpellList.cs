@@ -13,7 +13,7 @@ public enum SPELL {
 	Lightning = 8,
 	Lightning2 = 9,
 	Lightning3 = 10,
-	LightningEX = 11,
+	LightningEx = 11,
 	Heal = 12,
 	Heal2 = 13,
 	Heal3 = 14,

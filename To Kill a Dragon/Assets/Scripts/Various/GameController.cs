@@ -122,12 +122,12 @@ public class GameController : MonoBehaviour {
 				KnownSpells = new List<Spell> ();
 		
 				//Testing for Spells. MARKED FOR DELETION
-				AddSpell (new FireSpell ());
-				AddSpell (new IceSpell ());
-				AddSpell (new LightningSpell ());
-				AddSpell (new HealSpell ());
-				AddSpell (new WindSpell ());
-				AddSpell (new MagnetSpell ());
+		AddSpell (SPELL.Fire);
+		AddSpell (SPELL.Ice);
+		AddSpell (SPELL.Lightning);
+		AddSpell (SPELL.Heal);
+		AddSpell (SPELL.Wind);
+		AddSpell (SPELL.MagnetNorth);
 		
 				spellIndex = 0;
 		
@@ -485,17 +485,6 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
-	 * Adds a given spell to the known list.
-	 * **/
-	public void AddSpell (Spell newSpell){
-				// Not great, but the best I can do. Find is a slow function.
-				if (KnownSpells.Find (x => x.getNumber () == newSpell.getNumber ()) == null) {
-						newSpell.setSpellForm (spellBook.getPrefab (newSpell));
-						KnownSpells.Add (newSpell);
-				}
-		}
-
-	/**
 	 * Handles what happens when you collect an item.
 	 * **/
 	public void ItemCollected(string tag, float value){
@@ -653,5 +642,122 @@ public class GameController : MonoBehaviour {
 	 * **/
 	public bool CutsceneActive () {
 		return InCutscene;
+	}
+
+	/**
+	 * <para>Gets a list of known spells</para>
+	 * <returns>A List of known spells</para>
+	 * **/
+	public List<Spell> GetKnownSpells () {
+		return KnownSpells;
+	}
+
+	/**
+	 * <para>Removes a known spell.</para>
+	 * <param name="TargetSpell">Spell to remove</param>
+	 * **/
+	public void RemoveSpell (SPELL TargetSpell) {
+		KnownSpells.Remove (KnownSpells.Find (x => x.getNumber () == (int)TargetSpell));
+		selectedSpell = KnownSpells [spellIndex];
+		HUDControl.setIcon(selectedSpell,MagnetPole);
+	}
+
+	/**
+	 * <para>Adds a given spell to the known list. List is kept ordered</para>
+	 * <param name="newSpell">Spell to add</param>
+	 * **/
+	public void AddSpell (SPELL newSpell){
+		// Not great, but the best I can do. Find is a slow function.
+		if (KnownSpells.Find (x => x.getNumber () == (int)newSpell) == null) {
+			Spell TargetSpell;
+
+			switch (newSpell) {
+			case SPELL.Fire:
+				TargetSpell = new FireSpell ();
+				break;
+			case SPELL.Fire2:
+				TargetSpell = new Fire2Spell ();
+				break;
+			case SPELL.Fire3:
+				TargetSpell = new Fire3Spell ();
+				break;
+			case SPELL.FireEx:
+				TargetSpell = new FireExSpell ();
+				break;
+			case SPELL.Ice:
+				TargetSpell = new IceSpell ();
+				break;
+			case SPELL.Ice2:
+				TargetSpell = new Ice2Spell ();
+				break;
+			case SPELL.Ice3:
+				TargetSpell = new Ice3Spell ();
+				break;
+			case SPELL.IceEx:
+				TargetSpell = new IceExSpell ();
+				break;
+			case SPELL.Lightning:
+				TargetSpell = new LightningSpell ();
+				break;
+			case SPELL.Lightning2:
+				TargetSpell = new Lightning2Spell ();
+				break;
+			case SPELL.Lightning3:
+				TargetSpell = new Lightning3Spell ();
+				break;
+			case SPELL.LightningEx:
+				TargetSpell = new LightningExSpell ();
+				break;
+			case SPELL.Heal:
+				TargetSpell = new HealSpell ();
+				break;
+			case SPELL.Heal2:
+				TargetSpell = new Heal2Spell ();
+				break;
+			case SPELL.Heal3:
+				TargetSpell = new Heal3Spell ();
+				break;
+			case SPELL.HealEx:
+				TargetSpell = new HealExSpell ();
+				break;
+			case SPELL.Wind:
+				TargetSpell = new WindSpell ();
+				break;
+			case SPELL.MagnetNorth:
+				TargetSpell = new MagnetSpell ();
+				break;
+			case SPELL.Mirror:
+				TargetSpell = new MirrorSpell ();
+				break;
+			case SPELL.Mirror2:
+				TargetSpell = new Mirror2Spell ();
+				break;
+			case SPELL.Mirror3:
+				TargetSpell = new Mirror3Spell ();
+				break;
+			case SPELL.MirrorEx:
+				TargetSpell = new MirrorExSpell ();
+				break;
+			/*case SPELL.Death:
+				TargetSpell = new DeathSpell ();
+				break;
+			case SPELL.Illuminate:
+				TargetSpell = new IlluminateSpell ();
+				break;*/
+			default:
+				TargetSpell = new FireSpell ();
+				Debug.Log ("Adding a spell that doesn't exist yet! Attempted spell number: " + newSpell);
+				break;
+			}
+			TargetSpell.setSpellForm (spellBook.getPrefab (TargetSpell));
+			for (int i = 0; i < KnownSpells.Count; ++i) {
+				if (KnownSpells [i].getNumber () > (int)newSpell) {
+					KnownSpells.Insert (i, TargetSpell);
+					return;
+				}
+			}
+			//No spell exists with a lower number, so...
+			KnownSpells.Add(TargetSpell);
+		}
 	}
 }
