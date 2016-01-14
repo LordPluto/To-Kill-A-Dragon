@@ -570,6 +570,10 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * Checks to see if an NPC is nearby. If one is (and you can talk to them) return true.
 	 * **/
 	private bool NPCNearby() {
+		if (Physics.OverlapSphere (transform.position, 5, 1 << 14).Length > 0) {
+			return false;
+		}
+
 		Collider[] npcColliders = Physics.OverlapSphere (transform.position, 5, 1 << 10);
 
 		if (npcColliders.Length != 0) {
