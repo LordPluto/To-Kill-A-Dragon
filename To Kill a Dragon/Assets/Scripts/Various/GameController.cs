@@ -459,6 +459,16 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
+	 * <para>Restores the player's HP by the percentage</para>
+	 * <param name="healPercent">Percentage to heal</param>
+	 * **/
+	public void HealPlayerHealthPercent (float healPercent) {
+		playerControl.PercentChangeHP (healPercent);
+
+		HUDControl.setHealthPercentage (playerControl.getPercentHP ());
+	}
+
+	/**
 	 * Restores the player's MP by the percentage
 	 * **/
 	public void HealPlayerManaPercent (float healPercent) {
@@ -496,7 +506,7 @@ public class GameController : MonoBehaviour {
 						}
 						break;
 				case "Health":
-						HealPlayer (value);
+						HealPlayerHealthPercent (value);
 						break;
 				case "Mana":
 						HealPlayerManaPercent (value);

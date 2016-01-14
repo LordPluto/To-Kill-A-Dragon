@@ -425,6 +425,21 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	}
 
 	/**
+	 * <para>Increases or decreases HP based on percentage of Max HP</para>
+	 * <param name="PercentChange">Percent to change. Can be from range (0, 1].</param>
+	 * **/
+	public void PercentChangeHP(float percent) {
+		float change = maxHP * percent;
+		if (currentHP + change > maxHP) {
+			currentHP = maxHP;
+		} else if (currentHP + change < 0) {
+			currentHP = 0;
+		} else {
+			currentHP += change;
+		}
+	}
+
+	/**
 	 * Gets percentage of MP
 	 * **/
 	public float getPercentMP () {
