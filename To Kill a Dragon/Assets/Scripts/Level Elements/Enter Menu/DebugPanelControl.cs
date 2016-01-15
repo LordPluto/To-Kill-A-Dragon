@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class DebugPanelControl : MonoBehaviour {
+public class DebugPanelControl : MenuPanelControl {
 
 	private GameController gameControl;
 	private Toggle[] spellToggles;
@@ -12,7 +12,6 @@ public class DebugPanelControl : MonoBehaviour {
 	void Start () {
 		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 
-		spellToggles = new Toggle[25];
 		spellToggles [0] = GameObject.Find ("FireToggle").GetComponent<Toggle> ();
 		spellToggles [4] = GameObject.Find ("IceToggle").GetComponent<Toggle> ();
 		spellToggles [8] = GameObject.Find ("LightningToggle").GetComponent<Toggle> ();
@@ -20,16 +19,19 @@ public class DebugPanelControl : MonoBehaviour {
 		spellToggles [16] = GameObject.Find ("WindToggle").GetComponent<Toggle> ();
 		spellToggles [17] = GameObject.Find ("MagnetToggle").GetComponent<Toggle> ();
 	}
+
+	void Awake () {
+		spellToggles = new Toggle[25];
+	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
-	void OnEnable () {
+	public override void OnActivate () {
 		if (gameControl == null) {
-			//We don't have access to spells yet due to how the Unity engine likes to load things
-			return;
+			gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
 
 		List<Spell> KnownSpells = gameControl.GetKnownSpells ();
@@ -40,8 +42,15 @@ public class DebugPanelControl : MonoBehaviour {
 		}
 	}
 
-	void OnDisable () {
+	public override void Init () {
+		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 
+		spellToggles [0] = GameObject.Find ("FireToggle").GetComponent<Toggle> ();
+		spellToggles [4] = GameObject.Find ("IceToggle").GetComponent<Toggle> ();
+		spellToggles [8] = GameObject.Find ("LightningToggle").GetComponent<Toggle> ();
+		spellToggles [12] = GameObject.Find ("HealToggle").GetComponent<Toggle> ();
+		spellToggles [16] = GameObject.Find ("WindToggle").GetComponent<Toggle> ();
+		spellToggles [17] = GameObject.Find ("MagnetToggle").GetComponent<Toggle> ();
 	}
 
 	/**

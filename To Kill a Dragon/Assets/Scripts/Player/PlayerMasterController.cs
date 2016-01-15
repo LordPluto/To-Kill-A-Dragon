@@ -227,10 +227,10 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	private void PlayerUpdate () {
 		playerMovement.PlayerMovement (Talking, Frozen, Casting, windSpeedBoost, transform.rotation);
 
-				float changeSpell = Input.GetAxis ("SpellChange");
-				bool[] quickSelect = new bool[] { Input.GetButtonDown ("Quick1"),Input.GetButtonDown ("Quick2"),
-													Input.GetButtonDown ("Quick3"), Input.GetButtonDown ("Quick4"),
-													Input.GetButtonDown ("Quick5")};
+		float changeSpell = 0;//Input.GetAxis ("SpellChange");
+		bool[] quickSelect = new bool[] { Input.GetButtonDown ("Quick1"),Input.GetButtonDown ("Quick2"),
+													Input.GetButtonDown ("Quick3")/*, Input.GetButtonDown ("Quick4"),
+													Input.GetButtonDown ("Quick5")*/};
 
 		float castSpell = Input.GetAxis ("CastSpell") * (playerMovement.isFalling () ? 0 : 1);
 	
@@ -259,8 +259,8 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * **/
 	private void ChangeSpell(float spellChange, bool[] quickSelect, float castSpell){
 				bool reset = (spellChange == 0 && !(quickSelect [0] ||
-						quickSelect [1] || quickSelect [2] ||
-						quickSelect [3] || quickSelect [4]));
+						quickSelect [1] || quickSelect [2]/* ||
+						quickSelect [3] || quickSelect [4]*/));
 
 				if (!shiftOnce && castSpell < 0.01) {
 						if (spellChange > 0.01) {			/* The player hit E */

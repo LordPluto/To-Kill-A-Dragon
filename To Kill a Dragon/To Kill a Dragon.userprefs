@@ -1,17 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Various\GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerMasterController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Various\Dialogue\NextButtonController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Level Elements\Enter Menu\DebugPanelControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Various\GameController.cs" Line="509" Column="30" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\DebugPanelControl.cs" Line="53" Column="80" />
+      <File FileName="Assets\Scripts\Level Elements\MenuController.cs" Line="150" Column="39" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="283" Column="32" />
       <File FileName="Assets\Scripts\Level Elements\Cutscenes\CutsceneMovementController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="438" Column="12" />
-      <File FileName="Assets\Scripts\Various\NPC\NPCController.cs" Line="287" Column="2" />
+      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="263" Column="43" />
+      <File FileName="Assets\Scripts\Various\NPC\NPCController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Enemy\EnemyController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Player\PlayerMovementController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy\BasicEnemyController.cs" Line="217" Column="7" />
-      <File FileName="Assets\Scripts\Item\ItemMasterController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\EquipmentPanelControl.cs" Line="24" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\CustomizePanelControl.cs" Line="16" Column="36" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\StatusPanelControl.cs" Line="16" Column="36" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\InventoryPanelControl.cs" Line="16" Column="36" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\QuestPanelControl.cs" Line="16" Column="37" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\MenuPanelControl.cs" Line="6" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

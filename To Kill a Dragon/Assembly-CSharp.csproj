@@ -65,8 +65,14 @@
      <Compile Include="Assets\Scripts\Level Elements\DeathTrigger.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DestinationController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\DoorTriggerController.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\CustomizePanelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\DebugPanelControl.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\EquipmentPanelControl.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\InventoryPanelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\MenuButtonClick.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\MenuPanelControl.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\QuestPanelControl.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\StatusPanelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\FallingNet.cs" />
      <Compile Include="Assets\Scripts\Level Elements\LoadingManager.cs" />
      <Compile Include="Assets\Scripts\Level Elements\MagnetCubeController.cs" />

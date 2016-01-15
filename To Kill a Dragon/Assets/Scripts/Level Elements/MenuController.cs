@@ -61,6 +61,10 @@ public class MenuController : MonoBehaviour {
 		}
 	}
 
+	void OnEnable() {
+		
+	}
+
 	void Awake () {
 		DontDestroyOnLoad (transform.gameObject);
 	}
@@ -144,6 +148,7 @@ public class MenuController : MonoBehaviour {
 	 * **/
 	private void DeactivateWindows() {
 		foreach (GameObject gO in Windows) {
+			gO.GetComponent<MenuPanelControl> ().Init ();
 			gO.SetActive (false);
 		}
 	}
@@ -159,5 +164,6 @@ public class MenuController : MonoBehaviour {
 
 		currentWindow = Windows [(int) Window];
 		currentWindow.SetActive (true);
+		currentWindow.GetComponent<MenuPanelControl> ().OnActivate ();
 	}
 }

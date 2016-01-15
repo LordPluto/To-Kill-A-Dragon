@@ -119,7 +119,6 @@ public class GameController : MonoBehaviour {
 				//END TEST
 		
 				spellBook = GameObject.Find ("_SpellBook").GetComponent<SpellList> ();
-				KnownSpells = new List<Spell> ();
 		
 				//Testing for Spells. MARKED FOR DELETION
 		AddSpell (SPELL.Fire);
@@ -152,6 +151,8 @@ public class GameController : MonoBehaviour {
 		talkingList = new List<StopOnTalk> ();
 		freezingList = new List<StopOnFreeze> ();
 		cutsceneList = new List<StopOnCutscene> ();
+
+		KnownSpells = new List<Spell> ();
 
 		DontDestroyOnLoad (transform.gameObject);
 	}
@@ -279,12 +280,7 @@ public class GameController : MonoBehaviour {
 	 * <param name="quickSlot">Quick select slot</param>
 	 * **/
 	public void QuickSelect(int quickSlot){
-				if (quickSlot >= 0 && quickSlot < 5 && QuickSpells [quickSlot] != null) {
-						selectedSpell = QuickSpells [quickSlot];
-						spellIndex = KnownSpells.IndexOf (selectedSpell);
-				}
-
-				HUDControl.setIcon (selectedSpell, MagnetPole);
+		Debug.Log ("FUCK redo this");
 		}
 
 	/**
@@ -668,8 +664,10 @@ public class GameController : MonoBehaviour {
 	 * **/
 	public void RemoveSpell (SPELL TargetSpell) {
 		KnownSpells.Remove (KnownSpells.Find (x => x.getNumber () == (int)TargetSpell));
-		selectedSpell = KnownSpells [spellIndex];
-		HUDControl.setIcon(selectedSpell,MagnetPole);
+		if (KnownSpells.Count > 0) {
+			selectedSpell = KnownSpells [spellIndex];
+			HUDControl.setIcon (selectedSpell, MagnetPole);
+		}
 	}
 
 	/**
