@@ -117,23 +117,6 @@ public class BasicEnemyController : MonoBehaviour {
 		}
 
 	/**
-	 * Take damage from spell
-	 * **/
-	public void TakeDamage(Vector3 flinch){
-				Spell spellCast = gameControl.getSpell ();
-				HP -= Mathf.Max (0, spellCast.getSpellDamage () - Def);
-				KnockBack (flinch, spellCast.getSpellKnockback ());
-		}
-
-	/**
-	 * Take damage from magnet block
-	 * **/
-	public void MagnetDamage(Vector3 flinch){
-				HP -= 1;
-				MagnetKnockBack (flinch, 1);
-		}
-
-	/**
 	 * How much EXP is this monster worth?
 	 * **/
 	public float valueEXP(){

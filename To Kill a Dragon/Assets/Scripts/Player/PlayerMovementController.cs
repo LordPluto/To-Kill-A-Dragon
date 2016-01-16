@@ -33,11 +33,11 @@ public class PlayerMovementController {
 	/**
 	 * Handles movement when the player is in control
 	 * **/
-	public void PlayerMovement(bool Talking, bool Frozen, bool Casting, bool WindBoost, Quaternion PlayerRotation){
+	public void PlayerMovement(bool Talking, bool Frozen, Quaternion PlayerRotation){
 				float ZSpeed = Input.GetAxis ("Vertical");
 				float XSpeed = Input.GetAxis ("Horizontal");
 
-				float speedMultiplier = movementSpeed * (WindBoost ? 2 : 1);
+				float speedMultiplier = movementSpeed;
 
 				if (deactivated) {
 						Move (speed);
@@ -46,7 +46,7 @@ public class PlayerMovementController {
 
 				speed = PlayerRotation * new Vector3 (XSpeed * speedMultiplier, 0, ZSpeed * speedMultiplier);
 
-				if (Talking || Frozen || Casting) {
+				if (Talking || Frozen) {
 						speed = Vector3.zero;
 				}
 
@@ -73,23 +73,6 @@ public class PlayerMovementController {
 	public Vector3 FlinchMovement (Vector3 position, Vector3 moveVector) {
 				position += moveVector;
 		
-				return position;
-		}
-
-	/**
-	 * Handles movement when the player is being magnetized.
-	 * **/
-	public Vector3 MagnetMovement (Vector3 position, Vector3 moveVector) {
-				Vector3 point1 = position + new Vector3 (0, 1.51f, 0), point2 = position + new Vector3 (0, .51f, 0);
-				float radius = 0.5f;
-				RaycastHit hit;
-		
-				Physics.CapsuleCast (point1, point2, radius, moveVector, out hit, 0.5f, (1 << 12 | 1 << 13 | 1 << 15));
-		
-				if (hit.collider == null) {
-						position += moveVector;
-				}
-
 				return position;
 		}
 

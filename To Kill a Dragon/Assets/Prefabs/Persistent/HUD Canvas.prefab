@@ -1,23 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &110132
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 22410132}
-  - 222: {fileID: 22210132}
-  - 114: {fileID: 11410134}
-  - 114: {fileID: 11410132}
-  m_Layer: 5
-  m_Name: HUD Spells
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &110134
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,69 +144,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &11410132
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7baf0b941f5b3ab43a396f5428f78ba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellIcons:
-  - {fileID: 2800000, guid: 80d8d4e9e83a39b41b98daac59662e60, type: 3}
-  - {fileID: 2800000, guid: 80d8d4e9e83a39b41b98daac59662e60, type: 3}
-  - {fileID: 2800000, guid: 80d8d4e9e83a39b41b98daac59662e60, type: 3}
-  - {fileID: 2800000, guid: 80d8d4e9e83a39b41b98daac59662e60, type: 3}
-  - {fileID: 2800000, guid: 1fe7c7f3dfc3f1048a8ea24c65013120, type: 3}
-  - {fileID: 2800000, guid: 1fe7c7f3dfc3f1048a8ea24c65013120, type: 3}
-  - {fileID: 2800000, guid: 1fe7c7f3dfc3f1048a8ea24c65013120, type: 3}
-  - {fileID: 2800000, guid: 1fe7c7f3dfc3f1048a8ea24c65013120, type: 3}
-  - {fileID: 2800000, guid: 4483597f61bbce6499f03646cc68090e, type: 3}
-  - {fileID: 2800000, guid: 4483597f61bbce6499f03646cc68090e, type: 3}
-  - {fileID: 2800000, guid: 4483597f61bbce6499f03646cc68090e, type: 3}
-  - {fileID: 2800000, guid: 4483597f61bbce6499f03646cc68090e, type: 3}
-  - {fileID: 2800000, guid: 0ea776bab9e71d34ab1273174bfb662f, type: 3}
-  - {fileID: 2800000, guid: 0ea776bab9e71d34ab1273174bfb662f, type: 3}
-  - {fileID: 2800000, guid: 0ea776bab9e71d34ab1273174bfb662f, type: 3}
-  - {fileID: 2800000, guid: 0ea776bab9e71d34ab1273174bfb662f, type: 3}
-  - {fileID: 2800000, guid: b194b499d70334145acbaacdda5ec554, type: 3}
-  - {fileID: 2800000, guid: 92945f90dc0de6841b024c8ec2414e1b, type: 3}
-  - {fileID: 2800000, guid: 4f153368eac48044992be1181a5205ad, type: 3}
-  - {fileID: 2800000, guid: 4f153368eac48044992be1181a5205ad, type: 3}
-  - {fileID: 2800000, guid: 4f153368eac48044992be1181a5205ad, type: 3}
-  - {fileID: 2800000, guid: 4f153368eac48044992be1181a5205ad, type: 3}
-  - {fileID: 2800000, guid: 869ed6ac2ca75af4fa667acd7a56eb22, type: 3}
-  - {fileID: 2800000, guid: 6587bfde80b53a74da77a8969366ae79, type: 3}
-  - {fileID: 2800000, guid: 8fca98a2934f4fb44a4782e59aeb8d2e, type: 3}
---- !u!114 &11410134
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 2800000, guid: 80d8d4e9e83a39b41b98daac59662e60, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
 --- !u!114 &11410136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -534,12 +453,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!222 &22210132
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110132}
 --- !u!222 &22210134
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -600,23 +513,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!224 &22410132
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110132}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 22410146}
-  m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 27.900024, y: -167.40001}
-  m_SizeDelta: {x: 48, y: 48}
-  m_Pivot: {x: 0, y: 0}
 --- !u!224 &22410134
 RectTransform:
   m_ObjectHideFlags: 1
@@ -628,7 +524,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22410146}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -49.7, y: -76.1}
@@ -645,7 +541,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22410146}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -26.3, y: -28.8}
@@ -662,7 +558,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22410146}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 146.95001, y: -77.20001}
@@ -679,7 +575,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22410146}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 140.20001, y: -105.999985}
@@ -696,7 +592,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22410146}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 143.89996, y: -122.7}
@@ -731,7 +627,6 @@ RectTransform:
   m_Children:
   - {fileID: 22410144}
   - {fileID: 22410148}
-  - {fileID: 22410132}
   - {fileID: 22410138}
   - {fileID: 22410140}
   - {fileID: 22410142}

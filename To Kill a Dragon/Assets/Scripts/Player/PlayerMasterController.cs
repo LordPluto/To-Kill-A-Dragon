@@ -10,7 +10,6 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 
 	private PlayerMovementController playerMovement;
 	private PlayerAnimationController playerAnimation;
-	private PlayerSpellController playerSpells;
 	private CameraManager playerCamera;
 
 	private GameController gameControl;
@@ -20,18 +19,11 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	#region Control Booleans
 
 	private bool Talking;
-	private bool Casting;
 	private bool Frozen;
-	private bool shiftOnce;
 
 	private bool Flinch;
 	private Vector3 flinchDestination;
 	private bool FlinchHead;
-
-	private bool windSpeedBoost;
-
-	private bool magnetActive;
-	private Vector3 magnetDirection;
 
 	#endregion
 
@@ -98,13 +90,10 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		_animator = GetComponentInChildren<Animator> ();
 		_controller = GetComponent<CharacterController> ();
 
-		shiftOnce = false;
 		Talking = false;
-		Casting = false;
 		
 		playerMovement = new PlayerMovementController (_controller);
 		playerAnimation = new PlayerAnimationController (_animator);
-		playerSpells = new PlayerSpellController ();
 		
 		if (!_animator)
 			Debug.Log ("Sarah doesn't have animations. Moving her might look weird.");
@@ -153,8 +142,6 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		} else if (Cutscene) {
 			if (currentPathPoint != null)
 				CutsceneUpdate ();
-		} else if (magnetActive) {
-			MagnetUpdate ();
 		} else {
 			PlayerUpdate ();
 		}
@@ -167,7 +154,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		Vector3 oldPosition = transform.position;
 		
 		Vector3 direction = flinchDestination - transform.position;
-		Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime * (windSpeedBoost ? 2 : 1);
+		Vector3 moveVector = direction.normalized * moveSpeed * Time.deltaTime;
 
 		transform.position = playerMovement.FlinchMovement (transform.position, moveVector);
 		
@@ -213,86 +200,24 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	}
 
 	/**
-	 * <para>The Update function used when the player is casting Magnet</para>
-	 * **/
-	private void MagnetUpdate () {
-				Vector3 moveVector = magnetDirection * moveSpeed * Time.deltaTime * (windSpeedBoost ? 2 : 1);
-
-				transform.position = playerMovement.MagnetMovement (transform.position, moveVector);
-		}
-
-	/**
 	 * <para>The Update function used when the player has control</para>
 	 * **/
 	private void PlayerUpdate () {
-		playerMovement.PlayerMovement (Talking, Frozen, Casting, windSpeedBoost, transform.rotation);
-
-		float changeSpell = 0;//Input.GetAxis ("SpellChange");
-		bool[] quickSelect = new bool[] { Input.GetButtonDown ("Quick1"),Input.GetButtonDown ("Quick2"),
-													Input.GetButtonDown ("Quick3")/*, Input.GetButtonDown ("Quick4"),
-													Input.GetButtonDown ("Quick5")*/};
-
-		float castSpell = Input.GetAxis ("CastSpell") * (playerMovement.isFalling () ? 0 : 1);
-	
-				ChangeSpell (changeSpell, quickSelect, castSpell);
-
+		playerMovement.PlayerMovement (Talking, Frozen, transform.rotation);
 		playerAnimation.Animation (transform.position, _controller.velocity);
 
-				if (Casting && !magnetActive && playerSpells.CheckCastTime () <= -2) {
-						StopCasting ();
-				}
-				if (!magnetActive && playerSpells.CheckCastDelay () == 0) {
-						gameControl.CastSpell (playerAnimation.getDirection ());
-				}
+		bool CastingQ = Input.GetButton ("CastSpellQ");
+		bool CastingE = Input.GetButton ("CastSpellE");
+		bool CastingSpace = Input.GetButton ("CastSpellSpace");
 
-				if (castSpell > 0.01) {
-						if (Talking) {
-								gameControl.talkingNext ();
-						} else if (talkDelay == 0 && !NPCNearby () && !Frozen) {
-								CastSpell ();
-						}
-				}
+		if (CastingSpace && !NPCNearby ()) {
+
+		} else if (CastingE) {
+
+		} else if (CastingQ) {
+
 		}
-
-	/**
-	 * Checks to see if the player is changing what spell they have active
-	 * **/
-	private void ChangeSpell(float spellChange, bool[] quickSelect, float castSpell){
-				bool reset = (spellChange == 0 && !(quickSelect [0] ||
-						quickSelect [1] || quickSelect [2]/* ||
-						quickSelect [3] || quickSelect [4]*/));
-
-				if (!shiftOnce && castSpell < 0.01) {
-						if (spellChange > 0.01) {			/* The player hit E */
-								gameControl.NextSpell ();
-								shiftOnce = true;
-						} else if (spellChange < -0.01) {	/* The player hit Q */
-								gameControl.PreviousSpell ();
-								shiftOnce = true;
-						} else {
-								for (int i = 0; i<quickSelect.Length; i++) {
-										if (quickSelect [i]) {
-												gameControl.QuickSelect (i + 1);
-												shiftOnce = true;
-												break;
-										}
-								}
-						}
-				} else if (reset) {
-						shiftOnce = false;
-				}
-		}
-
-	/**
-	 * Checks to see if the player isn't already casting a spell. If they aren't, then
-	 * cast the spell.
-	 * **/
-	private void CastSpell () {
-				if (!magnetActive && playerSpells.StartCastTime (gameControl.getSpell ())) {
-						Casting = true;
-						playerAnimation.SpellAnimation (gameControl.getSpell ());
-				}
-		}
+	}
 
 	/**
 	 * Freezes the player in place - used in dialogue
@@ -342,22 +267,6 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * **/
 	public Vector3 getPosition(){
 				return transform.position;
-		}
-
-	/**
-	 * Stops the player from casting.
-	 * **/
-	private void StopCasting(){
-				Casting = false;
-				playerAnimation.StopCasting ();
-		}
-
-	/**
-	 * Used when the Lightning spell destroys itself.
-	 * **/
-	public void LightningReset() {
-				playerSpells.Reset ();
-				StopCasting ();
 		}
 
 	/**
@@ -547,38 +456,6 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * **/
 	public bool isFlinching() {
 				return Flinch || FlinchHead;
-		}
-
-	/**
-	 * Called by the Heal Spell. Fun things happen, mostly regarding healing.
-	 * **/
-	public void HealSpell(float percentage) {
-				float healAmount = maxHP * percentage / 100;
-
-				gameControl.HealPlayer (healAmount);
-		}
-
-	/**
-	 * Triggers the speed boost granted by the wind spell.
-	 * **/
-	public void WindBoost(bool boost) {
-				windSpeedBoost = boost;
-		}
-
-	/**
-	 * Freezes the player because Magnet is active
-	 * **/
-	public void MagnetFreeze(Vector3 magnetDirection){
-				magnetActive = true;
-				this.magnetDirection = magnetDirection;
-		}
-
-	/**
-	 * Allows the player to move because Magnet is no longer active
-	 * **/
-	public void MagnetMove(){
-				magnetActive = false;
-				magnetDirection = Vector3.zero;
 		}
 
 	/**

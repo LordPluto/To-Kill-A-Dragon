@@ -33,13 +33,6 @@ public class DebugPanelControl : MenuPanelControl {
 		if (gameControl == null) {
 			gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
-
-		List<Spell> KnownSpells = gameControl.GetKnownSpells ();
-		DisableToggles ();
-
-		foreach (Spell spell in KnownSpells) {
-			spellToggles [spell.getNumber ()].isOn = true;
-		}
 	}
 
 	public override void Init () {
@@ -69,9 +62,9 @@ public class DebugPanelControl : MenuPanelControl {
 	 * **/
 	public void ToggleFireSpell (bool ToggleState) {
 		if (ToggleState) {
-			gameControl.AddSpell (SPELL.Fire);
+			
 		} else {
-			gameControl.RemoveSpell (SPELL.Fire);
+			
 		}
 	}
 	/**
@@ -79,9 +72,9 @@ public class DebugPanelControl : MenuPanelControl {
 	 * **/
 	public void ToggleIceSpell (bool ToggleState) {
 		if (ToggleState) {
-			gameControl.AddSpell (SPELL.Ice);
+			
 		} else {
-			gameControl.RemoveSpell (SPELL.Ice);
+			
 		}
 	}
 	/**
@@ -89,9 +82,9 @@ public class DebugPanelControl : MenuPanelControl {
 	 * **/
 	public void ToggleLightningSpell (bool ToggleState) {
 		if (ToggleState) {
-			gameControl.AddSpell (SPELL.Lightning);
+
 		} else {
-			gameControl.RemoveSpell (SPELL.Lightning);
+
 		}
 	}
 	/**
@@ -99,9 +92,9 @@ public class DebugPanelControl : MenuPanelControl {
 	 * **/
 	public void ToggleHealSpell (bool ToggleState) {
 		if (ToggleState) {
-			gameControl.AddSpell (SPELL.Heal);
+			
 		} else {
-			gameControl.RemoveSpell (SPELL.Heal);
+
 		}
 	}
 	/**
@@ -109,9 +102,9 @@ public class DebugPanelControl : MenuPanelControl {
 	 * **/
 	public void ToggleWindSpell (bool ToggleState) {
 		if (ToggleState) {
-			gameControl.AddSpell (SPELL.Wind);
+
 		} else {
-			gameControl.RemoveSpell (SPELL.Wind);
+
 		}
 	}
 
@@ -120,9 +113,9 @@ public class DebugPanelControl : MenuPanelControl {
 	 * **/
 	public void ToggleMagnetSpell (bool ToggleState) {
 		if (ToggleState) {
-			gameControl.AddSpell (SPELL.MagnetNorth);
+
 		} else {
-			gameControl.RemoveSpell (SPELL.MagnetNorth);
+
 		}
 	}
 

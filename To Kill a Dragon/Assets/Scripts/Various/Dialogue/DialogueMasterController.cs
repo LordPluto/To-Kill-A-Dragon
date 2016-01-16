@@ -16,14 +16,14 @@ public class DialogueMasterController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-				text = GetComponentInChildren<DialogueController> ();
-				image = GetComponentInChildren<DialogueImageController> ();
-				background = GetComponentInChildren<DialogueBackgroundController> ();
-				button = GameObject.Find ("NextTextBox").GetComponent<NextButtonController> ();
-				textbox = GetComponentInChildren<TextboxController> ();
+		text = GetComponentInChildren<DialogueController> ();
+		image = GetComponentInChildren<DialogueImageController> ();
+		background = GetComponentInChildren<DialogueBackgroundController> ();
+		button = GameObject.Find ("NextTextBox").GetComponent<NextButtonController> ();
+		textbox = GetComponentInChildren<TextboxController> ();
 
-				DontDestroyOnLoad (GameObject.Find ("DialogueButton Canvas"));
-		}
+		DontDestroyOnLoad (GameObject.Find ("DialogueButton Canvas"));
+	}
 
 	void Awake () {
 		DontDestroyOnLoad (transform.gameObject);
@@ -34,26 +34,26 @@ public class DialogueMasterController : MonoBehaviour {
 	}
 
 	public void Activate () {
-				text.SetText (textString);
-				text.enabled = true;
-				image.SetHead (imageName);
-				background.Activate ();
-				button.Deactivate ();
-				textbox.Activate ();
+		text.SetText (textString);
+		text.enabled = true;
+		image.SetHead (imageName);
+		background.Activate ();
+		button.Deactivate ();
+		textbox.Activate ();
 
 		IsActive = true;
-		}
+	}
 
 	public void Deactivate () {
-				text.SetText ("");
-				text.enabled = false;
-				image.Wipe ();
-				background.Deactivate ();
-				button.Deactivate ();
-				textbox.Deactivate ();
+		text.SetText ("");
+		text.enabled = false;
+		image.Wipe ();
+		background.Deactivate ();
+		button.Deactivate ();
+		textbox.Deactivate ();
 
 		IsActive = false;
-		}
+	}
 
 	public void SetHead (string imageName){
 				this.imageName = imageName;

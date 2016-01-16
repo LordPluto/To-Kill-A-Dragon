@@ -306,24 +306,6 @@ public class EnemyController : MonoBehaviour, StopOnCutscene {
 		}
 
 	/**
-	 * The enemy ran into a spell
-	 * **/
-	public void HitSpell (Collider c){
-				Vector3 otherDirection = transform.position - c.transform.position;
-
-				parentControl.TakeDamage (otherDirection);
-		}
-
-	/**
-	 * The enemy hit a moving magnet block
-	 * **/
-	public void HitMagnetBlock (Vector3 blockPosition){
-				Vector3 otherDirection = transform.position - blockPosition;
-
-				parentControl.MagnetDamage (otherDirection);
-		}
-
-	/**
 	 * Tells the shooting radius whether it can pay attention
 	 * **/
 	public void CanShoot(bool canShoot){

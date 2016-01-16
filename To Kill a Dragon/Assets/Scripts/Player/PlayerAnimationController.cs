@@ -106,25 +106,6 @@ public class PlayerAnimationController {
 	}
 
 	/**
-	 * Starts the casting animation depending on the type of spell
-	 * **/
-	public void SpellAnimation(Spell selectedSpell){
-				if (selectedSpell.getSpellType ().Equals ("Attack")) {
-						_animator.SetBool ("AttackSpell", true);
-				} else if (selectedSpell.getSpellType ().Equals ("Support")) {
-						_animator.SetBool ("SupportSpell", true);
-				}
-		}
-
-	/**
-	 * Stops the casting animations
-	 * **/
-	public void StopCasting(){
-				_animator.SetBool ("AttackSpell", false);
-				_animator.SetBool ("SupportSpell", false);
-		}
-
-	/**
 	 * Return the direction the player is facing.
 	 * **/
 	public float getDirection(){
