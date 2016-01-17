@@ -1814,46 +1814,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11471460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
-      propertyPath: EXPValue
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 11471460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
-      propertyPath: HP
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 11471460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
-      propertyPath: Atk
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11471460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
-      propertyPath: itemNumbers.Array.data[0]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 11471460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
-      propertyPath: itemNumbers.Array.data[1]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 11471460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
-      propertyPath: itemNumbers.Array.data[2]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11471460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
-      propertyPath: itemNumbers.Array.data[3]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11471460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
-      propertyPath: itemNumbers.Array.data[4]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 171460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 171460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
   m_IsPrefabParent: 0
@@ -3509,7 +3469,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 459342, guid: b78fc65f1aceccd45990817990176222, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 409214, guid: b78fc65f1aceccd45990817990176222, type: 2}
       propertyPath: m_RootOrder

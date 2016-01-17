@@ -20,6 +20,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 
 	private bool Talking;
 	private bool Frozen;
+	private bool Casting;
 
 	private bool Flinch;
 	private Vector3 flinchDestination;
@@ -91,6 +92,8 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		_controller = GetComponent<CharacterController> ();
 
 		Talking = false;
+		Frozen = false;
+		Casting = false;
 		
 		playerMovement = new PlayerMovementController (_controller);
 		playerAnimation = new PlayerAnimationController (_animator);
@@ -127,12 +130,12 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 			gameControl.PauseInput ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			RotateCamera (CameraRotation.Right);
-			//playerCamera.Rotate (CameraRotation.Right);
-		} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			//playerCamera.Rotate (CameraRotation.Left);
-			RotateCamera (CameraRotation.Left);
+		if (Time.timeScale != 0) {
+			if (Input.GetKeyDown (KeyCode.RightArrow)) {
+				RotateCamera (CameraRotation.Right);
+			} else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+				RotateCamera (CameraRotation.Left);
+			}
 		}
 	}
 
@@ -203,19 +206,25 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * <para>The Update function used when the player has control</para>
 	 * **/
 	private void PlayerUpdate () {
-		playerMovement.PlayerMovement (Talking, Frozen, transform.rotation);
-		playerAnimation.Animation (transform.position, _controller.velocity);
-
 		bool CastingQ = Input.GetButton ("CastSpellQ");
 		bool CastingE = Input.GetButton ("CastSpellE");
 		bool CastingSpace = Input.GetButton ("CastSpellSpace");
 
+		playerMovement.PlayerMovement (Talking, Frozen, Casting, transform.rotation);
+		playerAnimation.Animation (transform.position, _controller.velocity);
+
 		if (CastingSpace && !NPCNearby ()) {
-
+			if (CanCast ()) {
+				Casting = true;
+			}
 		} else if (CastingE) {
-
+			if (CanCast ()) {
+				Casting = true;
+			}
 		} else if (CastingQ) {
-
+			if (CanCast ()) {
+				Casting = true;
+			}
 		}
 	}
 
@@ -569,5 +578,13 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		}
 
 		this.PathManager = PathManager;
+	}
+
+	/**
+	 * <para>Checks to see if the player can cast a spell.</para>
+	 * <returns>True if the player can cast, false otherwise</returns>
+	 * **/
+	private bool CanCast () {
+		return !(Casting || playerMovement.isFalling ());
 	}
 }

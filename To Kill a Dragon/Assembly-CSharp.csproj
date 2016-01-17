@@ -88,6 +88,15 @@
      <Compile Include="Assets\Scripts\Player\PlayerAnimationController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMasterController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovementController.cs" />
+     <Compile Include="Assets\Scripts\Spells\AttackSpell.cs" />
+     <Compile Include="Assets\Scripts\Spells\Individual Spells\Fire.cs" />
+     <Compile Include="Assets\Scripts\Spells\Individual Spells\Ice.cs" />
+     <Compile Include="Assets\Scripts\Spells\Individual Spells\IceCrystal.cs" />
+     <Compile Include="Assets\Scripts\Spells\Individual Spells\Lightning.cs" />
+     <Compile Include="Assets\Scripts\Spells\Individual Spells\LightningComponent.cs" />
+     <Compile Include="Assets\Scripts\Spells\SelfSpell.cs" />
+     <Compile Include="Assets\Scripts\Spells\Spell.cs" />
+     <Compile Include="Assets\Scripts\Spells\SupportSpell.cs" />
      <Compile Include="Assets\Scripts\Various\AdviController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueBackgroundController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueController.cs" />

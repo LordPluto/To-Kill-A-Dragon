@@ -14,7 +14,7 @@ GameObject:
   - 54: {fileID: 5464184}
   - 65: {fileID: 6571078}
   - 65: {fileID: 6597222}
-  m_Layer: 14
+  m_Layer: 2
   m_Name: AggroRange
   m_TagString: SpellIgnore
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ GameObject:
   - 114: {fileID: 11471460}
   m_Layer: 14
   m_Name: Green Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ GameObject:
   - 65: {fileID: 6555528}
   - 65: {fileID: 6523042}
   - 65: {fileID: 6571412}
-  m_Layer: 14
+  m_Layer: 2
   m_Name: ShootingArea
   m_TagString: SpellIgnore
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - 33: {fileID: 3371468}
   - 23: {fileID: 2371468}
   - 114: {fileID: 11471466}
-  m_Layer: 14
+  m_Layer: 2
   m_Name: EnemyWanderRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,10 +408,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Green Slime
-  HP: 50
-  Atk: 30
+  HP: 10
+  Atk: 2
   Def: 0
-  EXPValue: 5000
+  EXPValue: 20
   damageKnockback: 1
   doesWander: 0
   projectile: {fileID: 0}
@@ -422,11 +422,11 @@ MonoBehaviour:
   - {fileID: 444480, guid: aeb49c1147c8d4142b1d265867166337, type: 2}
   - {fileID: 431940, guid: 11266a7f409d0e44e9200ec80654ffe3, type: 2}
   itemNumbers:
-  - 30
-  - 30
-  - 15
+  - 4
   - 10
   - 3
+  - 3
+  - 0
 --- !u!114 &11471462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -507,7 +507,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 171460}
