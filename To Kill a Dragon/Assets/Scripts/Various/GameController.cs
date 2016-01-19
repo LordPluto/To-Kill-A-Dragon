@@ -8,7 +8,8 @@ public enum Head{
 	HPLow = 1,
 	Damaged = 2,
 	Dead = 3,
-	MPLow = 4
+	MPLow = 4,
+	Sleepy = 5
 }
 
 /**
@@ -47,10 +48,17 @@ public class GameController : MonoBehaviour {
 
 	#endregion
 
-	#region HUD Head Icon
-	
+	#region HUD
+
+	private HUDController HudControl;
 	private Head currentHead;
 	
+	#endregion
+
+	#region Spells
+
+
+
 	#endregion
 
 	#region Player Wallet
@@ -81,7 +89,7 @@ public class GameController : MonoBehaviour {
 		treeControl = GameObject.Find ("DialogueTree").GetComponent<DialogueTreeController> ();
 		playerControl = GameObject.Find ("Player").GetComponent<PlayerMasterController> ();
 		dialogueDump = GameObject.Find ("_DialogueText").GetComponent<DialogueDump> ();
-				
+		HudControl = GameObject.Find ("HUD Canvas").GetComponent<HUDController> ();
 		MenuCanvas = GameObject.Find ("Enter Menu").GetComponent<MenuController> ();
 		MenuCanvas.SetEnabled (false);
 		
@@ -140,8 +148,10 @@ public class GameController : MonoBehaviour {
 	void Update () {
 		if (!(currentHead == Head.Damaged)) {
 			currentHead = SelectHead ();
+			HudControl.UpdateHead (currentHead);
 		} else if (!playerControl.isFlinching ()) {
 			currentHead = SelectHead ();
+			HudControl.UpdateHead (currentHead);
 		}
 	}
 
@@ -242,46 +252,53 @@ public class GameController : MonoBehaviour {
 	 * Deal damage to player
 	 * **/
 	public void DealPlayerDamage(GameObject monster, Vector3 playerDirection, Vector3 monsterAngle){
-				if (!InCutscene) {
-						BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
+		if (!InCutscene) {
+			BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
 
-						float monsterAtk = monsterControl.Atk;
+			float monsterAtk = monsterControl.Atk;
 
-						playerControl.TakeMonsterDamage (monsterAtk, -playerDirection);
+			playerControl.TakeMonsterDamage (monsterAtk, -playerDirection);
+			HudControl.UpdateHealthBar (playerControl.getPercentHP () / 100);
 
-						monsterControl.FlinchBack (-monsterAngle);
+			monsterControl.FlinchBack (-monsterAngle);
 
-						currentHead = Head.Damaged;
-				}
+			currentHead = Head.Damaged;
+			HudControl.UpdateHead (currentHead);
 		}
+	}
 
 	/**
 	 * Destroys the enemy and gives the EXP to the player
 	 * **/
 	public void DestroyMonster(GameObject monster){
-				BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
-				monsterControl.DropItems ();
+		BasicEnemyController monsterControl = monster.GetComponent<BasicEnemyController> ();
+		monsterControl.DropItems ();
 
-				playerControl.increaseEXP (monsterControl.valueEXP ());
-				Destroy (monster);
-		}
+		playerControl.increaseEXP (monsterControl.valueEXP ());
+		HudControl.UpdateExpBar (playerControl.getPercentEXP () / 100);
+		Destroy (monster);
+	}
 
 	/**
 	 * Deals the player damage from getting hit by a bullet
 	 * **/
 	public void DealPlayerBulletDamage(float damage, Vector3 bulletDirection){
-				if (!InCutscene) {
-						playerControl.TakeMonsterDamage (damage, bulletDirection);
+		if (!InCutscene) {
+			playerControl.TakeMonsterDamage (damage, bulletDirection);
+			HudControl.UpdateHealthBar (playerControl.getPercentHP () / 100);
 
-						currentHead = Head.Damaged;
-				}
+			currentHead = Head.Damaged;
+			HudControl.UpdateHead (currentHead);
 		}
+	}
 
 	/**
 	 * Heal the player the amount
 	 * **/
 	public void HealPlayer(float healAmount) {
 				playerControl.changeHP (healAmount);
+
+		HudControl.UpdateHealthBar (playerControl.getPercentHP () / 100);
 		}
 
 	/**
@@ -290,6 +307,7 @@ public class GameController : MonoBehaviour {
 	 * **/
 	public void HealPlayerHealthPercent (float healPercent) {
 		playerControl.PercentChangeHP (healPercent);
+		HudControl.UpdateHealthBar (playerControl.getPercentHP () / 100);
 	}
 
 	/**
@@ -297,6 +315,7 @@ public class GameController : MonoBehaviour {
 	 * **/
 	public void HealPlayerManaPercent (float healPercent) {
 		playerControl.PercentChangeMP (healPercent);
+		HudControl.UpdateManaBar (playerControl.getPercentMP () / 100);
 	}
 
 	/**
@@ -324,6 +343,7 @@ public class GameController : MonoBehaviour {
 				case "Coin":
 						if (wallet <= WalletMax - value) {
 								wallet += value;
+				HudControl.UpdateMoney (wallet);
 						}
 						break;
 				case "Health":
@@ -363,6 +383,27 @@ public class GameController : MonoBehaviour {
 	public float GetWallet() {
 				return wallet;
 		}
+
+	/**
+	 * <para>Casts the spell on the Q slot</para>
+	 * **/
+	public void CastSpellQ() {
+
+	}
+
+	/**
+	 * <para>Casts the spell on the E slot</para>
+	 * **/
+	public void CastSpellE() {
+
+	}
+
+	/**
+	 * <para>Casts the spell on the Space slot</para>
+	 * **/
+	public void CastSpellSpace() {
+
+	}
 
 	/**
 	 * <para>Adds the object to the StopOnTalk list</para>

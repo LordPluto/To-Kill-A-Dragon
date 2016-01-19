@@ -101,7 +101,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		if (!_animator)
 			Debug.Log ("Sarah doesn't have animations. Moving her might look weird.");
 		
-		currentHP = maxHP = 1000;
+		currentHP = maxHP = 100;
 		currentMP = maxMP = 1000;
 		
 		currentEXP = EXPProgression [0];
@@ -300,7 +300,8 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		}
 
 	/**
-	 * Gets percentage of HP
+	 * <para>Gets percentage of HP</para>
+	 * <returns>The percentage of HP. [0, 100]</returns>
 	 * **/
 	public float getPercentHP () {
 				return 100 * currentHP / maxHP;
@@ -358,7 +359,8 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	}
 
 	/**
-	 * Gets percentage of MP
+	 * <para>Gets percentage of MP</para>
+	 * <returns>The percentage of MP. [0, 100]</returns>
 	 * **/
 	public float getPercentMP () {
 				return 100 * currentMP / maxMP;
@@ -430,7 +432,8 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		}
 	
 	/**
-	 * Gets percentage of EXP
+	 * <para>Gets percentage of EXP</para>
+	 * <returns>The percentage of EXP. Calculated as current EXP / EXP to next level. [0, 100]</returns>
 	 * **/
 	public float getPercentEXP () {
 				return 100 * (currentEXP - EXPProgression [level - 1]) / (nextLevelEXP - EXPProgression [level - 1]);
