@@ -3,7 +3,7 @@ using System.Collections;
 
 public class IceCrystal : MonoBehaviour {
 
-	private float timer = 0.5f;
+	private float timer = 0.35f;
 	private Vector3 direction;
 
 	// Use this for initialization

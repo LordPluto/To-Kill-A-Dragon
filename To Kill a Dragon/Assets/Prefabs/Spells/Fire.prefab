@@ -8,10 +8,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 499558}
+  - 114: {fileID: 11414970}
   - 212: {fileID: 21224978}
   - 95: {fileID: 9559254}
   - 136: {fileID: 13652512}
-  - 114: {fileID: 11414970}
   - 54: {fileID: 5459126}
   m_Layer: 0
   m_Name: Fire
@@ -76,8 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpellNumber: 0
-  SpellCost: 0
-  CastDuration: 0
+  SpellCost: 10
+  CastDuration: 1
   CastDelay: 0
   SpellDamage: 0
   SpellKnockback: 0
@@ -138,6 +138,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.w
       value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: CastDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: SpellCost
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

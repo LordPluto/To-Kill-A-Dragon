@@ -6,7 +6,7 @@ public class Fire : AttackSpell {
 	private Vector3 direction;
 
 	private Animator _animator;
-	private float timer = 3.0f;
+	private float timer = 1.5f;
 	private bool destroyed = false;
 
 	// Use this for initialization

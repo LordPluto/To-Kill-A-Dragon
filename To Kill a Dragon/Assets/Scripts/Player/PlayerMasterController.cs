@@ -75,6 +75,12 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 
 	#endregion
 
+	#region Spells
+
+	private float spellTimer = 0;
+
+	#endregion
+
 	/**
 	 * Used for initialization
 	 * **/
@@ -122,6 +128,12 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		} else if (flinchTimer > -1) {
 			flinchTimer = -1;
 			FlinchHead = false;
+		}
+		if (spellTimer > 0) {
+			spellTimer -= Time.deltaTime;
+		} else if (spellTimer > -1) {
+			spellTimer = -1;
+			Casting = false;
 		}
 
 		if (Input.GetButtonDown ("Menu") && !Talking) {
@@ -210,22 +222,25 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		bool CastingE = Input.GetButton ("CastSpellE");
 		bool CastingSpace = Input.GetButton ("CastSpellSpace");
 
-		playerMovement.PlayerMovement (Talking, Frozen, Casting, transform.rotation);
-		playerAnimation.Animation (transform.position, _controller.velocity);
-
 		if (CastingSpace && !NPCNearby ()) {
 			if (CanCast ()) {
 				Casting = true;
+				gameControl.CastSpellSpace ();
 			}
 		} else if (CastingE) {
 			if (CanCast ()) {
 				Casting = true;
+				gameControl.CastSpellE ();
 			}
 		} else if (CastingQ) {
 			if (CanCast ()) {
 				Casting = true;
+				gameControl.CastSpellQ ();
 			}
 		}
+
+		playerMovement.PlayerMovement (Talking, Frozen, Casting, transform.rotation);
+		playerAnimation.Animation (transform.position, _controller.velocity);
 	}
 
 	/**
@@ -315,18 +330,19 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		}
 	
 	/**
-	 * Sets new MP
-	 * Parameter - float change: the amount to change the MP by. Can be negative.
+	 * <para>Adds an amount to MP.</para>
+	 * <para>Function handles upper and lower bounds.</para>
+	 * <param name="change">Amount to add. Value can be negative.</param>
 	 * **/
 	public void changeMP(float change){
-				if (currentMP + change > maxMP) {
-						currentMP = maxMP;
-				} else if (currentMP + change < 0) {
-						currentMP = 0;
-				} else {
-						currentMP += change;
-				}
+		if (currentMP + change > maxMP) {
+			currentMP = maxMP;
+		} else if (currentMP + change < 0) {
+			currentMP = 0;
+		} else {
+			currentMP += change;
 		}
+	}
 
 	/**
 	 * <para>Increases or decreases MP based on percentage of Max MP</para>
@@ -589,5 +605,13 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * **/
 	private bool CanCast () {
 		return !(Casting || playerMovement.isFalling ());
+	}
+
+	/**
+	 * <para>Sets the timer until the player can move and cast another spell.</para>
+	 * <param name="SpellDuration">Duration of spell casting</returns>
+	 * **/
+	public void SetSpellTimer(float SpellDuration) {
+		spellTimer = SpellDuration;
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Lightning : MonoBehaviour {
+public class Lightning : AttackSpell {
 
 	public Transform LightningBranch;
 

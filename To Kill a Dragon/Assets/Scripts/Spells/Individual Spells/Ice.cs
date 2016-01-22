@@ -14,7 +14,7 @@ public class Ice : AttackSpell {
 
 		for (int i = 0; i < NumCrystals; i++) {
 			Instantiate (IceCrystal,
-				transform.position - new Vector3(-Mathf.Sin (angle), 0, -Mathf.Cos (angle)),
+				transform.position,
 				transform.rotation);
 		}
 	}

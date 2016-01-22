@@ -97,6 +97,7 @@
      <Compile Include="Assets\Scripts\Spells\Individual Spells\LightningComponent.cs" />
      <Compile Include="Assets\Scripts\Spells\SelfSpell.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
+     <Compile Include="Assets\Scripts\Spells\SpellBook.cs" />
      <Compile Include="Assets\Scripts\Spells\SupportSpell.cs" />
      <Compile Include="Assets\Scripts\Various\AdviController.cs" />
      <Compile Include="Assets\Scripts\Various\Dialogue\DialogueBackgroundController.cs" />

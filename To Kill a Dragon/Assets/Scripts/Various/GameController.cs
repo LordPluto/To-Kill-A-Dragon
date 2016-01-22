@@ -12,6 +12,24 @@ public enum Head{
 	Sleepy = 5
 }
 
+public enum SpellNumber{
+	Fire = 0,
+	Ice = 1,
+	Lightning = 2,
+	Heal = 3,
+	Wind = 4,
+	Magnet = 5,
+	Mirror = 6,
+	Death = 7,
+	Illuminate = 8,
+	Melee = 9
+}
+
+public enum Pole{
+	North = 0,
+	South = 1
+}
+
 /**
  * Class GameController extends MonoBehaviour
  * Essentially runs the game logic regarding pretty much everything
@@ -52,12 +70,21 @@ public class GameController : MonoBehaviour {
 
 	private HUDController HudControl;
 	private Head currentHead;
+
+	private float MPTimer = 0;
 	
 	#endregion
 
 	#region Spells
 
+	private SpellBook spellBook;
 
+	private SpellNumber SpellQ;
+	private SpellNumber SpellE;
+	private SpellNumber SpellSpace;
+	private bool[] KnownSpells;
+
+	private Pole MagnetPole;
 
 	#endregion
 
@@ -92,7 +119,8 @@ public class GameController : MonoBehaviour {
 		HudControl = GameObject.Find ("HUD Canvas").GetComponent<HUDController> ();
 		MenuCanvas = GameObject.Find ("Enter Menu").GetComponent<MenuController> ();
 		MenuCanvas.SetEnabled (false);
-		
+		spellBook = GameObject.Find ("SpellBook").GetComponent<SpellBook> ();
+
 		
 		//Testing for Dialogue logic. MARKED FOR DELETION
 		dialogueDump.AddLines ("Victor", 1, (TextAsset)Resources.Load ("Test/Chapter One"));
@@ -102,8 +130,14 @@ public class GameController : MonoBehaviour {
 		dialogueDump.AddLines ("new Sarah Sprite", 1, (TextAsset)Resources.Load ("Test/Sarah Time Shenanigans"));
 		SetNPCFlag ("new Sarah Sprite", 1);
 		//END TEST
-		
+
 		//Testing for Spells. MARKED FOR DELETION
+		KnownSpells[(int)SpellNumber.Fire] = true;
+		KnownSpells[(int)SpellNumber.Ice] = true;
+		KnownSpells[(int)SpellNumber.Lightning] = true;
+		SetSpellQ (SpellNumber.Fire);
+		SetSpellE (SpellNumber.Ice);
+		SetSpellSpace (SpellNumber.Lightning);
 		//END TEST
 
 		DontDestroyOnLoad (GameObject.Find ("EventSystem"));
@@ -124,6 +158,10 @@ public class GameController : MonoBehaviour {
 		talkingList = new List<StopOnTalk> ();
 		freezingList = new List<StopOnFreeze> ();
 		cutsceneList = new List<StopOnCutscene> ();
+
+		KnownSpells = new bool[10];
+		KnownSpells [(int)SpellNumber.Melee] = true;
+		MagnetPole = Pole.North;
 
 		DontDestroyOnLoad (transform.gameObject);
 	}
@@ -388,21 +426,126 @@ public class GameController : MonoBehaviour {
 	 * <para>Casts the spell on the Q slot</para>
 	 * **/
 	public void CastSpellQ() {
+		Transform SpellCast = spellBook.GetSpellTransform (SpellQ);
+		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
 
+		if (playerControl.getMP () < SpellDetails.SpellCost) {
+			MPTimer = 1;
+			return;
+		} else {
+			Vector3 SpellRotation = SpellCast.rotation.eulerAngles;
+
+
+			Instantiate (SpellCast,
+				playerControl.getPosition () + new Vector3(0, 0.66f, 0),
+				Quaternion.Euler(SpellRotation));
+
+			playerControl.changeMP (-SpellDetails.SpellCost);
+			HudControl.UpdateManaBar (playerControl.getPercentMP () / 100);
+
+			playerControl.SetSpellTimer (SpellDetails.CastDuration);
+		}
 	}
 
 	/**
 	 * <para>Casts the spell on the E slot</para>
 	 * **/
 	public void CastSpellE() {
+		Transform SpellCast = spellBook.GetSpellTransform (SpellE);
+		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
 
+		if (playerControl.getMP () < SpellDetails.SpellCost) {
+			MPTimer = 1;
+			return;
+		} else {
+			Vector3 SpellRotation = SpellCast.rotation.eulerAngles;
+
+
+			Instantiate (SpellCast,
+				playerControl.getPosition () + new Vector3(0, 0.66f, 0),
+				Quaternion.Euler(SpellRotation));
+
+			playerControl.changeMP (-SpellDetails.SpellCost);
+			HudControl.UpdateManaBar (playerControl.getPercentMP () / 100);
+
+			playerControl.SetSpellTimer (SpellDetails.CastDuration);
+		}
 	}
 
 	/**
 	 * <para>Casts the spell on the Space slot</para>
 	 * **/
 	public void CastSpellSpace() {
+		Transform SpellCast = spellBook.GetSpellTransform (SpellSpace);
+		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
 
+		if (playerControl.getMP () < SpellDetails.SpellCost) {
+			MPTimer = 1;
+			return;
+		} else {
+			Vector3 SpellRotation = SpellCast.rotation.eulerAngles;
+
+
+			Instantiate (SpellCast,
+				playerControl.getPosition () + new Vector3(0, 0.66f, 0),
+				Quaternion.Euler(SpellRotation));
+
+			playerControl.changeMP (-SpellDetails.SpellCost);
+			HudControl.UpdateManaBar (playerControl.getPercentMP () / 100);
+
+			playerControl.SetSpellTimer (SpellDetails.CastDuration);
+		}
+	}
+
+	/**
+	 * <para>Sets the spell on the Q slot</para>
+	 * <param name="spellNumber">Number of spell to assign</param>
+	 * **/
+	public void SetSpellQ(SpellNumber spellNumber) {
+		SpellQ = spellNumber;
+
+		HudControl.UpdateSpellQ (SpellQ, MagnetPole);
+	}
+
+	/**
+	 * <para>Sets the spell on the E slot</para>
+	 * <param name="spellNumber">Number of spell to assign</param>
+	 * **/
+	public void SetSpellE(SpellNumber spellNumber) {
+		SpellE = spellNumber;
+
+		HudControl.UpdateSpellE (SpellE, MagnetPole);
+	}
+
+	/**
+	 * <para>Sets the spell on the Space slot</para>
+	 * <param name="spellNumber">Number of spell to assign</param>
+	 * **/
+	public void SetSpellSpace(SpellNumber spellNumber) {
+		SpellSpace = spellNumber;
+
+		HudControl.UpdateSpellSpace (SpellSpace, MagnetPole);
+	}
+
+	/**
+	 * <para>Toggles whether a given spell is known or not. Melee 'spell' is always known.</para>
+	 * <param name="spellNumber">Number of spell to modify</param>
+	 * <param name="SpellToggle">True if the spell is known, false if not</param>
+	 * **/
+	public void ToggleSpell (SpellNumber spellNumber, bool SpellToggle) {
+		if (spellNumber == SpellNumber.Melee) {
+			return;
+		}
+
+		KnownSpells [(int)spellNumber] = SpellToggle;
+
+		if (SpellQ == spellNumber) {
+			SetSpellQ (SpellNumber.Melee);
+		} else if (SpellE == spellNumber) {
+			SetSpellE (SpellNumber.Melee);
+		} else if (SpellSpace == spellNumber) {
+			SetSpellSpace (SpellNumber.Melee);
+		}
 	}
 
 	/**

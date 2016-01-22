@@ -87,6 +87,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!1 &198796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 453142}
+  m_Layer: 0
+  m_Name: SpellBook
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
 --- !u!4 &400006
 Transform:
   m_ObjectHideFlags: 1
@@ -94,13 +109,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: -3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 414888}
   - {fileID: 403090}
   - {fileID: 446932}
   - {fileID: 406102}
+  - {fileID: 453142}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &403090
@@ -122,7 +138,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 100, z: 1}
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
@@ -146,11 +162,23 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400006}
   m_RootOrder: 2
+--- !u!4 &453142
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400006}
+  m_RootOrder: 4
 --- !u!20 &2071344
 Camera:
   m_ObjectHideFlags: 1
@@ -235,6 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5d3d88afa418a41958f62832817543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TransparentAlpha: 0.5
+  RegularShader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
+  TransparentShader: {fileID: 4800000, guid: 2b8a22f4ad572674298a4acf658726ae, type: 3}
 --- !u!114 &11479756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,6 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe5cb4d0d2b9384d920b2582b37cd08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentMP: 1000
   EXPProgression:
   - 0
   - 50

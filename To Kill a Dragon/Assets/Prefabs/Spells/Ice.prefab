@@ -8,9 +8,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 414018}
+  - 114: {fileID: 11493232}
   - 212: {fileID: 21261632}
   - 95: {fileID: 9597198}
-  - 114: {fileID: 11493232}
   m_Layer: 0
   m_Name: Ice
   m_TagString: SpellIce
@@ -58,13 +58,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7b5919be4e75f48ba74f3670b15135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpellNumber: 0
+  SpellNumber: 1
   SpellCost: 0
-  CastDuration: 0
+  CastDuration: 0.25
   CastDelay: 0
   SpellDamage: 0
   SpellKnockback: 0
-  IceCrystal: {fileID: 0}
+  IceCrystal: {fileID: 467876, guid: 57ab0988257e0f142a24bb4620e5503c, type: 2}
 --- !u!212 &21261632
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -105,6 +105,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: CastDuration
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: IceCrystal
+      value: 
+      objectReference: {fileID: 467876, guid: 57ab0988257e0f142a24bb4620e5503c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: SpellNumber
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

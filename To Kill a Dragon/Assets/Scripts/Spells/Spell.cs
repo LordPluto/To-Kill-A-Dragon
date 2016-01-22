@@ -4,8 +4,8 @@ using System.Collections;
 public class Spell : MonoBehaviour {
 
 	public int SpellNumber;
-	public int SpellCost;
-	public int CastDuration;
+	public float SpellCost;
+	public float CastDuration;
 	public int CastDelay;
 
 	// Use this for initialization

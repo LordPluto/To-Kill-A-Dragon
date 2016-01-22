@@ -39,6 +39,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca00c175950d60c4e9e85dc74420bdc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpellNumber: 2
+  SpellCost: 0
+  CastDuration: 0.3
+  CastDelay: 0
+  SpellDamage: 0
+  SpellKnockback: 1
   LightningBranch: {fileID: 410234, guid: 0abcf9cf8ab7960448bf2a6f77e60461, type: 2}
 --- !u!1001 &100100000
 Prefab:
@@ -46,7 +52,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: SpellNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: CastDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: SpellKnockback
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 148694}

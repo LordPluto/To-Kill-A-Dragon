@@ -8,6 +8,11 @@ public class HUDController : MonoBehaviour {
 	private Image ManaBar;
 	private Image ExpBar;
 
+	private Image SpellQ;
+	private Image SpellE;
+	private Image SpellSpace;
+	public Sprite[] Spells;
+
 	private Image HeadIcon;
 	public Sprite[] Heads;
 
@@ -33,10 +38,18 @@ public class HUDController : MonoBehaviour {
 				ExpBar = i;
 			} else if (i.gameObject.name.Equals ("HUD Head")) {
 				HeadIcon = i;
+			} else if (i.gameObject.name.Equals ("HUD Spell Q")) {
+				SpellQ = i;
+			} else if (i.gameObject.name.Equals ("HUD Spell E")) {
+				SpellE = i;
+			} else if (i.gameObject.name.Equals ("HUD Spell Space")) {
+				SpellSpace = i;
 			}
 		}
 
 		MoneyText = GetComponentInChildren<Text> ();
+
+		DontDestroyOnLoad (gameObject);
 	}
 	
 	// Update is called once per frame
@@ -90,5 +103,44 @@ public class HUDController : MonoBehaviour {
 	 * **/
 	public void UpdateMoney (float NewAmount) {
 		MoneyText.text = NewAmount.ToString();
+	}
+
+	/**
+	 * <para>Updates the Q Spell icon</para>
+	 * <param name="NewSpell">The new spell</param>
+	 * <param name="MagnetPole">The pole for magnet spell. Default is North</param>
+	 * **/
+	public void UpdateSpellQ (SpellNumber NewSpell, Pole MagnetPole = Pole.North) {
+		if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
+			SpellQ.sprite = Spells [Spells.Length - 1];
+		} else {
+			SpellQ.sprite = Spells [(int)NewSpell];
+		}
+	}
+
+	/**
+	 * <para>Updates the E Spell icon</para>
+	 * <param name="NewSpell">The new spell</param>
+	 * <param name="MagnetPole">The pole for magnet spell. Default is North</param>
+	 * **/
+	public void UpdateSpellE (SpellNumber NewSpell, Pole MagnetPole = Pole.North) {
+		if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
+			SpellE.sprite = Spells [Spells.Length - 1];
+		} else {
+			SpellE.sprite = Spells [(int)NewSpell];
+		}
+	}
+
+	/**
+	 * <para>Updates the Spacebar Spell icon</para>
+	 * <param name="NewSpell">The new spell</param>
+	 * <param name="MagnetPole">The pole for magnet spell. Default is North</param>
+	 * **/
+	public void UpdateSpellSpace (SpellNumber NewSpell, Pole MagnetPole = Pole.North) {
+		if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
+			SpellSpace.sprite = Spells [Spells.Length - 1];
+		} else {
+			SpellSpace.sprite = Spells [(int)NewSpell];
+		}
 	}
 }
