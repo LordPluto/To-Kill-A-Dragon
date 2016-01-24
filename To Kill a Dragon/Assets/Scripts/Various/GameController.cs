@@ -424,8 +424,9 @@ public class GameController : MonoBehaviour {
 
 	/**
 	 * <para>Casts the spell on the Q slot</para>
+	 * <param name="_characterFacing">The direction the character is facing.</param>
 	 * **/
-	public void CastSpellQ() {
+	public void CastSpellQ(Facing _characterFacing) {
 		Transform SpellCast = spellBook.GetSpellTransform (SpellQ);
 		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
 
@@ -433,12 +434,15 @@ public class GameController : MonoBehaviour {
 			MPTimer = 1;
 			return;
 		} else {
-			Vector3 SpellRotation = SpellCast.rotation.eulerAngles;
-
+			float FacingDegrees = (int)_characterFacing * 90;
+			float PlayerRotation = playerControl.GetCameraRotation ();
+			Vector3 SpellRotation = SpellCast.rotation.eulerAngles - new Vector3 (0, FacingDegrees - PlayerRotation, 0);
 
 			Instantiate (SpellCast,
-				playerControl.getPosition () + new Vector3(0, 0.66f, 0),
-				Quaternion.Euler(SpellRotation));
+				playerControl.getPosition () + new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+					2,
+					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
+				Quaternion.Euler (SpellRotation));
 
 			playerControl.changeMP (-SpellDetails.SpellCost);
 			HudControl.UpdateManaBar (playerControl.getPercentMP () / 100);
@@ -449,8 +453,9 @@ public class GameController : MonoBehaviour {
 
 	/**
 	 * <para>Casts the spell on the E slot</para>
+	 * <param name="_characterFacing">The direction the character is facing.</param>
 	 * **/
-	public void CastSpellE() {
+	public void CastSpellE(Facing _characterFacing) {
 		Transform SpellCast = spellBook.GetSpellTransform (SpellE);
 		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
 
@@ -458,12 +463,15 @@ public class GameController : MonoBehaviour {
 			MPTimer = 1;
 			return;
 		} else {
-			Vector3 SpellRotation = SpellCast.rotation.eulerAngles;
-
+			float FacingDegrees = (int)_characterFacing * 90;
+			float PlayerRotation = playerControl.GetCameraRotation ();
+			Vector3 SpellRotation = SpellCast.rotation.eulerAngles - new Vector3 (0, FacingDegrees - PlayerRotation, 0);
 
 			Instantiate (SpellCast,
-				playerControl.getPosition () + new Vector3(0, 0.66f, 0),
-				Quaternion.Euler(SpellRotation));
+				playerControl.getPosition () + new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+					2,
+					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
+				Quaternion.Euler (SpellRotation));
 
 			playerControl.changeMP (-SpellDetails.SpellCost);
 			HudControl.UpdateManaBar (playerControl.getPercentMP () / 100);
@@ -474,8 +482,9 @@ public class GameController : MonoBehaviour {
 
 	/**
 	 * <para>Casts the spell on the Space slot</para>
+	 * <param name="_characterFacing">The direction the character is facing.</param>
 	 * **/
-	public void CastSpellSpace() {
+	public void CastSpellSpace(Facing _characterFacing) {
 		Transform SpellCast = spellBook.GetSpellTransform (SpellSpace);
 		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
 
@@ -483,12 +492,15 @@ public class GameController : MonoBehaviour {
 			MPTimer = 1;
 			return;
 		} else {
-			Vector3 SpellRotation = SpellCast.rotation.eulerAngles;
-
+			float FacingDegrees = (int)_characterFacing * 90;
+			float PlayerRotation = playerControl.GetCameraRotation ();
+			Vector3 SpellRotation = SpellCast.rotation.eulerAngles - new Vector3 (0, FacingDegrees - PlayerRotation, 0);
 
 			Instantiate (SpellCast,
-				playerControl.getPosition () + new Vector3(0, 0.66f, 0),
-				Quaternion.Euler(SpellRotation));
+				playerControl.getPosition () + new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+					2,
+					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
+				Quaternion.Euler (SpellRotation));
 
 			playerControl.changeMP (-SpellDetails.SpellCost);
 			HudControl.UpdateManaBar (playerControl.getPercentMP () / 100);

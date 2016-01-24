@@ -106,11 +106,46 @@ public class HUDController : MonoBehaviour {
 	}
 
 	/**
+	 * <para>Toggles all spell icons</para>
+	 * <param name="iconToggle">Toggles the icons on or off</param>
+	 * **/
+	public void ToggleSpellIcons (bool iconToggle) {
+		SpellQ.enabled = iconToggle;
+		SpellE.enabled = iconToggle;
+		SpellSpace.enabled = iconToggle;
+	}
+
+	/**
+	 * <para>Toggles the Q spell icon.</para>
+	 * <param name="iconToggle">Toggles the icons on or off</param>
+	 * **/
+	public void ToggleSpellIconQ (bool iconToggle) {
+		SpellQ.enabled = iconToggle;
+	}
+
+	/**
+	 * <para>Toggles the E spell icon.</para>
+	 * <param name="iconToggle">Toggles the icons on or off</param>
+	 * **/
+	public void ToggleSpellIconE (bool iconToggle) {
+		SpellE.enabled = iconToggle;
+	}
+
+	/**
+	 * <para>Toggles the Space spell icon.</para>
+	 * <param name="iconToggle">Toggles the icons on or off</param>
+	 * **/
+	public void ToggleSpellIconSpace (bool iconToggle) {
+		SpellSpace.enabled = iconToggle;
+	}
+
+	/**
 	 * <para>Updates the Q Spell icon</para>
 	 * <param name="NewSpell">The new spell</param>
 	 * <param name="MagnetPole">The pole for magnet spell. Default is North</param>
 	 * **/
 	public void UpdateSpellQ (SpellNumber NewSpell, Pole MagnetPole = Pole.North) {
+		ToggleSpellIconQ (true);
 		if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
 			SpellQ.sprite = Spells [Spells.Length - 1];
 		} else {
@@ -124,6 +159,7 @@ public class HUDController : MonoBehaviour {
 	 * <param name="MagnetPole">The pole for magnet spell. Default is North</param>
 	 * **/
 	public void UpdateSpellE (SpellNumber NewSpell, Pole MagnetPole = Pole.North) {
+		ToggleSpellIconE (true);
 		if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
 			SpellE.sprite = Spells [Spells.Length - 1];
 		} else {
@@ -137,6 +173,7 @@ public class HUDController : MonoBehaviour {
 	 * <param name="MagnetPole">The pole for magnet spell. Default is North</param>
 	 * **/
 	public void UpdateSpellSpace (SpellNumber NewSpell, Pole MagnetPole = Pole.North) {
+		ToggleSpellIconSpace (true);
 		if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
 			SpellSpace.sprite = Spells [Spells.Length - 1];
 		} else {

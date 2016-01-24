@@ -9,7 +9,6 @@ public class Ice : AttackSpell {
 
 	// Use this for initialization
 	void Start () {
-		float angle = transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
 		int NumCrystals = Random.Range (5, 8);
 
 		for (int i = 0; i < NumCrystals; i++) {

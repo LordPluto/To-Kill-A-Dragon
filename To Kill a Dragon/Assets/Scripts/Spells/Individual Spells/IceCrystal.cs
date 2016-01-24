@@ -12,7 +12,7 @@ public class IceCrystal : MonoBehaviour {
 	}
 
 	void Awake () {
-		float angle = (180 - transform.rotation.eulerAngles.y) * Mathf.Deg2Rad;
+		float angle = (transform.rotation.eulerAngles.y+180)%360 * Mathf.Deg2Rad;
 
 		direction = new Vector3 (-Mathf.Sin(angle) + Random.Range(-1.0f, 1.0f), 0, -Mathf.Cos(angle) + Random.Range(-1.0f, 1.0f)) / 13;
 	}

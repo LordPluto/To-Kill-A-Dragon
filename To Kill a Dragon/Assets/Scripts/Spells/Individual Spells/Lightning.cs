@@ -10,7 +10,7 @@ public class Lightning : AttackSpell {
 
 	// Use this for initialization
 	void Start () {
-		float angle = (180 - transform.rotation.eulerAngles.y) * Mathf.Deg2Rad;
+		float angle = (transform.rotation.eulerAngles.y+180)%360 * Mathf.Deg2Rad;
 
 		Vector3 direction = new Vector3 (-Mathf.Sin (angle), 0, -Mathf.Cos (angle));
 

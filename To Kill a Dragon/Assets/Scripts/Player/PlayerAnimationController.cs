@@ -2,18 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public enum Facing {
+	Down = 0,
+	Right = 1,
+	Up = 2,
+	Left = 3,
+}
+
 public class PlayerAnimationController {
 
 	#region Animations
 
 	private Animator _animator;
-	
-	enum Facing {
-		Down = 0,
-		Right = 1,
-		Up = 2,
-		Left = 3,
-	}
 
 	private Facing _characterFacing;
 
@@ -106,22 +106,12 @@ public class PlayerAnimationController {
 	}
 
 	/**
-	 * Return the direction the player is facing.
+	 * <para>Return the direction the player is facing.</para>
+	 * <returns>The direction the player is facing.</returns>
 	 * **/
-	public float getDirection(){
-				switch (_characterFacing) {
-				case Facing.Down:
-						return 0;
-				case Facing.Right:
-						return 1;
-				case Facing.Up:
-						return 2;
-				case Facing.Left:
-						return 3;
-				default:
-						return 0;
-				}
-		}
+	public Facing getDirection(){
+		return _characterFacing;
+	}
 
 	/**
 	 * Given an angle in degrees, set the direction
