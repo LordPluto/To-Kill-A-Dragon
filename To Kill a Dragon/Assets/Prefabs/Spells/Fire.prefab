@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellNumber: 0
   SpellCost: 10
-  CastDuration: 1
+  CastDuration: 0.25
   CastDelay: 0
   SpellDamage: 0
   SpellKnockback: 0
@@ -141,7 +141,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: CastDuration
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: SpellCost

@@ -24,10 +24,12 @@ public class PlayerAnimationController {
 		}
 
 	/**
-	 * Handles animations. Once per frame.
+	 * <para>Handles movement. Once per frame.</para>
+	 * <param name="position">Current position of the player</param>
+	 * <param name="velocity">Current velocity of the player</param>
 	 * **/
 	public void Animation(Vector3 position, Vector3 velocity){
-
+		
 		float horizontalMovement = Input.GetAxis ("Horizontal");
 		float verticalMovement = Input.GetAxis ("Vertical");
 
@@ -142,4 +144,25 @@ public class PlayerAnimationController {
 						_animator.SetFloat ("Speed", 0);
 				}
 		}
+
+	/**
+	 * <para>Toggles the casting state.</para>
+	 * <param name="CastingToggle">True if casting, false otherwise</param>
+	 * <param name="SpellType">Optional parameter. Sets the substate if included.</param>
+	 * **/
+	public void ToggleCasting(bool CastingToggle, Spell SpellType = null)
+	{
+		_animator.SetBool ("Casting", CastingToggle);
+
+		if (SpellType != null) {
+			if (SpellType is AttackSpell) {
+				_animator.SetBool ("AttackSpell", true);
+			} else if (SpellType is SupportSpell) {
+				_animator.SetBool ("SupportSpell", true);
+			}
+		} else {
+			_animator.SetBool ("AttackSpell", false);
+			_animator.SetBool ("SupportSpell", false);
+		}
+	}
 }

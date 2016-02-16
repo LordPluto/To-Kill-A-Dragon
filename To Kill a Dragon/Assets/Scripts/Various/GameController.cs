@@ -135,8 +135,9 @@ public class GameController : MonoBehaviour {
 		KnownSpells[(int)SpellNumber.Fire] = true;
 		KnownSpells[(int)SpellNumber.Ice] = true;
 		KnownSpells[(int)SpellNumber.Lightning] = true;
+		KnownSpells [(int)SpellNumber.Heal] = true;
 		SetSpellQ (SpellNumber.Fire);
-		SetSpellE (SpellNumber.Ice);
+		SetSpellE (SpellNumber.Heal);
 		SetSpellSpace (SpellNumber.Lightning);
 		//END TEST
 
@@ -341,7 +342,7 @@ public class GameController : MonoBehaviour {
 
 	/**
 	 * <para>Restores the player's HP by the percentage</para>
-	 * <param name="healPercent">Percentage to heal</param>
+	 * <param name="healPercent">Percentage to heal. Can be from (0, 1]</param>
 	 * **/
 	public void HealPlayerHealthPercent (float healPercent) {
 		playerControl.PercentChangeHP (healPercent);
@@ -439,9 +440,10 @@ public class GameController : MonoBehaviour {
 			Vector3 SpellRotation = SpellCast.rotation.eulerAngles - new Vector3 (0, FacingDegrees - PlayerRotation, 0);
 
 			Instantiate (SpellCast,
-				playerControl.getPosition () + new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+				playerControl.getPosition () + (SpellDetails is SelfSpell ? 
+					new Vector3(0, 0.66f, 0) : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
 					2,
-					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
+					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3),
 				Quaternion.Euler (SpellRotation));
 
 			playerControl.changeMP (-SpellDetails.SpellCost);
@@ -468,9 +470,10 @@ public class GameController : MonoBehaviour {
 			Vector3 SpellRotation = SpellCast.rotation.eulerAngles - new Vector3 (0, FacingDegrees - PlayerRotation, 0);
 
 			Instantiate (SpellCast,
-				playerControl.getPosition () + new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
-					2,
-					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
+				playerControl.getPosition () + (SpellDetails is SelfSpell ? 
+					new Vector3(0, 0.66f, 0) : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+						2,
+						-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3),
 				Quaternion.Euler (SpellRotation));
 
 			playerControl.changeMP (-SpellDetails.SpellCost);
@@ -497,9 +500,10 @@ public class GameController : MonoBehaviour {
 			Vector3 SpellRotation = SpellCast.rotation.eulerAngles - new Vector3 (0, FacingDegrees - PlayerRotation, 0);
 
 			Instantiate (SpellCast,
-				playerControl.getPosition () + new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+				playerControl.getPosition () + (SpellDetails is SelfSpell ? 
+					new Vector3(0, 0.66f, 0) : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
 					2,
-					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3,
+					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3),
 				Quaternion.Euler (SpellRotation));
 
 			playerControl.changeMP (-SpellDetails.SpellCost);
@@ -537,6 +541,39 @@ public class GameController : MonoBehaviour {
 		SpellSpace = spellNumber;
 
 		HudControl.UpdateSpellSpace (SpellSpace, MagnetPole);
+	}
+
+	/**
+	 * <para>Gets the spell on the Q slot</para>
+	 * <returns>The spell on the Q slot</returns>
+	 * **/
+	public Spell GetSpellQ () {
+		Transform SpellCast = spellBook.GetSpellTransform (SpellQ);
+		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
+
+		return SpellDetails;
+	}
+
+	/**
+	 * <para>Gets the spell on the E slot</para>
+	 * <returns>The spell on the E slot</returns>
+	 * **/
+	public Spell GetSpellE () {
+		Transform SpellCast = spellBook.GetSpellTransform (SpellE);
+		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
+
+		return SpellDetails;
+	}
+
+	/**
+	 * <para>Gets the spell on the Space slot</para>
+	 * <returns>The spell on the Space slot</returns>
+	 * **/
+	public Spell GetSpellSpace () {
+		Transform SpellCast = spellBook.GetSpellTransform (SpellSpace);
+		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
+
+		return SpellDetails;
 	}
 
 	/**

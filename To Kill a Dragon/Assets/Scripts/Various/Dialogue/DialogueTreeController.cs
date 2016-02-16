@@ -29,7 +29,7 @@ public class DialogueTreeController : MonoBehaviour {
 		if (nextBox > 0) {
 			nextBox--;
 		}
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (IsActive() && Input.GetKeyDown (KeyCode.Space)) {
 			NextTextBox ();
 		}
 	}

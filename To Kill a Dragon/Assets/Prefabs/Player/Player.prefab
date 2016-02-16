@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 446932}
-  - 114: {fileID: 11479756}
+  - 114: {fileID: 11434168}
   m_Layer: 0
   m_Name: _DialogueText
   m_TagString: Dialogue
@@ -95,6 +95,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 453142}
+  - 114: {fileID: 11465468}
   m_Layer: 0
   m_Name: SpellBook
   m_TagString: Untagged
@@ -109,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -45.8778, y: 4.18, z: -1.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 414888}
@@ -252,6 +253,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11434168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e0891154d7564641bc1f1ab64b21a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11463716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,17 +278,22 @@ MonoBehaviour:
   TransparentAlpha: 0.5
   RegularShader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
   TransparentShader: {fileID: 4800000, guid: 2b8a22f4ad572674298a4acf658726ae, type: 3}
---- !u!114 &11479756
+--- !u!114 &11465468
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139816}
+  m_GameObject: {fileID: 198796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e0891154d7564641bc1f1ab64b21a04, type: 3}
+  m_Script: {fileID: 11500000, guid: 72bb5d8498f048a4f8f57d933e0d3be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpellTransforms:
+  - {fileID: 499558, guid: be1e55bf1dfc2c749b7c75857c75979f, type: 2}
+  - {fileID: 414018, guid: d6decc086167e1f4384377e40c1301d9, type: 2}
+  - {fileID: 494190, guid: 252849f0f35f0e8439bc73d45e9ad4d6, type: 2}
+  - {fileID: 483594, guid: 3845d9adbb17f8c41931e6a5feb883cf, type: 2}
 --- !u!114 &11480164
 MonoBehaviour:
   m_ObjectHideFlags: 1
