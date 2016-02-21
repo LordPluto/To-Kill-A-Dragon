@@ -1,45 +1,45 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &118414
+--- !u!1 &132064
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 483594}
-  - 114: {fileID: 11421234}
-  - 212: {fileID: 21224350}
-  - 95: {fileID: 9594174}
+  - 4: {fileID: 491674}
+  - 114: {fileID: 11472676}
+  - 212: {fileID: 21219956}
+  - 95: {fileID: 9521478}
   m_Layer: 0
-  m_Name: Heal
-  m_TagString: SpellHeal
+  m_Name: Wind
+  m_TagString: SpellWind
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &483594
+--- !u!4 &491674
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118414}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 132064}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!95 &9594174
+--- !u!95 &9521478
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118414}
+  m_GameObject: {fileID: 132064}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eb08cb701a70d244d8750645d08ab4a9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9971af668605f794293f604dcf508749, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -47,28 +47,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11421234
+--- !u!114 &11472676
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118414}
+  m_GameObject: {fileID: 132064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec7c42610142194f8626e2114e0a164, type: 3}
+  m_Script: {fileID: 11500000, guid: 04ef271b66366c449b407cd9b0c23d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpellNumber: 3
+  SpellNumber: 4
   SpellCost: 0
-  CastDuration: 1.75
+  CastDuration: 0.25
   CastDelay: 0
-  percentageHealed: 0.5
---- !u!212 &21224350
+  BoostDuration: 5
+--- !u!212 &21219956
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118414}
+  m_GameObject: {fileID: 132064}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300008, guid: 4dfdf315bd093354db02a533eca9799c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4dfdf315bd093354db02a533eca9799c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,16 +99,8 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: SpellNumber
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_TagString
-      value: SpellHeal
-      objectReference: {fileID: 0}
+    m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 118414}
+  m_RootGameObject: {fileID: 132064}
   m_IsPrefabParent: 1

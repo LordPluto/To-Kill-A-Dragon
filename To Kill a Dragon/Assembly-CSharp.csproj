@@ -96,6 +96,7 @@
      <Compile Include="Assets\Scripts\Spells\Individual Spells\IceCrystal.cs" />
      <Compile Include="Assets\Scripts\Spells\Individual Spells\Lightning.cs" />
      <Compile Include="Assets\Scripts\Spells\Individual Spells\LightningComponent.cs" />
+     <Compile Include="Assets\Scripts\Spells\Individual Spells\Wind.cs" />
      <Compile Include="Assets\Scripts\Spells\SelfSpell.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />
      <Compile Include="Assets\Scripts\Spells\SpellBook.cs" />

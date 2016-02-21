@@ -294,6 +294,7 @@ MonoBehaviour:
   - {fileID: 414018, guid: d6decc086167e1f4384377e40c1301d9, type: 2}
   - {fileID: 494190, guid: 252849f0f35f0e8439bc73d45e9ad4d6, type: 2}
   - {fileID: 483594, guid: 3845d9adbb17f8c41931e6a5feb883cf, type: 2}
+  - {fileID: 491674, guid: 8397d9ee18da9bd4ba4db9de7e7a04d4, type: 2}
 --- !u!114 &11480164
 MonoBehaviour:
   m_ObjectHideFlags: 1

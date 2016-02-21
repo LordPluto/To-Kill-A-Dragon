@@ -136,9 +136,10 @@ public class GameController : MonoBehaviour {
 		KnownSpells[(int)SpellNumber.Ice] = true;
 		KnownSpells[(int)SpellNumber.Lightning] = true;
 		KnownSpells [(int)SpellNumber.Heal] = true;
+		KnownSpells [(int)SpellNumber.Wind] = true;
 		SetSpellQ (SpellNumber.Fire);
 		SetSpellE (SpellNumber.Heal);
-		SetSpellSpace (SpellNumber.Lightning);
+		SetSpellSpace (SpellNumber.Wind);
 		//END TEST
 
 		DontDestroyOnLoad (GameObject.Find ("EventSystem"));
@@ -441,7 +442,7 @@ public class GameController : MonoBehaviour {
 
 			Instantiate (SpellCast,
 				playerControl.getPosition () + (SpellDetails is SelfSpell ? 
-					new Vector3(0, 0.66f, 0) : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+					Vector3.zero : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
 					2,
 					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3),
 				Quaternion.Euler (SpellRotation));
@@ -471,7 +472,7 @@ public class GameController : MonoBehaviour {
 
 			Instantiate (SpellCast,
 				playerControl.getPosition () + (SpellDetails is SelfSpell ? 
-					new Vector3(0, 0.66f, 0) : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+					Vector3.zero : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
 						2,
 						-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3),
 				Quaternion.Euler (SpellRotation));
@@ -501,7 +502,7 @@ public class GameController : MonoBehaviour {
 
 			Instantiate (SpellCast,
 				playerControl.getPosition () + (SpellDetails is SelfSpell ? 
-					new Vector3(0, 0.66f, 0) : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
+					Vector3.zero : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
 					2,
 					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3),
 				Quaternion.Euler (SpellRotation));

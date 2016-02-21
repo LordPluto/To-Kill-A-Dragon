@@ -466,25 +466,25 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * Take damage from an attack
 	 * **/
 	public void TakeMonsterDamage(float monsterAtk, Vector3 flinchAngle) {
-				if (!Flinch) {
-						flinchAngle = new Vector3 (flinchAngle.x, 0, flinchAngle.z);
+		if (!Flinch) {
+			flinchAngle = new Vector3 (flinchAngle.x, 0, flinchAngle.z);
 
-						Flinch = true;
-						currentHP -= Mathf.Max (0, monsterAtk - Def);
+			Flinch = true;
+			currentHP -= Mathf.Max (0, monsterAtk - Def);
 
-						Vector3 tempDestination = transform.position + (flinchAngle.normalized * 2);
-						Vector3 direction = tempDestination - transform.position;
+			Vector3 tempDestination = transform.position + (flinchAngle.normalized * 2 * (playerMovement.WindActive () ? 2f : 1));
+			Vector3 direction = tempDestination - transform.position;
 
-						Ray ray = new Ray (transform.position, direction);
-						RaycastHit hit;
+			Ray ray = new Ray (transform.position, direction);
+			RaycastHit hit;
 
-						if (!(Physics.Raycast (ray, out hit, direction.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level")))) {
-								flinchDestination = tempDestination;
-						} else {
-								flinchDestination = hit.point - direction.normalized / 10;
-						}
-				}
+			if (!(Physics.Raycast (ray, out hit, direction.magnitude) && (hit.collider.CompareTag ("NPC") || hit.collider.CompareTag ("Level")))) {
+				flinchDestination = tempDestination;
+			} else {
+				flinchDestination = hit.point - direction.normalized / 10;
+			}
 		}
+	}
 
 	/**
 	 * Checks to see if the player is flinching or not
@@ -620,5 +620,13 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * **/
 	public void SetSpellTimer(float SpellDuration) {
 		spellTimer = SpellDuration;
+	}
+
+	/**
+	 * <para>Toggles a wind speed boost</para>
+	 * <param name="WindToggle">True if wind spell is active, false otherwise.</para>
+	 * **/
+	public void ToggleWindBoost(bool WindToggle) {
+		playerMovement.ToggleWindBoost (WindToggle);
 	}
 }

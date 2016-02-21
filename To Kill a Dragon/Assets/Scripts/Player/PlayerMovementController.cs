@@ -11,6 +11,7 @@ public class PlayerMovementController {
 	private float vSpeed = 0;
 
 	private bool deactivated = false;
+	private bool WindToggle = false;
 
 	public PlayerMovementController(CharacterController _controller){
 				speed = new Vector3 ();
@@ -34,24 +35,24 @@ public class PlayerMovementController {
 	 * Handles movement when the player is in control
 	 * **/
 	public void PlayerMovement(bool Talking, bool Frozen, bool Casting, Quaternion PlayerRotation){
-				float ZSpeed = Input.GetAxis ("Vertical");
-				float XSpeed = Input.GetAxis ("Horizontal");
+		float ZSpeed = Input.GetAxis ("Vertical");
+		float XSpeed = Input.GetAxis ("Horizontal");
 
-				float speedMultiplier = movementSpeed;
+		float speedMultiplier = movementSpeed * (WindToggle ? 2f : 1);
 
-				if (deactivated) {
-						Move (speed);
-						return;
-				}
-
-				speed = PlayerRotation * new Vector3 (XSpeed * speedMultiplier, 0, ZSpeed * speedMultiplier);
-
-				if (Talking || Frozen || Casting) {
-						speed = Vector3.zero;
-				}
-
-				Move (speed);
+		if (deactivated) {
+			Move (speed);
+			return;
 		}
+
+		speed = PlayerRotation * new Vector3 (XSpeed * speedMultiplier, 0, ZSpeed * speedMultiplier);
+
+		if (Talking || Frozen || Casting) {
+			speed = Vector3.zero;
+		}
+
+		Move (speed);
+	}
 
 	/**
 	 * Handles movement when the system is in control
@@ -91,5 +92,21 @@ public class PlayerMovementController {
 	 * **/
 	public bool isFalling() {
 		return !_controller.isGrounded;
+	}
+
+	/**
+	 * <para>Toggles the wind boost</para>
+	 * <param name="WindToggle">True if wind spell is active, false otherwise</param>
+	 * **/
+	public void ToggleWindBoost (bool WindToggle) {
+		this.WindToggle = WindToggle;
+	}
+
+	/**
+	 * <para>Determines whether the wind spell is active</para>
+	 * <returns>True if wind spell active, false otherwise</returns>
+	 * **/
+	public bool WindActive () {
+		return WindToggle;
 	}
 }
