@@ -78,6 +78,29 @@ public class PlayerMovementController {
 		}
 
 	/**
+	 * <para>Handles movement when Magnet spell is active.</para>
+	 * <param name="position">Player's current position</param>
+	 * <param name="moveVector">Movement vector</param>
+	 * **/
+	public Vector3 MagnetMovement (Vector3 position, Vector3 moveVector) {
+		if (WindActive ()) {
+			moveVector *= 2f;
+		}
+
+		Vector3 point1 = position + new Vector3 (0, 1.51f, 0), point2 = position + new Vector3 (0, 0.51f, 0);
+		float radius = 0.5f;
+		RaycastHit hit;
+
+		Physics.CapsuleCast (point1, point2, radius, moveVector, out hit, 0.5f, (1 << 12 | 1 << 13 | 1 << 15));
+
+		if (hit.collider == null) {
+			position += moveVector;
+		}
+
+		return position;
+	}
+
+	/**
 	 * Prevents the player from controlling the character until they've landed.
 	 * Only used when the player needs to fall straight down.
 	 * **/

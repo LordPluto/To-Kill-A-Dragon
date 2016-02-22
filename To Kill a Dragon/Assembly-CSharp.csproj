@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\StatusPanelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\FallingNet.cs" />
      <Compile Include="Assets\Scripts\Level Elements\LoadingManager.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\MagnetCubeController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\MenuController.cs" />
      <Compile Include="Assets\Scripts\Level Elements\SpawnPersistent.cs" />
      <Compile Include="Assets\Scripts\Level Elements\SpawnPoint.cs" />
@@ -96,6 +97,7 @@
      <Compile Include="Assets\Scripts\Spells\Individual Spells\IceCrystal.cs" />
      <Compile Include="Assets\Scripts\Spells\Individual Spells\Lightning.cs" />
      <Compile Include="Assets\Scripts\Spells\Individual Spells\LightningComponent.cs" />
+     <Compile Include="Assets\Scripts\Spells\Individual Spells\Magnet.cs" />
      <Compile Include="Assets\Scripts\Spells\Individual Spells\Wind.cs" />
      <Compile Include="Assets\Scripts\Spells\SelfSpell.cs" />
      <Compile Include="Assets\Scripts\Spells\Spell.cs" />

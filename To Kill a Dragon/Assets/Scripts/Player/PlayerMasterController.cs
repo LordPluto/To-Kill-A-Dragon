@@ -73,6 +73,9 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	private float ONE_SECOND = 1;
 	private float flinchTimer = 0;
 
+	private bool magnetActive;
+	private Vector3 magnetDirection;
+
 	#endregion
 
 	#region Spells
@@ -157,6 +160,8 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		} else if (Cutscene) {
 			if (currentPathPoint != null)
 				CutsceneUpdate ();
+		} else if (magnetActive) {
+			MagnetUpdate ();
 		} else {
 			PlayerUpdate ();
 		}
@@ -212,6 +217,15 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 				currentPathPoint = pathPoints [pointIndex];
 			}
 		}
+	}
+
+	/**
+	 * <para>The Update function used when the player is casting Magnet</para>
+	 * **/
+	private void MagnetUpdate () {
+		Vector3 moveVector = magnetDirection * moveSpeed * Time.deltaTime;
+
+		transform.position = playerMovement.MagnetMovement (transform.position, moveVector);
 	}
 
 	/**
@@ -628,5 +642,15 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * **/
 	public void ToggleWindBoost(bool WindToggle) {
 		playerMovement.ToggleWindBoost (WindToggle);
+	}
+
+	/**
+	 * <para>Toggles the player's ability to move due to Magnet</para>
+	 * <param name="MagnetActive">Magnet active toggle</param>
+	 * <param name="MagnetDirection">Direction to move due to Magnet</param>
+	 * **/
+	public void MagnetToggle (bool MagnetActive, Vector3 MagnetDirection) {
+		magnetActive = MagnetActive;
+		magnetDirection = MagnetDirection;
 	}
 }

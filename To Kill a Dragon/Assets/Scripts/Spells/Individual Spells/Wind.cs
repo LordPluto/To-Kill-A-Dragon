@@ -21,6 +21,17 @@ public class Wind : SelfSpell {
 
 	void Awake () {
 		timer = BoostDuration;
+		GameObject[] windSpells = GameObject.FindGameObjectsWithTag ("SpellWind");
+
+		if (windSpells.Length > 1) {
+			foreach (GameObject wind in windSpells) {
+				if (wind.GetInstanceID () != this.gameObject.GetInstanceID ()) {
+					wind.GetComponent<Wind> ().RenewDuration ();
+				} else {
+					Destroy (wind);
+				}
+			}
+		}
 	}
 	
 	// Update is called once per frame

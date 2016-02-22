@@ -84,6 +84,7 @@ public class GameController : MonoBehaviour {
 	private SpellNumber SpellSpace;
 	private bool[] KnownSpells;
 
+	public bool MagnetActive = false;
 	private Pole MagnetPole;
 
 	#endregion
@@ -137,7 +138,8 @@ public class GameController : MonoBehaviour {
 		KnownSpells[(int)SpellNumber.Lightning] = true;
 		KnownSpells [(int)SpellNumber.Heal] = true;
 		KnownSpells [(int)SpellNumber.Wind] = true;
-		SetSpellQ (SpellNumber.Fire);
+		KnownSpells [(int)SpellNumber.Magnet] = true;
+		SetSpellQ (SpellNumber.Magnet);
 		SetSpellE (SpellNumber.Heal);
 		SetSpellSpace (SpellNumber.Wind);
 		//END TEST
@@ -664,5 +666,37 @@ public class GameController : MonoBehaviour {
 	 * **/
 	public bool CutsceneActive () {
 		return InCutscene;
+	}
+
+	/**
+	 * <para>Activates/Deactivates Magnet as necessary</para>
+	 * **/
+	public void SetMagnet(bool activate){
+		MagnetActive = activate;
+		if (!MagnetActive) {
+			playerControl.MagnetToggle (false, Vector3.zero);
+			MagnetPole = (MagnetPole == Pole.North ? Pole.South : Pole.North);
+			SetSpellE (SpellE);
+			SetSpellQ (SpellQ);
+			SetSpellSpace (SpellSpace);
+		}
+	}
+
+	/**
+	 * <para>Activates when a magnet Pole is found</para>
+	 * <param name="magnetDirection">The direction player is moving</param>
+	 * **/
+	public void SetMagnetDirection(Vector3 magnetDirection) {
+		playerControl.MagnetToggle (true, (MagnetPole == Pole.North ? magnetDirection : -1 * magnetDirection));
+	}
+
+	/**
+	 * <para>Activates when a magnet Cube is found</para>
+	 * <param name="magnetCube">The cube found</param>
+	 * <param name="magnetDirection">The direction the cube is moving</param>
+	 * **/
+	public void SetMagnetDirection(GameObject magnetCube, Vector3 magnetDirection) {
+		magnetCube.GetComponent<MagnetCubeController>().MagnetToggle(true, (MagnetPole == Pole.North ? magnetDirection : -1 * magnetDirection));
+		playerControl.MagnetToggle (true, Vector3.zero);
 	}
 }
