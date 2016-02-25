@@ -139,7 +139,7 @@ public class GameController : MonoBehaviour {
 		KnownSpells [(int)SpellNumber.Heal] = true;
 		KnownSpells [(int)SpellNumber.Wind] = true;
 		KnownSpells [(int)SpellNumber.Magnet] = true;
-		SetSpellQ (SpellNumber.Magnet);
+		SetSpellQ (SpellNumber.Fire);
 		SetSpellE (SpellNumber.Heal);
 		SetSpellSpace (SpellNumber.Wind);
 		//END TEST

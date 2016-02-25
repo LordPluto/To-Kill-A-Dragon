@@ -79,8 +79,8 @@ MonoBehaviour:
   SpellCost: 10
   CastDuration: 0.25
   CastDelay: 0
-  SpellDamage: 0
-  SpellKnockback: 0
+  SpellDamage: 10
+  SpellKnockback: 1
 --- !u!136 &13652512
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -146,6 +146,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: SpellCost
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: SpellDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: SpellKnockback
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

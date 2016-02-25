@@ -224,6 +224,17 @@ public class EnemyController : MonoBehaviour, StopOnCutscene {
 		}
 
 	/**
+	 * <para>Deals Spell damage to the enemy</para>
+	 * <param name="SpellDamage">Damage of the spell</param>
+	 * <param name="SpellKnockback">Bonus knockback of spell</param>
+	 * <param name="SpellPosition">Position of spell that hit</param>
+	 * **/
+	public void TakeDamage(float SpellDamage, float SpellKnockback, Vector3 SpellPosition) {
+		parentControl.HP -= SpellDamage;
+		KnockBack (transform.position - SpellPosition, SpellKnockback);
+	}
+
+	/**
 	 * The monster flinches, moving back.
 	 * **/
 	public void FlinchBack (Vector3 flinchDirection) {

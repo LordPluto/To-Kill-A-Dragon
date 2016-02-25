@@ -15,9 +15,11 @@ public class EnemyPlayerCollision : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider c){
-				if (c.CompareTag ("Player")) {
-						parentControl.HitPlayer (c);
-				} else if (c.tag.Length >= 5 && c.tag.Substring (0, 5).Equals ("Spell") && !c.CompareTag("SpellIgnore")) {
-				}
+		if (c.CompareTag ("Player")) {
+			parentControl.HitPlayer (c);
+		} else if (c.tag.Length >= 5 && c.tag.Substring (0, 5).Equals ("Spell") && !c.CompareTag ("SpellIgnore")) {
+			AttackSpell SpellCollision = c.gameObject.GetComponent<AttackSpell> ();
+			parentControl.TakeDamage (SpellCollision.SpellDamage, SpellCollision.SpellKnockback, c.transform.position);
 		}
+	}
 }

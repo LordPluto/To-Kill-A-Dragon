@@ -23,7 +23,18 @@ public class ItemMasterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (magnetTarget) {
+			if (!attractMode.enabled && gameControl.MagnetActive) {
+				AttractMode ();
+			} else if (attractMode.enabled && !gameControl.MagnetActive) {
+				StationaryMode ();
+			}
 		}
+
+		if (attractMode.enabled) {
+			attractMode.IsMagnet (gameControl.MagnetActive);
+		}
+	}
 
 	void OnTriggerEnter(Collider c){
 				if (c.CompareTag ("Player")) {
