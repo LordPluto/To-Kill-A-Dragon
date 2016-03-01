@@ -1,20 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Item\ItemMasterController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy\BasicEnemyController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Various\GameController.cs" Line="142" Column="30" />
-      <File FileName="Assets\Scripts\Spells\Individual Spells\Magnet.cs" Line="31" Column="44" />
+      <File FileName="Assets\Scripts\Spells\Individual Spells\Magnet.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Player\PlayerMovementController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Player\PlayerAnimationController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\HUD\HUDController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Player\CameraManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Level Elements\MagnetCubeController.cs" Line="53" Column="5" />
-      <File FileName="Assets\Scripts\Spells\Individual Spells\Wind.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy\BasicEnemyController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy\EnemyController.cs" Line="234" Column="66" />
-      <File FileName="Assets\Scripts\Enemy\EnemyPlayerCollision.cs" Line="22" Column="109" />
-      <File FileName="Assets\Scripts\Item\ItemMasterController.cs" Line="37" Column="3" />
+      <File FileName="Assets\Scripts\Level Elements\MagnetCubeController.cs" Line="27" Column="5" />
+      <File FileName="Assets\Scripts\Enemy\EnemyPlayerCollision.cs" Line="6" Column="14" />
+      <File FileName="Assets\Scripts\Item\ItemMasterController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy\EnemyController.cs" Line="27" Column="17" />
+      <File FileName="Assets\Scripts\Enemy\BasicEnemyController.cs" Line="153" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

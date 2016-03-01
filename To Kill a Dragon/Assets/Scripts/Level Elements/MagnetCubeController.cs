@@ -24,7 +24,7 @@ public class MagnetCubeController : MonoBehaviour {
 			Debug.DrawLine (transform.position, transform.position + magnetDirection, Color.red, 2);
 
 			if (Physics.CapsuleCast (Point1, Point2, Radius, moveVector, out hit, 0.1f, 1 << 14)) {
-				//hit.collider.gameObject.GetComponent<EnemyPlayerCollision> ().HitMagnetBlock (this.transform.position);
+				hit.collider.gameObject.GetComponent<EnemyPlayerCollision> ().HitMagnetBlock (this.transform.position);
 			}
 
 			if (Physics.CapsuleCast (Point1, Point2, Radius, moveVector, out hit, 0.2f, (1 << 9 | 1 << 12 | 1 << 13 | 1 << 15))) {
@@ -50,7 +50,7 @@ public class MagnetCubeController : MonoBehaviour {
 	 * **/
 	void OnTriggerEnter (Collider c){
 		if (magnetActive && c.tag.Substring (0, 5).Equals ("Enemy")) {
-			//c.gameObject.GetComponent<EnemyPlayerCollision> ().HitMagnetBlock (this.transform.position);
+			c.gameObject.GetComponent<EnemyPlayerCollision> ().HitMagnetBlock (this.transform.position);
 		}
 	}
 }

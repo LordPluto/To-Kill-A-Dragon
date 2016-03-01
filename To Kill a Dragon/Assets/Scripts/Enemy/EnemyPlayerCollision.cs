@@ -22,4 +22,11 @@ public class EnemyPlayerCollision : MonoBehaviour {
 			parentControl.TakeDamage (SpellCollision.SpellDamage, SpellCollision.SpellKnockback, c.transform.position);
 		}
 	}
+
+	/**
+	 * What happens when the enemy is hit by a magnet block
+	 * **/
+	public void HitMagnetBlock (Vector3 blockPosition){
+		parentControl.HitMagnetBlock (blockPosition);
+	}
 }

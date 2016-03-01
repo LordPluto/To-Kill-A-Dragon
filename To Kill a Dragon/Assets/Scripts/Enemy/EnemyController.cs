@@ -305,6 +305,15 @@ public class EnemyController : MonoBehaviour, StopOnCutscene {
 
 				FlinchMode ();
 		}
+
+	/**
+	 * The enemy hit a moving magnet block
+	 * **/
+	public void HitMagnetBlock (Vector3 blockPosition){
+		Vector3 otherDirection = transform.position - blockPosition;
+
+		parentControl.MagnetDamage (otherDirection);
+	}
 	
 	/**
 	 * The enemy ran into the player

@@ -145,6 +145,14 @@ public class BasicEnemyController : MonoBehaviour {
 		}
 
 	/**
+	 * Take damage from magnet block
+	 * **/
+	public void MagnetDamage(Vector3 flinch){
+		HP -= 1;
+		MagnetKnockBack (flinch, 1);
+	}
+
+	/**
 	 * Gets the knockback of the monster
 	 * **/
 	public float getKnockback(){
