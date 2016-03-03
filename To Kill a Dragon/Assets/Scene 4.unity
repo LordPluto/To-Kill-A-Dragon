@@ -411,6 +411,7 @@ GameObject:
   - 224: {fileID: 247516794}
   - 222: {fileID: 247516796}
   - 114: {fileID: 247516795}
+  - 114: {fileID: 247516797}
   m_Layer: 5
   m_Name: WheelSelect Panel
   m_TagString: Untagged
@@ -427,7 +428,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1423833973}
   m_Father: {fileID: 754983375}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -467,6 +469,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 247516793}
+--- !u!114 &247516797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 247516793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4609d3a7e2e8d74c97e49dd5c2f8632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &281512447
 Prefab:
   m_ObjectHideFlags: 0
@@ -1634,6 +1647,7 @@ GameObject:
   - 223: {fileID: 754983374}
   - 114: {fileID: 754983373}
   - 114: {fileID: 754983372}
+  - 114: {fileID: 754983376}
   m_Layer: 5
   m_Name: SpellSelect Canvas
   m_TagString: Untagged
@@ -1715,6 +1729,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &754983376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754983371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71462f13230ac04baf172ba220ea5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childPanels: []
 --- !u!1001 &880317664
 Prefab:
   m_ObjectHideFlags: 0
@@ -2439,6 +2465,38 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2011936291}
   m_Script: {fileID: 11500000, guid: 16cd61c64d14f054f918bf1799e9a675, type: 3}
+--- !u!1 &1296235478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1296235479}
+  m_Layer: 5
+  m_Name: SpellPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1296235479
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1296235478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1531480619}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1304626241 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 198868, guid: 2480dced8059b4e4ea45dfe03ca25e2a, type: 2}
@@ -2532,6 +2590,38 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1423833972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1423833973}
+  m_Layer: 5
+  m_Name: SpellPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1423833973
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423833972}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 247516794}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1432487870 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 111500, guid: 2480dced8059b4e4ea45dfe03ca25e2a, type: 2}
@@ -3229,6 +3319,7 @@ GameObject:
   - 224: {fileID: 1531480619}
   - 222: {fileID: 1531480621}
   - 114: {fileID: 1531480620}
+  - 114: {fileID: 1531480622}
   m_Layer: 5
   m_Name: QuickSelect Panel
   m_TagString: Untagged
@@ -3245,7 +3336,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1296235479}
   m_Father: {fileID: 754983375}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
@@ -3285,6 +3377,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1531480618}
+--- !u!114 &1531480622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1531480618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed0c87d665949d43aa15832bb47af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1547498972
 Prefab:
   m_ObjectHideFlags: 0
