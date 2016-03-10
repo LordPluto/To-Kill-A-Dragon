@@ -21,6 +21,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	private bool Talking;
 	private bool Frozen;
 	private bool Casting;
+	private bool Switching;
 
 	private bool Flinch;
 	private Vector3 flinchDestination;
@@ -625,7 +626,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * <returns>True if the player can cast, false otherwise</returns>
 	 * **/
 	private bool CanCast () {
-		return !(Casting || playerMovement.isFalling ());
+		return !(Switching || Casting || playerMovement.isFalling ());
 	}
 
 	/**
@@ -652,5 +653,14 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	public void MagnetToggle (bool MagnetActive, Vector3 MagnetDirection) {
 		magnetActive = MagnetActive;
 		magnetDirection = MagnetDirection;
+	}
+
+	/**
+	 * <para>Toggles the spell switching boolean that prevents the player
+	 * from casting while switching.</para>
+	 * <param name="toggle">Boolean toggle</param>
+	 * **/
+	public void SwitchingToggle (bool toggle) {
+		Switching = toggle;
 	}
 }

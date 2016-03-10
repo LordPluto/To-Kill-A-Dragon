@@ -66,36 +66,6 @@ public class GameController : MonoBehaviour {
 
 	#endregion
 
-	#region HUD
-
-	private HUDController HudControl;
-	private Head currentHead;
-
-	private float MPTimer = 0;
-	
-	#endregion
-
-	#region Spells
-
-	private SpellBook spellBook;
-
-	private SpellNumber SpellQ;
-	private SpellNumber SpellE;
-	private SpellNumber SpellSpace;
-	private bool[] KnownSpells;
-
-	public bool MagnetActive = false;
-	private Pole MagnetPole;
-
-	#endregion
-
-	#region Player Wallet
-
-	private float wallet;
-	private const float WalletMax = 999999999999;
-
-	#endregion
-
 	#region Menus
 
 	private bool menuOpen;
@@ -108,6 +78,44 @@ public class GameController : MonoBehaviour {
 	private List<StopOnFreeze> freezingList;
 	private List<StopOnCutscene> cutsceneList;
 	
+	#endregion
+
+	#region Game Settings
+
+	#endregion
+
+	#region Consistent Across Screens
+
+		#region HUD
+
+		private HUDController HudControl;
+		private Head currentHead;
+
+		private float MPTimer = 0;
+
+		#endregion
+
+		#region Spells
+
+		private SpellBook spellBook;
+
+		private SpellNumber SpellQ;
+		private SpellNumber SpellE;
+		private SpellNumber SpellSpace;
+		private bool[] KnownSpells;
+
+		public bool MagnetActive = false;
+		private Pole MagnetPole;
+
+		#endregion
+
+		#region Player Wallet
+
+		private float wallet;
+		private const float WalletMax = 999999999999;
+
+		#endregion
+
 	#endregion
 
 	/**
@@ -140,8 +148,8 @@ public class GameController : MonoBehaviour {
 		KnownSpells [(int)SpellNumber.Wind] = true;
 		KnownSpells [(int)SpellNumber.Magnet] = true;
 		SetSpellQ (SpellNumber.Fire);
-		SetSpellE (SpellNumber.Heal);
-		SetSpellSpace (SpellNumber.Wind);
+		SetSpellE (SpellNumber.Ice);
+		SetSpellSpace (SpellNumber.Lightning);
 		//END TEST
 
 		DontDestroyOnLoad (GameObject.Find ("EventSystem"));
@@ -698,5 +706,18 @@ public class GameController : MonoBehaviour {
 	public void SetMagnetDirection(GameObject magnetCube, Vector3 magnetDirection) {
 		magnetCube.GetComponent<MagnetCubeController>().MagnetToggle(true, (MagnetPole == Pole.North ? magnetDirection : -1 * magnetDirection));
 		playerControl.MagnetToggle (true, Vector3.zero);
+	}
+
+	/**
+	 * <para>Toggles the state of spell switching.</para>
+	 * <param name="SelectState">The state of the selector</param>
+	 * <param name="switchToggle">The toggle</param>
+	 * **/
+	public void SwitchingSpells(SpellSelectStyle SelectState, bool switchToggle) {
+		if (SelectState == SpellSelectStyle.Wheel) {
+			Time.timeScale = (switchToggle ? 0 : 1);
+		}
+
+		playerControl.SwitchingToggle (switchToggle);
 	}
 }

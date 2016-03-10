@@ -14,13 +14,10 @@ public class SelectStyleControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		foreach (Transform child in transform) {
-			if (child.gameObject.name == "WheelSelect Panel") {
-				childPanels [(int)SpellSelectStyle.Wheel] = child.gameObject;
-			} else if (child.gameObject.name == "QuickSelect Panel") {
-				childPanels [(int)SpellSelectStyle.Quick] = child.gameObject;
-			}
-		}
+	}
+
+	void Awake () {
+		DontDestroyOnLoad (transform.gameObject);
 	}
 	
 	// Update is called once per frame
