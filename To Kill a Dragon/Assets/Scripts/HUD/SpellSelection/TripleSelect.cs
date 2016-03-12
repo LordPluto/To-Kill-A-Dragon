@@ -41,6 +41,7 @@ public class TripleSelect : MonoBehaviour {
 	 * **/
 	public void SetQNumber(SpellNumber q) {
 		SpellQ = q;
+		IconQ.sprite = selectControl.GetSprite (q);
 	}
 
 	/**
@@ -49,6 +50,7 @@ public class TripleSelect : MonoBehaviour {
 	 * **/
 	public void SetENumber(SpellNumber e) {
 		SpellE = e;
+		IconE.sprite = selectControl.GetSprite (e);
 	}
 
 	/**
@@ -57,5 +59,6 @@ public class TripleSelect : MonoBehaviour {
 	 * **/
 	public void SetSpaceNumber(SpellNumber space) {
 		SpellSpace = space;
+		IconSpace.sprite = selectControl.GetSprite (space);
 	}
 }

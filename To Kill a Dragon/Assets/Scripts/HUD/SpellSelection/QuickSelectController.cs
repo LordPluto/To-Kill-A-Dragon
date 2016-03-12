@@ -66,4 +66,8 @@ public class QuickSelectController : MonoBehaviour {
 		IconE.sprite = imageControl.Spells [(int)e];
 		IconSpace.sprite = imageControl.Spells [(int)space];
 	}
+
+	public Sprite GetSprite (SpellNumber s) {
+		return imageControl.Spells [(int)s];
+	}
 }

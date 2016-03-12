@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\HUD\HUDController.cs" />
      <Compile Include="Assets\Scripts\HUD\SpellSelection\QuickSelectController.cs" />
      <Compile Include="Assets\Scripts\HUD\SpellSelection\SelectStyleControl.cs" />
+     <Compile Include="Assets\Scripts\HUD\SpellSelection\SingleSelect.cs" />
      <Compile Include="Assets\Scripts\HUD\SpellSelection\TripleSelect.cs" />
      <Compile Include="Assets\Scripts\HUD\SpellSelection\WheelSelectController.cs" />
      <Compile Include="Assets\Scripts\Item\ItemAttractMovement.cs" />
