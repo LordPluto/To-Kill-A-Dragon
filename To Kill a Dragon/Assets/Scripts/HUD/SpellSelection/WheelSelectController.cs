@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class WheelSelectController : MonoBehaviour {
@@ -46,6 +47,13 @@ public class WheelSelectController : MonoBehaviour {
 
 	void ToggleCanvas () {
 		parentCanvas.enabled = !parentCanvas.enabled;
+		IsActive = parentCanvas.enabled;
+		if (currentSelection == null) {
+			currentSelection = GetComponentInChildren<SingleSelect> ();
+			EventSystem.current.SetSelectedGameObject(currentSelection.gameObject);
+		}
+
+		gameControl.SwitchingSpells (SpellSelectStyle.Wheel, IsActive);
 	}
 
 	/**
@@ -77,5 +85,13 @@ public class WheelSelectController : MonoBehaviour {
 
 	public Sprite GetSprite (SpellNumber s) {
 		return imageControl.Spells [(int)s];
+	}
+
+	/**
+	 * <para>Sets the new selection</para>
+	 * <param name="newSelection">New selected spell</param>
+	 * **/
+	public void SetSelected (SingleSelect newSelection) {
+		currentSelection = newSelection;
 	}
 }

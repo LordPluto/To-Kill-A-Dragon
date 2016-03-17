@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class SingleSelect : Selectable {
@@ -12,18 +13,17 @@ public class SingleSelect : Selectable {
 	private Image Icon;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
 		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		selectControl = GetComponentInParent<WheelSelectController> ();
 	}
 
-	void Awake () {
+	protected override void Awake () {
 		Icon = GetComponent<Image> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
 	/**

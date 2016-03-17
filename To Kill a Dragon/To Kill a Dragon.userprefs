@@ -2,13 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HUD\SpellSelection\SingleSelect.cs">
     <Files>
-      <File FileName="Assets\Scripts\HUD\SpellSelection\SingleSelect.cs" Line="21" Column="33" />
-      <File FileName="Assets\Scripts\HUD\SpellSelection\TripleSelect.cs" Line="44" Column="15" />
-      <File FileName="Assets\Scripts\HUD\SpellSelection\SelectStyleControl.cs" Line="25" Column="2" />
+      <File FileName="Assets\Scripts\HUD\SpellSelection\WheelSelectController.cs" Line="96" Column="2" />
+      <File FileName="Assets\Scripts\HUD\SpellSelection\SingleSelect.cs" Line="44" Column="3" />
+      <File FileName="Assets\Scripts\HUD\SpellSelection\SelectStyleControl.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\HUD\SpellSelection\QuickSelectController.cs" Line="70" Column="2" />
-      <File FileName="Assets\Scripts\HUD\SpellSelection\WheelSelectController.cs" Line="80" Column="3" />
       <File FileName="Assets\Scripts\Various\GameController.cs" Line="721" Column="32" />
-      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerMasterController.cs" Line="629" Column="56" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

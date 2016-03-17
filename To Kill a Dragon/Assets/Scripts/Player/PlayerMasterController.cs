@@ -626,7 +626,7 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 	 * <returns>True if the player can cast, false otherwise</returns>
 	 * **/
 	private bool CanCast () {
-		return !(Switching || Casting || playerMovement.isFalling ());
+		return !(Switching || Casting || Talking || Frozen || playerMovement.isFalling ());
 	}
 
 	/**
