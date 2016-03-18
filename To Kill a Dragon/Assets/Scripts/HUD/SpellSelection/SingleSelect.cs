@@ -7,14 +7,12 @@ public class SingleSelect : Selectable {
 
 	public SpellNumber Spell;
 
-	private GameController gameControl;
 	private WheelSelectController selectControl;
 
 	private Image Icon;
 
 	// Use this for initialization
 	protected override void Start () {
-		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		selectControl = GetComponentInParent<WheelSelectController> ();
 	}
 
@@ -41,5 +39,11 @@ public class SingleSelect : Selectable {
 	public void SetSelection(SpellNumber s) {
 		Spell = s;
 		Icon.sprite = selectControl.GetSprite (s);
+	}
+
+	public override void OnSelect(BaseEventData eventData)
+	{
+		selectControl.SetSelected (this);
+		base.OnSelect (eventData);
 	}
 }
