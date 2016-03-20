@@ -204,10 +204,11 @@ public class BasicEnemyController : MonoBehaviour {
 	 * Notifies the parent (if one exists) that it died.
 	 * **/
 	private void NotifyDeath () {
-				if (transform.parent != null) {
-						GetComponentInParent<DeathTrigger> ().NotifyDeath ();
-				}
+		DeathTrigger trigger;
+		if (transform.parent != null && (trigger = GetComponentInParent<DeathTrigger> ()) != null) {
+			trigger.NotifyDeath ();
 		}
+	}
 
 	/**
 	 * <para>Gets the Game controller for this object</para>

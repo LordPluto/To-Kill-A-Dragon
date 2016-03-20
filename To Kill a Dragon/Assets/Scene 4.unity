@@ -732,7 +732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &247516794
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3253,6 +3253,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11471458, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
+      propertyPath: CanAggro
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
   m_IsPrefabParent: 0
@@ -3886,7 +3890,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11471460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
       propertyPath: HP
-      value: 500
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 11471460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
       propertyPath: Atk
@@ -3911,6 +3915,26 @@ Prefab:
     - target: {fileID: 171460, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 471466, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 471466, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371468, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371466, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11471458, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
+      propertyPath: CanAggro
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1b20e3e013b2614193d7ca51f8a3d70, type: 2}
@@ -4794,7 +4818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1531480619
 RectTransform:
   m_ObjectHideFlags: 0

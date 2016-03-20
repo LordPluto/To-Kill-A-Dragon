@@ -35,7 +35,7 @@ public class Fire : AttackSpell {
 	}
 
 	void OnTriggerEnter (Collider c) {
-		if (!c.tag.Contains ("SpellIgnore") && !c.tag.Equals("Player")) {
+		if (!c.tag.Contains ("SpellIgnore") && !c.tag.Equals("Player") && !(c.gameObject.layer == 11)) {
 			EndFireball();
 		}
 	}

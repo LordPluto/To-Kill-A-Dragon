@@ -5,6 +5,8 @@ public class AggroRangeController : MonoBehaviour {
 
 	private EnemyController notifyControl;
 
+	public bool CanAggro;
+
 	// Use this for initialization
 	void Start () {
 				notifyControl = GetComponentInParent<EnemyController> ();
@@ -16,13 +18,13 @@ public class AggroRangeController : MonoBehaviour {
 		}
 
 	void OnTriggerEnter (Collider c){
-				if (c.CompareTag ("Player")) {
+				if (CanAggro && c.CompareTag ("Player")) {
 						notifyControl.SetTarget (c.gameObject);
 				}
 		}
 
 	void OnTriggerExit (Collider c){
-				if (c.CompareTag ("Player")) {
+				if (CanAggro && c.CompareTag ("Player")) {
 						notifyControl.LoseTarget ();
 				}
 		}

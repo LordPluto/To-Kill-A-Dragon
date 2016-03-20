@@ -50,8 +50,9 @@ public class WheelSelectController : MonoBehaviour {
 		IsActive = parentCanvas.enabled;
 		if (currentSelection == null) {
 			currentSelection = GetComponentInChildren<SingleSelect> ();
-			EventSystem.current.SetSelectedGameObject(currentSelection.gameObject);
 		}
+
+		EventSystem.current.SetSelectedGameObject(currentSelection.gameObject);
 
 		gameControl.SwitchingSpells (SpellSelectStyle.Wheel, IsActive);
 	}
