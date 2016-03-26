@@ -60,15 +60,11 @@ public class GameController : MonoBehaviour {
 
 	#endregion
 
-	#region Cutscene
+	#region Bools
 
 	private bool InCutscene;
-
-	#endregion
-
-	#region Menus
-
 	private bool menuOpen;
+	private bool SwitchingActive;
 
 	#endregion
 
@@ -161,6 +157,8 @@ public class GameController : MonoBehaviour {
 		
 		currentHead = Head.Fine;
 		menuOpen = false;
+		SwitchingActive = false;
+		InCutscene = false;
 		
 		wallet = 0;
 		
@@ -414,10 +412,13 @@ public class GameController : MonoBehaviour {
 	 * <para>Opens/closes the menu</para>
 	 * **/
 	public void MenuInput() {
-				menuOpen = !menuOpen;
-				MenuCanvas.SetEnabled (menuOpen);
-				Time.timeScale = (menuOpen ? 0 : 1);
+		if (IsSwitchingActive ()) {
+			return;
 		}
+		menuOpen = !menuOpen;
+		MenuCanvas.SetEnabled (menuOpen);
+		Time.timeScale = (menuOpen ? 0 : 1);
+	}
 
 	/**
 	 * <para>Opens/closes the pause screen</para>
@@ -599,6 +600,8 @@ public class GameController : MonoBehaviour {
 
 		KnownSpells [(int)spellNumber] = SpellToggle;
 
+		Debug.Log(KnownSpells[(int)spellNumber]);
+
 		if (SpellQ == spellNumber) {
 			SetSpellQ (SpellNumber.Melee);
 		} else if (SpellE == spellNumber) {
@@ -606,6 +609,22 @@ public class GameController : MonoBehaviour {
 		} else if (SpellSpace == spellNumber) {
 			SetSpellSpace (SpellNumber.Melee);
 		}
+	}
+
+	/**
+	 * <para>Returns whether a spell is known or not.</para>
+	 * <param name="spell">The SpellNumber to check.</param>
+	 * **/
+	public bool SpellKnown (SpellNumber spell) {
+		return KnownSpells [(int)spell];
+	}
+
+	/**
+	 * <para>Returns whether a spell is known or not.</para>
+	 * <param name="spell">The integer to check.</param>
+	 * **/
+	public bool SpellKnown (int spell) {
+		return KnownSpells [spell];
 	}
 
 	/**
@@ -719,5 +738,23 @@ public class GameController : MonoBehaviour {
 		}
 
 		playerControl.SwitchingToggle (switchToggle);
+
+		SwitchingActive = switchToggle;
+	}
+
+	/**
+	 * <para>Returns whether the player is switching spells or not</para>
+	 * <returns>True if player is switching spells with LShift, false otherwise</returns>
+	 * **/
+	public bool IsSwitchingActive() {
+		return SwitchingActive;
+	}
+
+	/**
+	 * <para>Determines if the game should respond to player trying to switch spells.</para>
+	 * <returns>True if menu is open, dialogue is active, or game is paused, false otherwise</returns>
+	 * **/
+	public bool IsPaused() {
+		return menuOpen || CutsceneActive() || IsDialogueActive();
 	}
 }

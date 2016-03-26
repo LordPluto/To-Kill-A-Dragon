@@ -13,15 +13,15 @@ public class DebugPanelControl : MenuPanelControl {
 		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 
 		spellToggles [0] = GameObject.Find ("FireToggle").GetComponent<Toggle> ();
-		spellToggles [4] = GameObject.Find ("IceToggle").GetComponent<Toggle> ();
-		spellToggles [8] = GameObject.Find ("LightningToggle").GetComponent<Toggle> ();
-		spellToggles [12] = GameObject.Find ("HealToggle").GetComponent<Toggle> ();
-		spellToggles [16] = GameObject.Find ("WindToggle").GetComponent<Toggle> ();
-		spellToggles [17] = GameObject.Find ("MagnetToggle").GetComponent<Toggle> ();
+		spellToggles [1] = GameObject.Find ("IceToggle").GetComponent<Toggle> ();
+		spellToggles [2] = GameObject.Find ("LightningToggle").GetComponent<Toggle> ();
+		spellToggles [3] = GameObject.Find ("HealToggle").GetComponent<Toggle> ();
+		spellToggles [4] = GameObject.Find ("WindToggle").GetComponent<Toggle> ();
+		spellToggles [5] = GameObject.Find ("MagnetToggle").GetComponent<Toggle> ();
 	}
 
 	void Awake () {
-		spellToggles = new Toggle[25];
+		spellToggles = new Toggle[10];
 	}
 	
 	// Update is called once per frame
@@ -33,17 +33,23 @@ public class DebugPanelControl : MenuPanelControl {
 		if (gameControl == null) {
 			gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
+
+		for (int i = 0; i < 10; ++i) {
+			if (spellToggles [i] != null) {
+				spellToggles [i].isOn = gameControl.SpellKnown (i);
+			}
+		}
 	}
 
 	public override void Init () {
 		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 
 		spellToggles [0] = GameObject.Find ("FireToggle").GetComponent<Toggle> ();
-		spellToggles [4] = GameObject.Find ("IceToggle").GetComponent<Toggle> ();
-		spellToggles [8] = GameObject.Find ("LightningToggle").GetComponent<Toggle> ();
-		spellToggles [12] = GameObject.Find ("HealToggle").GetComponent<Toggle> ();
-		spellToggles [16] = GameObject.Find ("WindToggle").GetComponent<Toggle> ();
-		spellToggles [17] = GameObject.Find ("MagnetToggle").GetComponent<Toggle> ();
+		spellToggles [1] = GameObject.Find ("IceToggle").GetComponent<Toggle> ();
+		spellToggles [2] = GameObject.Find ("LightningToggle").GetComponent<Toggle> ();
+		spellToggles [3] = GameObject.Find ("HealToggle").GetComponent<Toggle> ();
+		spellToggles [4] = GameObject.Find ("WindToggle").GetComponent<Toggle> ();
+		spellToggles [5] = GameObject.Find ("MagnetToggle").GetComponent<Toggle> ();
 	}
 
 	/**
@@ -61,62 +67,38 @@ public class DebugPanelControl : MenuPanelControl {
 	 * <param name="ToggleState">Toggle state - if true add, if false remove</param>
 	 * **/
 	public void ToggleFireSpell (bool ToggleState) {
-		if (ToggleState) {
-			
-		} else {
-			
-		}
+		gameControl.ToggleSpell (SpellNumber.Fire, ToggleState);
 	}
 	/**
 	 * <param name="ToggleState">Toggle state - if true add, if false remove</param>
 	 * **/
 	public void ToggleIceSpell (bool ToggleState) {
-		if (ToggleState) {
-			
-		} else {
-			
-		}
+		gameControl.ToggleSpell (SpellNumber.Ice, ToggleState);
 	}
 	/**
 	 * <param name="ToggleState">Toggle state - if true add, if false remove</param>
 	 * **/
 	public void ToggleLightningSpell (bool ToggleState) {
-		if (ToggleState) {
-
-		} else {
-
-		}
+		gameControl.ToggleSpell (SpellNumber.Lightning, ToggleState);
 	}
 	/**
 	 * <param name="ToggleState">Toggle state - if true add, if false remove</param>
 	 * **/
 	public void ToggleHealSpell (bool ToggleState) {
-		if (ToggleState) {
-			
-		} else {
-
-		}
+		gameControl.ToggleSpell (SpellNumber.Heal, ToggleState);
 	}
 	/**
 	 * <param name="ToggleState">Toggle state - if true add, if false remove</param>
 	 * **/
 	public void ToggleWindSpell (bool ToggleState) {
-		if (ToggleState) {
-
-		} else {
-
-		}
+		gameControl.ToggleSpell (SpellNumber.Wind, ToggleState);
 	}
 
 	/**
 	 * <param name="ToggleState">Toggle state - if true add, if false remove</param>
 	 * **/
 	public void ToggleMagnetSpell (bool ToggleState) {
-		if (ToggleState) {
-
-		} else {
-
-		}
+		gameControl.ToggleSpell (SpellNumber.Magnet, ToggleState);
 	}
 
 }

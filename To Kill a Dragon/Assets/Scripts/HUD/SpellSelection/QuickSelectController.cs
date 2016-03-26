@@ -31,14 +31,8 @@ public class QuickSelectController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.LeftShift)) {
-			parentCanvas.enabled = true;
-			IsActive = true;
-			gameControl.SwitchingSpells (SpellSelectStyle.Quick, true);
-		} else if (Input.GetKeyUp (KeyCode.LeftShift)) {
-			parentCanvas.enabled = false;
-			IsActive = false;
-			gameControl.SwitchingSpells (SpellSelectStyle.Quick, false);
+		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.LeftShift)) {
+			ToggleCanvas ();
 		}
 
 		if (IsActive) {
@@ -53,6 +47,16 @@ public class QuickSelectController : MonoBehaviour {
 				SetCenter (setSpace.SpellQ, setSpace.SpellE, setSpace.SpellSpace);
 			}
 		}
+	}
+
+	void ToggleCanvas () {
+		if (gameControl.IsPaused ()) {
+			return;
+		}
+
+		parentCanvas.enabled = !parentCanvas.enabled;
+		IsActive = parentCanvas.enabled;
+		gameControl.SwitchingSpells (SpellSelectStyle.Quick, IsActive);
 	}
 
 	/**

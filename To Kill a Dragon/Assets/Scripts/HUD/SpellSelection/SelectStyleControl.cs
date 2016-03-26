@@ -27,6 +27,6 @@ public class SelectStyleControl : MonoBehaviour {
 
 	public void EnableStyle (SpellSelectStyle style) {
 		childPanels [(int)style].SetActive (true);
-		childPanels [1 - (int)style].SetActive (true);
+		childPanels [1 - (int)style].SetActive (false);
 	}
 }

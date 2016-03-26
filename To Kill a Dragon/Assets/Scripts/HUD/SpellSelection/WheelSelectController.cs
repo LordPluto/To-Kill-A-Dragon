@@ -46,8 +46,17 @@ public class WheelSelectController : MonoBehaviour {
 	}
 
 	void ToggleCanvas () {
+		if (gameControl.IsPaused ()) {
+			return;
+		}
+
 		parentCanvas.enabled = !parentCanvas.enabled;
 		IsActive = parentCanvas.enabled;
+
+		foreach (SingleSelect s in GetComponentsInChildren<SingleSelect>(true)) {
+			s.gameObject.SetActive (gameControl.SpellKnown (s.Spell));
+		}
+
 		if (currentSelection == null) {
 			currentSelection = GetComponentInChildren<SingleSelect> ();
 		}

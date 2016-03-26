@@ -732,7 +732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &247516794
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3759,21 +3759,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0.5, y: 0.5}
   m_SizeDelta: {x: -0.2000122, y: -2.5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1304626241 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 198868, guid: 2480dced8059b4e4ea45dfe03ca25e2a, type: 2}
-  m_PrefabInternal: {fileID: 1521428013}
---- !u!114 &1304626244
+--- !u!114 &1304626243 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1304626241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_PrefabParentObject: {fileID: 11419972, guid: 2480dced8059b4e4ea45dfe03ca25e2a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1521428013}
   m_Script: {fileID: 11500000, guid: 4b5782e9a543b8643bc296868f731a6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1304670991 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 107090, guid: da7032c01fa46e743ac327b7494649ea, type: 2}
@@ -4439,7 +4430,7 @@ Prefab:
     - target: {fileID: 11490560, guid: 2480dced8059b4e4ea45dfe03ca25e2a, type: 2}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1304626244}
+      objectReference: {fileID: 1304626243}
     - target: {fileID: 11490560, guid: 2480dced8059b4e4ea45dfe03ca25e2a, type: 2}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ToggleFireSpell
@@ -4499,23 +4490,23 @@ Prefab:
     - target: {fileID: 11468886, guid: 2480dced8059b4e4ea45dfe03ca25e2a, type: 2}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1304626244}
+      objectReference: {fileID: 1304626243}
     - target: {fileID: 11437828, guid: 2480dced8059b4e4ea45dfe03ca25e2a, type: 2}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1304626244}
+      objectReference: {fileID: 1304626243}
     - target: {fileID: 11441992, guid: 2480dced8059b4e4ea45dfe03ca25e2a, type: 2}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1304626244}
+      objectReference: {fileID: 1304626243}
     - target: {fileID: 11468826, guid: 2480dced8059b4e4ea45dfe03ca25e2a, type: 2}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1304626244}
+      objectReference: {fileID: 1304626243}
     - target: {fileID: 11403204, guid: 2480dced8059b4e4ea45dfe03ca25e2a, type: 2}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1304626244}
+      objectReference: {fileID: 1304626243}
     - target: {fileID: 11403204, guid: 2480dced8059b4e4ea45dfe03ca25e2a, type: 2}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ToggleIceSpell
@@ -4818,7 +4809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1531480619
 RectTransform:
   m_ObjectHideFlags: 0
