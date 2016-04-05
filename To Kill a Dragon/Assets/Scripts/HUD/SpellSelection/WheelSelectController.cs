@@ -63,7 +63,7 @@ public class WheelSelectController : MonoBehaviour {
 
 		EventSystem.current.SetSelectedGameObject(currentSelection.gameObject);
 
-		gameControl.SwitchingSpells (SpellSelectStyle.Wheel, IsActive);
+		gameControl.SwitchingSpells (IsActive);
 	}
 
 	/**

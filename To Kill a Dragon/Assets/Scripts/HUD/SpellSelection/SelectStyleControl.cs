@@ -11,9 +11,12 @@ public enum SpellSelectStyle {
 public class SelectStyleControl : MonoBehaviour {
 
 	public GameObject[] childPanels;
+	private GameController gameControl;
 
 	// Use this for initialization
 	void Start () {
+		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
+		EnableStyle (gameControl.GetCurrentSelectStyle ());
 	}
 
 	void Awake () {
@@ -28,5 +31,6 @@ public class SelectStyleControl : MonoBehaviour {
 	public void EnableStyle (SpellSelectStyle style) {
 		childPanels [(int)style].SetActive (true);
 		childPanels [1 - (int)style].SetActive (false);
+		gameControl.UpdateSpellSwitching (style);
 	}
 }

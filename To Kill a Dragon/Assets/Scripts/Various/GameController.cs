@@ -78,6 +78,8 @@ public class GameController : MonoBehaviour {
 
 	#region Game Settings
 
+	private SpellSelectStyle currentSelectionStyle;
+
 	#endregion
 
 	#region Consistent Across Screens
@@ -174,6 +176,8 @@ public class GameController : MonoBehaviour {
 		MagnetPole = Pole.North;
 
 		DontDestroyOnLoad (transform.gameObject);
+
+		currentSelectionStyle = SpellSelectStyle.Wheel;
 	}
 
 	void OnLevelWasLoaded (int level) {
@@ -732,14 +736,30 @@ public class GameController : MonoBehaviour {
 	 * <param name="SelectState">The state of the selector</param>
 	 * <param name="switchToggle">The toggle</param>
 	 * **/
-	public void SwitchingSpells(SpellSelectStyle SelectState, bool switchToggle) {
-		if (SelectState == SpellSelectStyle.Wheel) {
+	public void SwitchingSpells(bool switchToggle) {
+		if (currentSelectionStyle == SpellSelectStyle.Wheel) {
 			Time.timeScale = (switchToggle ? 0 : 1);
 		}
 
 		playerControl.SwitchingToggle (switchToggle);
 
 		SwitchingActive = switchToggle;
+	}
+
+	/**
+	 * <para>Updates the current spell switching style.</para>
+	 * <param name="currentState">The current state of spell switching</param>
+	 * **/
+	public void UpdateSpellSwitching(SpellSelectStyle currentState) {
+		currentSelectionStyle = currentState;
+	}
+
+	/**
+	 * <para>Gets the current spell switching style</para>
+	 * <returns>Current spell switching style</returns>
+	 * **/
+	public SpellSelectStyle GetCurrentSelectStyle() {
+		return currentSelectionStyle;
 	}
 
 	/**

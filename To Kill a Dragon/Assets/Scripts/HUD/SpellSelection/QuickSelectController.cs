@@ -56,7 +56,7 @@ public class QuickSelectController : MonoBehaviour {
 
 		parentCanvas.enabled = !parentCanvas.enabled;
 		IsActive = parentCanvas.enabled;
-		gameControl.SwitchingSpells (SpellSelectStyle.Quick, IsActive);
+		gameControl.SwitchingSpells (IsActive);
 	}
 
 	/**

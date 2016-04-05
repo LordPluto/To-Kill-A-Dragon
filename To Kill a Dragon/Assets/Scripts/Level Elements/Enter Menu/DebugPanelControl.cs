@@ -6,22 +6,14 @@ using System.Collections.Generic;
 public class DebugPanelControl : MenuPanelControl {
 
 	private GameController gameControl;
-	private Toggle[] spellToggles;
+	public Toggle[] spellToggles;
 
 	// Use this for initialization
 	void Start () {
 		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
-
-		spellToggles [0] = GameObject.Find ("FireToggle").GetComponent<Toggle> ();
-		spellToggles [1] = GameObject.Find ("IceToggle").GetComponent<Toggle> ();
-		spellToggles [2] = GameObject.Find ("LightningToggle").GetComponent<Toggle> ();
-		spellToggles [3] = GameObject.Find ("HealToggle").GetComponent<Toggle> ();
-		spellToggles [4] = GameObject.Find ("WindToggle").GetComponent<Toggle> ();
-		spellToggles [5] = GameObject.Find ("MagnetToggle").GetComponent<Toggle> ();
 	}
 
 	void Awake () {
-		spellToggles = new Toggle[10];
 	}
 	
 	// Update is called once per frame
@@ -43,13 +35,6 @@ public class DebugPanelControl : MenuPanelControl {
 
 	public override void Init () {
 		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
-
-		spellToggles [0] = GameObject.Find ("FireToggle").GetComponent<Toggle> ();
-		spellToggles [1] = GameObject.Find ("IceToggle").GetComponent<Toggle> ();
-		spellToggles [2] = GameObject.Find ("LightningToggle").GetComponent<Toggle> ();
-		spellToggles [3] = GameObject.Find ("HealToggle").GetComponent<Toggle> ();
-		spellToggles [4] = GameObject.Find ("WindToggle").GetComponent<Toggle> ();
-		spellToggles [5] = GameObject.Find ("MagnetToggle").GetComponent<Toggle> ();
 	}
 
 	/**

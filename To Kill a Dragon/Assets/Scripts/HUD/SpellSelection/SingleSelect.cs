@@ -46,9 +46,4 @@ public class SingleSelect : Selectable {
 		selectControl.SetSelected (this);
 		base.OnSelect (eventData);
 	}
-
-	public override void OnPointerUp (PointerEventData eventData) 
-	{
-		Debug.Log (gameObject.name + " says the mouse click was released");
-	}
 }
