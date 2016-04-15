@@ -42,6 +42,10 @@ public class WheelSelectController : MonoBehaviour {
 			} else if (Input.GetKeyDown (KeyCode.Space)) {
 				EquipSpace (currentSelection.GetSelection());
 			}
+
+			if (EventSystem.current.currentSelectedGameObject == null && currentSelection != null) {
+				EventSystem.current.SetSelectedGameObject (currentSelection.gameObject);
+			}
 		}
 	}
 

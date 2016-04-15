@@ -11,11 +11,11 @@ public class StatusWheelIcon : Selectable {
 	private Image Icon;
 
 	protected override void Start () {
-		selectControl = GetComponentInParent<StatusWheelControl> ();
 	}
 
 	protected override void Awake () {
 		Icon = GetComponent<Image> ();
+		selectControl = GetComponentInParent<StatusWheelControl> ();
 	}
 	
 	// Update is called once per frame

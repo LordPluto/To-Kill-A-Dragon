@@ -13,6 +13,9 @@ public class StatusWheelControl : MonoBehaviour {
 	}
 
 	void OnEnable () {
+		if (gameControl == null) {
+			gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
+		}
 		foreach (StatusWheelIcon s in GetComponentsInChildren<StatusWheelIcon>(true)) {
 			s.gameObject.SetActive (gameControl.SpellKnown (s.partnerSelector.Spell));
 		}
@@ -21,7 +24,9 @@ public class StatusWheelControl : MonoBehaviour {
 			currentSelection = GetComponentInChildren<StatusWheelIcon> ();
 		}
 
-		EventSystem.current.SetSelectedGameObject(currentSelection.gameObject);
+		if (currentSelection != null) {
+			EventSystem.current.SetSelectedGameObject (currentSelection.gameObject);
+		}
 	}
 
 	void OnDisable () {
@@ -34,6 +39,10 @@ public class StatusWheelControl : MonoBehaviour {
 			|| Input.GetKeyDown (KeyCode.E)
 			|| Input.GetKeyDown (KeyCode.Space)) {
 			Equip ();
+		}
+
+		if (EventSystem.current.currentSelectedGameObject == null && currentSelection != null) {
+			EventSystem.current.SetSelectedGameObject (currentSelection.gameObject);
 		}
 	}
 

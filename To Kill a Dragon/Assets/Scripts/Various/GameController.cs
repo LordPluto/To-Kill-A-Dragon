@@ -151,6 +151,8 @@ public class GameController : MonoBehaviour {
 		//END TEST
 
 		DontDestroyOnLoad (GameObject.Find ("EventSystem"));
+
+		InvokeRepeating ("UpdateHead", 0.1f, 0.5f);
 	}
 
 	void Awake () {
@@ -194,10 +196,15 @@ public class GameController : MonoBehaviour {
 		} else {
 			this.enabled = true;
 		}
+
+		InvokeRepeating ("UpdateHead", 0.1f, 0.5f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+	}
+
+	void UpdateHead () {
 		if (!(currentHead == Head.Damaged)) {
 			currentHead = SelectHead ();
 			HudControl.UpdateHead (currentHead);
