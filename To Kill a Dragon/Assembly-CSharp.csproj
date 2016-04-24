@@ -81,6 +81,8 @@
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusPanelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusWheelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusWheelIcon.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusWheelPanelControl.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusWheelSelector.cs" />
      <Compile Include="Assets\Scripts\Level Elements\FallingNet.cs" />
      <Compile Include="Assets\Scripts\Level Elements\LoadingManager.cs" />
      <Compile Include="Assets\Scripts\Level Elements\MagnetCubeController.cs" />

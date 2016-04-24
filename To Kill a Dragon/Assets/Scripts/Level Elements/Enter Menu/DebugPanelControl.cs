@@ -26,7 +26,7 @@ public class DebugPanelControl : MenuPanelControl {
 			gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
 
-		for (int i = 0; i < 10; ++i) {
+		for (int i = 0; i < spellToggles.Length; ++i) {
 			if (spellToggles [i] != null) {
 				spellToggles [i].isOn = gameControl.SpellKnown (i);
 			}

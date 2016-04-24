@@ -611,14 +611,16 @@ public class GameController : MonoBehaviour {
 
 		KnownSpells [(int)spellNumber] = SpellToggle;
 
-		Debug.Log(KnownSpells[(int)spellNumber]);
-
-		if (SpellQ == spellNumber) {
-			SetSpellQ (SpellNumber.Melee);
-		} else if (SpellE == spellNumber) {
-			SetSpellE (SpellNumber.Melee);
-		} else if (SpellSpace == spellNumber) {
-			SetSpellSpace (SpellNumber.Melee);
+		if (!SpellToggle) {
+			if (SpellQ == spellNumber) {
+				SetSpellQ (SpellNumber.Melee);
+			}
+			if (SpellE == spellNumber) {
+				SetSpellE (SpellNumber.Melee);
+			}
+			if (SpellSpace == spellNumber) {
+				SetSpellSpace (SpellNumber.Melee);
+			}
 		}
 	}
 

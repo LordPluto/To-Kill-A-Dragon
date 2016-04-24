@@ -6,10 +6,15 @@ public class StatusWheelControl : MonoBehaviour {
 
 	private GameController gameControl;
 	private StatusWheelIcon currentSelection;
+	private StatusWheelPanelControl panelControl;
 
 	// Use this for initialization
 	void Start () {
 		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
+	}
+
+	void Awake () {
+		panelControl = GetComponentInChildren<StatusWheelPanelControl> ();
 	}
 
 	void OnEnable () {
@@ -27,10 +32,6 @@ public class StatusWheelControl : MonoBehaviour {
 		if (currentSelection != null) {
 			EventSystem.current.SetSelectedGameObject (currentSelection.gameObject);
 		}
-	}
-
-	void OnDisable () {
-		currentSelection = null;
 	}
 	
 	// Update is called once per frame
@@ -50,10 +51,14 @@ public class StatusWheelControl : MonoBehaviour {
 	 * <para>Transfers control over to the spell list for selection</para>
 	 * **/
 	private void Equip() {
-
+		panelControl.Enable (currentSelection);
+		this.enabled = false;
 	}
 
-	public void TakeControl () {
+	public void TakeControl (StatusWheelSelector newSelection) {
+		this.enabled = true;
+		currentSelection.SetSelector (newSelection.spellNumber);
+		currentSelection.partnerSelector = newSelection.partnerSelector;
 		EventSystem.current.SetSelectedGameObject (currentSelection.gameObject);
 	}
 
