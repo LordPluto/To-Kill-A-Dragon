@@ -66,4 +66,13 @@ public class StatusWheelPanelControl : MonoBehaviour {
 	public void SetSelected (StatusWheelSelector newSelection) {
 		currentSelection = newSelection;
 	}
+
+	/**
+	 * <para>Unlocks the numbered spell selector</para>
+	 * <param name="spell">Spell number to unlock</param>
+	 * **/
+	public StatusWheelSelector UnlockSpell (SpellNumber spell) {
+		allSelections [(int)spell].interactable = true;
+		return allSelections [(int)spell];
+	}
 }

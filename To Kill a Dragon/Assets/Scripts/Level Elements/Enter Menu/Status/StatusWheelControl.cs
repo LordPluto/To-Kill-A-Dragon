@@ -8,6 +8,9 @@ public class StatusWheelControl : MonoBehaviour {
 	private StatusWheelIcon currentSelection;
 	private StatusWheelPanelControl panelControl;
 
+	public StatusWheelIcon[] unlockedSlots;
+	private int numUnlocked=1;
+
 	// Use this for initialization
 	void Start () {
 		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
@@ -21,8 +24,8 @@ public class StatusWheelControl : MonoBehaviour {
 		if (gameControl == null) {
 			gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
-		foreach (StatusWheelIcon s in GetComponentsInChildren<StatusWheelIcon>(true)) {
-			s.gameObject.SetActive (gameControl.SpellKnown (s.partnerSelector.Spell));
+		for (int i = 0; i < numUnlocked; ++i) {
+			unlockedSlots[i].gameObject.SetActive (true);
 		}
 
 		if (currentSelection == null) {
@@ -68,5 +71,19 @@ public class StatusWheelControl : MonoBehaviour {
 	 * **/
 	public void SetSelected (StatusWheelIcon newSelection) {
 		currentSelection = newSelection;
+	}
+
+	/**
+	 * <para>Unlocks the next slot and fills it with the selected spell</para>
+	 * <param name="spell">Spell number to unlock and fill with</param>
+	 * **/
+	public void UnlockNextSlot (SpellNumber spell) {
+		if (numUnlocked >= unlockedSlots.Length)
+			return;
+
+		unlockedSlots [numUnlocked].gameObject.SetActive (true);
+		StatusWheelSelector newSpell = panelControl.UnlockSpell (spell);
+		unlockedSlots[numUnlocked].SetSelector(newSpell.spellNumber);
+		unlockedSlots[numUnlocked++].partnerSelector = newSpell.partnerSelector;
 	}
 }

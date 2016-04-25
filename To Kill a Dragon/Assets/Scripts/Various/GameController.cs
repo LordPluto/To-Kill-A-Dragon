@@ -786,4 +786,12 @@ public class GameController : MonoBehaviour {
 	public bool IsPaused() {
 		return menuOpen || CutsceneActive() || IsDialogueActive();
 	}
+
+	/**
+	 * <para>Unlocks the numbered spell and the next spell slot</para>
+	 * <param name="spell">Spell number to unlock</param>
+	 * **/
+	public void UnlockSpell (SpellNumber spell) {
+		GameObject.Find ("Status Panel").GetComponent<StatusPanelControl> ().UnlockSpell (spell);
+	}
 }

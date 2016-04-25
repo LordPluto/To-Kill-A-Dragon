@@ -29,4 +29,14 @@ public class StatusPanelControl : MenuPanelControl {
 	public override void Init () {
 		gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 	}
+
+	public void UnlockSpell (SpellNumber spell) {
+		SpellSelectStyle curStyle = gameControl.GetCurrentSelectStyle ();
+		childPanels [1 - (int)curStyle].SetActive (true);
+
+		childPanels [0].GetComponent<StatusWheelControl> ().UnlockNextSlot (spell);
+		//childPanels [1].GetComponent<StatusQuickControl> ().UnlockNextSlot (spell);
+
+		childPanels [1 - (int)curStyle].SetActive (false);
+	}
 }
