@@ -9,7 +9,7 @@ public class StatusWheelControl : MonoBehaviour {
 	private StatusWheelPanelControl panelControl;
 
 	public StatusWheelIcon[] unlockedSlots;
-	private int numUnlocked=1;
+	public int numUnlocked=1;
 
 	// Use this for initialization
 	void Start () {
@@ -26,6 +26,9 @@ public class StatusWheelControl : MonoBehaviour {
 		}
 		for (int i = 0; i < numUnlocked; ++i) {
 			unlockedSlots[i].gameObject.SetActive (true);
+		}
+		for (int j = numUnlocked; j < unlockedSlots.Length; ++j) {
+			unlockedSlots [j].gameObject.SetActive (false);
 		}
 
 		if (currentSelection == null) {
