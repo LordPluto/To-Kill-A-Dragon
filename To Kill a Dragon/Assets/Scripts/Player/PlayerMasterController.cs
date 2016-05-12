@@ -240,20 +240,20 @@ public class PlayerMasterController : MonoBehaviour, StopOnFreeze, StopOnTalk, S
 		if (CastingSpace && !NPCNearby ()) {
 			if (CanCast ()) {
 				Casting = true;
-				gameControl.CastSpellSpace (playerAnimation.getDirection());
-				playerAnimation.ToggleCasting (Casting, gameControl.GetSpellSpace ());
+				gameControl.CastSpell (SpellCast.Space, playerAnimation.getDirection());
+				playerAnimation.ToggleCasting (Casting, gameControl.GetSpell (SpellCast.Space));
 			}
 		} else if (CastingE) {
 			if (CanCast ()) {
 				Casting = true;
-				gameControl.CastSpellE (playerAnimation.getDirection());
-				playerAnimation.ToggleCasting (Casting, gameControl.GetSpellE ());
+				gameControl.CastSpell (SpellCast.E, playerAnimation.getDirection());
+				playerAnimation.ToggleCasting (Casting, gameControl.GetSpell (SpellCast.E));
 			}
 		} else if (CastingQ) {
 			if (CanCast ()) {
 				Casting = true;
-				gameControl.CastSpellQ (playerAnimation.getDirection());
-				playerAnimation.ToggleCasting (Casting, gameControl.GetSpellQ ());
+				gameControl.CastSpell (SpellCast.Q, playerAnimation.getDirection());
+				playerAnimation.ToggleCasting (Casting, gameControl.GetSpell (SpellCast.Q));
 			}
 		}
 

@@ -35,7 +35,7 @@ public class StatusPanelControl : MenuPanelControl {
 		childPanels [1 - (int)curStyle].SetActive (true);
 
 		childPanels [0].GetComponent<StatusWheelControl> ().UnlockNextSlot (spell);
-		//childPanels [1].GetComponent<StatusQuickControl> ().UnlockNextSlot (spell);
+		childPanels [1].GetComponent<StatusQuickControl> ().UnlockNextSlot (spell);
 
 		childPanels [1 - (int)curStyle].SetActive (false);
 	}

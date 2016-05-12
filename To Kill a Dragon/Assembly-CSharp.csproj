@@ -79,6 +79,10 @@
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\MenuPanelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\QuestPanelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusPanelControl.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusQuickControl.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusQuickSelector.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusQuickTriad.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusTriadPanelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusWheelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusWheelIcon.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\Status\StatusWheelPanelControl.cs" />

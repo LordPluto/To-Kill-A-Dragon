@@ -116,68 +116,54 @@ public class HUDController : MonoBehaviour {
 	}
 
 	/**
-	 * <para>Toggles the Q spell icon.</para>
+	 * <para>Toggles the associated spell icon at the location.</para>
+	 * <param name="spellId">Location of the spell</param>
 	 * <param name="iconToggle">Toggles the icons on or off</param>
 	 * **/
-	public void ToggleSpellIconQ (bool iconToggle) {
-		SpellQ.enabled = iconToggle;
-	}
-
-	/**
-	 * <para>Toggles the E spell icon.</para>
-	 * <param name="iconToggle">Toggles the icons on or off</param>
-	 * **/
-	public void ToggleSpellIconE (bool iconToggle) {
-		SpellE.enabled = iconToggle;
-	}
-
-	/**
-	 * <para>Toggles the Space spell icon.</para>
-	 * <param name="iconToggle">Toggles the icons on or off</param>
-	 * **/
-	public void ToggleSpellIconSpace (bool iconToggle) {
-		SpellSpace.enabled = iconToggle;
-	}
-
-	/**
-	 * <para>Updates the Q Spell icon</para>
-	 * <param name="NewSpell">The new spell</param>
-	 * <param name="MagnetPole">The pole for magnet spell. Default is North</param>
-	 * **/
-	public void UpdateSpellQ (SpellNumber NewSpell, Pole MagnetPole = Pole.North) {
-		ToggleSpellIconQ (true);
-		if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
-			SpellQ.sprite = Spells [Spells.Length - 1];
-		} else {
-			SpellQ.sprite = Spells [(int)NewSpell];
+	public void ToggleSpellIcon (SpellCast spellId, bool iconToggle) {
+		switch (spellId) {
+		case SpellCast.Q:
+			SpellQ.enabled = iconToggle;
+			break;
+		case SpellCast.E:
+			SpellE.enabled = iconToggle;
+			break;
+		case SpellCast.Space:
+			SpellSpace.enabled = iconToggle;
+			break;
 		}
 	}
 
 	/**
-	 * <para>Updates the E Spell icon</para>
+	 * <para>Updates the associated Spell icon</para>
+	 * <param name="spellId">Location of the associated spell</param>
 	 * <param name="NewSpell">The new spell</param>
 	 * <param name="MagnetPole">The pole for magnet spell. Default is North</param>
 	 * **/
-	public void UpdateSpellE (SpellNumber NewSpell, Pole MagnetPole = Pole.North) {
-		ToggleSpellIconE (true);
-		if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
-			SpellE.sprite = Spells [Spells.Length - 1];
-		} else {
-			SpellE.sprite = Spells [(int)NewSpell];
-		}
-	}
-
-	/**
-	 * <para>Updates the Spacebar Spell icon</para>
-	 * <param name="NewSpell">The new spell</param>
-	 * <param name="MagnetPole">The pole for magnet spell. Default is North</param>
-	 * **/
-	public void UpdateSpellSpace (SpellNumber NewSpell, Pole MagnetPole = Pole.North) {
-		ToggleSpellIconSpace (true);
-		if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
-			SpellSpace.sprite = Spells [Spells.Length - 1];
-		} else {
-			SpellSpace.sprite = Spells [(int)NewSpell];
+	public void UpdateSpell (SpellCast spellId, SpellNumber NewSpell, Pole MagnetPole = Pole.North) {
+		ToggleSpellIcon (spellId, true);
+		switch (spellId) {
+		case SpellCast.Q:
+			if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
+				SpellQ.sprite = Spells [Spells.Length - 1];
+			} else {
+				SpellQ.sprite = Spells [(int)NewSpell];
+			}
+			break;
+		case SpellCast.E:
+			if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
+				SpellE.sprite = Spells [Spells.Length - 1];
+			} else {
+				SpellE.sprite = Spells [(int)NewSpell];
+			}
+			break;
+		case SpellCast.Space:
+			if (NewSpell == SpellNumber.Magnet && MagnetPole == Pole.South) {
+				SpellSpace.sprite = Spells [Spells.Length - 1];
+			} else {
+				SpellSpace.sprite = Spells [(int)NewSpell];
+			}
+			break;
 		}
 	}
 }

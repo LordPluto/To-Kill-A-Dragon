@@ -30,6 +30,12 @@ public enum Pole{
 	South = 1
 }
 
+public enum SpellCast{
+	Q = 0,
+	E = 1,
+	Space = 2
+}
+
 /**
  * Class GameController extends MonoBehaviour
  * Essentially runs the game logic regarding pretty much everything
@@ -145,9 +151,9 @@ public class GameController : MonoBehaviour {
 		KnownSpells [(int)SpellNumber.Heal] = true;
 		KnownSpells [(int)SpellNumber.Wind] = true;
 		KnownSpells [(int)SpellNumber.Magnet] = true;
-		SetSpellQ (SpellNumber.Fire);
-		SetSpellE (SpellNumber.Ice);
-		SetSpellSpace (SpellNumber.Lightning);
+		SetSpell (SpellCast.Q, SpellNumber.Fire);
+		SetSpell (SpellCast.E, SpellNumber.Ice);
+		SetSpell (SpellCast.Space, SpellNumber.Lightning);
 		//END TEST
 
 		DontDestroyOnLoad (GameObject.Find ("EventSystem"));
@@ -179,7 +185,7 @@ public class GameController : MonoBehaviour {
 
 		DontDestroyOnLoad (transform.gameObject);
 
-		currentSelectionStyle = SpellSelectStyle.Wheel;
+		currentSelectionStyle = SpellSelectStyle.Quick;
 	}
 
 	void OnLevelWasLoaded (int level) {
@@ -447,42 +453,25 @@ public class GameController : MonoBehaviour {
 		}
 
 	/**
-	 * <para>Casts the spell on the Q slot</para>
-	 * <param name="_characterFacing">The direction the character is facing.</param>
+	 * <para>Casts the spell in the associated spellId slot</para>
+	 * <param name="spellId">Identifier of the spell</param>
+	 * <param name="_characterFacing">The rotation of the character</param>
 	 * **/
-	public void CastSpellQ(Facing _characterFacing) {
-		Transform SpellCast = spellBook.GetSpellTransform (SpellQ);
-		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
-
-		if (playerControl.getMP () < SpellDetails.SpellCost) {
-			MPTimer = 1;
-			return;
-		} else {
-			float FacingDegrees = (int)_characterFacing * 90;
-			float PlayerRotation = playerControl.GetCameraRotation ();
-			Vector3 SpellRotation = SpellCast.rotation.eulerAngles - new Vector3 (0, FacingDegrees - PlayerRotation, 0);
-
-			Instantiate (SpellCast,
-				playerControl.getPosition () + (SpellDetails is SelfSpell ? 
-					Vector3.zero : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
-					2,
-					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3),
-				Quaternion.Euler (SpellRotation));
-
-			playerControl.changeMP (-SpellDetails.SpellCost);
-			HudControl.UpdateManaBar (playerControl.getPercentMP () / 100);
-
-			playerControl.SetSpellTimer (SpellDetails.CastDuration);
+	public void CastSpell(SpellCast spellId, Facing _characterFacing) {
+		Transform spellCast = null;
+		switch (spellId) {
+		case SpellCast.Q:
+			spellCast = spellBook.GetSpellTransform (SpellQ);
+			break;
+		case SpellCast.E:
+			spellCast = spellBook.GetSpellTransform (SpellE);
+			break;
+		case SpellCast.Space:
+			spellCast = spellBook.GetSpellTransform (SpellSpace);
+			break;
 		}
-	}
 
-	/**
-	 * <para>Casts the spell on the E slot</para>
-	 * <param name="_characterFacing">The direction the character is facing.</param>
-	 * **/
-	public void CastSpellE(Facing _characterFacing) {
-		Transform SpellCast = spellBook.GetSpellTransform (SpellE);
-		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
+		Spell SpellDetails = spellCast.GetComponent<Spell> ();
 
 		if (playerControl.getMP () < SpellDetails.SpellCost) {
 			MPTimer = 1;
@@ -490,9 +479,9 @@ public class GameController : MonoBehaviour {
 		} else {
 			float FacingDegrees = (int)_characterFacing * 90;
 			float PlayerRotation = playerControl.GetCameraRotation ();
-			Vector3 SpellRotation = SpellCast.rotation.eulerAngles - new Vector3 (0, FacingDegrees - PlayerRotation, 0);
+			Vector3 SpellRotation = spellCast.rotation.eulerAngles - new Vector3 (0, FacingDegrees - PlayerRotation, 0);
 
-			Instantiate (SpellCast,
+			Instantiate (spellCast,
 				playerControl.getPosition () + (SpellDetails is SelfSpell ? 
 					Vector3.zero : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
 						2,
@@ -507,94 +496,46 @@ public class GameController : MonoBehaviour {
 	}
 
 	/**
-	 * <para>Casts the spell on the Space slot</para>
-	 * <param name="_characterFacing">The direction the character is facing.</param>
+	 * <para>Sets the spell in the associated spellId slot</para>
+	 * <param name="spellId">Location of spell</param>
+	 * <param name="spellNumber">Number of spell to assign</param>
 	 * **/
-	public void CastSpellSpace(Facing _characterFacing) {
-		Transform SpellCast = spellBook.GetSpellTransform (SpellSpace);
-		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
-
-		if (playerControl.getMP () < SpellDetails.SpellCost) {
-			MPTimer = 1;
-			return;
-		} else {
-			float FacingDegrees = (int)_characterFacing * 90;
-			float PlayerRotation = playerControl.GetCameraRotation ();
-			Vector3 SpellRotation = SpellCast.rotation.eulerAngles - new Vector3 (0, FacingDegrees - PlayerRotation, 0);
-
-			Instantiate (SpellCast,
-				playerControl.getPosition () + (SpellDetails is SelfSpell ? 
-					Vector3.zero : new Vector3 (Mathf.Sin ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad),
-					2,
-					-Mathf.Cos ((FacingDegrees - PlayerRotation) * Mathf.Deg2Rad)) / 3),
-				Quaternion.Euler (SpellRotation));
-
-			playerControl.changeMP (-SpellDetails.SpellCost);
-			HudControl.UpdateManaBar (playerControl.getPercentMP () / 100);
-
-			playerControl.SetSpellTimer (SpellDetails.CastDuration);
+	public void SetSpell(SpellCast spellId, SpellNumber spellNumber) {
+		switch (spellId) {
+		case SpellCast.Q:
+			SpellQ = spellNumber;
+			HudControl.UpdateSpell (spellId, SpellQ, MagnetPole);
+			break;
+		case SpellCast.E:
+			SpellE = spellNumber;
+			HudControl.UpdateSpell (spellId, SpellE, MagnetPole);
+			break;
+		case SpellCast.Space:
+			SpellSpace = spellNumber;
+			HudControl.UpdateSpell (spellId, SpellSpace, MagnetPole);
+			break;
 		}
 	}
 
 	/**
-	 * <para>Sets the spell on the Q slot</para>
-	 * <param name="spellNumber">Number of spell to assign</param>
-	 * **/
-	public void SetSpellQ(SpellNumber spellNumber) {
-		SpellQ = spellNumber;
-
-		HudControl.UpdateSpellQ (SpellQ, MagnetPole);
-	}
-
-	/**
-	 * <para>Sets the spell on the E slot</para>
-	 * <param name="spellNumber">Number of spell to assign</param>
-	 * **/
-	public void SetSpellE(SpellNumber spellNumber) {
-		SpellE = spellNumber;
-
-		HudControl.UpdateSpellE (SpellE, MagnetPole);
-	}
-
-	/**
-	 * <para>Sets the spell on the Space slot</para>
-	 * <param name="spellNumber">Number of spell to assign</param>
-	 * **/
-	public void SetSpellSpace(SpellNumber spellNumber) {
-		SpellSpace = spellNumber;
-
-		HudControl.UpdateSpellSpace (SpellSpace, MagnetPole);
-	}
-
-	/**
-	 * <para>Gets the spell on the Q slot</para>
+	 * <para>Gets the spell on the associated spellID slot</para>
+	 * <param name="spellId">Location of the requested spell</param>
 	 * <returns>The spell on the Q slot</returns>
 	 * **/
-	public Spell GetSpellQ () {
-		Transform SpellCast = spellBook.GetSpellTransform (SpellQ);
-		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
-
-		return SpellDetails;
-	}
-
-	/**
-	 * <para>Gets the spell on the E slot</para>
-	 * <returns>The spell on the E slot</returns>
-	 * **/
-	public Spell GetSpellE () {
-		Transform SpellCast = spellBook.GetSpellTransform (SpellE);
-		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
-
-		return SpellDetails;
-	}
-
-	/**
-	 * <para>Gets the spell on the Space slot</para>
-	 * <returns>The spell on the Space slot</returns>
-	 * **/
-	public Spell GetSpellSpace () {
-		Transform SpellCast = spellBook.GetSpellTransform (SpellSpace);
-		Spell SpellDetails = SpellCast.GetComponent<Spell> ();
+	public Spell GetSpell (SpellCast spellId) {
+		Transform spellCast = null;
+		switch (spellId) {
+		case SpellCast.Q:
+			spellCast = spellBook.GetSpellTransform (SpellQ);
+			break;
+		case SpellCast.E:
+			spellCast = spellBook.GetSpellTransform (SpellE);
+			break;
+		case SpellCast.Space:
+			spellCast = spellBook.GetSpellTransform (SpellSpace);
+			break;
+		}
+		Spell SpellDetails = spellCast.GetComponent<Spell> ();
 
 		return SpellDetails;
 	}
@@ -613,13 +554,13 @@ public class GameController : MonoBehaviour {
 
 		if (!SpellToggle) {
 			if (SpellQ == spellNumber) {
-				SetSpellQ (SpellNumber.Melee);
+				SetSpell (SpellCast.Q, SpellNumber.Melee);
 			}
 			if (SpellE == spellNumber) {
-				SetSpellE (SpellNumber.Melee);
+				SetSpell (SpellCast.E, SpellNumber.Melee);
 			}
 			if (SpellSpace == spellNumber) {
-				SetSpellSpace (SpellNumber.Melee);
+				SetSpell (SpellCast.Space, SpellNumber.Melee);
 			}
 		}
 	}
@@ -716,9 +657,9 @@ public class GameController : MonoBehaviour {
 		if (!MagnetActive) {
 			playerControl.MagnetToggle (false, Vector3.zero);
 			MagnetPole = (MagnetPole == Pole.North ? Pole.South : Pole.North);
-			SetSpellE (SpellE);
-			SetSpellQ (SpellQ);
-			SetSpellSpace (SpellSpace);
+			SetSpell (SpellCast.E, SpellE);
+			SetSpell (SpellCast.Q, SpellQ);
+			SetSpell (SpellCast.Space, SpellSpace);
 		}
 	}
 

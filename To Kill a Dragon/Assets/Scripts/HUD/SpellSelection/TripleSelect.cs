@@ -30,35 +30,63 @@ public class TripleSelect : MonoBehaviour {
 	 * <para>Set the game controller's selections</para>
 	 * */
 	public void EquipSelections () {
-		gameControl.SetSpellQ (SpellQ);
-		gameControl.SetSpellE (SpellE);
-		gameControl.SetSpellSpace (SpellSpace);
+		gameControl.SetSpell (SpellCast.Q, SpellQ);
+		gameControl.SetSpell (SpellCast.E, SpellE);
+		gameControl.SetSpell (SpellCast.Space, SpellSpace);
 	}
 
 	/**
-	 * <para>Sets the Q spell number</para>
-	 * <param name="q">Spell number</param>
-	 * **/
-	public void SetQNumber(SpellNumber q) {
-		SpellQ = q;
-		IconQ.sprite = selectControl.GetSprite (q);
+	 * <para>Gets the game controller's selection of the associated spell ID</para>
+	 * <param name="spellId">Location of the spell</param>
+	 * <returns>The Spell chosen</returns>
+	 * */
+	public SpellNumber GetSelection (SpellCast spellId) {
+		switch (spellId) {
+		case SpellCast.Q:
+			return SpellQ;
+		case SpellCast.E:
+			return SpellE;
+		case SpellCast.Space:
+			return SpellSpace;
+		}
+		return SpellQ;
 	}
 
 	/**
-	 * <para>Sets the E spell number</para>
-	 * <param name="e">Spell number</param>
+	 * <para>Sets the Spell number of the associated spell ID</para>
+	 * <param name="spellId">Location of the spell</param>
+	 * <param name="s">Spell number</param>
 	 * **/
-	public void SetENumber(SpellNumber e) {
-		SpellE = e;
-		IconE.sprite = selectControl.GetSprite (e);
+	public void SetSelection(SpellCast spellId, SpellNumber s) {
+		switch (spellId) {
+		case SpellCast.Q:
+			SpellQ = s;
+			IconQ.sprite = selectControl.GetSprite (s);
+			break;
+		case SpellCast.E:
+			SpellE = s;
+			IconE.sprite = selectControl.GetSprite (s);
+			break;
+		case SpellCast.Space:
+			SpellSpace = s;
+			IconSpace.sprite = selectControl.GetSprite (s);
+			break;
+		}
 	}
 
 	/**
-	 * <para>Sets the Space spell number</para>
-	 * <param name="space">Spell number</param>
+	 * <para>Gets the image associated with the spell location</para>
+	 * <param name="spellId">Location of the spell</param>
 	 * **/
-	public void SetSpaceNumber(SpellNumber space) {
-		SpellSpace = space;
-		IconSpace.sprite = selectControl.GetSprite (space);
+	public Image GetIcon (SpellCast spellId) {
+		switch (spellId) {
+		case SpellCast.Q:
+			return IconQ;
+		case SpellCast.E:
+			return IconE;
+		case SpellCast.Space:
+			return IconSpace;
+		}
+		return IconQ;
 	}
 }

@@ -36,11 +36,11 @@ public class WheelSelectController : MonoBehaviour {
 
 		if (IsActive) {
 			if (Input.GetKeyDown (KeyCode.Q)) {
-				EquipQ (currentSelection.GetSelection());
+				Equip (SpellCast.Q, currentSelection.GetSelection());
 			} else if (Input.GetKeyDown (KeyCode.E)) {
-				EquipE (currentSelection.GetSelection());
+				Equip (SpellCast.E, currentSelection.GetSelection());
 			} else if (Input.GetKeyDown (KeyCode.Space)) {
-				EquipSpace (currentSelection.GetSelection());
+				Equip (SpellCast.Space, currentSelection.GetSelection());
 			}
 
 			if (EventSystem.current.currentSelectedGameObject == null && currentSelection != null) {
@@ -71,30 +71,13 @@ public class WheelSelectController : MonoBehaviour {
 	}
 
 	/**
-	 * <para>Equips the selected spell in the Q slot</para>
+	 * <para>Equips the selected spell in the associated spellId slot</para>
+	 * <param name="spellId">Location of the spell</param>
 	 * <param name="selection">Spell selected</param>
 	 * **/
-	private void EquipQ (SpellNumber selection) {
-		gameControl.SetSpellQ (selection);
+	private void Equip (SpellCast spellId, SpellNumber selection) {
+		gameControl.SetSpell (spellId, selection);
 		IconQ.sprite = imageControl.Spells [(int)selection];
-	}
-
-	/**
-	 * <para>Equips the selected spell in the E slot</para>
-	 * <param name="selection">Spell selected</param>
-	 * **/
-	private void EquipE (SpellNumber selection) {
-		gameControl.SetSpellE (selection);
-		IconE.sprite = imageControl.Spells [(int)selection];
-	}
-
-	/**
-	 * <para>Equips the selected spell in the Space slot</para>
-	 * <param name="selection">Spell selected</param>
-	 * **/
-	private void EquipSpace (SpellNumber selection) {
-		gameControl.SetSpellSpace (selection);
-		IconSpace.sprite = imageControl.Spells [(int)selection];
 	}
 
 	public Sprite GetSprite (SpellNumber s) {
