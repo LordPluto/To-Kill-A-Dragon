@@ -25,12 +25,6 @@ public class StatusQuickControl : MonoBehaviour {
 		if (gameControl == null) {
 			gameControl = GameObject.Find ("_GameController").GetComponent<GameController> ();
 		}
-		for (int i = 0; i < numUnlocked; ++i) {
-			unlockedSlots[i].SetActive (true);
-		}
-		for (int j = numUnlocked; j < unlockedSlots.Length; ++j) {
-			unlockedSlots [j].SetActive (false);
-		}
 	}
 	
 	// Update is called once per frame
@@ -66,7 +60,6 @@ public class StatusQuickControl : MonoBehaviour {
 		if (numUnlocked >= unlockedSlots.Length)
 			return;
 
-		unlockedSlots [numUnlocked].gameObject.SetActive (true);
 		panelControl.UnlockSpell (spell);
 		StatusQuickTriad triad = Triads[numUnlocked % 3];
 		if (numUnlocked / 3 == 0) {

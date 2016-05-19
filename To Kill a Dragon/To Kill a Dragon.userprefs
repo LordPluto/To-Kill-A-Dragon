@@ -1,13 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Level Elements\Enter Menu\Status\StatusQuickControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Level Elements\Enter Menu\MenuButtonClick.cs">
     <Files>
-      <File FileName="Assets\Scripts\Level Elements\Enter Menu\Status\StatusTriadPanelControl.cs" Line="51" Column="52" />
-      <File FileName="Assets\Scripts\Level Elements\Enter Menu\Status\StatusQuickControl.cs" Line="51" Column="31" />
-      <File FileName="Assets\Scripts\Level Elements\Enter Menu\Status\StatusQuickTriad.cs" Line="8" Column="23" />
-      <File FileName="Assets\Scripts\Level Elements\Enter Menu\Status\StatusWheelIcon.cs" Line="26" Column="2" />
-      <File FileName="Assets\Scripts\Various\GameController.cs" Line="188" Column="49" />
-      <File FileName="Assets\Scripts\Level Elements\Enter Menu\Status\StatusQuickSelector.cs" Line="8" Column="33" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\MenuButton.cs" Line="21" Column="18" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\Status\StatusTriadPanelControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\Status\StatusQuickControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\Status\StatusQuickTriad.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\Status\StatusWheelIcon.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Various\GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\Status\StatusQuickSelector.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level Elements\Enter Menu\MenuButtonClick.cs" Line="30" Column="45" />
+      <File FileName="Assets\Scripts\Level Elements\MenuController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\HUD\SpellSelection\WheelSelectController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

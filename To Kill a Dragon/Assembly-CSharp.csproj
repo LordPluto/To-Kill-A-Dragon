@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\DebugPanelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\EquipmentPanelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\InventoryPanelControl.cs" />
+     <Compile Include="Assets\Scripts\Level Elements\Enter Menu\MenuButton.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\MenuButtonClick.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\MenuPanelControl.cs" />
      <Compile Include="Assets\Scripts\Level Elements\Enter Menu\QuestPanelControl.cs" />

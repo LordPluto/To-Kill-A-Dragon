@@ -1,43 +1,57 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class MenuButtonClick : MonoBehaviour {
 	private MenuController enterMenu;
 
+	public MenuButton[] buttons;
+	private MenuButton currentButton;
+
 	void Start () {
 		enterMenu = GameObject.Find ("Enter Menu").GetComponent<MenuController> ();
+		currentButton = buttons [0];
+		currentButton.OnWindowSwitch (true);
+	}
+
+	void Update () {
+		if (Input.GetKeyDown (KeyCode.X)) {
+			currentButton.OnWindowSwitch (false);
+			EventSystem.current.SetSelectedGameObject (currentButton.GetPartner ().gameObject);
+		}
 	}
 
 	public void StatusClick() {
-		enterMenu.SwitchWindow (MenuWindow.StatusWindow);
+		SwitchWindow (MenuWindow.StatusWindow);
 	}
 
 	public void InventoryClick() {
-		enterMenu.SwitchWindow (MenuWindow.InventoryWindow);
+		SwitchWindow (MenuWindow.InventoryWindow);
 	}
 
 	public void EquipmentClick() {
-		enterMenu.SwitchWindow (MenuWindow.EquipmentWindow);
+		SwitchWindow (MenuWindow.EquipmentWindow);
 	}
 
 	public void CustomizeClick() {
-		enterMenu.SwitchWindow (MenuWindow.CustomizeWindow);
+		SwitchWindow (MenuWindow.CustomizeWindow);
 	}
 
 	public void QuestClick() {
-		enterMenu.SwitchWindow (MenuWindow.QuestWindow);
+		SwitchWindow (MenuWindow.QuestWindow);
 	}
 
 	public void DebugClick() {
-		enterMenu.SwitchWindow (MenuWindow.DebugWindow);
+		SwitchWindow (MenuWindow.DebugWindow);
 	}
 
-	public void DebugTemp(int index){
-		SceneManager.LoadScene (index);
-	}
+	private void SwitchWindow (MenuWindow selectedWindow) {
+		EventSystem.current.SetSelectedGameObject (null);
 
-	public void DebugTemp(string levelName){
-		SceneManager.LoadScene (levelName);
+		enterMenu.SwitchWindow (selectedWindow);
+
+		currentButton.OnWindowSwitch (false);
+		currentButton = buttons [(int)selectedWindow];
+		currentButton.OnWindowSwitch (true);
 	}
 }

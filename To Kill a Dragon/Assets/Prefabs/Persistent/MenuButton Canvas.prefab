@@ -61,6 +61,7 @@ GameObject:
   - 224: {fileID: 22411398}
   - 222: {fileID: 22211396}
   - 114: {fileID: 11411402}
+  - 114: {fileID: 11438322}
   - 114: {fileID: 11411400}
   m_Layer: 5
   m_Name: DebugButton
@@ -79,6 +80,7 @@ GameObject:
   - 224: {fileID: 22411400}
   - 222: {fileID: 22211398}
   - 114: {fileID: 11411404}
+  - 114: {fileID: 11402768}
   - 114: {fileID: 11411406}
   m_Layer: 5
   m_Name: CustomizeButton
@@ -131,6 +133,7 @@ GameObject:
   - 224: {fileID: 22411406}
   - 222: {fileID: 22211404}
   - 114: {fileID: 11411414}
+  - 114: {fileID: 11451536}
   - 114: {fileID: 11411412}
   m_Layer: 5
   m_Name: EquipmentButton
@@ -149,6 +152,7 @@ GameObject:
   - 224: {fileID: 22411408}
   - 222: {fileID: 22211406}
   - 114: {fileID: 11411416}
+  - 114: {fileID: 11443582}
   - 114: {fileID: 11411418}
   m_Layer: 5
   m_Name: InventoryButton
@@ -201,7 +205,8 @@ GameObject:
   - 224: {fileID: 22411414}
   - 222: {fileID: 22211412}
   - 114: {fileID: 11411426}
-  - 114: {fileID: 11411424}
+  - 114: {fileID: 11436034}
+  - 114: {fileID: 11473130}
   m_Layer: 5
   m_Name: StatusButton
   m_TagString: Untagged
@@ -236,6 +241,7 @@ GameObject:
   - 224: {fileID: 22411418}
   - 222: {fileID: 22211416}
   - 114: {fileID: 11411432}
+  - 114: {fileID: 11488508}
   - 114: {fileID: 11411430}
   m_Layer: 5
   m_Name: QuestButton
@@ -244,6 +250,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!114 &11402768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d33c730f6f22c144a1500aacdd2ef68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeImage: {fileID: 21300000, guid: 7e52912c88bea0a4f95eb82db3b1bdd9, type: 3}
+  inactiveImage: {fileID: 21300000, guid: b7c21db57c53b9342bf5c8852fe89c50, type: 3}
 --- !u!114 &11411394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -326,10 +345,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnLeft: {fileID: 11411430}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
   m_Colors:
@@ -433,11 +452,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 11411412}
+    m_SelectOnDown: {fileID: 11411430}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 11411400}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -554,11 +573,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 11411418}
+    m_SelectOnDown: {fileID: 11411406}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 11411400}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -661,11 +680,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 11473130}
+    m_SelectOnDown: {fileID: 11411412}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 11411400}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -768,59 +787,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: STATUS
---- !u!114 &11411424
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 4
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 11411418}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 7e52912c88bea0a4f95eb82db3b1bdd9,
-      type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 27c06ac03a411894fb1f3d2f4b95b725, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: 27c06ac03a411894fb1f3d2f4b95b725, type: 3}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 11411426}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11468868}
-        m_MethodName: StatusClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &11411426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -893,11 +859,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 11411406}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 11411400}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -961,6 +927,58 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11436034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d33c730f6f22c144a1500aacdd2ef68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeImage: {fileID: 21300000, guid: 7e52912c88bea0a4f95eb82db3b1bdd9, type: 3}
+  inactiveImage: {fileID: 21300000, guid: b7c21db57c53b9342bf5c8852fe89c50, type: 3}
+--- !u!114 &11438322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d33c730f6f22c144a1500aacdd2ef68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeImage: {fileID: 21300000, guid: 7e52912c88bea0a4f95eb82db3b1bdd9, type: 3}
+  inactiveImage: {fileID: 21300000, guid: b7c21db57c53b9342bf5c8852fe89c50, type: 3}
+--- !u!114 &11443582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d33c730f6f22c144a1500aacdd2ef68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeImage: {fileID: 21300000, guid: 7e52912c88bea0a4f95eb82db3b1bdd9, type: 3}
+  inactiveImage: {fileID: 21300000, guid: b7c21db57c53b9342bf5c8852fe89c50, type: 3}
+--- !u!114 &11451536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d33c730f6f22c144a1500aacdd2ef68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeImage: {fileID: 21300000, guid: 7e52912c88bea0a4f95eb82db3b1bdd9, type: 3}
+  inactiveImage: {fileID: 21300000, guid: b7c21db57c53b9342bf5c8852fe89c50, type: 3}
 --- !u!114 &11468868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -972,6 +990,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5854ad2d0320b48817d613456e0463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 11436034}
+  - {fileID: 11443582}
+  - {fileID: 11451536}
+  - {fileID: 11402768}
+  - {fileID: 11488508}
+  - {fileID: 11438322}
+--- !u!114 &11473130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 11411418}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 11411400}
+  m_Transition: 2
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 21300000, guid: 7e52912c88bea0a4f95eb82db3b1bdd9,
+      type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 27c06ac03a411894fb1f3d2f4b95b725, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 27c06ac03a411894fb1f3d2f4b95b725, type: 3}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 11411426}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11468868}
+        m_MethodName: StatusClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &11488508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d33c730f6f22c144a1500aacdd2ef68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeImage: {fileID: 21300000, guid: 7e52912c88bea0a4f95eb82db3b1bdd9, type: 3}
+  inactiveImage: {fileID: 21300000, guid: b7c21db57c53b9342bf5c8852fe89c50, type: 3}
 --- !u!222 &22211394
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1050,7 +1141,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111394}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1059,6 +1150,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 3
   m_TargetDisplay: 0

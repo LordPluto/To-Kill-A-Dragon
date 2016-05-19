@@ -4,12 +4,12 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 
 public enum MenuWindow {
-	StatusWindow,
-	InventoryWindow,
-	EquipmentWindow,
-	CustomizeWindow,
-	QuestWindow,
-	DebugWindow
+	StatusWindow = 0,
+	InventoryWindow = 1,
+	EquipmentWindow = 2,
+	CustomizeWindow = 3,
+	QuestWindow = 4,
+	DebugWindow = 5
 }
 
 public class MenuController : MonoBehaviour {
